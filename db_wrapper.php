@@ -36,8 +36,8 @@ class db_wrapper {
         
         // PostgreSQL互換にするための簡易的な置換 (例: CURDATE() -> CURRENT_DATE)
         $sql = str_ireplace('CURDATE()', 'CURRENT_DATE', $sql);
-        // sum(correct)などのバッククォートをダブルクォートか削除に
-        $sql = str_replace('`', '"', $sql);
+        // sum(correct)などのバッククォートを完全に削除する（PostgreSQLの小文字統一仕様に合わせるため）
+        $sql = str_replace('`', '', $sql);
 
         try {
             // INSERT, UPDATE, DELETEの場合は影響行数を返すかtrueを返す
