@@ -7,7 +7,7 @@ mb_language("ja");
 mb_internal_encoding('UTF-8');
 // echo "20e"."\n"."\n";
 
-$pieces = explode(".", $_POST["data"]);
+$pieces = explode("^", $_POST["data"]);
 
 // echo ("pieces is ")."\n";
 // var_dump ($pieces);
@@ -98,3 +98,4 @@ echo $reply[1]["imagefolder"];
 
 mysqli_close($mysqli);
 ?>
+

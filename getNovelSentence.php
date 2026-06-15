@@ -4,7 +4,7 @@ error_reporting(0);
 mb_language("ja");
 mb_internal_encoding('UTF-8');
 
-$pieces = explode(".", $_POST["data"]);
+$pieces = explode("^", $_POST["data"]);
 // var_dump ($pieces);
 $DB_name =  $pieces[0];///
 $novelNumber = $pieces[1];///
@@ -32,3 +32,4 @@ $result = $result['sentence'];//
 // echo $query;
 echo $result;
 ?>
+

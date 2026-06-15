@@ -9,7 +9,7 @@ $pieces = explode("^", $_POST["data"]);
 $questionnumber = $pieces[0];///
 // $DB_name =  $pieces[1];
 $db_name =  $pieces[1];
-// $pieces = explode(".", $_POST["data"]);
+// $pieces = explode("^", $_POST["data"]);
 $poorat = $pieces[2];
 $getPastTime = $pieces[3];
 // echo "poorat is ".$poorat."\n"."\n";
@@ -237,3 +237,4 @@ if( $result = $mysqli->query($query) ){
 
 print  "正解 ".$reply." : 不正解 ".$reply2;
 ?>
+

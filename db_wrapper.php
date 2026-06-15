@@ -6,6 +6,7 @@ class db_wrapper {
     private $pdo;
     public $connect_errno = 0;
     public $error = "";
+    public $connect_error = "";
 
     public function __construct() {
         // Supabase PostgreSQL接続情報 (Connection Pooler: IPv4対応)
@@ -26,6 +27,7 @@ class db_wrapper {
         } catch (PDOException $e) {
             $this->connect_errno = 1;
             $this->error = $e->getMessage();
+            $this->connect_error = $e->getMessage();
             echo "DB Connection Error: " . $this->error . "<br>";
         }
     }
@@ -78,8 +80,10 @@ class db_wrapper {
 
 class db_result_wrapper {
     private $stmt;
+    public $num_rows;
     public function __construct($stmt) {
         $this->stmt = $stmt;
+        $this->num_rows = $stmt->rowCount();
     }
     public function fetch_assoc() {
         return $this->stmt->fetch(PDO::FETCH_ASSOC);
@@ -92,7 +96,16 @@ class db_result_wrapper {
     }
 }
 
-// 既存のmysqli_close関数をエミュレートする関数
+// 既存のmysqli関数をエミュレートする関数
+if (!function_exists('mysqli_num_rows')) {
+    function mysqli_num_rows($result) {
+        if (is_object($result) && property_exists($result, 'num_rows')) {
+            return $result->num_rows;
+        }
+        return 0;
+    }
+}
+
 if (!function_exists('mysqli_close')) {
     function mysqli_close($link) {
         if (is_object($link) && method_exists($link, 'close')) {

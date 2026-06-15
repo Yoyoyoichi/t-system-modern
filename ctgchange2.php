@@ -4,7 +4,7 @@ error_reporting(0);
 mb_language("ja");
 mb_internal_encoding('UTF-8');
 // print $_POST["data"]."\n"."\n";
-$pieces = explode(".", $_POST["data"]);
+$pieces = explode("^", $_POST["data"]);
 // var_dump ($pieces);
 // print $pieces[0]."\n"."\n";
 // print $pieces[1]."\n"."\n";;
@@ -59,3 +59,4 @@ echo $reply2;
 
 
 ?>
+

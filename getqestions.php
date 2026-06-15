@@ -1,13 +1,13 @@
-﻿<?php
+<?php
 require_once 'db_wrapper.php';
 // error_reporting(0);
 mb_language("ja");
 mb_internal_encoding('UTF-8');
 
 // echo "19bb"."\n"."\n";
-$pieces = explode(".", $_POST["data"]);
-var_dump($pieces);
-echo "\n"."\n";
+$pieces = explode("^", $_POST["data"]);
+// var_dump($pieces);
+// echo "\n"."\n";
 
 
 // echo $DB."\n"."\n";
@@ -492,3 +492,4 @@ function console_log( $data ){
   echo '</script>';
 }
 ?>
+

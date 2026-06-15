@@ -4,12 +4,12 @@ error_reporting(0);
 mb_language("ja");
 mb_internal_encoding('UTF-8');
 
-$pieces = explode(".", $_POST["data"]);
+$pieces = explode("^", $_POST["data"]);
 // var_dump ($pieces);
 $questionnumber = $pieces[0];///
 // $DB_name =  $pieces[1];
 $db_name =  $pieces[1];
-// $pieces = explode(".", $_POST["data"]);
+// $pieces = explode("^", $_POST["data"]);
 //print $_POST["data"];
 $mysqli = new db_wrapper('localhost', 'terashimayo', 'Yoyoyo444', 'terashimayo');
 
@@ -59,3 +59,4 @@ print  $reply;
 
 
 ?>
+

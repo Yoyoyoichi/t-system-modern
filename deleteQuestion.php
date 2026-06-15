@@ -12,7 +12,7 @@ $db_name =  $pieces[1];
 $poorat = $pieces[2];
 $getPastTime = $pieces[3];
 
-$pieces = explode(".", $_POST["data"]);
+$pieces = explode("^", $_POST["data"]);
 
 $mysqli = new db_wrapper('localhost', 'terashimayo', 'Yoyoyo444', 'terashimayo');
 
@@ -32,3 +32,4 @@ $res = $mysqli->query($sql);
 
 
 ?>
+

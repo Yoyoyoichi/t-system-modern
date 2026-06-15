@@ -7,7 +7,7 @@ mb_language("ja");
 mb_internal_encoding('UTF-8');
 // echo "20e"."\n"."\n";
 
-$pieces = explode(".", $_POST["data"]);
+$pieces = explode("^", $_POST["data"]);
 
 
 $db_name =  $pieces[0];
@@ -276,3 +276,4 @@ echo $answer[0];
 
 mysqli_close($mysqli);
 ?>
+

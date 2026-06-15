@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ja">
 <head>
 	<link rel="icon" href="./favicon.ico">
@@ -257,9 +257,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $str_sql = "SELECT correct + incorrect FROM `A01tsystemrecord01` WHERE id = '$db_name' AND qdate = CURDATE()";////
     // echo $str_sql;
     $result = $mysqli->query($str_sql);
-    $test  = $result->fetch_assoc();
+    $test  = $result ? $result->fetch_assoc() : false;
     // var_dump ($result);
-    $todayQuestonDone = $test['correct + incorrect'];
+    $todayQuestonDone = $test ? $test['correct + incorrect'] : 0;
 
     $str_sql = "SELECT min(questionnumber) FROM $db_name";
     $result = $mysqli->query($str_sql);

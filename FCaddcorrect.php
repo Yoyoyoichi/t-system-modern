@@ -15,7 +15,7 @@ $getPastTime = $pieces[3];
 
 
 // echo "addcorrect poorat is ".$poorat."\n"."\n";
-$pieces = explode(".", $_POST["data"]);
+$pieces = explode("^", $_POST["data"]);
 
 $mysqli = new db_wrapper('localhost', 'terashimayo', 'Yoyoyo444', 'terashimayo');
 
@@ -181,3 +181,4 @@ if( $result = $mysqli->query($query) ){
 
 print  "正解 ".$reply." : 不正解 ".$reply2;
 ?>
+
