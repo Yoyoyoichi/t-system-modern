@@ -11,7 +11,7 @@ $pieces = $_POST["data"];
 
 
 
-// //蟆剰ｪｬ逡ｪ蜿ｷ險倬鹸
+// //小説番号記録
 $mysqli = new db_wrapper('localhost', 'terashimayo', 'Yoyoyo444', 'terashimayo');
 if ($mysqli->connect_error) {error_log($mysqli->connect_error);exit;}
 $mysqli->set_charset("utf8");
@@ -21,7 +21,7 @@ echo "<br><br>";
 $result = $mysqli->query($str);
 
 $row = "";
-//繝・・繧ｿ繝吶・繧ｹ蜿門ｾ・
+//データベース取得
 // $result = $mysqli->query($str);
 // var_dump($result);
 $row_cnt = mysqli_num_rows($result);
@@ -37,10 +37,10 @@ if( $result = $mysqli->query($str) ){
   }
 }
 else {
-    echo '蝠城｡後′縺ゅｊ縺ｾ縺帙ｓ縲・;
+    echo '問題がありません。';
 }
 echo '^^^^^';
-// for 譁・
+// for 文
 for($i = 0; $i < $row_cnt+1; $i++){
 echo $reply[$i];
 }

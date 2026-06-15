@@ -52,7 +52,7 @@
     width:97%;
     text-align: center;
     border: 2px solid darkgray;
-    border-radius: 0.67em;   /* 隗剃ｸｸ */
+    border-radius: 0.67em;   /* 角丸 */
 
     &:before {
     content: '';
@@ -67,9 +67,9 @@
   }
   .textlines {
     font-family: "SimHei";
-    border: 2px solid #0a0;  /* 譫邱・*/
-    border-radius: 0.67em;   /* 隗剃ｸｸ */
-    background-color: #ffccff;  /* 閭梧勹濶ｲ */
+    border: 2px solid #0a0;  /* 枠線 */
+    border-radius: 0.67em;   /* 角丸 */
+    background-color: #ffccff;  /* 背景色 */
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.25);
     padding:0px;
     margin:0px 0px 0px 10px
@@ -98,16 +98,16 @@
       margin:1vh; padding:0px;
   }
   #information{
-    font-family: "・ｭ・ｳ ・ｰ繧ｴ繧ｷ繝・け";
-    border: 2px solid #0a0;  /* 譫邱・*/
-    border-radius: 0.67em;   /* 隗剃ｸｸ */
-    /* padding: 0.5em;          蜀・・縺ｮ菴咏區驥・*/
-    background-color: #ffccff;  /* 閭梧勹濶ｲ */
+    font-family: "ＭＳ Ｐゴシック";
+    border: 2px solid #0a0;  /* 枠線 */
+    border-radius: 0.67em;   /* 角丸 */
+    /* padding: 0.5em;          内側の余白量 */
+    background-color: #ffccff;  /* 背景色 */
       box-shadow: 0 3px 6px rgba(0, 0, 0, 0.25);
-    /*width: 20em;             /* 讓ｪ蟷・*/*/
-    /*height: 120px;           /* 鬮倥＆ */*/
-    /*font-size: 1em;          /* 譁・ｭ励し繧､繧ｺ */*/
-    line-height: 1.2;        /* 陦後・鬮倥＆ */
+    /*width: 20em;             /* 横幅 */*/
+    /*height: 120px;           /* 高さ */*/
+    /*font-size: 1em;          /* 文字サイズ */*/
+    line-height: 1.2;        /* 行の高さ */
   }
   div.bottomButtonBox{
 
@@ -119,9 +119,9 @@
     padding: 0.5em 1em;
     margin: 1%;
     color: #00BCD4;
-    background: #e4fcff;/*閭梧勹濶ｲ*/
+    background: #e4fcff;/*背景色*/
     border-top: solid 6px #1dc1d6;
-    box-shadow: 0 3px 4px rgba(0, 0, 0, 0.32);/*蠖ｱ*/
+    box-shadow: 0 3px 4px rgba(0, 0, 0, 0.32);/*影*/
   }
   table {
     border-collapse: collapse;
@@ -131,11 +131,11 @@
     border: 1px solid black;
     padding: 8px;
     text-align: left;
-    white-space: pre-wrap; /* 謾ｹ陦後ｒ邯ｭ謖√☆繧・*/
-    word-wrap: break-word; /* 髟ｷ縺・腰隱槭ｒ謚倥ｊ霑斐☆ */
-    white-space: normal; /* 繝・ヵ繧ｩ繝ｫ繝医・遨ｺ逋ｽ蜃ｦ逅・*/
-    line-height: 1.5; /* 陦碁俣繧定ｨｭ螳壹☆繧・*/
-    font-size: 10px; /* 繝輔か繝ｳ繝医し繧､繧ｺ繧定ｨｭ螳壹☆繧・*/
+    white-space: pre-wrap; /* 改行を維持する */
+    word-wrap: break-word; /* 長い単語を折り返す */
+    white-space: normal; /* デフォルトの空白処理 */
+    line-height: 1.5; /* 行間を設定する */
+    font-size: 10px; /* フォントサイズを設定する */
   }
 
 
@@ -160,7 +160,7 @@
 <script src="./Basic.files/dom_request_script.js" type="text/javascript"></script>
 <body>
 
-<form name ="mainform" id ="mainform"縲action="" method="post">
+<form name ="mainform" id ="mainform"　action="" method="post">
 <p>
     <input
         type="text" id="DB_name"  name="DB_name"  class='textlines'
@@ -174,32 +174,32 @@
 
 </p>
  <div id ="grandParent1">
-    <input class ="button" type="submit" value="騾∽ｿ｡" style='font-size: 25px;width: 20%; height: 120px'>
+    <input class ="button" type="submit" value="送信" style='font-size: 25px;width: 20%; height: 120px'>
     &nbsp;&nbsp;&nbsp;
     <br>
     <br>
     <a id ="UpdateSql" href="UpdateSql2.php">
-        <font size="4" color="#FF6633">蝠城｡瑚ｿｽ蜉1</font>
+        <font size="4" color="#FF6633">問題追加1</font>
     </a>
     &nbsp;&nbsp;
     <a id="TerashimaSheets" href="TerashimaSheets.php" >
-        <font size="4" color="#38a3ea">蝠城｡瑚ｿｽ蜉2</font>
+        <font size="4" color="#38a3ea">問題追加2</font>
     </a>
     &nbsp;&nbsp;
     <a id="resultgraph" href="testJSCharts.php">
-        <font size="4" color="#38a3ea">邨先棡繧ｰ繝ｩ繝・/font>
+        <font size="4" color="#38a3ea">結果グラフ</font>
     </a>
     &nbsp;&nbsp;
     <a id="ranking" href="ranking.php">
-        <font size="4" color="#38a3ea">繝ｩ繝ｳ繧ｭ繝ｳ繧ｰ</font>
+        <font size="4" color="#38a3ea">ランキング</font>
     </a>
     &nbsp;&nbsp;
     <a id="reminder" href="reminder.php">
-        <font size="4" color="#38a3ea">蠕ｩ鄙・/font>
+        <font size="4" color="#38a3ea">復習</font>
     </a>
     &nbsp;&nbsp;
     <a id="review2" href="reviewT-System.php " >
-        <font size="4" color="#38a3ea">荳隕ｧ</font>
+        <font size="4" color="#38a3ea">一覧</font>
     </a>
     
     <br>
@@ -217,7 +217,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
   if (!empty($_POST["DB_name"])) {
     $mysqli = new db_wrapper('localhost', 'terashimayo', 'Yoyoyo444', 'terashimayo');
     if( $mysqli->connect_errno){
-        echo 'Access Failed';//謗･邯壼､ｱ謨・
+        echo 'Access Failed';//接続失敗
         exit;
     }
 
@@ -227,10 +227,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $db_column = "category1";
 
 
-    //繝・ヵ繧ｩ繝ｫ繝域枚蟄励そ繝・ヨ繧定ｨｭ螳・
+    //デフォルト文字セットを設定
     $mysqli->set_charset("utf8");
     $row = "";
-    //繝・・繧ｿ繝吶・繧ｹ縺九ｉ豁｣隗｣荳肴ｭ｣隗｣縺ｮ蜷郁ｨ医ｒ蜿門ｾ・
+    //データベースから正解不正解の合計を取得
     $str_sql = "SELECT sum(correct) FROM  $db_name";
     $result = $mysqli->query($str_sql);
     $test  = $result->fetch_assoc();
@@ -270,13 +270,13 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $test  = $result->fetch_assoc();
     $information = $test['information'];
     echo"<div  id = 'massages' style='display:inline-flex;width:100vw'> ";
-    echo "<p style='font-size:20px;color:#FF0000;width:60vw;padding : 0px 0px 0px 0px;'> 繧・▲縺溷撫鬘梧焚縺ｮ蜷郁ｨ医・$testo 縺ｧ縺吶・br><br>
-    莉頑律繧・▲縺溷粋險医・ $todayQuestonDone 縺ｧ縺吶・br><br>
-    豁｣隗｣縺ｮ蜷郁ｨ医・ $test2 縺ｧ縺吶・br><br>
-    荳肴ｭ｣隗｣縺ｮ蜷郁ｨ医・ $test3 縺ｧ縺吶・<br><br>
-    豁｣遲皮紫縺ｯ $seitoritu ・・〒縺吶・br><br>
-    蜑榊屓縺ｯ $test4 縺ｧ縺励◆縲・<br><br>
-    </p>"."\n"."\n";////<font size="5" color="#000000">蝠冗岼</fsont>
+    echo "<p style='font-size:20px;color:#FF0000;width:60vw;padding : 0px 0px 0px 0px;'> やった問題数の合計は$testo です。<br><br>
+    今日やった合計は $todayQuestonDone です。<br><br>
+    正解の合計は $test2 です。<br><br>
+    不正解の合計は $test3 です。 <br><br>
+    正答率は $seitoritu ％です。<br><br>
+    前回は $test4 でした。 <br><br>
+    </p>"."\n"."\n";////<font size="5" color="#000000">問目</fsont>
     // if (!($db_name==="AOI0501")) {
       echo "
       <div style='height:10vh;width:30vw;'>
@@ -296,10 +296,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $today = date("Y/m/d");
     $target_day = $test4;
     if(strtotime($today) - strtotime($target_day) > 604800){
-      // echo "<p縲style='font-size:40px;'> 縺輔⊂縺｣縺ｦ繧薙§繧・・縺茨ｼ・</p>"."\n";/////aaaa
+      // echo "<p　style='font-size:40px;'> さぼってんじゃねえ！ </p>"."\n";/////aaaa
     }
 
-    //繝・・繧ｿ繝吶・繧ｹ縺九ｉ繧ｫ繝・ざ繝ｪ繝ｼ1繧貞叙蠕・
+    //データベースからカテゴリー1を取得
     $str_sql = "select $db_column from $db_name where question != 'settings'";
         // echo $str_sql.",\n"."\n";//
     $result = $mysqli->query($str_sql);
@@ -328,7 +328,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     echo "{$sampleSelectBox}";
 
-    //繝・・繧ｿ繝吶・繧ｹ縺九ｉ繧ｫ繝・ざ繝ｪ繝ｼ2繧貞叙蠕・
+    //データベースからカテゴリー2を取得
     $str_sql = "select category2 from $db_name where question != 'settings'";
     $result = $mysqli->query($str_sql);
 
@@ -352,7 +352,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     echo "{$sampleSelectBox}";
 
 
-    //繝・・繧ｿ繝吶・繧ｹ縺九ｉ繧ｫ繝・ざ繝ｪ繝ｼ3繧貞叙蠕・
+    //データベースからカテゴリー3を取得
     $str_sql = "select category3 from $db_name where question != 'settings'";
     $result = $mysqli->query($str_sql);
 
@@ -375,7 +375,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $sampleSelectBox .= "</select>\n";//
     echo "{$sampleSelectBox}";
 
-    //繝・・繧ｿ繝吶・繧ｹ縺九ｉ繧ｫ繝・ざ繝ｪ繝ｼ4繧貞叙蠕・
+    //データベースからカテゴリー4を取得
     $str_sql = "select category4 from $db_name where question != 'settings'";
     $result = $mysqli->query($str_sql);
 
@@ -398,7 +398,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $sampleSelectBox .= "</select>\n";//
     echo "{$sampleSelectBox}";
 
-    //繝・・繧ｿ繝吶・繧ｹ縺九ｉ繧ｫ繝・ざ繝ｪ繝ｼ5繧貞叙蠕・
+    //データベースからカテゴリー5を取得
     $str_sql = "select category5 from $db_name where question != 'settings'";
     $result = $mysqli->query($str_sql);
 
@@ -425,52 +425,52 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     mysqli_close($mysqli);
 
   } else {
-    $err = "蜈･蜉帙＆繧後※縺・↑縺・・岼縺後≠繧翫∪縺吶・;
+    $err = "入力されていない項目があります。";
   }
 }
 global $testnumber;
 $testnumber = 0;
 ?>
 </div>
-  <input class ="button" type="button" name="Lv0" id="Lv0" onClick="levelZero()" value="繝ｬ繝吶Ν繧ｼ繝ｭ"
+  <input class ="button" type="button" name="Lv0" id="Lv0" onClick="levelZero()" value="レベルゼロ"
   style=" width:15vw;height:150px; font-size: 20px">
-  <input class ="button" type="button" name="Lv1" id="Lv1" onClick="levelOne()" value="繝ｬ繝吶Ν1"
+  <input class ="button" type="button" name="Lv1" id="Lv1" onClick="levelOne()" value="レベル1"
   style=" width:15vw;height:150px; font-size: 20px">
-  <input class ="button" type="button" name="Lv2" id="Lv2" onClick="levelTwo()" value="繝ｬ繝吶Ν2"
+  <input class ="button" type="button" name="Lv2" id="Lv2" onClick="levelTwo()" value="レベル2"
   style=" width:15vw;height:150px; font-size: 20px">
-  <input class ="button" type="button" name="Lv3" id="Lv3" onClick="levelThree()" value="繝ｬ繝吶Ν3"
+  <input class ="button" type="button" name="Lv3" id="Lv3" onClick="levelThree()" value="レベル3"
   style=" width:15vw;height:150px; font-size: 20px">
-  <input class ="button" type="button" name="Lv3" id="Lv4" onClick="levelFour()" value="繝ｬ繝吶Ν4"
+  <input class ="button" type="button" name="Lv3" id="Lv4" onClick="levelFour()" value="レベル4"
   style=" width:15vw;height:150px; font-size: 20px"><br>
-  <input class ="button" type="button" name="atLeastOne" id="atLeastOne" onClick="atLeastOneFunc()" value="蝗樒ｭ疲ｸ医∩"
+  <input class ="button" type="button" name="atLeastOne" id="atLeastOne" onClick="atLeastOneFunc()" value="回答済み"
   style=" width:15vw;height:150px; font-size: 20px">
-  <input class ="button" type="button" name="NotYet" id="NotYet" onClick="NotYetQuestion()" value="譛ｪ蝗樒ｭ・
+  <input class ="button" type="button" name="NotYet" id="NotYet" onClick="NotYetQuestion()" value="未回答"
   style=" width:15vw;height:150px; font-size: 20px">
-  <input class ="button" type="button" name="yesterday" id="yesterday" onClick="yesterdayQuestion()" value="譏ｨ譌･"
+  <input class ="button" type="button" name="yesterday" id="yesterday" onClick="yesterdayQuestion()" value="昨日"
   style=" width:15vw;height:150px; font-size: 20px">
-  <input class ="button" type="button" name="noToday" id="noToday" onClick="noTodayQuestion()" value="莉頑律繧・▲縺ｦ縺ｪ縺・
+  <input class ="button" type="button" name="noToday" id="noToday" onClick="noTodayQuestion()" value="今日やってない"
     style=" width:15vw;height:150px; font-size: 20px;margin:5px 0px 0px 0px">
-  <input class ="button"  type="button" name="U50" id="U50" onClick="UnderFifty()" value="50・・ｻ･荳・
+  <input class ="button"  type="button" name="U50" id="U50" onClick="UnderFifty()" value="50％以下"
   style=" width:15vw;height:150px; font-size: 20px;margin:5px 0px 0px 0px">
   <div style="display:flex">
 <!--       <div style="padding:5px 5px 5px 0px;  " >
-      <input type="button" class = "button" name="oneByOne" id="oneByOne" onClick="oneByOneFunc()" value="譁ｰ縺励＞縺ｮ1縺､縺壹▽"
+      <input type="button" class = "button" name="oneByOne" id="oneByOne" onClick="oneByOneFunc()" value="新しいの1つずつ"
       style=" width:15vw;height:50px; font-size: 15px"><br>
-      <input type="button" class = "button" name="oneByOne" id="twoByTwo" onClick="twoByTwoFunc()" value="譁ｰ縺励＞縺ｮ2縺､縺壹▽"
+      <input type="button" class = "button" name="oneByOne" id="twoByTwo" onClick="twoByTwoFunc()" value="新しいの2つずつ"
       style=" width:15vw;height:50px; font-size: 15px"><br>
-      <input type="button" class = "button" name="oneByOne" id="threeByThree" onClick="threeByThreeFunc()" value="譁ｰ縺励＞縺ｮ3縺､縺壹▽"
+      <input type="button" class = "button" name="oneByOne" id="threeByThree" onClick="threeByThreeFunc()" value="新しいの3つずつ"
       style=" width:15vw;height:50px; font-size: 15px">
     </div> -->
     
-    <input class ="button" type="button" name="errToday" id="errToday" onClick="errTodayQuestion()" value="莉頑律髢馴＆縺医◆"
+    <input class ="button" type="button" name="errToday" id="errToday" onClick="errTodayQuestion()" value="今日間違えた"
     style=" width:15vw;height:150px; font-size: 20px;margin:5px 5px 0px 0px">
-    <input class ="button" type="button" name="errLast" id="errLast" onClick="errLastQuestion()" value="譛蠕御ｸ肴ｭ｣隗｣"
+    <input class ="button" type="button" name="errLast" id="errLast" onClick="errLastQuestion()" value="最後不正解"
     style=" width:15vw;height:150px; font-size: 20px;margin:5px 5px 0px 0px">
-    <input class ="button" type="button" name="threeDaysAgo" id="threeDaysAgo" onClick="threeDaysAgoQuestion()" value="3譌･蜑・
+    <input class ="button" type="button" name="threeDaysAgo" id="threeDaysAgo" onClick="threeDaysAgoQuestion()" value="3日前"
   	style=" width:15vw;height:150px; font-size: 20px;margin:5px 5px 0px 0px">
-    <input class ="button" type="button" name="aWeekAgo" id="aWeekAgo" onClick="aWeekAgoQuestion()" value="1騾ｱ髢灘燕"
+    <input class ="button" type="button" name="aWeekAgo" id="aWeekAgo" onClick="aWeekAgoQuestion()" value="1週間前"
     style=" width:15vw;height:150px; font-size: 20px;margin:5px 5px 0px 0px">
-    <input class ="button" type="button" name="aMonthAgo" id="aMonthAgo" onClick="aMonthAgoQuestion()" value="1繝ｵ譛亥燕"
+    <input class ="button" type="button" name="aMonthAgo" id="aMonthAgo" onClick="aMonthAgoQuestion()" value="1ヵ月前"
     style=" width:15vw;height:150px; font-size: 20px;margin:5px 5px 0px 0px">
     
   </div>
@@ -478,7 +478,7 @@ $testnumber = 0;
 
 <select class="selectBox" name='MaxQuestionNumber' id='MaxQuestionNumber' onchange = "settingSave()"
   style='width: 12%; font-size: 25px;height: 5vh;line-height: 1vh;vertical-align:top;margin:5px 5px 5px 0px'>
-    <option value=20 >蝠城｡梧焚</option>
+    <option value=20 >問題数</option>
     <option value="all">all</option>
     <option value=3>3</option>
     <option value=4>4</option>
@@ -503,12 +503,12 @@ $testnumber = 0;
 <div class ="criterias" style="width: 99%;line-height: 6vh;">
 <select class="selectBox" name='category4' id='category4' onChange='listChanged()' style="width: 32%; font-size: 40px;">
   <option value='nul'> </option>
-  <option value='incorrect'>荳肴ｭ｣隗｣謨ｰ</option>
-  <option value='correct'>豁｣隗｣謨ｰ</option>
-  <option value='pca'>豁｣遲皮紫</option>
-  <option value='qdate'>譌･莉・/option>
-  <option value='pasttime'>邨碁℃譎る俣</option>
-  <option value='questionnumber'>蝠城｡檎分蜿ｷ</option>
+  <option value='incorrect'>不正解数</option>
+  <option value='correct'>正解数</option>
+  <option value='pca'>正答率</option>
+  <option value='qdate'>日付</option>
+  <option value='pasttime'>経過時間</option>
+  <option value='questionnumber'>問題番号</option>
 </select>
 <select class="selectBox" name='operator1' id='operator1'  onChange='listChanged()' style='width: 32%; font-size: 40px;'>
   <option value='nul'> </option>
@@ -517,16 +517,16 @@ $testnumber = 0;
   <option value='<'><</option>
 </select>
 <input class ="button" type="text" name="criteria1" id="criteria1" onChange='listChanged()' value = "" style='width: 30%; font-size: 40px;box-sizing:border-box;vertical-align:middle; '>
-<input class ="button" type="button" name="getTodayNumber" id="getTodayNumber" onClick="getTodayNumberFunc()" value="莉・>
+<input class ="button" type="button" name="getTodayNumber" id="getTodayNumber" onClick="getTodayNumberFunc()" value="今">
 <br>
 <select class="selectBox" name='category5' id='category5' onChange='listChanged()' style='width: 32%; font-size: 40px;'>
   <option value='nul'> </option>
-  <option value='incorrect'>荳肴ｭ｣隗｣謨ｰ</option>
-  <option value='correct'>豁｣隗｣謨ｰ</option>
-  <option value='pca'>豁｣遲皮紫</option>
-  <option value='qdate'>譌･莉・/option>
-  <option value='pasttime'>邨碁℃譎る俣</option>
-  <option value='questionnumber'>蝠城｡檎分蜿ｷ</option>
+  <option value='incorrect'>不正解数</option>
+  <option value='correct'>正解数</option>
+  <option value='pca'>正答率</option>
+  <option value='qdate'>日付</option>
+  <option value='pasttime'>経過時間</option>
+  <option value='questionnumber'>問題番号</option>
 </select>
 <select class="selectBox" name='operator2' id='operator2' onChange='listChanged()' style='width: 32%; font-size: 40px;'>
   <option value='nul'> </option>
@@ -535,16 +535,16 @@ $testnumber = 0;
   <option value='<'><</option>
 </select>
 <input class ="button" type="text" name="criteria2" id="criteria2" onChange='listChanged()' value = "" style='width: 30%; font-size: 40px;box-sizing:border-box;vertical-align:middle; '>
-<input class ="button" type="button" name="getfirstDayNumber" id="getfirstDayNumber" onClick="getFirstDayFunc()" value="譛ｪ">
+<input class ="button" type="button" name="getfirstDayNumber" id="getfirstDayNumber" onClick="getFirstDayFunc()" value="未">
 <br>
 <select class="selectBox" name='category6' id='category6' onChange='listChanged()' style='width: 32%; font-size: 40px;'>
   <option value='nul'> </option>
-  <option value='incorrect'>荳肴ｭ｣隗｣謨ｰ</option>
-  <option value='correct'>豁｣隗｣謨ｰ</option>
-  <option value='pca'>豁｣遲皮紫</option>
-  <option value='qdate'>譌･莉・/option>
-  <option value='pasttime'>邨碁℃譎る俣</option>
-  <option value='questionnumber'>蝠城｡檎分蜿ｷ</option>
+  <option value='incorrect'>不正解数</option>
+  <option value='correct'>正解数</option>
+  <option value='pca'>正答率</option>
+  <option value='qdate'>日付</option>
+  <option value='pasttime'>経過時間</option>
+  <option value='questionnumber'>問題番号</option>
 </select>
 <select class="selectBox" name='operator3' id='operator3' onChange='listChanged()' style='width: 32%; font-size: 40px;'>
   <option value='nul'> </option>
@@ -555,20 +555,20 @@ $testnumber = 0;
 <input class ="button" type="text" name="criteria3" id="criteria3" onChange='listChanged()' value = "" style='width: 30%; font-size: 40px;box-sizing:border-box;vertical-align:middle; '>
 <br>
 
-<select class="selectBox" name='poorat2' id='poorat2' onChange='listChanged()'縲 style='width: 32%; font-size: 40px;'>
-  <option value='' disabled selected style='display:none;' >驕疲・蠎ｦ驕ｸ謚・/option>
-  <option value='good4'>笘・・笘・・</option>
-  <option value='good3'>笘・・笘・/option>
-  <option value='good2'>笘・・</option>
-  <option value='good1'>笘・/option>
+<select class="selectBox" name='poorat2' id='poorat2' onChange='listChanged()'　 style='width: 32%; font-size: 40px;'>
+  <option value='' disabled selected style='display:none;' >達成度選択</option>
+  <option value='good4'>☆☆☆☆</option>
+  <option value='good3'>☆☆☆</option>
+  <option value='good2'>☆☆</option>
+  <option value='good1'>☆</option>
   <option value=''> </option>
-  <option value='poor1'>ﾃ・/option>
-  <option value='poor2'>ﾃ療・/option>
-  <option value='poor3'>ﾃ療療・/option>
-  <option value='poor4'>ﾃ療療療・/option>
+  <option value='poor1'>×</option>
+  <option value='poor2'>××</option>
+  <option value='poor3'>×××</option>
+  <option value='poor4'>××××</option>
 </select>
-<select class="selectBox" name='qlevel' id='qlevel' onChange='listChanged()'縲 style='width: 32%; font-size: 40px;'>
-  <option value='' disabled selected style='display:none;' >繝ｬ繝吶Ν驕ｸ謚・/option>
+<select class="selectBox" name='qlevel' id='qlevel' onChange='listChanged()'　 style='width: 32%; font-size: 40px;'>
+  <option value='' disabled selected style='display:none;' >レベル選択</option>
   <option value='8'>8</option>
   <option value='7'>7</option>
   <option value='6'>6</option>
@@ -581,7 +581,7 @@ $testnumber = 0;
   <option value=''></option>
 </select>
 
-<input class ="button" type="text" name="wordSearch" id="wordSearch" onChange='listChanged()' placeholder = "讀懃ｴ｢"
+<input class ="button" type="text" name="wordSearch" id="wordSearch" onChange='listChanged()' placeholder = "検索"
 style='width: 30%; font-size: 38px;box-sizing:border-box;vertical-align:middle; '>
 <br>
 
@@ -589,16 +589,16 @@ style='width: 30%; font-size: 38px;box-sizing:border-box;vertical-align:middle; 
 
 <div class="questionbuttonbox" style='line-height: 2vh;vertical-align:bottom;margin:2px' >
 
-縲<div style="float: left; width:35%;margin:15px 0px 0px 0px">
+　<div style="float: left; width:35%;margin:15px 0px 0px 0px">
     <span class = 'info02' style='font-size: 30px;vertical-align:middle' id="press-button">0</span>
-    <font size="6" class = 'info02' color="#000000" style=";vertical-align:bottom">蝠冗岼</font>&ensp; &ensp;
-    <font size="6" class = 'info02' color="#000000" style=";vertical-align:middle">蜈ｨ</font>
+    <font size="6" class = 'info02' color="#000000" style=";vertical-align:bottom">問目</font>&ensp; &ensp;
+    <font size="6" class = 'info02' color="#000000" style=";vertical-align:middle">全</font>
     <span style="font-size: 30px;vertical-align:middle"class = 'info02' id="totalQuestionNumber"></span>
-    <font size="6" class = 'info02' color="#000000" style=";vertical-align:middle">蝠・/font>
+    <font size="6" class = 'info02' color="#000000" style=";vertical-align:middle">問</font>
   </div>
 <!--   <select class="selectBox" name='MaxQuestionNumber' id='MaxQuestionNumber' onchange = "settingSave()"
   style='width: 12%; font-size: 25px;height: 5vh;line-height: 1vh;vertical-align:top;float: left;margin:0px 5px 5px 0px'>
-    <option value=20 >蝠城｡梧焚</option>
+    <option value=20 >問題数</option>
     <option value="all">all</option>
     <option value=3>3</option>
     <option value=4>4</option>
@@ -620,7 +620,7 @@ style='width: 30%; font-size: 38px;box-sizing:border-box;vertical-align:middle; 
   </select> -->
   <input class ="button" type="button" name="botan" id="autoQuestionButton" onClick="autoQuestion();" value="Auto"
   style="float: left; left: 75;width:23%;height: 5vh; font-size: 40px;line-height: 1vh;margin:0px 5px 5px 0px">
-  <input class ="button" type="button" name="botan" id="buttonmodifyquestion" onClick="sendRequest5();" value="菫ｮ豁｣"
+  <input class ="button" type="button" name="botan" id="buttonmodifyquestion" onClick="sendRequest5();" value="修正"
   style="float: left; left: 52%;width:23%;height :5vh; font-size: 40px;line-height: 1vh;vertical-align:top">
   
 
@@ -648,20 +648,20 @@ style='width: 30%; font-size: 38px;box-sizing:border-box;vertical-align:middle; 
 <div class="questionbuttonbox" id="questionbuttonbox" style='line-height: 2vh;vertical-align:bottom' >
 
 <select class="selectBox" name='poorat' id='poorat' onChange='listChanged()' style='width: 5%; font-size: 25px;height: 5vh;line-height: 1vh;vertical-align:top;'>
-    <option value='' disabled selected style='display:none;'>驕疲・蠎ｦ</option>
-    <option value='good4'>笘・・笘・・</option>
-    <option value='good3'>笘・・笘・/option>
-    <option value='good2'>笘・・</option>
-    <option value='good1'>笘・/option>
+    <option value='' disabled selected style='display:none;'>達成度</option>
+    <option value='good4'>☆☆☆☆</option>
+    <option value='good3'>☆☆☆</option>
+    <option value='good2'>☆☆</option>
+    <option value='good1'>☆</option>
     <option value=''> </option>
-    <option value='poor1'>ﾃ・/option>
-    <option value='poor2'>ﾃ療・/option>
-    <option value='poor3'>ﾃ療療・/option>
-    <option value='poor4'>ﾃ療療療・/option>
+    <option value='poor1'>×</option>
+    <option value='poor2'>××</option>
+    <option value='poor3'>×××</option>
+    <option value='poor4'>××××</option>
 </select>
 <select class="selectBox" name='fontresize' id='fontresize' onChange="textareafontresize();settingSave()"
   style='width: 10%; font-size: 20px;height: 5vh;line-height: 1vh;vertical-align:top;'>
-  <option value='' >譁・ｭ励し繧､繧ｺ</option>
+  <option value='' >文字サイズ</option>
   <option value='5px'>5</option>
   <option value='6px'>6</option>
   <option value='7px'>7</option>
@@ -711,7 +711,7 @@ style='width: 30%; font-size: 38px;box-sizing:border-box;vertical-align:middle; 
 
 <select class="selectBox" name="imageSize1" id = "imageSize1" value="1" min="-10" max="10" step="0.1" onChange="imageSizeChange1()"
 style="width:7%;font-size: 20px;height: 5vh;">
-  <option value=1>逕ｻ蜒鞘蔵</option>
+  <option value=1>画像①</option>
   <option value=0.1>0.1</option>
   <option value=0.2>0.2</option>
   <option value=0.3>0.3</option>
@@ -742,7 +742,7 @@ style="width:7%;font-size: 20px;height: 5vh;">
   <option value=10>10</option>
 </select>
 <select class="selectBox"  name="imageSize2" id = "imageSize2" value="1" min="-10" max="10" step="0.1" onChange="imageSizeChange2()"style="width:7%;font-size: 20px;height: 5vh;">
-  <option value=1>逕ｻ蜒鞘贈</option>
+  <option value=1>画像②</option>
   <option value=0.1>0.1</option>
   <option value=0.2>0.2</option>
   <option value=0.3>0.3</option>
@@ -773,9 +773,9 @@ style="width:7%;font-size: 20px;height: 5vh;">
   <option value=10>10</option>
 </select>
 
-<input class ="button" type="button" name="botan" id="buttonreadtxt" onClick="readAnswer();" value="隱ｭ縺ｿ荳翫￡"
+<input class ="button" type="button" name="botan" id="buttonreadtxt" onClick="readAnswer();" value="読み上げ"
 style="float: right; left: 75%;width:26%;height: 5vh; font-size: 40px;line-height: 1vh;vertical-align:top">
-<input class ="button" type="button" name="botan" id="buttonreadtxt" onClick="readQuestion();" value="隱ｭ縺ｿ荳翫￡"
+<input class ="button" type="button" name="botan" id="buttonreadtxt" onClick="readQuestion();" value="読み上げ"
 style="float: right; left: 75;width:26%;height: 5vh; font-size: 40px;vertical-align:top;margin:0px 0px 0px 5px">
 
 </div>
@@ -793,7 +793,7 @@ word-wrap:break-word;'></pre>
 
   <div id ="div2" class="img-container--precedo">
     <div id ="answerMath" style = "margin: 10px;line-height:30px;text-align: left;white-space: pre-wrap;"></div>
-    <img id="mypic2" src=""縲style="height: 27.5vh;">
+    <img id="mypic2" src=""　style="height: 27.5vh;">
     <div id ="answerHint" style = "margin: 10px;line-height:30px;text-align: left"></div>
   </div>
   </div>
@@ -801,33 +801,33 @@ word-wrap:break-word;'></pre>
 
 <br>
 <div id = "bottomButtonBox" class="bottomButtonBox">
-  <input class ="button" type="button" name="botan01" id="button01" onClick="sendRequest()"value="谺｡縺ｮ蝠城｡・
+  <input class ="button" type="button" name="botan01" id="button01" onClick="sendRequest()"value="次の問題"
   style="width:49%;height :7vh;font-size: 40px;margin:0px 0px 10px 0px ">
-  <input class ="button" type="button" name="botan02" id="button02" onClick="sendRequest2();" value="隗｣遲・
+  <input class ="button" type="button" name="botan02" id="button02" onClick="sendRequest2();" value="解答"
   style="width:49%;height :7vh;font-size: 40px;margin:0px 0px 10px 0px ">
-  <input class ="button" type="button" name="botan03" id="button03" onClick="sendRequest3('good4');" value="笘・・笘・・"
+  <input class ="button" type="button" name="botan03" id="button03" onClick="sendRequest3('good4');" value="☆☆☆☆"
   style="width:24.2%;height:10vh; font-size: 30px">
-  <input class ="button" type="button" name="botan03" id="button03" onClick="sendRequest3('good3');" value="笘・・笘・
+  <input class ="button" type="button" name="botan03" id="button03" onClick="sendRequest3('good3');" value="☆☆☆"
   style="width:24.2%;height:10vh; font-size: 30px">
-  <input class ="button" type="button" name="botan03" id="button03" onClick="sendRequest3('good2');" value="笘・・"
+  <input class ="button" type="button" name="botan03" id="button03" onClick="sendRequest3('good2');" value="☆☆"
   style="width:24.2%;height:10vh; font-size: 30px">
-  <input class ="button" type="button" name="botan03" id="button03" onClick="sendRequest3('good1');" value="笘・
+  <input class ="button" type="button" name="botan03" id="button03" onClick="sendRequest3('good1');" value="☆"
   style="width:24.2%;height:10vh; font-size: 30px"><br><br>
-    <input class ="button" type="button" name="botan04" id="button04" onClick="sendRequest4('poor4');" value="笨問恂笨問恂"
+    <input class ="button" type="button" name="botan04" id="button04" onClick="sendRequest4('poor4');" value="✖✖✖✖"
   style="width:24.2%;height:10vh; font-size: 30px">
-  <input class ="button" type="button" name="botan04" id="button04" onClick="sendRequest4('poor3');" value="笨問恂笨・
+  <input class ="button" type="button" name="botan04" id="button04" onClick="sendRequest4('poor3');" value="✖✖✖"
   style="width:24.2%;height:10vh; font-size: 30px">
-  <input class ="button" type="button" name="botan04" id="button04" onClick="sendRequest4('poor2');" value="笨問恂"
+  <input class ="button" type="button" name="botan04" id="button04" onClick="sendRequest4('poor2');" value="✖✖"
   style="width:24.2%;height:10vh; font-size: 30px">
-  <input class ="button" type="button" name="botan04" id="button04" onClick="sendRequest4('poor1');" value="笨・
+  <input class ="button" type="button" name="botan04" id="button04" onClick="sendRequest4('poor1');" value="✖"
   style="width:24.2%;height:10vh; font-size: 30px"><br><br>
-  <input class ="button" type="button" name="botan05" id="button05" onClick="backQuestion();"value="蜑阪・蝠城｡・
+  <input class ="button" type="button" name="botan05" id="button05" onClick="backQuestion();"value="前の問題"
   style="width:24.2%;height:5vh;font-size: 40px">
-  <input class ="button" type="button" name="botan05" id="button05" onClick="removeQuestion();sendRequest()"value="繧ｹ繧ｭ繝・・"
+  <input class ="button" type="button" name="botan05" id="button05" onClick="removeQuestion();sendRequest()"value="スキップ"
   style="width:24.2%;height:5vh;font-size: 40px">
-  <input class ="button" type="button"  name="botan06" id="button06" onClick="correctMinus();"value="豁｣隗｣-"
+  <input class ="button" type="button"  name="botan06" id="button06" onClick="correctMinus();"value="正解-"
   style="position: absolute;left:50%;width:23.8%;height:5vh;font-size: 20px">
-  <input class ="button" type="button" name="botan07" id="button07" onClick="incorrectMinus();"value="荳肴ｭ｣隗｣-"
+  <input class ="button" type="button" name="botan07" id="button07" onClick="incorrectMinus();"value="不正解-"
   style="position: absolute;left:74.5%;width:23.8%;height:5vh;font-size: 20px">
 
 </div>
@@ -850,10 +850,10 @@ word-wrap:break-word;'></pre>
 <br>
 <br>
 <div id ="setting" class="setting" style=" width:93%" >
-  <pre style='font-size: 25px'>險ｭ螳・/pre>
+  <pre style='font-size: 25px'>設定</pre>
 
   <select class="selectBox" name='autoSpeed' id='autoSpeed' onchange = "settingSave()" style='width: 23%; font-size: 20px;'>
-    <option value=3 style='width: 23%' placeholder="Auto騾溘＆">Auto騾溘＆</option>
+    <option value=3 style='width: 23%' placeholder="Auto速さ">Auto速さ</option>
     <option value=1>1</option>
     <option value=2>2</option>
     <option value=3>3</option>
@@ -866,19 +866,19 @@ word-wrap:break-word;'></pre>
     <option value=10>10</option>
   </select>
   <select class="selectBox" name='autoReading' id='autoReading' onchange = "settingSave()" style='width: 23%; font-size: 20px;'>
-    <option value='je' style='width: 23%' placeholder="隱ｭ荳企浹螢ｰ">隱ｭ荳企浹螢ｰ</option>
-    <option value='je'>蝠城｡・譌･譛ｬ隱・隗｣遲披占恭隱・/option>
-    <option value='ej'>蝠城｡・闍ｱ隱・隗｣遲披先律譛ｬ隱・/option>
-    <option value='jj'>蝠城｡・譌･譛ｬ隱・隗｣遲披先律譛ｬ隱・/option>
-    <option value='ee'>蝠城｡・闍ｱ隱・隗｣遲披占恭隱・/option>
-    <option value='j*'>蝠城｡後□縺・譌･譛ｬ隱・/option>
-    <option value='e*'>蝠城｡後□縺・闍ｱ隱・/option>
-    <option value='*j'>隗｣遲斐□縺鯛先律譛ｬ隱・/option>
-    <option value='*e'>隗｣遲斐□縺鯛占恭隱・/option>
+    <option value='je' style='width: 23%' placeholder="読上音声">読上音声</option>
+    <option value='je'>問題-日本語/解答‐英語</option>
+    <option value='ej'>問題-英語/解答‐日本語</option>
+    <option value='jj'>問題-日本語/解答‐日本語</option>
+    <option value='ee'>問題-英語/解答‐英語</option>
+    <option value='j*'>問題だけ-日本語</option>
+    <option value='e*'>問題だけ-英語</option>
+    <option value='*j'>解答だけ‐日本語</option>
+    <option value='*e'>解答だけ‐英語</option>
   </select>
 
   <select class="selectBox" name='jpSpeed' id='jpSpeed' onchange = "settingSave()" style='width: 23%; font-size: 20px;'>
-    <option value=1.2 style='width: 23%' placeholder="譌･譛ｬ隱櫁ｪｭ縺ｿ荳翫￡騾溘＆">譌･譛ｬ隱櫁ｪｭ縺ｿ荳翫￡騾溘＆</option>
+    <option value=1.2 style='width: 23%' placeholder="日本語読み上げ速さ">日本語読み上げ速さ</option>
     <option value=0.3>0.3</option>
     <option value=0.4>0.4</option>
     <option value=0.5>0.5</option>
@@ -899,7 +899,7 @@ word-wrap:break-word;'></pre>
 
   </select>
   <select class="selectBox" name='engSpeed' id='engSpeed' onchange = "settingSave()" style='width: 23%; font-size: 20px;'>
-    <option value=0.7 style='width: 23%' placeholder="闍ｱ隱櫁ｪｭ縺ｿ荳翫￡騾溘＆">闍ｱ隱櫁ｪｭ縺ｿ荳翫￡騾溘＆</option>
+    <option value=0.7 style='width: 23%' placeholder="英語読み上げ速さ">英語読み上げ速さ</option>
     <option value=0.4>0.4</option>
     <option value=0.5>0.5</option>
     <option value=0.6>0.6</option>
@@ -915,7 +915,7 @@ word-wrap:break-word;'></pre>
   </select>
   <br>
   <select class="selectBox" name='NOC' id='NOC' onchange = "settingSave()" style='width: 23%; font-size: 20px;margin:30px 0px 0px 0px' >
-    <option value=3 style='width: 23%' placeholder="譛菴取ｭ｣隗｣謨ｰ">譛菴取ｭ｣隗｣謨ｰ</option>
+    <option value=3 style='width: 23%' placeholder="最低正解数">最低正解数</option>
     <option value=0>0</option>
     <option value=1>1</option>
     <option value=2>2</option>
@@ -930,8 +930,8 @@ word-wrap:break-word;'></pre>
   </select>
 
   <select class="selectBox" name='autoAnswer' id='autoAnswer' onchange = "settingSave()" style='width: 23%; font-size: 20px;margin:30px 0px 0px 0px'>
-    <option value=0 style='width: 23%' placeholder="閾ｪ蜍戊ｧ｣遲皮ｧ呈焚">閾ｪ蜍戊ｧ｣遲皮ｧ呈焚</option>
-    <option value=0>縺ｪ縺・/option>
+    <option value=0 style='width: 23%' placeholder="自動解答秒数">自動解答秒数</option>
+    <option value=0>なし</option>
     <option value=0.5>0.5</option>
     <option value=0.6>0.6</option>
     <option value=0.7>0.7</option>
@@ -964,48 +964,48 @@ word-wrap:break-word;'></pre>
     <option value=300>300</option>
   </select>
   <select class="selectBox" name='backGround' id='backGround' style='width: 23%; font-size: 20px;margin:30px 0px 0px 0px' onchange = 'changeBG();settingSave()'>
-    <option value="RRice-colorful-wall.jpg" style='width: 23%' placeholder="閭梧勹逕ｻ蜒・>閭梧勹逕ｻ蜒・/option>
-    <option value="colored-pencil-pattern1144.png">竭</option>
-    <option value="fancy-floral-pattern-384.jpg">竭｡</option>
-    <option value="mint-green-chevron-stripes-2361.png">竭｢</option>
-    <option value="RRice-colorful-wall.jpg">竭｣</option>
-    <option value="p_da0686_m_da06860.jpg">竭､</option>
-    <option value="b065.gif">竭･</option>
-    <option value="p_da0671_m_da06710.jpg">竭ｦ</option>
-    <option value="p_da0725_m_da07250.jpg">竭ｧ</option>
-    <option value="p_da0689_m_da06892.jpg">竭ｨ</option>
-    <option value="p_da0667_m_da06670.jpg">竭ｩ</option>
-    <option value="p_da0669_m_da06693.jpg">竭ｪ</option>
-    <option value="p_da0491_m_da04913.jpg">竭ｫ</option>
-    <option value="p_da0451_m_da04510.jpg">竭ｬ</option>
-    <option value="p_da0438_m_da04380.jpg">竭ｭ</option>
-    <option value="0341_mosaictile_s.jpg">竭ｮ</option>
-    <option value="0108_brick_s.jpg">竭ｯ</option>
-    <option value="p_da0694_l_da06940.jpg">竭ｰ</option>
-    <option value="49502.jpg">竭ｱ</option>
-    <option value="stylish-floral-pattern.png">竭ｲ</option>
-    <option value="painted-wood-planks-large-background.jpg">竭ｳ</option>
-    <option value="seamless-bamboo-pattern-842.png">繪・/option>
-    <option value="dandelion-seeds-pattern.png">繪・/option>
-    <option value="music-pattern-with-trumpet-1929.png">繪・/option>
-    <option value="canadian-dollar.png">繪・/option>
-    <option value="pixel-heart.png">繪・/option>
-    <option value="christmas-colour.png">繪・/option>
-    <option value="food.png">繪・/option>
-    <option value="donuts.png">繪・/option>
-    <option value="dinos.png">繪・/option>
-    <option value="panda-madness.gif">繪・/option>
-    <option value="pattern8-pattern-44a.png">繪・/option>
-    <option value="patternhead64a-thumb.png">繪・/option>
-    <option value="repeated-square.png">繪・/option>
-    <option value="1702.png">繪・/option>
-    <option value="yellow-5456111_1920.jpg">繪・/option>
+    <option value="RRice-colorful-wall.jpg" style='width: 23%' placeholder="背景画像">背景画像</option>
+    <option value="colored-pencil-pattern1144.png">①</option>
+    <option value="fancy-floral-pattern-384.jpg">②</option>
+    <option value="mint-green-chevron-stripes-2361.png">③</option>
+    <option value="RRice-colorful-wall.jpg">④</option>
+    <option value="p_da0686_m_da06860.jpg">⑤</option>
+    <option value="b065.gif">⑥</option>
+    <option value="p_da0671_m_da06710.jpg">⑦</option>
+    <option value="p_da0725_m_da07250.jpg">⑧</option>
+    <option value="p_da0689_m_da06892.jpg">⑨</option>
+    <option value="p_da0667_m_da06670.jpg">⑩</option>
+    <option value="p_da0669_m_da06693.jpg">⑪</option>
+    <option value="p_da0491_m_da04913.jpg">⑫</option>
+    <option value="p_da0451_m_da04510.jpg">⑬</option>
+    <option value="p_da0438_m_da04380.jpg">⑭</option>
+    <option value="0341_mosaictile_s.jpg">⑮</option>
+    <option value="0108_brick_s.jpg">⑯</option>
+    <option value="p_da0694_l_da06940.jpg">⑰</option>
+    <option value="49502.jpg">⑱</option>
+    <option value="stylish-floral-pattern.png">⑲</option>
+    <option value="painted-wood-planks-large-background.jpg">⑳</option>
+    <option value="seamless-bamboo-pattern-842.png">㉑</option>
+    <option value="dandelion-seeds-pattern.png">㉒</option>
+    <option value="music-pattern-with-trumpet-1929.png">㉓</option>
+    <option value="canadian-dollar.png">㉔</option>
+    <option value="pixel-heart.png">㉕</option>
+    <option value="christmas-colour.png">㉖</option>
+    <option value="food.png">㉗</option>
+    <option value="donuts.png">㉘</option>
+    <option value="dinos.png">㉙</option>
+    <option value="panda-madness.gif">㉚</option>
+    <option value="pattern8-pattern-44a.png">㉛</option>
+    <option value="patternhead64a-thumb.png">㉜</option>
+    <option value="repeated-square.png">㉝</option>
+    <option value="1702.png">㉞</option>
+    <option value="yellow-5456111_1920.jpg">㉟</option>
 
     
   </select>
     <select class="selectBox" name='fontSelect' id='fontSelect' style='width: 23%; font-size: 20px;margin:30px 0px 0px 0px' onchange = 'settingSave()'>
-    <option value="SimHei" style='width: 23%' placeholder="繝輔か繝ｳ繝・>繝輔か繝ｳ繝・/option>
-    <option value="・ｭ・ｳ 譏取悃">・ｭ・ｳ 譏取悃</option>
+    <option value="SimHei" style='width: 23%' placeholder="フォント">フォント</option>
+    <option value="ＭＳ 明朝">ＭＳ 明朝</option>
     <option value="SimHei">SimHei</option>
     <option value="Times">Times</option>
     <option value="Arial">Arial</option>
@@ -1030,30 +1030,30 @@ word-wrap:break-word;'></pre>
   </select>
   </select>
     <select class="selectBox" name='novelSelect' id='novelSelect' style='display:none;width: 23%; font-size: 20px;margin:30px 0px 0px 0px' onchange = 'settingSave()'>
-    <option value="縺ｪ縺・ style='width: 23%' placeholder="繝輔か繝ｳ繝・>蟆剰ｪｬ</option>
-    <option value="縺ｪ縺・>縺ｪ縺・/option>
+    <option value="なし" style='width: 23%' placeholder="フォント">小説</option>
+    <option value="なし">なし</option>
   </select>
   <input class ="button" type="text" name="novelSentenceNumber" id="novelSentenceNumber" onChange='settingSave()' value = "" 
   style='display:none;width: 8%; font-size: 16px;box-sizing:border-box;vertical-align:middle;margin:30px 0px 0px 0px '>
 
   <br>
   <input class ="button" type="checkbox" id = "qachange" onchange = "settingSave()" style="font-size: 20px;margin:2vh 0px 0px 0px">
-  <font size="4" color="#000000" class="checkText" ;>蝠城｡・隗｣遲・/font>
+  <font size="4" color="#000000" class="checkText" ;>問題/解答</font>
   <input class ="button" type="checkbox" id = "autoread" onchange = "settingSave()" style="font-size: 20px;margin:2vh 0px 0px 2vh">
-  <font size="4" color="#000000" class="checkText";>閾ｪ蜍戊ｪｭ縺ｿ荳翫￡</font>
+  <font size="4" color="#000000" class="checkText";>自動読み上げ</font>
   <input class ="button" type="checkbox" id = "keyControl" onchange = "settingSave()" style="font-size: 20px;margin:2vh 0px 0px 2vh">
-  <font size="4" color="#000000" class="checkText";>繧ｭ繝ｼ謫堺ｽ・/font>
+  <font size="4" color="#000000" class="checkText";>キー操作</font>
   <br>
   <input class ="button" type="checkbox" id = "answerByMyself" onchange = "settingSave()" style="font-size: 20px;margin:2vh 0px 0px 0px">
-  <font size="4" color="#000000" class="checkText";>隗｣遲泌・蜉・/font>
+  <font size="4" color="#000000" class="checkText";>解答入力</font>
   <input class ="button" type="checkbox" id = "randomOrNot" onchange = "settingSave()" style="font-size: 20px;margin:2vh 0px 0px 2vh">
-  <font size="4" color="#000000" class="checkText";>繝ｩ繝ｳ繝繝</font>
+  <font size="4" color="#000000" class="checkText";>ランダム</font>
   <input class ="button" type="checkbox" id = "chordsOrNot" onchange = "settingSave()" style="font-size: 20px;margin:2vh 0px 0px 2vh">
-  <font size="4" color="#000000" class="checkText";>繧ｳ繝ｼ繝蛾浹螢ｰ</font>
-  <input class ="button" type="checkbox" id="flexButton" value="讓ｪ荳ｦ縺ｳ" onchange='QnAareaFlex();settingSave()' style="font-size: 20px;margin:2vh 0px 0px 2vh">
-  <font size="4" color="#000000" class="checkText";>讓ｪ荳ｦ縺ｳ</font>
-  <input class ="button" type="checkbox" id="blackCheck" value="逵溘▲鮟・ onchange='blackOrWhite();settingSave()' style="font-size: 20px;margin:2vh 0px 0px 2vh">
-  <font size="4" color="#000000" class="checkText";>逵溘▲鮟・/font>
+  <font size="4" color="#000000" class="checkText";>コード音声</font>
+  <input class ="button" type="checkbox" id="flexButton" value="横並び" onchange='QnAareaFlex();settingSave()' style="font-size: 20px;margin:2vh 0px 0px 2vh">
+  <font size="4" color="#000000" class="checkText";>横並び</font>
+  <input class ="button" type="checkbox" id="blackCheck" value="真っ黒" onchange='blackOrWhite();settingSave()' style="font-size: 20px;margin:2vh 0px 0px 2vh">
+  <font size="4" color="#000000" class="checkText";>真っ黒</font>
   <br>
 
 </div>
@@ -1064,11 +1064,11 @@ word-wrap:break-word;'></pre>
   if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $mysqli = new db_wrapper('localhost', 'terashimayo', 'Yoyoyo444', 'terashimayo');
     if( $mysqli->connect_errno){
-        echo 'Access Failed';//謗･邯壼､ｱ謨・
+        echo 'Access Failed';//接続失敗
         exit;
     }
     $result0 = $mysqli->query("set names utf8");
-    //繝・・繧ｿ繝吶・繧ｹ蜿門ｾ・
+    //データベース取得
     $db_name = $_POST["DB_name"];
     $str_sql = "select * from $db_name where question = 'settings'";
     $result = $mysqli->query($str_sql);
@@ -1132,9 +1132,9 @@ var minimumCorrect ;
 var MaxQuestionNumber;
 var AnswerShown = false;
 var AnswerTypedFlag = false;
-var AnswerShown2 = false;//閾ｪ蜍募屓遲碑｡ｨ遉ｺ縺ｮ隗｣髯､逕ｨ
-// var AnswerWaitingFlag = false;//閾ｪ蜍戊ｧ｣遲碑｡ｨ遉ｺ繧貞ｾ・▲縺ｦ縺・ｋ縺九←縺・°
-var sleepId = "";//sleep縺ｮ繧ｿ繧､繝槭・縺ｮID
+var AnswerShown2 = false;//自動回答表示の解除用
+// var AnswerWaitingFlag = false;//自動解答表示を待っているかどうか
+var sleepId = "";//sleepのタイマーのID
 var mp3PlayFlag = false;
 var imageHeight1;
 var imageWidth1;
@@ -1149,16 +1149,16 @@ const text1 = document.getElementById('textareas');
 
 
 
-for (let i = 1; i < 500; i++) {//Mp3髢句ｧ句慍轤ｹ繧ｻ繝ｬ繧ｯ繝郁ｦ∫ｴ霑ｽ蜉
-    // select繧ｿ繧ｰ繧貞叙蠕励☆繧・
+for (let i = 1; i < 500; i++) {//Mp3開始地点セレクト要素追加
+    // selectタグを取得する
   var select = document.getElementById("mp3StartPoint");
-  // option繧ｿ繧ｰ繧剃ｽ懈・縺吶ｋ
+  // optionタグを作成する
   var option = document.createElement("option");
-  // option繧ｿ繧ｰ縺ｮ繝・く繧ｹ繝医ｒ4縺ｫ險ｭ螳壹☆繧・
+  // optionタグのテキストを4に設定する
   option.text = i * 0.01 ;
-  // option繧ｿ繧ｰ縺ｮvalue繧・縺ｫ險ｭ螳壹☆繧・
+  // optionタグのvalueを4に設定する
   option.value = i * 0.01;
-  // select繧ｿ繧ｰ縺ｮ蟄占ｦ∫ｴ縺ｫoption繧ｿ繧ｰ繧定ｿｽ蜉縺吶ｋ
+  // selectタグの子要素にoptionタグを追加する
   select.appendChild(option);
 }
 
@@ -1169,7 +1169,7 @@ function sendRequest(){
     while(parent.lastChild){
       parent.removeChild(parent.lastChild);
     }
-    if ((document.getElementById("novelSelect").value) && !(document.getElementById("novelSelect").value == "縺ｪ縺・)){
+    if ((document.getElementById("novelSelect").value) && !(document.getElementById("novelSelect").value == "なし")){
       novelRowNum = Number(novelRowNum) +1;
       getNovelSentence();
     }
@@ -1180,8 +1180,8 @@ function sendRequest(){
       }      
     }
     
-    clearTimeout(sleepId);//閾ｪ蜍戊ｧ｣遲碑｡ｨ遉ｺ縺ｮ繧ｿ繧､繝槭・繧偵け繝ｪ繧｢
-    AnswerShown2 = false;//遲斐∴縺ｯ縺ｾ縺陦ｨ遉ｺ縺輔ｌ縺ｦ縺・↑縺・
+    clearTimeout(sleepId);//自動解答表示のタイマーをクリア
+    AnswerShown2 = false;//答えはまだ表示されていない
     if (num < MaxQuestionNumber ) {
       num++;
     } else {
@@ -1218,7 +1218,7 @@ function sendRequest(){
         if (max==0) {
           max=1;
         }
-      /** 驥崎､・メ繧ｧ繝・け縺励↑縺後ｉ荵ｱ謨ｰ菴懈・ */
+      /** 重複チェックしながら乱数作成 */
       for(i = min; i < questionnumbers.length; i++){
         while(true){
           // alert(i);
@@ -1244,7 +1244,7 @@ function sendRequest(){
     }
     var category1Value = new Array();
     var elemCategory1 = document.getElementById('ctg1');
-    var optsCategory1 = elemCategory1.options; // select隕∫ｴ縺ｮoption繝励Ο繝代ユ繧｣
+    var optsCategory1 = elemCategory1.options; // select要素のoptionプロパティ
     for (var i = 0; i < optsCategory1.length; i++) {
       if (optsCategory1[i].selected) {
         category1Value[i] = optsCategory1[i].value;
@@ -1255,7 +1255,7 @@ function sendRequest(){
 
     var category2Value = new Array();
     var elemCategory2 = document.getElementById('ctg2');
-    var optsCategory2 = elemCategory2.options; // select隕∫ｴ縺ｮoption繝励Ο繝代ユ繧｣
+    var optsCategory2 = elemCategory2.options; // select要素のoptionプロパティ
     for (var i = 0; i < optsCategory2.length; i++) {
       if (optsCategory2[i].selected) {
         category2Value[i] = optsCategory2[i].value;
@@ -1267,7 +1267,7 @@ function sendRequest(){
 
     var category3Value = new Array();
     var elemCategory3 = document.getElementById('ctg3');
-    var optsCategory3 = elemCategory3.options; // select隕∫ｴ縺ｮoption繝励Ο繝代ユ繧｣
+    var optsCategory3 = elemCategory3.options; // select要素のoptionプロパティ
     for (var i = 0; i < optsCategory3.length; i++) {
       if (optsCategory3[i].selected) {
         category3Value[i] = optsCategory3[i].value;
@@ -1278,7 +1278,7 @@ function sendRequest(){
 
     var category4Value = new Array();
     var elemCategory4 = document.getElementById('ctg4');
-    var optsCategory4 = elemCategory4.options; // select隕∫ｴ縺ｮoption繝励Ο繝代ユ繧｣
+    var optsCategory4 = elemCategory4.options; // select要素のoptionプロパティ
     for (var i = 0; i < optsCategory4.length; i++) {
       if (optsCategory4[i].selected) {
         category4Value[i] = optsCategory4[i].value;
@@ -1289,7 +1289,7 @@ function sendRequest(){
 
     var category5Value = new Array();
     var elemCategory5 = document.getElementById('ctg5');
-    var optsCategory5 = elemCategory5.options; // select隕∫ｴ縺ｮoption繝励Ο繝代ユ繧｣
+    var optsCategory5 = elemCategory5.options; // select要素のoptionプロパティ
     for (var i = 0; i < optsCategory5.length; i++) {
       if (optsCategory5[i].selected) {
         category5Value[i] = optsCategory5[i].value;
@@ -1318,7 +1318,7 @@ function sendRequest(){
     {
 
       if (flag1 == false){
-        xmlhttp.open("POST", "../getqestions.php", false);//荵ｱ謨ｰ繧貞叙蠕・
+        xmlhttp.open("POST", "../getqestions.php", false);//乱数を取得
         xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
         var data="data="+moji;
         xmlhttp.send(data);
@@ -1328,7 +1328,7 @@ function sendRequest(){
         document.getElementById("totalQuestionNumber").innerHTML = questionnumbers.length;
       }
       if (oneByOneflag == true){
-        xmlhttp.open("POST", "../getqestionsOneByOne.php", false);//荵ｱ謨ｰ繧貞叙蠕・
+        xmlhttp.open("POST", "../getqestionsOneByOne.php", false);//乱数を取得
         xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
         var data="data="+moji;
         xmlhttp.send(data);
@@ -1338,7 +1338,7 @@ function sendRequest(){
         document.getElementById("totalQuestionNumber").innerHTML = questionnumbers.length;
       }
       if (twoByTwoflag == true){
-        xmlhttp.open("POST", "../getqestionsTwoByTwo.php", false);//荵ｱ謨ｰ繧貞叙蠕・
+        xmlhttp.open("POST", "../getqestionsTwoByTwo.php", false);//乱数を取得
         xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
         var data="data="+moji;
         xmlhttp.send(data);
@@ -1348,7 +1348,7 @@ function sendRequest(){
         document.getElementById("totalQuestionNumber").innerHTML = questionnumbers.length;
       }
       if (threeByThreeflag == true){
-        xmlhttp.open("POST", "../getqestionsThreeByThree.php", false);//荵ｱ謨ｰ繧貞叙蠕・
+        xmlhttp.open("POST", "../getqestionsThreeByThree.php", false);//乱数を取得
         xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
         var data="data="+moji;
         xmlhttp.send(data);
@@ -1365,12 +1365,12 @@ function sendRequest(){
       }
 
 
-      document.getElementById("press-button").innerHTML = num+1  +"/"+縲Number(max);
+      document.getElementById("press-button").innerHTML = num+1  +"/"+　Number(max);
 
       if (flag1 == false){
         // alert(max);
           randoms = [];
-        /** 驥崎､・メ繧ｧ繝・け縺励↑縺後ｉ荵ｱ謨ｰ菴懈・ */
+        /** 重複チェックしながら乱数作成 */
         for(i = min; i < questionnumbers.length; i++){
           while(true){
             // alert(i);
@@ -1427,7 +1427,7 @@ function sendRequest(){
     if(xmlhttp!=null)
     {
 
-        xmlhttp.open("POST", "../"+phpfile1, false);//荵ｱ謨ｰ繧偵ｂ縺ｨ縺ｫ蝠城｡後ｒ蜿門ｾ・
+        xmlhttp.open("POST", "../"+phpfile1, false);//乱数をもとに問題を取得
         xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
         var data="data="+moji;
 
@@ -1449,7 +1449,7 @@ function sendRequest(){
 
         var correctNum = ""
         var question = ""
-        if (res[0].indexOf("豁｣隗｣謨ｰ")<0) {
+        if (res[0].indexOf("正解数")<0) {
             question = res[0];
             correctNum = res[1];
         } else {
@@ -1497,8 +1497,8 @@ function sendRequest(){
                imageSize = 1000;
               }
               if ((width>height)){
-                  document.getElementById("mypic1").style.width = imageSize + "px";  // 讓ｪ蟷・ｒ400px縺ｫ繝ｪ繧ｵ繧､繧ｺ
-                  document.getElementById("mypic1").style.height = height * (imageSize / width)+"px"; // 鬮倥＆繧呈ｨｪ蟷・・螟牙喧蜑ｲ蜷医↓蜷医ｏ縺帙ｋ;
+                  document.getElementById("mypic1").style.width = imageSize + "px";  // 横幅を400pxにリサイズ
+                  document.getElementById("mypic1").style.height = height * (imageSize / width)+"px"; // 高さを横幅の変化割合に合わせる;
                   if (parseInt(document.getElementById("mypic1").style.height)>parseInt(document.getElementById("div1").clientHeight)) {
                     document.getElementById("mypic1").style.height = document.getElementById("div1").clientHeight +"px";
                     document.getElementById("mypic1").style.width = (document.getElementById("mypic1").height*width)/height + "px";
@@ -1549,12 +1549,12 @@ function sendRequest(){
           }else{
             var img_element = document.createElement('img');
             img_element.id= 'mypic1';
-            // 謖・ｮ壹＠縺溯ｦ∫ｴ縺ｫimg隕∫ｴ繧呈諺蜈･
+            // 指定した要素にimg要素を挿入
             var content_area = document.getElementById("div1");
             content_area.appendChild(img_element);
           }
           
-          MathJax.Hub.Typeset(document.getElementById("div1"));//謨ｰ蠑丞・隱ｭ縺ｿ霎ｼ縺ｿ
+          MathJax.Hub.Typeset(document.getElementById("div1"));//数式再読み込み
         
         } else if (isHTML(question)){
           document.getElementById("textareas").style.display = "none";
@@ -1572,14 +1572,14 @@ function sendRequest(){
 
 
 
-    }縲//闍ｦ謇句ｺｦ繧貞叙蠕・
+    }　//苦手度を取得
 
     var moji=rand + "." + document.mainform.DB_name.value;
     moji = encodeURIComponent(moji);
     var xmlhttp=createXmlHttpRequest2();
     if(xmlhttp!=null)
     {
-        xmlhttp.open("POST", "../getpoorat.php", false);//豁｣隗｣繝懊ち繝ｳ繧呈款縺・
+        xmlhttp.open("POST", "../getpoorat.php", false);//正解ボタンを押す
         xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
         var data="data="+moji;
         xmlhttp.send(data);
@@ -1596,7 +1596,7 @@ function sendRequest(){
 
     var ifautoAnswer = document.getElementById("autoAnswer");
 
-    if ((ifautoAnswer.value > 0)) { //譛蛻昴□縺代・閾ｪ蜍輔〒髻ｳ讌ｽ繧呈ｵ√＆縺ｪ縺・
+    if ((ifautoAnswer.value > 0)) { //最初だけは自動で音楽を流さない
       async function main(){
       var sec = Number(ifautoAnswer.value);
       await sleep(sec*1000);
@@ -1608,7 +1608,7 @@ function sendRequest(){
     }else {
       
     }
-    if ((document.getElementById("chordsOrNot").checked)&&((document.getElementById("ctg3").value ==="繧ｳ繝ｼ繝・)||(document.getElementById("ctg3").value ==="髻ｳ遞・))) {
+    if ((document.getElementById("chordsOrNot").checked)&&((document.getElementById("ctg3").value ==="コード")||(document.getElementById("ctg3").value ==="音程"))) {
       playChords(document.getElementById("textareas").value);
     }
 
@@ -1623,7 +1623,7 @@ function sendRequest(){
 }
 
 function isHTML(str) {
-    // 豁｣隕剰｡ｨ迴ｾ繧剃ｽｿ逕ｨ縺励※HTML繧ｿ繧ｰ繧偵メ繧ｧ繝・け
+    // 正規表現を使用してHTMLタグをチェック
     const pattern = /<\/?[a-z][\s\S]*>/i;
     return pattern.test(str);
 }
@@ -1665,7 +1665,7 @@ function sendRequest2(){
   AnswerShown = true;
   AnswerShown2 = true;
   
-  /** 驥崎､・メ繧ｧ繝・け縺励↑縺後ｉ荵ｱ謨ｰ菴懈・ */
+  /** 重複チェックしながら乱数作成 */
   for(i = min; i < max+1; i++){
     while(true){
       // alert(i);
@@ -1695,7 +1695,7 @@ function sendRequest2(){
   var xmlhttp=createXmlHttpRequest();
   if(xmlhttp!=null){
     // alert(phpfile2);
-    xmlhttp.open("POST", "../"縲+ phpfile2 , false);//荵ｱ謨ｰ繧偵ｂ縺ｨ縺ｫ隗｣遲斐ｒ蜿門ｾ・
+    xmlhttp.open("POST", "../"　+ phpfile2 , false);//乱数をもとに解答を取得
     xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     var data="data="+moji;
     xmlhttp.send(data);
@@ -1741,9 +1741,9 @@ function sendRequest2(){
 
 
       image2.onload = function(){
-        width2 = image2.width;//逕ｻ蜒上・蟷・
-        height2 = image2.height;//逕ｻ蜒上・鬮倥＆
-        modifiedWidth2 = document.getElementById("imageSize2").value * width2 ;//逕ｻ蜒丞ｹ・↓謖・ｮ壼､繧偵°縺代◆繧ゅ・
+        width2 = image2.width;//画像の幅
+        height2 = image2.height;//画像の高さ
+        modifiedWidth2 = document.getElementById("imageSize2").value * width2 ;//画像幅に指定値をかけたもの
         modifiedHeight2  = document.getElementById("imageSize2").value * height2 ;
         if ((imageSize2>1000)){
           imageSize2 = 1000;
@@ -1754,9 +1754,9 @@ function sendRequest2(){
         console.log('result is ' + result);
         if ((width2>height2)){
           document.getElementById("mypic2").style.width = modifiedWidth2 + "px";  // 
-          document.getElementById("mypic2").style.height = modifiedHeight2縲+"px"; // 鬮倥＆繧呈ｨｪ蟷・・螟牙喧蜑ｲ蜷医↓蜷医ｏ縺帙ｋ;
+          document.getElementById("mypic2").style.height = modifiedHeight2　+"px"; // 高さを横幅の変化割合に合わせる;
           // document.getElementById("mypic2").style.width = $('#div1').width() + "px";  // 
-          // document.getElementById("mypic2").style.height = $('#div1').height()縲+"px"; // 鬮倥＆繧呈ｨｪ蟷・・螟牙喧蜑ｲ蜷医↓蜷医ｏ縺帙ｋ;
+          // document.getElementById("mypic2").style.height = $('#div1').height()　+"px"; // 高さを横幅の変化割合に合わせる;
           if (parseInt(document.getElementById("mypic2").style.width) > $('#div2').width()) {
             var pic2w = parseInt(document.getElementById("mypic2").style.width);
             var pic2h = parseInt(document.getElementById("mypic2").style.height);
@@ -1797,7 +1797,7 @@ function sendRequest2(){
         } else {
           image2.src='images/'+imagefolder+'/' + imageadress[0];
         }
-    }else if (res.indexOf( "mp3" ) > 0||music.paused===false){//遲斐∴縺稽p3縺ｪ繧・
+    }else if (res.indexOf( "mp3" ) > 0||music.paused===false){//答えがmp3なら
       if (musicStartFlug === false){
         musicStartFlug = true;
       }else{
@@ -1812,7 +1812,7 @@ function sendRequest2(){
           stop();
           mp3PlayFlag=false;
         }
-        if (res === "蝠城｡後′縺ゅｊ縺ｾ縺帙ｓ縲・){
+        if (res === "問題がありません。"){
           stop();
           mp3PlayFlag=false;
         }
@@ -1822,7 +1822,7 @@ function sendRequest2(){
       document.getElementById("div2").style.display = "block";
       document.getElementById("mypic2").style.display = "none";
       // document.getElementById("answerMath").innerText = res;
-      if (res.indexOf("span") > -1){ //Html蠖｢蠑上・隗｣遲斐↑繧・
+      if (res.indexOf("span") > -1){ //Html形式の解答なら
         let parent = document.getElementById("answerMath");
         while(parent.lastChild){
           parent.removeChild(parent.lastChild);
@@ -1839,12 +1839,12 @@ function sendRequest2(){
       }else{
         var img_element = document.createElement('img');
         img_element.id= 'mypic2';
-        // 謖・ｮ壹＠縺溯ｦ∫ｴ縺ｫimg隕∫ｴ繧呈諺蜈･
+        // 指定した要素にimg要素を挿入
         var content_area = document.getElementById("div2");
         content_area.appendChild(img_element);
       }
 
-      MathJax.Hub.Typeset(document.getElementById("div2"));//謨ｰ蠑丞・隱ｭ縺ｿ霎ｼ縺ｿ
+      MathJax.Hub.Typeset(document.getElementById("div2"));//数式再読み込み
     } else if (isHTML(res)){
           document.getElementById("textareas2").style.display = "none";
           document.getElementById("div2").style.display = "block";
@@ -1905,14 +1905,14 @@ function sendRequest3(goodPoor)
   var xmlhttp=createXmlHttpRequest2();
   if(xmlhttp!=null)
   {
-    xmlhttp.open("POST", "../addcorrect.php", false);//豁｣隗｣繝懊ち繝ｳ繧呈款縺・
+    xmlhttp.open("POST", "../addcorrect.php", false);//正解ボタンを押す
     xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     var data="data="+moji;
     xmlhttp.send(data);
     var res=xmlhttp.responseText;
     // console.log('534 addcorrectres is '+res);
     document.getElementById( "textareas2" ).value = "";
-    // document.getElementById( "preQInfo" ).innerHTML = "蜑榊撫縺ｮ邨先棡  " +res;
+    // document.getElementById( "preQInfo" ).innerHTML = "前問の結果  " +res;
     document.getElementById("div2").style.display = "none";
     document.getElementById("textareas2").style.display = "block";
   }
@@ -1931,7 +1931,7 @@ function sendRequest4(goodPoor){
   getQendTime = now.getTime();
   getpastTime = Math.round((getQendTime-getQstartTime)/100)/10;
   incorrectQuestions.push(rand);
-  let arr = incorrectQuestions.filter(element => element == rand)//菴募屓蜷後§蝠城｡後ｒ髢馴＆縺医※縺・ｋ縺ｮ縺・
+  let arr = incorrectQuestions.filter(element => element == rand)//何回同じ問題を間違えているのか
   if (arr.length >20){return};
   incorrectNumber = incorrectNumber + 1
   if (incorrectNumber >100){
@@ -1944,13 +1944,13 @@ function sendRequest4(goodPoor){
   // console.log('679 getpastTime is '+ getpastTime);
   var xmlhttp=createXmlHttpRequest2();
   if(xmlhttp!=null){
-    xmlhttp.open("POST", "../addincorrect.php", false);//荳肴ｭ｣隗｣繝懊ち繝ｳ繧呈款縺・
+    xmlhttp.open("POST", "../addincorrect.php", false);//不正解ボタンを押す
     xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     var data="data="+moji;
     xmlhttp.send(data);
     var res=xmlhttp.responseText;
     document.getElementById( "textareas2" ).value = "";
-    // document.getElementById( "preQInfo" ).innerHTML = "蜑榊撫縺ｮ邨先棡  " +res;
+    // document.getElementById( "preQInfo" ).innerHTML = "前問の結果  " +res;
     document.getElementById("div2").style.display = "none";
     document.getElementById("textareas2").style.display = "block";
   }
@@ -1966,7 +1966,7 @@ function correctMinus(){
   var xmlhttp=createXmlHttpRequest2();
   if(xmlhttp!=null)
   {
-    xmlhttp.open("POST", "../correctMinus.php", false);//荳肴ｭ｣隗｣繝懊ち繝ｳ繧呈款縺・
+    xmlhttp.open("POST", "../correctMinus.php", false);//不正解ボタンを押す
     xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     var data="data="+moji;
     xmlhttp.send(data);
@@ -1986,7 +1986,7 @@ function incorrectMinus(){
   var xmlhttp=createXmlHttpRequest2();
   if(xmlhttp!=null)
   {
-    xmlhttp.open("POST", "../incorrectMinus.php", false);//荳肴ｭ｣隗｣繝懊ち繝ｳ繧呈款縺・
+    xmlhttp.open("POST", "../incorrectMinus.php", false);//不正解ボタンを押す
     xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     var data="data="+moji;
     xmlhttp.send(data);
@@ -2021,8 +2021,8 @@ function sendRequest5(){
   }
   moji = encodeURIComponent(moji);
   var xmlhttp=createXmlHttpRequest2();
-  if ((xmlhttp!=null)縲&& ((moji.indexOf('Your%20Answer')=== -1) && (moji.indexOf('...............')=== -1))) {//菫ｮ豁｣縺吶ｋ蝠城｡後→遲斐∴縺ｫ閾ｪ蛻・・隗｣遲斐ｄ繝偵Φ繝医′縺ｪ縺代ｌ縺ｰ菫ｮ豁｣縺吶ｋ縲・
-    xmlhttp.open("POST", "../modifyquestionanswer.php", false);//荳肴ｭ｣隗｣繝懊ち繝ｳ繧呈款縺・
+  if ((xmlhttp!=null)　&& ((moji.indexOf('Your%20Answer')=== -1) && (moji.indexOf('...............')=== -1))) {//修正する問題と答えに自分の解答やヒントがなければ修正する。
+    xmlhttp.open("POST", "../modifyquestionanswer.php", false);//不正解ボタンを押す
     xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     var data="data="+moji;
     xmlhttp.send(data);
@@ -2036,13 +2036,13 @@ function deleteQ(){
   moji = encodeURIComponent(moji);
   var xmlhttp=createXmlHttpRequest2();
   if(xmlhttp!=null){
-    xmlhttp.open("POST", "../deleteQuestion.php", false);//荳肴ｭ｣隗｣繝懊ち繝ｳ繧呈款縺・
+    xmlhttp.open("POST", "../deleteQuestion.php", false);//不正解ボタンを押す
     xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     var data="data="+moji;
     xmlhttp.send(data);
     var res=xmlhttp.responseText;
     // console.log('delete is ' + res);
-    document.getElementById( "textareas" ).value = "蝠城｡後ｒ蜑企勁縺励∪縺励◆縲・;
+    document.getElementById( "textareas" ).value = "問題を削除しました。";
     document.getElementById( "textareas2" ).value = "";
   }
 }
@@ -2067,7 +2067,7 @@ function createXmlHttpRequest2(){
   return xmlhttp;
 }
 
-/** min莉･荳確ax莉･荳九・謨ｴ謨ｰ蛟､縺ｮ荵ｱ謨ｰ繧定ｿ斐☆ */
+/** min以上max以下の整数値の乱数を返す */
 function intRandom(min, max){
     return Math.floor( Math.random() * (max - min + 1)) + min;
 }
@@ -2084,7 +2084,7 @@ function listChange(categorySelect){
     
 
     var elem = document.getElementById('ctg1');
-    var opts = elem.options; // select隕∫ｴ縺ｮoption繝励Ο繝代ユ繧｣
+    var opts = elem.options; // select要素のoptionプロパティ
     // console.log(opts);       // HTMLOptionsCollection(3)
     var selectedCategory1 = [];
     for (var i = 0; i < opts.length; i++) {          
@@ -2095,7 +2095,7 @@ function listChange(categorySelect){
     var selectedCategory1 = selectedCategory1.join("^");
     //sampleArea.insertAdjacentHTML("beforebegin","selectedCategory1"+selectedCategory1+"<br><br><br>");
     var elem = document.getElementById('ctg2');
-    var opts = elem.options; // select隕∫ｴ縺ｮoption繝励Ο繝代ユ繧｣
+    var opts = elem.options; // select要素のoptionプロパティ
     // console.log(opts);       // HTMLOptionsCollection(3)
     var selectedCategory2 = [];
     for (var i = 0; i < opts.length; i++) {          
@@ -2106,7 +2106,7 @@ function listChange(categorySelect){
     var selectedCategory2 = selectedCategory2.join("^");
     //sampleArea.insertAdjacentHTML("beforebegin","selectedCategory2"+selectedCategory2+"<br><br><br>");
     var elem = document.getElementById('ctg3');
-    var opts = elem.options; // select隕∫ｴ縺ｮoption繝励Ο繝代ユ繧｣
+    var opts = elem.options; // select要素のoptionプロパティ
     // console.log(opts);       // HTMLOptionsCollection(3)
     var selectedCategory3 = [];
     for (var i = 0; i < opts.length; i++) {          
@@ -2117,7 +2117,7 @@ function listChange(categorySelect){
     var selectedCategory3 = selectedCategory3.join("^");
     //sampleArea.insertAdjacentHTML("beforebegin","selectedCategory3"+selectedCategory3+"<br><br><br>");
     var elem = document.getElementById('ctg4');
-    var opts = elem.options; // select隕∫ｴ縺ｮoption繝励Ο繝代ユ繧｣
+    var opts = elem.options; // select要素のoptionプロパティ
     // console.log(opts);       // HTMLOptionsCollection(3)
     var selectedCategory4 = [];
     for (var i = 0; i < opts.length; i++) {          
@@ -2128,7 +2128,7 @@ function listChange(categorySelect){
     var selectedCategory4 = selectedCategory4.join("^");
     //sampleArea.insertAdjacentHTML("beforebegin","selectedCategory4"+selectedCategory4+"<br><br><br>");
     var elem = document.getElementById('ctg5');
-    var opts = elem.options; // select隕∫ｴ縺ｮoption繝励Ο繝代ユ繧｣
+    var opts = elem.options; // select要素のoptionプロパティ
     // console.log(opts);       // HTMLOptionsCollection(3)
     var selectedCategory5 = [];
     for (var i = 0; i < opts.length; i++) {          
@@ -2357,8 +2357,8 @@ function listChanged(){
 }
 
 function backQuestion(){
-  if ((document.getElementById("novelSelect").value) && !(document.getElementById("novelSelect").value == "縺ｪ縺・)){
-    //蟆剰ｪｬ謌ｻ縺・
+  if ((document.getElementById("novelSelect").value) && !(document.getElementById("novelSelect").value == "なし")){
+    //小説戻す
     novelRowNum = Number(novelRowNum)-1
     getNovelSentence();
   }
@@ -2390,7 +2390,7 @@ function backQuestion(){
     moji = encodeURIComponent(moji);
     var xmlhttp=createXmlHttpRequest();
     if(xmlhttp!=null){
-      xmlhttp.open("POST", "../"+phpfile1, false);//荵ｱ謨ｰ繧偵ｂ縺ｨ縺ｫ蝠城｡後ｒ蜿門ｾ・
+      xmlhttp.open("POST", "../"+phpfile1, false);//乱数をもとに問題を取得
       xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
       var data="data="+moji;
       // console.log('396 data is '+data);
@@ -2402,7 +2402,7 @@ function backQuestion(){
       var correctNum = ""
       var question = ""
 
-      if (res[0].indexOf("豁｣隗｣謨ｰ")<0) {
+      if (res[0].indexOf("正解数")<0) {
         question = res[0];
         correctNum = res[1];
       } else {
@@ -2427,13 +2427,13 @@ function backQuestion(){
         document.getElementById( "textareas" ).value = question ;
         document.getElementById( "textareas2" ).value = "";;
       }
-    }縲//闍ｦ謇句ｺｦ繧貞叙蠕・
+    }　//苦手度を取得
     var moji=rand + "." + document.mainform.DB_name.value;
     moji = encodeURIComponent(moji);
     var xmlhttp=createXmlHttpRequest2();
     if(xmlhttp!=null)
     {
-      xmlhttp.open("POST", "../getpoorat.php", false);//豁｣隗｣繝懊ち繝ｳ繧呈款縺・
+      xmlhttp.open("POST", "../getpoorat.php", false);//正解ボタンを押す
       xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
       var data="data="+moji;
       xmlhttp.send(data);
@@ -2719,10 +2719,10 @@ var formatDate = function (date, format) {
 const uttr2 = new SpeechSynthesisUtterance()
 
 function readAnswer(){//
-  // 逋ｺ險繧剃ｽ懈・
+  // 発言を作成
   uttr2.text = answerText2.value;
 
-  var isJapanese = false;  //譌･譛ｬ隱橸ｼ郁恭隱樔ｻ･螟厄ｼ峨・蝣ｴ蜷医荊rue縲阪↓險ｭ螳・
+  var isJapanese = false;  //日本語（英語以外）の場合「true」に設定
   for(var i=0; i < uttr2.text.length; i++){
       if(uttr2.text.charCodeAt(i) >= 256) {
         isJapanese = true;
@@ -2744,7 +2744,7 @@ function readAnswer(){//
     }
   }
 
-  // 險隱・(譌･譛ｬ隱・ja-JP, 繧｢繝｡繝ｪ繧ｫ闍ｱ隱・en-US, 繧､繧ｮ繝ｪ繧ｹ闍ｱ隱・en-GB, 荳ｭ蝗ｽ隱・zh-CN, 髻灘嵜隱・ko-KR)
+  // 言語 (日本語:ja-JP, アメリカ英語:en-US, イギリス英語:en-GB, 中国語:zh-CN, 韓国語:ko-KR)
   var slcLang = document.getElementById("autoReading").value
 
 
@@ -2758,19 +2758,19 @@ function readAnswer(){//
     uttr2.rate = document.getElementById("engSpeed").value;
   }
 
-  // 鬮倥＆ 0-2 蛻晄悄蛟､:1
+  // 高さ 0-2 初期値:1
   uttr2.pitch = 1
 
-  // 髻ｳ驥・0-1 蛻晄悄蛟､:1
+  // 音量 0-1 初期値:1
   uttr2.volume = 0.75
 
   
-  // // 竭｢ 驕ｸ謚槭＆繧後◆螢ｰ繧呈欠螳・
+  // // ③ 選択された声を指定
   // uttr2.voice = window.speechSynthesis.getVoices()[voice];
   // alert(readVoices);
   uttr2.voice = speechSynthesis
   .getVoices()
-  .filter(voice => voice.name == lang)[0]; //險隱櫁ｨｭ螳・
+  .filter(voice => voice.name == lang)[0]; //言語設定
 
   speechSynthesis.speak(uttr2)
   // alert(uttr2.voice.name);
@@ -2783,7 +2783,7 @@ const uttr = new SpeechSynthesisUtterance();
 function readQuestion(){
   // const uttr = new SpeechSynthesisUtterance(questionText2.value)
   uttr.text = questionText2.value;
-  var isJapanese = false;  //譌･譛ｬ隱橸ｼ郁恭隱樔ｻ･螟厄ｼ峨・蝣ｴ蜷医荊rue縲阪↓險ｭ螳・
+  var isJapanese = false;  //日本語（英語以外）の場合「true」に設定
   for(var i=0; i < uttr.text.length; i++){
       if(uttr.text.charCodeAt(i) >= 256) {
         isJapanese = true;
@@ -2805,7 +2805,7 @@ function readQuestion(){
     }
   }
 
-  // 險隱・(譌･譛ｬ隱・ja-JP, 繧｢繝｡繝ｪ繧ｫ闍ｱ隱・en-US, 繧､繧ｮ繝ｪ繧ｹ闍ｱ隱・en-GB, 荳ｭ蝗ｽ隱・zh-CN, 髻灘嵜隱・ko-KR)
+  // 言語 (日本語:ja-JP, アメリカ英語:en-US, イギリス英語:en-GB, 中国語:zh-CN, 韓国語:ko-KR)
   var slcLang = document.getElementById("autoReading").value
   
 
@@ -2817,23 +2817,23 @@ function readQuestion(){
     uttr.rate = document.getElementById("engSpeed").value;
   }
 
-  // 鬮倥＆ 0-2 蛻晄悄蛟､:1
+  // 高さ 0-2 初期値:1
   uttr.pitch = 1
 
-  // 髻ｳ驥・0-1 蛻晄悄蛟､:1
+  // 音量 0-1 初期値:1
   uttr.volume = 0.75
-  // 竭｢ 驕ｸ謚槭＆繧後◆螢ｰ繧呈欠螳・
+  // ③ 選択された声を指定
   // uttr.voice = window.speechSynthesis.getVoices()[voice];
 
   // alert (uttr.rate);
   uttr.voice = speechSynthesis
   .getVoices()
   .filter(voice => voice.name == lang)[0]; 
-  // .filter(voice => voice.name == readVoices[0])[0];      //險隱櫁ｨｭ螳・
+  // .filter(voice => voice.name == readVoices[0])[0];      //言語設定
   // uttr.voice = speechSynthesis
   //   .getVoices()
   //   .filter(voice => voice.name === voiceSelect.value)[0]
-  // 逋ｺ險繧貞・逕・(逋ｺ險繧ｭ繝･繝ｼ逋ｺ險縺ｫ霑ｽ蜉)
+  // 発言を再生 (発言キュー発言に追加)
   speechSynthesis.speak(uttr)
 
 
@@ -2865,7 +2865,7 @@ function autoQuestion(){
             finishReading = true;
           }
           while (finishReading == false){
-            // i++;    // 縺薙・譁・′辟｡縺・→辟｡髯舌Ν繝ｼ繝励↓縺ｪ縺｣縺ｦ縺励∪縺・・
+            // i++;    // この文が無いと無限ループになってしまう。
             // console.log(i);
             await sleep(500);
           }
@@ -2878,7 +2878,7 @@ function autoQuestion(){
                 finishReading2 = true;
               }
               while (finishReading2 == false){
-                i++;    // 縺薙・譁・′辟｡縺・→辟｡髯舌Ν繝ｼ繝励↓縺ｪ縺｣縺ｦ縺励∪縺・・
+                i++;    // この文が無いと無限ループになってしまう。
                 // console.log(i);
                 await sleep(500);
               }
@@ -2927,7 +2927,7 @@ var firstRemoveFlag =false;
 function removeCorrects(){
   var counts = {};
   minimumCorrect = Number(document.getElementById("NOC").value);
-  console.log('蜑企勁蜑阪questionnumbers is ' + questionnumbers);
+  console.log('削除前　questionnumbers is ' + questionnumbers);
   for(var i=0;i< correctQuestions.length;i++){
     var key = correctQuestions[i];
     counts[key] = (counts[key])? counts[key] + 1 : 1 ;
@@ -2952,7 +2952,7 @@ function removeCorrects(){
       }
     }
   }
-  // console.log('蜑企勁蠕後questionnumbers is ' + questionnumbers);
+  // console.log('削除後　questionnumbers is ' + questionnumbers);
   MaxQuestionNumber = questionnumbers.length;
 }
 
@@ -2967,27 +2967,27 @@ function keydown() {
   console.log('event.keyCode is ' + event.keyCode);
   console.log('event.code is ' + event.code);
   console.log('event.shiftKey is ' + event.altKey);
-  // 迴ｾ蝨ｨ繝輔か繝ｼ繧ｫ繧ｹ縺御ｸ弱∴繧峨ｌ縺ｦ縺・ｋ隕∫ｴ繧貞叙蠕励☆繧・
+  // 現在フォーカスが与えられている要素を取得する
   var active_element = document.activeElement;
 
-  // 蜃ｺ蜉帙ユ繧ｹ繝・
+  // 出力テスト
   console.log(active_element);
-  if ((document.getElementById("keyControl").checked) && (AnswerShown)//繧ｭ繝ｼ謫堺ｽ懊↓繝√ぉ繝・け縺後≠繧・
-  && (document.activeElement.id == "textareas2")//隗｣遲疲ｬ・′繧｢繧ｯ繝・ぅ繝悶〒縺ゅｊ
-  && (document.getElementById("answerByMyself").checked)) {//隗｣遲泌・蜉帙↓繝√ぉ繝・け縺後≠繧九→縺・
+  if ((document.getElementById("keyControl").checked) && (AnswerShown)//キー操作にチェックがあり
+  && (document.activeElement.id == "textareas2")//解答欄がアクティブであり
+  && (document.getElementById("answerByMyself").checked)) {//解答入力にチェックがあるとき
     // console.log('event.keyCode is ' + event.keyCode);
     // console.log('event.key is ' + event.key);
     whichKey1()
-  }else if((document.getElementById("keyControl").checked) //繧ｭ繝ｼ謫堺ｽ懊↓繝√ぉ繝・け縺後≠繧・
-  && (!document.getElementById("answerByMyself").checked)//隗｣遲泌・蜉帙↓繝√ぉ繝・け縺後≠繧・
-  && (document.activeElement.id != "textareas2")//隗｣遲疲ｬ・′繧｢繧ｯ繝・ぅ繝悶〒縺ｪ縺・
-  && (document.activeElement.id != "textareas")//蝠城｡梧ｬ・′繧｢繧ｯ繝・ぅ繝悶〒縺ｪ縺・
-  && (document.activeElement.id != "criteria1")//蝓ｺ貅匁ｬ・′繧｢繧ｯ繝・ぅ繝悶〒縺ｪ縺・
+  }else if((document.getElementById("keyControl").checked) //キー操作にチェックがあり
+  && (!document.getElementById("answerByMyself").checked)//解答入力にチェックがあり
+  && (document.activeElement.id != "textareas2")//解答欄がアクティブでなく
+  && (document.activeElement.id != "textareas")//問題欄がアクティブでなく
+  && (document.activeElement.id != "criteria1")//基準欄がアクティブでなく
   && (document.activeElement.id != "criteria2")
   && (document.activeElement.id != "criteria3")
-  && (document.activeElement.id != "wordSearch")//讀懃ｴ｢谺・′繧｢繧ｯ繝・ぅ繝悶〒縺ｪ縺・
-  && (document.activeElement.id != "information")//騾壻ｿ｡谺・′繧｢繧ｯ繝・ぅ繝悶〒縺ｪ縺・
-  && (document.activeElement.id != "DB_name")){//繝・・繧ｿ繝吶・繧ｹ蜷肴ｬ・′繧｢繧ｯ繝・ぅ繝悶〒縺ｪ縺・→縺阪竍偵▽縺ｾ繧頑枚蟄怜・蜉帙＠縺ｪ縺・〒繧ｭ繝ｼ謫堺ｽ懊・縺ｿ縺ｧ蟄ｦ鄙偵☆繧九→縺・
+  && (document.activeElement.id != "wordSearch")//検索欄がアクティブでなく
+  && (document.activeElement.id != "information")//通信欄がアクティブでなく
+  && (document.activeElement.id != "DB_name")){//データベース名欄がアクティブでないとき　⇒つまり文字入力しないでキー操作のみで学習するとき
 
     whichKey2()
   }
@@ -3413,7 +3413,7 @@ function settingSave(){
   var xmlhttp=createXmlHttpRequest();
   if(xmlhttp!=null)
   {
-    xmlhttp.open("POST", "../settingSave.php", false);//荳肴ｭ｣隗｣繝懊ち繝ｳ繧呈款縺・
+    xmlhttp.open("POST", "../settingSave.php", false);//不正解ボタンを押す
     xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     var data="data="+moji;
     xmlhttp.send(data);
@@ -3424,14 +3424,14 @@ function settingSave(){
 
 }
 function parseStrToBoolean(str) {
-  // 譁・ｭ怜・繧貞愛螳・
+  // 文字列を判定
   return (str == 'true') ? true : false;
 
 }
 
 var selectElement = document.getElementById("novelSelect");
-var novels = "<?php echo $novelsArray; ?>";縲// 螟画焚蜿励￠貂｡縺励・
-novels = novels.split(",", -1);縲// bb_csv繧痴plit()縺ｧ繧ｫ繝ｳ繝槫玄蛻・ｊ驟榊・縺ｫ蜀咲ｷｨ謌舌・
+var novels = "<?php echo $novelsArray; ?>";　// 変数受け渡し。
+novels = novels.split(",", -1);　// bb_csvをsplit()でカンマ区切り配列に再編成。
 for(var i = 1; i < novels.length; i ++){
   var option = document.createElement("option");
   option.value = novels[i];
@@ -3504,7 +3504,7 @@ if (response[18]==="true") {
   QnAareaFlex();
 }
 if (response[20]) {
-  if ((document.getElementById("novelSelect").value) && !(document.getElementById("novelSelect").value == "縺ｪ縺・)){
+  if ((document.getElementById("novelSelect").value) && !(document.getElementById("novelSelect").value == "なし")){
     document.getElementById("novelSentenceNumber").value = response[20];
   }
 }
@@ -3512,7 +3512,7 @@ if (response[20]) {
 
 function AnswerSent(code)
 {
-    //繧ｨ繝ｳ繧ｿ繝ｼ繧ｭ繝ｼ謚ｼ荳九↑繧・
+    //エンターキー押下なら
     if((13 === code) && (AnswerShown === false) && (document.getElementById("autoAnswer").value === "0")
     && (document.getElementById("answerByMyself").checked))
     {
@@ -3595,19 +3595,19 @@ function getFirstDayFunc()
 
 var base = 60;
 
-var key =  ["C","C#","D","E笙ｭ","E","F","F#","G","A笙ｭ","A","B笙ｭ","B"];
+var key =  ["C","C#","D","E♭","E","F","F#","G","A♭","A","B♭","B"];
 
-var chordname={"笆ｳ":"100010010000",
+var chordname={"△":"100010010000",
 "maj":"100010010000",
 "m":"100100010000",
 "dim":"100100100000",
 "aug":"100010001000",
-"笆ｳ7":"100010010001",
+"△7":"100010010001",
 "maj7":"100010010001",
 "m7":"100100010010",
 "7":"100010010010",
 "dim7":"100100100100",
-"m7笙ｭ5":"100100100010",
+"m7♭5":"100100100010",
 "minmaj7":"100100010001",
 "6":"100010010100",
 "m6":"100100010100",
@@ -3655,7 +3655,7 @@ function getMIDI(chord){
   } else if (chord.substr(1,1) === "b"){
     _key=chord.substr(0,2);
     _chordname=chord.substr(2);
-  } else if (chord.substr(1,1) === "笙ｭ"){
+  } else if (chord.substr(1,1) === "♭"){
     _key=chord.substr(0,2);
     _chordname=chord.substr(2);
   } else {
@@ -3663,12 +3663,12 @@ function getMIDI(chord){
     _chordname=chord.substr(1);
   }
   if (_chordname===""){_chordname="maj"};
-  if (_key==="G笙ｭ"){_key==="F#"};
-  if (_key==="D笙ｭ"){_key==="C#"};
-  if (_key==="A#"){_key==="B笙ｭ"};
+  if (_key==="G♭"){_key==="F#"};
+  if (_key==="D♭"){_key==="C#"};
+  if (_key==="A#"){_key==="B♭"};
   if (_key==="Gb"){_key==="F#"};
   if (_key==="Db"){_key==="C#"};
-  if (_key==="As"){_key==="B笙ｭ"};
+  if (_key==="As"){_key==="B♭"};
   if (_key==="Fs"){_key==="F#"};
   if (_key==="Cs"){_key==="C#"};
 
@@ -3706,7 +3706,7 @@ function playMIDI(midi){
 };
 
 function playChords(chords){
-    _chords=chords.split(/\r\n|\r|\n| |,/);//謾ｹ陦後さ繝ｼ繝峨ｂ縺励￥縺ｯ遨ｺ逋ｽ繧ゅ＠縺上・繧ｫ繝ｳ繝・
+    _chords=chords.split(/\r\n|\r|\n| |,/);//改行コードもしくは空白もしくはカンマ
     console.log(_chords);
     //_chords = chords.split(" ");
     _midi = []
@@ -3732,7 +3732,7 @@ function init(res) {
   music2.load();
 
   music.addEventListener('loadedmetadata',function(e) {
-      console.log(music.duration); // 邱乗凾髢薙・蜿門ｾ・
+      console.log(music.duration); // 総時間の取得
       musicDuration = music.duration
 
   });
@@ -3779,7 +3779,7 @@ function stop() {
   music.pause();
   // music2.pause();
   // music.currentTime = Number(document.getElementById("mp3StartPoint").value);
-  // setTimeout() 繝｡繧ｽ繝・ラ縺ｮ蜍穂ｽ懊ｒ繧ｭ繝｣繝ｳ繧ｻ繝ｫ縺吶ｋ
+  // setTimeout() メソッドの動作をキャンセルする
 clearTimeout(timeout_id);
 timeout_id = null;
 }
@@ -3787,15 +3787,15 @@ timeout_id = null;
 
 function imageSizeChange1(){
   imageSize = document.getElementById("imageSize1").value;
-  document.getElementById("mypic1").style.width = imageWidth1 * Number(imageSize) + "px";  // 讓ｪ蟷・ｒ400px縺ｫ繝ｪ繧ｵ繧､繧ｺ
-  document.getElementById("mypic1").style.height = imageHeight1 * Number(imageSize) + "px";  // 讓ｪ蟷・ｒ400px縺ｫ繝ｪ繧ｵ繧､繧ｺ
+  document.getElementById("mypic1").style.width = imageWidth1 * Number(imageSize) + "px";  // 横幅を400pxにリサイズ
+  document.getElementById("mypic1").style.height = imageHeight1 * Number(imageSize) + "px";  // 横幅を400pxにリサイズ
 }
 
 
 function imageSizeChange2(){
   imageSize = document.getElementById("imageSize2").value;
-  document.getElementById("mypic2").style.width = imageWidth2 * Number(imageSize) + "px";  // 讓ｪ蟷・ｒ400px縺ｫ繝ｪ繧ｵ繧､繧ｺ
-  document.getElementById("mypic2").style.height = imageHeight2 * Number(imageSize) + "px";  // 讓ｪ蟷・ｒ400px縺ｫ繝ｪ繧ｵ繧､繧ｺ
+  document.getElementById("mypic2").style.width = imageWidth2 * Number(imageSize) + "px";  // 横幅を400pxにリサイズ
+  document.getElementById("mypic2").style.height = imageHeight2 * Number(imageSize) + "px";  // 横幅を400pxにリサイズ
 }
 function informationChange(){
   var moji=  document.mainform.DB_name.value + "^" + document.mainform.information.value;
@@ -3804,7 +3804,7 @@ function informationChange(){
   var xmlhttp=createXmlHttpRequest2();
   if(xmlhttp!=null)
   {
-      xmlhttp.open("POST", "../informationChange.php", false);//荳肴ｭ｣隗｣繝懊ち繝ｳ繧呈款縺・
+      xmlhttp.open("POST", "../informationChange.php", false);//不正解ボタンを押す
       xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
       var data="data="+moji;
       xmlhttp.send(data);
@@ -3818,7 +3818,7 @@ function changeBG(wIMG) {
   document.body.style.backgroundImage = "url(./bg/" + wIMG + ")";///////////////////
 }
 
-function縲changeFont(){
+function　changeFont(){
   var elements = document.getElementsByClassName('textlines');
   for(i=0;i<elements.length;i++){
     elements[i].style.fontFamily = document.getElementById("fontSelect").value;;
@@ -3828,7 +3828,7 @@ function縲changeFont(){
 function newOnesFunc(){
 
 }
-//髻ｳ螢ｰ隱ｭ縺ｿ荳翫￡
+//音声読み上げ
 const answerText2        = document.querySelector('#textareas2')
 const questionText2        = document.querySelector('#textareas')
 const voiceSelect = document.querySelector('#voice-select')
@@ -3837,13 +3837,13 @@ var readVoices = new Array();
 var readVoiceJp ="";
 var readVoiceEng ="";
 
-// select繧ｿ繧ｰ縺ｮ荳ｭ霄ｫ繧貞｣ｰ縺ｮ蜷榊燕縺悟・縺｣縺殪ption繧ｿ繧ｰ縺ｧ蝓九ａ繧・
+// selectタグの中身を声の名前が入ったoptionタグで埋める
 function appendVoices() {
-  // 竭縲菴ｿ縺医ｋ螢ｰ縺ｮ驟榊・繧貞叙蠕・
-  // 驟榊・縺ｮ荳ｭ霄ｫ縺ｯ SpeechSynthesisVoice 繧ｪ繝悶ず繧ｧ繧ｯ繝・
+  // ①　使える声の配列を取得
+  // 配列の中身は SpeechSynthesisVoice オブジェクト
   const voices = speechSynthesis.getVoices()
-  voices.forEach(voice => { //縲繧｢繝ｭ繝ｼ髢｢謨ｰ (ES6)
-    // 譌･譛ｬ隱槭→闍ｱ隱樔ｻ･螟悶・螢ｰ縺ｯ驕ｸ謚櫁い縺ｫ霑ｽ蜉縺励↑縺・・
+  voices.forEach(voice => { //　アロー関数 (ES6)
+    // 日本語と英語以外の声は選択肢に追加しない。
     if(!voice.lang.match('ja|en-US')) return
     readVoices.push(voice.name);
   });
@@ -3863,8 +3863,8 @@ function appendVoices() {
 
 appendVoices()
 
-// // 竭｡ 菴ｿ縺医ｋ螢ｰ縺瑚ｿｽ蜉縺輔ｌ縺溘→縺阪↓逹轣ｫ縺吶ｋ繧､繝吶Φ繝医ワ繝ｳ繝峨Λ縲・
-// // Chrome 縺ｯ髱槫酔譛溘↓(荳蛟九★縺､)螢ｰ繧定ｪｭ縺ｿ霎ｼ繧縺溘ａ蠢・ｦ√・
+// // ② 使える声が追加されたときに着火するイベントハンドラ。
+// // Chrome は非同期に(一個ずつ)声を読み込むため必要。
 speechSynthesis.onvoiceschanged = e => {
   appendVoices();
 }
@@ -3892,7 +3892,7 @@ function getNovelSentence(){
   var xmlhttp=createXmlHttpRequest2();
   if(xmlhttp!=null)
   {
-      xmlhttp.open("POST", "../getNovelSentence.php", false);//豁｣隗｣繝懊ち繝ｳ繧呈款縺・
+      xmlhttp.open("POST", "../getNovelSentence.php", false);//正解ボタンを押す
       xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
       var data="data="+moji;
       xmlhttp.send(data);
@@ -4067,7 +4067,7 @@ function removeQuestion(){
     }
   }
 }
-function escape_html (string) {//HTML繧ｨ繧ｹ繧ｱ繝ｼ繝怜・逅・
+function escape_html (string) {//HTMLエスケープ処理
   if(typeof string !== 'string') {
     return string;
   }
@@ -4090,7 +4090,7 @@ function resizeTextareas(){
   observer.disconnect();
   observer2.disconnect();
 
-  if ( elementTextareas.style.width.match("%")) {//%縺悟性縺ｾ繧後※縺・ｋ縺・
+  if ( elementTextareas.style.width.match("%")) {//%が含まれているか
     // width=elementTextareas.style.width; 
     // height=elementTextareas.style.height; 
     width=Number(parseInt(elementTextareas.style.width))+Number(2); 
@@ -4122,10 +4122,10 @@ function resizeTextareas(){
   observer.observe(elementTextareas, options);
 }
 document.addEventListener('keydown', function(event) {
-    // Ctrl繧ｭ繝ｼ縺梧款縺輔ｌ縺ｦ縺・ｋ縺九：12繧ｭ繝ｼ縺梧款縺輔ｌ縺ｦ縺・ｋ縺九ｒ遒ｺ隱・
+    // Ctrlキーが押されているか、F12キーが押されているかを確認
     if (event.ctrlKey && event.key === 'F12') {
         readQuestion();
-        event.preventDefault(); // 繝・ヵ繧ｩ繝ｫ繝医・蜍穂ｽ懊ｒ繧ｭ繝｣繝ｳ繧ｻ繝ｫ
+        event.preventDefault(); // デフォルトの動作をキャンセル
     }
 });
 

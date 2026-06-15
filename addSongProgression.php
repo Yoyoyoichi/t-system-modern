@@ -12,12 +12,12 @@ $pieces = explode("^^^", $_POST["data"]);
 $mysqli = new db_wrapper('localhost', 'terashimayo', 'Yoyoyo444', 'terashimayo');
 if ($mysqli->connect_error) {error_log($mysqli->connect_error);exit;}
 
-//繝・ヵ繧ｩ繝ｫ繝域枚蟄励そ繝・ヨ繧定ｨｭ螳・
+//デフォルト文字セットを設定
 $mysqli->set_charset("utf8");
 
 $str_sql = "select * from ChordProgressions where name = '$pieces[0]'";
 $result = $mysqli->query($str_sql);
-/* 邨先棡繧ｻ繝・ヨ縺ｮ陦梧焚繧貞叙蠕励＠縺ｾ縺・*/
+/* 結果セットの行数を取得します */
 $row_cnt = $result->num_rows;
 
 

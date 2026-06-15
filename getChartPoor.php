@@ -7,7 +7,7 @@ $mysqli = new db_wrapper('localhost', 'terashimayo', 'Yoyoyo444', 'terashimayo')
     // $mysqli = new db_wrapper('localhost', 'root', 'yoichi41', 'terashimayo');
 // echo "getChartData 1"."\n"."\n";
 if( $mysqli->connect_errno){
-    echo 'Access Failed';//謗･邯壼､ｱ謨・
+    echo 'Access Failed';//接続失敗
     exit;
 }
 $pieces = explode("^", $_POST["data"]);
@@ -16,7 +16,7 @@ $db_name = $pieces[0];
 // echo "db_name is ".$db_name."\n"."\n";
 // $db_column = $pieces[1];
 
-//繝・ヵ繧ｩ繝ｫ繝域枚蟄励そ繝・ヨ繧定ｨｭ螳・
+//デフォルト文字セットを設定
 $mysqli->set_charset("utf8");
 
 $row_cnt = count($pieces);
@@ -44,7 +44,7 @@ for($i = 1; $i < $row_cnt; $i++){
   // echo "levels row_cnt is ".$row_cnt2."\n"."\n";
   $levels[$i][$j+1] = $row_cnt2;
   // $time = microtime(true) - $time_start;
-  // echo "{$time} 遘・;
+  // echo "{$time} 秒";
 }
 $levels2=array();
 for($i = 1; $i < $row_cnt; $i++){
@@ -56,7 +56,7 @@ for($i = 0; $i < 6; $i++){
 }
 echo $levels3;
 // $time1 = microtime(true) - $time_start1;
-// echo "{$time1} 遘・;
+// echo "{$time1} 秒";
 // if (!$result) {error_log($mysqli->error);exit;}
 // // $response[] = array();
 // while($dat = $result->fetch_assoc()){

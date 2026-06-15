@@ -12,14 +12,14 @@ $column = $pieces[2];
 $value = $pieces[3];
 $questionnumber = $pieces[4];///
 
-    //螟画焚繧堤｢ｺ隱・
+    //変数を確認
 
 
 $mysqli = new db_wrapper('localhost', 'terashimayo', 'Yoyoyo444', 'terashimayo');
 
 
 if( $mysql->connect_errno){
-    echo 'Access Failed7';//謗･邯壼､ｱ謨・
+    echo 'Access Failed7';//接続失敗
     exit;
 }
 if ($str === "update"){

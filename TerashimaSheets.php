@@ -6,7 +6,7 @@
 <link rel="stylesheet" href="https://jsuites.net/v4/jsuites.css" type="text/css" />
 <script type="text/javascript" src="jquery-3.4.1.min.js"></script>
 <style>
-  /* 陦ｨ蜈ｨ菴・*/
+  /* 表全体 */
   #spreadsheet{
       font-size:12px;
   }
@@ -21,13 +21,13 @@
       value = "<?php if (isset($_POST["DB_name"])) {echo $_POST["DB_name"];}?>"
       placeholder = "id"
       style='width: 40%; height :5vh; font-size: 24px;'/>
-    <input type="submit" value="騾∽ｿ｡" class="textlines" style='background-color:#99FFFF;font-size: 22px;width: 20%; height: 70px'>
+    <input type="submit" value="送信" class="textlines" style='background-color:#99FFFF;font-size: 22px;width: 20%; height: 70px'>
     <a id="previous" href="sample020.php">
-      <font size="6" color="#FF0000" style=''>蟄ｦ鄙堤判髱｢</font>
+      <font size="6" color="#FF0000" style=''>学習画面</font>
     </a>
     <br>
     <pre style='height:1vh;'>
-    蝠城｡梧､懃ｴ｢
+    問題検索
     </pre>
 
 <?php
@@ -36,7 +36,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
   if (!empty($_POST["DB_name"])) {
     $mysqli = new db_wrapper('localhost', 'terashimayo', 'Yoyoyo444', 'terashimayo');
     if( $mysqli->connect_errno){
-        echo 'Access Failed';//謗･邯壼､ｱ謨・
+        echo 'Access Failed';//接続失敗
         exit;
     }
 
@@ -46,12 +46,12 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $db_column = "category1";
 
 
-    //繝・ヵ繧ｩ繝ｫ繝域枚蟄励そ繝・ヨ繧定ｨｭ螳・
+    //デフォルト文字セットを設定
     $mysqli->set_charset("utf8");
     $row = "";
 
 
-    //繝・・繧ｿ繝吶・繧ｹ縺九ｉ繧ｫ繝・ざ繝ｪ繝ｼ1繧貞叙蠕・
+    //データベースからカテゴリー1を取得
     $str_sql = "select $db_column from $db_name where question != 'settings'";
     // echo $str_sql.",\n"."\n";//
     $result = $mysqli->query($str_sql);
@@ -80,7 +80,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     echo "{$sampleSelectBox}";
 
-    //繝・・繧ｿ繝吶・繧ｹ縺九ｉ繧ｫ繝・ざ繝ｪ繝ｼ2繧貞叙蠕・
+    //データベースからカテゴリー2を取得
     $str_sql = "select category2 from $db_name where question != 'settings'";
     $result = $mysqli->query($str_sql);
 
@@ -96,7 +96,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $row_cnt = count($response);
 
     $sampleSelectBox = "<select name=\"category2\" id='ctg2' onChange='listChange(this);listChanged()' multiple style='width:19%;height:20vh; font-size: 15px;margin:1px'>\n";
-    // $sampleSelectBox .= "\t<option value='' disabled selected style='display:none;' >荳ｭ繧ｫ繝・ざ繝ｪ繝ｼ</option>\n";
+    // $sampleSelectBox .= "\t<option value='' disabled selected style='display:none;' >中カテゴリー</option>\n";
 
     // $sampleSelectBox .="\t<option value=""></option>\n";
     for ( $i = 1; $i < $row_cnt; $i++ ) {
@@ -106,7 +106,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     echo "{$sampleSelectBox}";
 
 
-    //繝・・繧ｿ繝吶・繧ｹ縺九ｉ繧ｫ繝・ざ繝ｪ繝ｼ3繧貞叙蠕・
+    //データベースからカテゴリー3を取得
     $str_sql = "select category3 from $db_name where question != 'settings'";
     $result = $mysqli->query($str_sql);
 
@@ -129,7 +129,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $sampleSelectBox .= "</select>\n";//
     echo "{$sampleSelectBox}";
 
-    //繝・・繧ｿ繝吶・繧ｹ縺九ｉ繧ｫ繝・ざ繝ｪ繝ｼ4繧貞叙蠕・
+    //データベースからカテゴリー4を取得
     $str_sql = "select category4 from $db_name where question != 'settings'";
     $result = $mysqli->query($str_sql);
 
@@ -142,7 +142,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     $response = array_values(array_unique($response));
 
-    // ini_set('xdebug.var_display_max_children', -1);//var_dump蜈ｨ縺ｦ譖ｸ縺榊・縺輔○繧・
+    // ini_set('xdebug.var_display_max_children', -1);//var_dump全て書き出させる
     // ini_set('xdebug.var_display_max_data', -1);
     // ini_set('xdebug.var_display_max_depth', -1);
     // // var_dump($response);
@@ -156,7 +156,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $sampleSelectBox .= "</select>\n";//
     echo "{$sampleSelectBox}";
 
-    //繝・・繧ｿ繝吶・繧ｹ縺九ｉ繧ｫ繝・ざ繝ｪ繝ｼ5繧貞叙蠕・
+    //データベースからカテゴリー5を取得
     $str_sql = "select category5 from $db_name where question != 'settings'";
     $result = $mysqli->query($str_sql);
 
@@ -180,7 +180,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $sampleSelectBox .= "</select>\n";//
     echo "{$sampleSelectBox}";
 
-    //繝・・繧ｿ繝吶・繧ｹ縺九ｉquestion繧貞叙蠕・
+    //データベースからquestionを取得
 
     
 
@@ -202,19 +202,19 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     
 
   } else {
-    $err = "蜈･蜉帙＆繧後※縺・↑縺・・岼縺後≠繧翫∪縺吶・;
+    $err = "入力されていない項目があります。";
   }
 }
 
 ?>
-<input type="text" name="wordsearch" id="wordsearch"  placeholder = "讀懃ｴ｢"
+<input type="text" name="wordsearch" id="wordsearch"  placeholder = "検索"
 style='width: 30%; font-size: 38px;box-sizing:border-box;vertical-align:top; '>
 <br>
-<input type="button" id="showButton" value="陦ｨ遉ｺ" onclick='sendRequest()' style='font-size: 20px;width: 20%; height: 50px;margin:5px'>
+<input type="button" id="showButton" value="表示" onclick='sendRequest()' style='font-size: 20px;width: 20%; height: 50px;margin:5px'>
 <br>
 <div id="spreadsheet" ></div>
 <br>
-<input type="button" id="showButton" value="霑ｽ蜉" onclick='insertrow0()' style='font-size: 20px;width: 20%; height: 50px;margin:5px'>
+<input type="button" id="showButton" value="追加" onclick='insertrow0()' style='font-size: 20px;width: 20%; height: 50px;margin:5px'>
 <br>
  
 <script type="text/javascript">
@@ -231,7 +231,7 @@ var table1;
 function sendRequest(){
   var category1Value = new Array();
   var elemCategory1 = document.getElementById('ctg1');
-  var optsCategory1 = elemCategory1.options; // select隕∫ｴ縺ｮoption繝励Ο繝代ユ繧｣
+  var optsCategory1 = elemCategory1.options; // select要素のoptionプロパティ
   for (var i = 0; i < optsCategory1.length; i++) {
     if (optsCategory1[i].selected) {
       category1Value[i] = optsCategory1[i].value;
@@ -242,7 +242,7 @@ function sendRequest(){
 
   var category2Value = new Array();
   var elemCategory2 = document.getElementById('ctg2');
-  var optsCategory2 = elemCategory2.options; // select隕∫ｴ縺ｮoption繝励Ο繝代ユ繧｣
+  var optsCategory2 = elemCategory2.options; // select要素のoptionプロパティ
   for (var i = 0; i < optsCategory2.length; i++) {
     if (optsCategory2[i].selected) {
       category2Value[i] = optsCategory2[i].value;
@@ -254,7 +254,7 @@ function sendRequest(){
 
   var category3Value = new Array();
   var elemCategory3 = document.getElementById('ctg3');
-  var optsCategory3 = elemCategory3.options; // select隕∫ｴ縺ｮoption繝励Ο繝代ユ繧｣
+  var optsCategory3 = elemCategory3.options; // select要素のoptionプロパティ
   for (var i = 0; i < optsCategory3.length; i++) {
     if (optsCategory3[i].selected) {
       category3Value[i] = optsCategory3[i].value;
@@ -266,7 +266,7 @@ function sendRequest(){
 
   var category4Value = new Array();
   var elemCategory4 = document.getElementById('ctg4');
-  var optsCategory4 = elemCategory4.options; // select隕∫ｴ縺ｮoption繝励Ο繝代ユ繧｣
+  var optsCategory4 = elemCategory4.options; // select要素のoptionプロパティ
   for (var i = 0; i < optsCategory4.length; i++) {
     if (optsCategory4[i].selected) {
       category4Value[i] = optsCategory4[i].value;
@@ -277,7 +277,7 @@ function sendRequest(){
 
   var category5Value = new Array();
   var elemCategory5 = document.getElementById('ctg5');
-  var optsCategory5 = elemCategory5.options; // select隕∫ｴ縺ｮoption繝励Ο繝代ユ繧｣
+  var optsCategory5 = elemCategory5.options; // select要素のoptionプロパティ
   for (var i = 0; i < optsCategory5.length; i++) {
     if (optsCategory5[i].selected) {
       category5Value[i] = optsCategory5[i].value;
@@ -303,7 +303,7 @@ function sendRequest(){
 
   var xmlhttp=createXmlHttpRequest();
   if(xmlhttp!=null)  {
-    xmlhttp.open("POST", "../getSheetData.php", false);//荵ｱ謨ｰ繧貞叙蠕・
+    xmlhttp.open("POST", "../getSheetData.php", false);//乱数を取得
     xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     var data="data="+moji;
     xmlhttp.send(data);
@@ -312,8 +312,8 @@ function sendRequest(){
 
     var givenData  = [];
     for (let i = 1; i < res.length; i++) {
-      //驟榊・縺ｮ隕∫ｴ謨ｰ繧呈欠螳壹☆繧・
-縲縲縲givenData[i-1] = [];
+      //配列の要素数を指定する
+　　　givenData[i-1] = [];
       res2 = res[i].split(',');
       for (let j = 0; j < res2.length; j++) {
         givenData[i-1][j] =  res2[j];
@@ -393,7 +393,7 @@ function sendRequest(){
     var xmlhttp=createXmlHttpRequest();
     if(xmlhttp!=null)
     {
-        xmlhttp.open("POST", "../fromSheetUpdateDatabase.php", false);//荳肴ｭ｣隗｣繝懊ち繝ｳ繧呈款縺・
+        xmlhttp.open("POST", "../fromSheetUpdateDatabase.php", false);//不正解ボタンを押す
         xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
         var data="data="+moji;
         xmlhttp.send(data);
@@ -427,7 +427,7 @@ function sendRequest(){
     var xmlhttp=createXmlHttpRequest();
     if(xmlhttp!=null)
     {
-        xmlhttp.open("POST", "../fromSheetUpdateDatabase.php", false);//荳肴ｭ｣隗｣繝懊ち繝ｳ繧呈款縺・
+        xmlhttp.open("POST", "../fromSheetUpdateDatabase.php", false);//不正解ボタンを押す
         xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
         var data="data="+moji;
         xmlhttp.send(data);
@@ -456,7 +456,7 @@ function sendRequest(){
     var xmlhttp=createXmlHttpRequest();
     if(xmlhttp!=null)
     {
-        xmlhttp.open("POST", "../fromSheetUpdateDatabase.php", false);//荳肴ｭ｣隗｣繝懊ち繝ｳ繧呈款縺・
+        xmlhttp.open("POST", "../fromSheetUpdateDatabase.php", false);//不正解ボタンを押す
         xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
         var data="data="+moji;
         xmlhttp.send(data);
@@ -475,7 +475,7 @@ function listChange(categorySelect){
   
 
   var elem = document.getElementById('ctg1');
-  var opts = elem.options; // select隕∫ｴ縺ｮoption繝励Ο繝代ユ繧｣
+  var opts = elem.options; // select要素のoptionプロパティ
   // console.log(opts);       // HTMLOptionsCollection(3)
   var selectedCategory1 = [];
   for (var i = 0; i < opts.length; i++) {          
@@ -486,7 +486,7 @@ function listChange(categorySelect){
   var selectedCategory1 = selectedCategory1.join("^");
   //sampleArea.insertAdjacentHTML("beforebegin","selectedCategory1"+selectedCategory1+"<br><br><br>");
   var elem = document.getElementById('ctg2');
-  var opts = elem.options; // select隕∫ｴ縺ｮoption繝励Ο繝代ユ繧｣
+  var opts = elem.options; // select要素のoptionプロパティ
   // console.log(opts);       // HTMLOptionsCollection(3)
   var selectedCategory2 = [];
   for (var i = 0; i < opts.length; i++) {          
@@ -497,7 +497,7 @@ function listChange(categorySelect){
   var selectedCategory2 = selectedCategory2.join("^");
   //sampleArea.insertAdjacentHTML("beforebegin","selectedCategory2"+selectedCategory2+"<br><br><br>");
   var elem = document.getElementById('ctg3');
-  var opts = elem.options; // select隕∫ｴ縺ｮoption繝励Ο繝代ユ繧｣
+  var opts = elem.options; // select要素のoptionプロパティ
   // console.log(opts);       // HTMLOptionsCollection(3)
   var selectedCategory3 = [];
   for (var i = 0; i < opts.length; i++) {          
@@ -508,7 +508,7 @@ function listChange(categorySelect){
   var selectedCategory3 = selectedCategory3.join("^");
   //sampleArea.insertAdjacentHTML("beforebegin","selectedCategory3"+selectedCategory3+"<br><br><br>");
   var elem = document.getElementById('ctg4');
-  var opts = elem.options; // select隕∫ｴ縺ｮoption繝励Ο繝代ユ繧｣
+  var opts = elem.options; // select要素のoptionプロパティ
   // console.log(opts);       // HTMLOptionsCollection(3)
   var selectedCategory4 = [];
   for (var i = 0; i < opts.length; i++) {          
@@ -519,7 +519,7 @@ function listChange(categorySelect){
   var selectedCategory4 = selectedCategory4.join("^");
   //sampleArea.insertAdjacentHTML("beforebegin","selectedCategory4"+selectedCategory4+"<br><br><br>");
   var elem = document.getElementById('ctg5');
-  var opts = elem.options; // select隕∫ｴ縺ｮoption繝励Ο繝代ユ繧｣
+  var opts = elem.options; // select要素のoptionプロパティ
   // console.log(opts);       // HTMLOptionsCollection(3)
   var selectedCategory5 = [];
   for (var i = 0; i < opts.length; i++) {          
@@ -786,9 +786,9 @@ function createXmlHttpRequest()
 
 
 
-//20221221縲
-//question, answer1, category1 縺ｪ縺ｩ縲繧ｫ繝ｩ繝縺斐→縺ｫmysql縺九ｉ諠・ｱ繧貞叙蠕励☆繧九ｈ縺・↓縺励◆縲・
-//諠・ｱ蜿門ｾ励→謾ｹ螟峨′縺ｧ縺阪ｋ繧医≧縺ｫ縺ｪ縺｣縺溘′縲∬ｿｽ蜉縺ｯ縺ｾ縺縺ｧ縺阪↑縺・・
+//20221221　
+//question, answer1, category1 など　カラムごとにmysqlから情報を取得するようにした。
+//情報取得と改変ができるようになったが、追加はまだできない。
 
 
 </script>

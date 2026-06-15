@@ -13,7 +13,7 @@ $mysqli = new db_wrapper('localhost', 'terashimayo', 'Yoyoyo444', 'terashimayo')
 
 
 if( $mysql->connect_errno){
-    echo 'Access Failed7';//謗･邯壼､ｱ謨・
+    echo 'Access Failed7';//接続失敗
     exit;
 }
 

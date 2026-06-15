@@ -17,7 +17,7 @@ $mysqli = new db_wrapper('localhost', 'terashimayo', 'Yoyoyo444', 'terashimayo')
 
 
 if( $mysql->connect_errno){
-    echo 'Access Failed7';//謗･邯壼､ｱ謨・
+    echo 'Access Failed7';//接続失敗
     exit;
 }
 
@@ -26,7 +26,7 @@ $sql = "DELETE FROM $db_name WHERE questionnumber = $questionnumber";
 
 
 echo "sql is ".$sql."\n"."\n";
-// // SQL螳溯｡・
+// // SQL実行
 $res = $mysqli->query($sql);
 
 

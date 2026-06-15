@@ -16,7 +16,7 @@ $questionnumber = $pieces[0];///
 $db_name =  $pieces[1];
 
 
-// //蟆剰ｪｬ逡ｪ蜿ｷ險倬鹸
+// //小説番号記録
 $mysqli = new db_wrapper('localhost', 'terashimayo', 'Yoyoyo444', 'terashimayo');
 if ($mysqli->connect_error) {error_log($mysqli->connect_error);exit;}
 $mysqli->set_charset("utf8");
@@ -28,10 +28,10 @@ $result = $mysqli->query($str);
 $str_sql = "select * from $db_name where questionnumber = $questionnumber";
 
 
-//繝・ヵ繧ｩ繝ｫ繝域枚蟄励そ繝・ヨ繧定ｨｭ螳・
+//デフォルト文字セットを設定
 // $mysqli->set_charset("utf8");
 $row = "";
-//繝・・繧ｿ繝吶・繧ｹ蜿門ｾ・
+//データベース取得
 $result = $mysqli->query($str_sql);
 // //var_dump($result);
 $row_cnt = mysqli_num_rows($result);
@@ -48,7 +48,7 @@ if( $result = $mysqli->query($str_sql) ){
     }
 }
 else {
-    echo '蝠城｡後′縺ゅｊ縺ｾ縺帙ｓ縲・;
+    echo '問題がありません。';
 }
 
 
@@ -70,12 +70,12 @@ if ((!is_null($reply[1]["category5"])) AND (!empty($reply[1]["category5"]))){
 // echo '<br>';
 echo '    ';
 echo '<br>';
-echo "Level・・.$reply[1]["q_level"].'   ';
-echo "豁｣隗｣謨ｰ・・.$reply[1]["correct2"]." 荳肴ｭ｣隗｣謨ｰ・・.$reply[1]["incorrect2"];
+echo "Level：".$reply[1]["q_level"].'   ';
+echo "正解数：".$reply[1]["correct2"]." 不正解数：".$reply[1]["incorrect2"];
 echo '   ';
-echo "蜑榊屓・・.substr($reply[1]["pre_qdate"],0,33);
+echo "前回：".substr($reply[1]["pre_qdate"],0,33);
 echo '<br>';
-echo "險倬鹸・・.$reply[1]["q_record"];
+echo "記録：".$reply[1]["q_record"];
 if ((!is_null($reply[1]["qsentence"])) AND (!empty($reply[1]["qsentence"]))) {
   echo '<br>';
   echo $reply[1]["qsentence"];
@@ -87,7 +87,7 @@ if ((!is_null($reply[1]["tag"])) AND (!empty($reply[1]["tag"]))) {
 }else{
 }
 echo '<br>';
-echo "蝠城｡檎分蜿ｷ・・.$reply[1]["questionnumber"];
+echo "問題番号：".$reply[1]["questionnumber"];
 echo "^^^";
 echo $reply[1]["imagefolder"];
 

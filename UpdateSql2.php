@@ -14,15 +14,15 @@
     }
     .textlines {
       font-family: "SimHei";
-	    border: 2px solid #0a0;  /* 譫邱・*/
-	    border-radius: 0.67em;   /* 隗剃ｸｸ */
-	    padding: 0.5em;          /* 蜀・・縺ｮ菴咏區驥・*/
-	    background-color: snow;  /* 閭梧勹濶ｲ */
+	    border: 2px solid #0a0;  /* 枠線 */
+	    border-radius: 0.67em;   /* 角丸 */
+	    padding: 0.5em;          /* 内側の余白量 */
+	    background-color: snow;  /* 背景色 */
       box-shadow: 0 3px 6px rgba(0, 0, 0, 0.25);
-	    /*width: 20em;             /* 讓ｪ蟷・*/*/
-	    /*height: 120px;           /* 鬮倥＆ */*/
-	    /*font-size: 1em;          /* 譁・ｭ励し繧､繧ｺ */*/
-	    line-height: 1.2;        /* 陦後・鬮倥＆ */
+	    /*width: 20em;             /* 横幅 */*/
+	    /*height: 120px;           /* 高さ */*/
+	    /*font-size: 1em;          /* 文字サイズ */*/
+	    line-height: 1.2;        /* 行の高さ */
 	  }
     .img-container--precedo {
      overflow:auto;
@@ -56,13 +56,13 @@
     <input type="text"  class='textlines' class="textlines" id="DB_name" name = "DB_name"
       value = "<?php if (isset($_POST["DB_name"])) {echo $_POST["DB_name"];}?>" placeholder = "id"
       style='width: 40%; height :5vh; font-size: 24px;'/>
-    <input type="submit" value="騾∽ｿ｡" class="textlines" style='background-color:#99FFFF;font-size: 22px;width: 20%; height: 70px'>
+    <input type="submit" value="送信" class="textlines" style='background-color:#99FFFF;font-size: 22px;width: 20%; height: 70px'>
     <a id="previous" href="sample020.php">
-      <font size="6" color="#FF0000" style=''>蟄ｦ鄙堤判髱｢</font>
+      <font size="6" color="#FF0000" style=''>学習画面</font>
     </a>
     <br>
     <pre style='height:1vh;'>
-    蝠城｡梧､懃ｴ｢
+    問題検索
     </pre>
 <?php
 // error_reporting(0);
@@ -76,7 +76,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     /////
     //    echo "";
     if( $mysqli->connect_errno){
-        echo 'Access Failed';//謗･邯壼､ｱ謨・
+        echo 'Access Failed';//接続失敗
         exit;
     }
 
@@ -86,13 +86,13 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $db_column = "category1";
 
 
-    //繝・ヵ繧ｩ繝ｫ繝域枚蟄励そ繝・ヨ繧定ｨｭ螳・
+    //デフォルト文字セットを設定
     $mysqli->set_charset("utf8");
     $row = "";
     // echo "1".",\n"."\n";
 
 
-    //繝・・繧ｿ繝吶・繧ｹ蜿門ｾ・
+    //データベース取得
     $str_sql = "select $db_column from $db_name where question != 'settings'";
     //     echo $str_sql.",\n"."\n";//
     $result = $mysqli->query($str_sql);
@@ -114,7 +114,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     $sampleSelectBox = "<select name=\"category1\" id='ctg1' class='textlines' onChange='listChange(this);listChanged();OLDlistChange()'
     style='width:31%;height:10vh; font-size: 22px;margin:1px'>\n";
-    // $sampleSelectBox .= "\t<option value='' disabled selected style='display:none;' >繧ｫ繝・ざ繝ｪ繝ｼ1</option>\n";
+    // $sampleSelectBox .= "\t<option value='' disabled selected style='display:none;' >カテゴリー1</option>\n";
 
     for ( $i = 0; $i < $row_cnt; $i++ ) {
         $sampleSelectBox .= "\t<option value=\"{$response[$i]}\">{$response[$i]}</option>\n";
@@ -122,7 +122,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $sampleSelectBox .= "</select>\n";
     echo "{$sampleSelectBox}";
 
-    //繝・・繧ｿ繝吶・繧ｹ蜿門ｾ・
+    //データベース取得
     $str_sql = "select category2 from $db_name where question != 'settings'";
     $result = $mysqli->query($str_sql);
 
@@ -139,7 +139,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     $sampleSelectBox = "<select name=\"category2\" id='ctg2' class='textlines' onChange='listChange(this);listChanged();OLDlistChange()'
     style='width:31%;height:10vh; font-size: 22px;margin:1px'>\n";
-    // $sampleSelectBox .= "\t<option value='' disabled selected style='display:none;' >繧ｫ繝・ざ繝ｪ繝ｼ2</option>\n";
+    // $sampleSelectBox .= "\t<option value='' disabled selected style='display:none;' >カテゴリー2</option>\n";
 
     // $sampleSelectBox .="\t<option value=""></option>\n";
     for ( $i = 0; $i < $row_cnt; $i++ ) {
@@ -149,7 +149,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     echo "{$sampleSelectBox}";
 
 
-    //繝・・繧ｿ繝吶・繧ｹ蜿門ｾ・
+    //データベース取得
     $str_sql = "select category3 from $db_name where question != 'settings'";
     $result = $mysqli->query($str_sql);
 
@@ -166,7 +166,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     natsort($response);
     $sampleSelectBox = "<select name=\"category3\" id='ctg3' class='textlines' onChange='listChange(this);listChanged();OLDlistChange()'
      style='width:31%;height:10vh; font-size: 22px;margin:1px'>\n";
-    // $sampleSelectBox .= "\t<option value='' disabled selected style='display:none;' >繧ｫ繝・ざ繝ｪ繝ｼ3</option>\n";
+    // $sampleSelectBox .= "\t<option value='' disabled selected style='display:none;' >カテゴリー3</option>\n";
 
     for ( $i = 0; $i < $row_cnt; $i++ ) {
         $sampleSelectBox .= "\t<option value=\"{$response[$i]}\">{$response[$i]}</option>\n";
@@ -174,7 +174,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $sampleSelectBox .= "</select>\n";//
     echo "{$sampleSelectBox}";
 
-    //繝・・繧ｿ繝吶・繧ｹ蜿門ｾ・
+    //データベース取得
     $str_sql = "select category4 from $db_name where question != 'settings'";
     $result = $mysqli->query($str_sql);
 
@@ -191,7 +191,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     $sampleSelectBox = "<select name=\"category4\" id='ctg4' class='textlines' onChange='listChange(this);listChanged();OLDlistChange()'
     style='width:31%;height:10vh; font-size: 22px;margin:1px'>\n";
-    // $sampleSelectBox .= "\t<option value='' disabled selected style='display:none;' >繧ｫ繝・ざ繝ｪ繝ｼ2</option>\n";
+    // $sampleSelectBox .= "\t<option value='' disabled selected style='display:none;' >カテゴリー2</option>\n";
 
     // $sampleSelectBox .="\t<option value=""></option>\n";
     for ( $i = 0; $i < $row_cnt; $i++ ) {
@@ -200,7 +200,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $sampleSelectBox .= "</select>\n";
     echo "{$sampleSelectBox}";
 
-    //繝・・繧ｿ繝吶・繧ｹ蜿門ｾ・
+    //データベース取得
     $str_sql = "select category5 from $db_name where question != 'settings'";
     $result = $mysqli->query($str_sql);
 
@@ -217,7 +217,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     $sampleSelectBox = "<select name=\"category5\" id='ctg5' class='textlines' onChange='listChange(this);listChanged();OLDlistChange()'
     style='width:31%;height:10vh; font-size: 22px;margin:1px'>\n";
-    // $sampleSelectBox .= "\t<option value='' disabled selected style='display:none;' >繧ｫ繝・ざ繝ｪ繝ｼ2</option>\n";
+    // $sampleSelectBox .= "\t<option value='' disabled selected style='display:none;' >カテゴリー2</option>\n";
 
     // $sampleSelectBox .="\t<option value=""></option>\n";
     for ( $i = 0; $i < $row_cnt; $i++ ) {
@@ -227,7 +227,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     echo "{$sampleSelectBox}";
 
 
-    // //繝・・繧ｿ繝吶・繧ｹ蜿門ｾ・繧､繝｡繝ｼ繧ｸ繝輔か繝ｫ繝
+    // //データベース取得 イメージフォルダ
     // $str_sql = "select imagefolder from $db_name where question != 'settings'";
     // $result = $mysqli->query($str_sql);
 
@@ -244,7 +244,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     // $sampleSelectBox = "<select name=\"imagefolder\" id='imgfolder' class='textlines' onChange='listChange(this);listChanged();OLDlistChange()'
     // style='width:31%;height:10vh; font-size: 22px;margin:1px'>\n";
-    // // $sampleSelectBox .= "\t<option value='' disabled selected style='display:none;' >繧ｫ繝・ざ繝ｪ繝ｼ2</option>\n";
+    // // $sampleSelectBox .= "\t<option value='' disabled selected style='display:none;' >カテゴリー2</option>\n";
 
     // // $sampleSelectBox .="\t<option value=""></option>\n";
     // for ( $i = 0; $i < $row_cnt; $i++ ) {
@@ -257,7 +257,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
 
   } else {
-    $err = "蜈･蜉帙＆繧後※縺・↑縺・・岼縺後≠繧翫∪縺吶・;
+    $err = "入力されていない項目があります。";
   }
 }
 global $testnumber;
@@ -268,7 +268,7 @@ $testnumber = 0;
 <br>
 <select name='questionList' id='questionList' class='textlines' onChange = 'qestionListChange()' style='width: 63%;height:70px; font-size: 27px;'>
 </select>
-<input type="text"  class='textlines' name="wordSearch" id="wordSearch" class='textlines' onChange='OLDlistChange()' value = "" placeholder = "譁・ｭ励〒讀懃ｴ｢"
+<input type="text"  class='textlines' name="wordSearch" id="wordSearch" class='textlines' onChange='OLDlistChange()' value = "" placeholder = "文字で検索"
   style='width: 31%;height:70px ;font-size: 29px;box-sizing:border-box;vertical-align:middle; '
 >
 
@@ -276,38 +276,38 @@ $testnumber = 0;
 <br>
 <br>
 <pre>
-  蜈･蜉帷畑繝輔か繝ｼ繝  窶ｻ譁ｰ縺励＞蝠城｡後・蜈･蜉帙ｒ縺吶ｋ縺ｫ縺ｯ蝠城｡檎分蜿ｷ繧堤ｩｺ縺ｫ縺励※縺上□縺輔＞縲・ 窶ｻ縺薙・荳九・繧ｫ繝・ざ繝ｪ繝ｼ縺ｫ蠢・★蜈･蜉帙☆繧九％縺ｨ縲・
+  入力用フォーム  ※新しい問題の入力をするには問題番号を空にしてください。  ※この下のカテゴリーに必ず入力すること。
 </pre>
-<input type="text"  class='textlines' name="questionnumberTextArea" id="questionnumberTextArea"  value = "" placeholder = "逡ｪ蜿ｷ"
+<input type="text"  class='textlines' name="questionnumberTextArea" id="questionnumberTextArea"  value = "" placeholder = "番号"
   style='width: 7%; font-size: 22px;box-sizing:border-box;vertical-align:middle; '
 >
-<input type="text" list="testList1" class='textlines' name="modifyCategory1" id="modifyCategory1"  value = "" placeholder = "繧ｫ繝・ざ繝ｪ繝ｼ1"
+<input type="text" list="testList1" class='textlines' name="modifyCategory1" id="modifyCategory1"  value = "" placeholder = "カテゴリー1"
   style='width: 29.5%; font-size: 22px;box-sizing:border-box;vertical-align:middle; '
 >
 <datalist id="testList1">
 </datalist>
-<input type="text" list="testList2"  class='textlines' name="modifyCategory2" id="modifyCategory2"  value = "" placeholder = "繧ｫ繝・ざ繝ｪ繝ｼ2"
+<input type="text" list="testList2"  class='textlines' name="modifyCategory2" id="modifyCategory2"  value = "" placeholder = "カテゴリー2"
   style='width: 29.5%; font-size: 22px;box-sizing:border-box;vertical-align:middle; '
 >
 <datalist id="testList2">
 </datalist>
-<input type="text" list="testList3" class='textlines' name="modifyCategory3" id="modifyCategory3"  value = "" placeholder = "繧ｫ繝・ざ繝ｪ繝ｼ3"
+<input type="text" list="testList3" class='textlines' name="modifyCategory3" id="modifyCategory3"  value = "" placeholder = "カテゴリー3"
   style='width: 29.5%; font-size: 22px;box-sizing:border-box;vertical-align:middle; '
 >
 <datalist id="testList3">
 </datalist>
-<input type="text" list="testList4" class='textlines' name="modifyCategory4" id="modifyCategory4"  value = "" placeholder = "繧ｫ繝・ざ繝ｪ繝ｼ4"
+<input type="text" list="testList4" class='textlines' name="modifyCategory4" id="modifyCategory4"  value = "" placeholder = "カテゴリー4"
   style='width: 29.5%; font-size: 22px;box-sizing:border-box;vertical-align:middle; '
 >
 <datalist id="testList4">
 </datalist>
-<input type="text" list="testList5" class='textlines' name="modifyCategory5" id="modifyCategory5"  value = "" placeholder = "繧ｫ繝・ざ繝ｪ繝ｼ5"
+<input type="text" list="testList5" class='textlines' name="modifyCategory5" id="modifyCategory5"  value = "" placeholder = "カテゴリー5"
   style='width: 29.5%; font-size: 22px;box-sizing:border-box;vertical-align:middle; '
 >
 <datalist id="testList5">
 </datalist>
 
-<input type="text" list="testList6" class='textlines' name="imgfolder" id="imgfolder"  value = "" placeholder = "逕ｻ蜒上ヵ繧ｩ繝ｫ繝"
+<input type="text" list="testList6" class='textlines' name="imgfolder" id="imgfolder"  value = "" placeholder = "画像フォルダ"
   style='width: 29.5%; font-size: 22px;box-sizing:border-box;vertical-align:middle; '
 >
 <datalist id="testList6">
@@ -315,64 +315,64 @@ $testnumber = 0;
 
 
 <script type="text/javascript">
-  // select隕∫ｴ繧貞叙蠕・
+  // select要素を取得
   var element = document.getElementById( "ctg1" ) ;
-  // 蜈ｨ縺ｦ縺ｮoption隕∫ｴ繧貞叙蠕・
+  // 全てのoption要素を取得
   var elements = element.options ;
   // console.log('elements is ' + elements.length);
   for (let i = 0; i < elements.length; i++) {
     let op = document.createElement("option");
-    op.value = elements[i].value;  //value蛟､
+    op.value = elements[i].value;  //value値
     document.getElementById("testList1").appendChild(op);
   }
 
   element = document.getElementById( "ctg2" ) ;
-  // 蜈ｨ縺ｦ縺ｮoption隕∫ｴ繧貞叙蠕・
+  // 全てのoption要素を取得
   elements = element.options ;
   // console.log('elements is ' + elements.length);
   for (let i = 0; i < elements.length; i++) {
     let op = document.createElement("option");
-    op.value = elements[i].value;  //value蛟､
+    op.value = elements[i].value;  //value値
     document.getElementById("testList2").appendChild(op);
   }
 
   element = document.getElementById( "ctg3" ) ;
-  // 蜈ｨ縺ｦ縺ｮoption隕∫ｴ繧貞叙蠕・
+  // 全てのoption要素を取得
   elements = element.options ;
   // console.log('elements is ' + elements.length);
   for (let i = 0; i < elements.length; i++) {
     let op = document.createElement("option");
-    op.value = elements[i].value;  //value蛟､
+    op.value = elements[i].value;  //value値
     document.getElementById("testList3").appendChild(op);
   }
 
   element = document.getElementById( "ctg4" ) ;
-  // 蜈ｨ縺ｦ縺ｮoption隕∫ｴ繧貞叙蠕・
+  // 全てのoption要素を取得
   elements = element.options ;
   // console.log('elements is ' + elements.length);
   for (let i = 0; i < elements.length; i++) {
     let op = document.createElement("option");
-    op.value = elements[i].value;  //value蛟､
+    op.value = elements[i].value;  //value値
     document.getElementById("testList4").appendChild(op);
   }
 
   element = document.getElementById( "ctg5" ) ;
-  // 蜈ｨ縺ｦ縺ｮoption隕∫ｴ繧貞叙蠕・
+  // 全てのoption要素を取得
   elements = element.options ;
   // console.log('elements is ' + elements.length);
   for (let i = 0; i < elements.length; i++) {
     let op = document.createElement("option");
-    op.value = elements[i].value;  //value蛟､
+    op.value = elements[i].value;  //value値
     document.getElementById("testList5").appendChild(op);
   }
 
   // element = document.getElementById( "imgfolder" ) ;
-  // // 蜈ｨ縺ｦ縺ｮoption隕∫ｴ繧貞叙蠕・
+  // // 全てのoption要素を取得
   // elements = element.options ;
   // // console.log('elements is ' + elements.length);
   // for (let i = 0; i < elements.length; i++) {
   //   let op = document.createElement("option");
-  //   op.value = elements[i].value;  //value蛟､
+  //   op.value = elements[i].value;  //value値
   //   document.getElementById("testList6").appendChild(op);
   // }
 
@@ -380,15 +380,15 @@ $testnumber = 0;
 
 
 <br>
-<input type="text"   class='textlines' name="qsentenceTextArea" id="qsentenceTextArea"  value = "" placeholder = "險ｭ蝠・
+<input type="text"   class='textlines' name="qsentenceTextArea" id="qsentenceTextArea"  value = "" placeholder = "設問"
   style='width: 96.5%; font-size: 15px;box-sizing:border-box;vertical-align:middle;margin:0px 0px 10px 0px; '
 >
-<input type="text"   class='textlines' name="tagTextArea" id="tagTextArea"  value = "" placeholder = "繧ｿ繧ｰ"
+<input type="text"   class='textlines' name="tagTextArea" id="tagTextArea"  value = "" placeholder = "タグ"
   style='width: 96.5%; font-size: 15px;box-sizing:border-box;vertical-align:middle;margin:0px 0px 10px 0px; '
 >
 <select name='fontresize' class='textlines' id='fontresize' onChange="textareafontresize()" tabindex="-1"
     style='width: 10%; font-size: 10px;height: 5vh;line-height: 3vh;vertical-align:top;margin:0px 0px 10px 0px;'>
-    <option value='' >譁・ｭ励し繧､繧ｺ</option>
+    <option value='' >文字サイズ</option>
     <option value='5px'>5</option>
     <option value='10px'>10</option>
     <option value='15px'>15</option>
@@ -405,7 +405,7 @@ $testnumber = 0;
 </select>
 <select class='textlines' name="imageSize1" id = "imageSize1" value="1" min="-10" max="10" step="0.1" onChange="imageSizeChange1()"
 style="width:4%;font-size: 10px;height: 5vh;margin:0px 0px 10px 0px;">
-  <option value=1>逕ｻ蜒鞘蔵</option>
+  <option value=1>画像①</option>
   <option value=0.1>0.1</option>
   <option value=0.2>0.2</option>
   <option value=0.3>0.3</option>
@@ -437,7 +437,7 @@ style="width:4%;font-size: 10px;height: 5vh;margin:0px 0px 10px 0px;">
 </select>
 <select class='textlines'  name="imageSize2" id = "imageSize2" value="1" min="-10" max="10" step="0.1" onChange="imageSizeChange2()"
 style="width:4%;font-size: 10px;height: 5vh;margin:0px 0px 10px 0px;">
-<option value=1>逕ｻ蜒鞘贈</option>
+<option value=1>画像②</option>
 <option value=0.1>0.1</option>
 <option value=0.2>0.2</option>
 <option value=0.3>0.3</option>
@@ -467,24 +467,24 @@ style="width:4%;font-size: 10px;height: 5vh;margin:0px 0px 10px 0px;">
 <option value=9>9</option>
 <option value=10>10</option>
 </select>
-<input type="button" class='textlines' name="nextQ" id="nextQ" onClick="nextQu()" value="谺｡"
+<input type="button" class='textlines' name="nextQ" id="nextQ" onClick="nextQu()" value="次"
 style=" width:10%;height: 40px; font-size: 22px;margin:10px 0px 10px 0px;background-color:#99FFFF">
-<input type="button" class='textlines' name="preQ" id="preQ" onClick="preQu()" value="蜑・
+<input type="button" class='textlines' name="preQ" id="preQ" onClick="preQu()" value="前"
 style=" width:10%;height: 40px; font-size: 22px;margin:10px 0px 10px 0px;background-color:#99FFFF">
 
 <label id="file1_wrap" for="file1" style="display:'inline-block';width:320px;height:240px;background-color:#cce0f0;">
-  <!-- 繝輔ぃ繧､繝ｫ繧偵ラ繝ｩ繝・げ・・ラ繝ｭ繝・・縺励※縺上□縺輔＞縲・
-  ・郁､・焚繝輔ぃ繧､繝ｫ繧ょ庄・・-->
+  <!-- ファイルをドラッグ＆ドロップしてください。
+  （複数ファイルも可） -->
   <input type="file" id="file1" multiple />
 </label>
 <label id="file2_wrap" for="file2" style="display:'inline-block';width:320px;height:240px;background-color:#cce0f0;">
-  <!-- 繝輔ぃ繧､繝ｫ繧偵ラ繝ｩ繝・げ・・ラ繝ｭ繝・・縺励※縺上□縺輔＞縲・
-  ・郁､・焚繝輔ぃ繧､繝ｫ繧ょ庄・・-->
+  <!-- ファイルをドラッグ＆ドロップしてください。
+  （複数ファイルも可） -->
   <input type="file" id="file2" multiple />
 </label><br>
-<input type="button" class='textlines' name="update" id="update" onClick="updateQuestion()" value="譖ｴ譁ｰ"
+<input type="button" class='textlines' name="update" id="update" onClick="updateQuestion()" value="更新"
 style=" width:40%;height: 70px; font-size: 22px;margin:10px 0px 10px 0px;background-color:#99FFFF">
-<input type="button" class='textlines' name="update" id="update" onClick="nextNewQuestion()" value="譁ｰ隕・
+<input type="button" class='textlines' name="update" id="update" onClick="nextNewQuestion()" value="新規"
 style=" width:40%;height: 70px; font-size: 22px;margin:10px 0px 10px 0px;background-color:#99FFFF">
 <br>
 <progress id="prog1" value="0" max="100" hidden></progress>
@@ -504,7 +504,7 @@ style=" width:40%;height: 70px; font-size: 22px;margin:10px 0px 10px 0px;backgro
   style=' width: 45%; height :20vh; font-size: 25px;float: left;'></TEXTAREA>
 
   <div id ="div2" class="img-container--precedo" style="width:45%;height: 23vh;">
-      <img id="mypic2" src=""縲style="width:45%;height: 50vh;">
+      <img id="mypic2" src=""　style="width:45%;height: 50vh;">
   </div>
 </div>
 <br>
@@ -561,36 +561,36 @@ style=' width: 95%; height :5vh; font-size: 18px;'></TEXTAREA>
 <input type="text"  class='textlines' name="q_levelTxtArea" id="q_levelTxtArea"  value = "" placeholder = "Level"
   style='width: 10%; font-size: 10px;box-sizing:border-box;vertical-align:middle; '
 >
-<input type="text"  class='textlines' name="pooratTxtArea" id="pooratTxtArea"  value = "" placeholder = "驕疲・蠎ｦ"
+<input type="text"  class='textlines' name="pooratTxtArea" id="pooratTxtArea"  value = "" placeholder = "達成度"
   style='width: 10%; font-size: 22px;box-sizing:border-box;vertical-align:middle; '
 >
-<input type="text"  class='textlines' name="q_recordTxtArea" id="q_recordTxtArea"  value = "" placeholder = "謌仙凄險倬鹸"
+<input type="text"  class='textlines' name="q_recordTxtArea" id="q_recordTxtArea"  value = "" placeholder = "成否記録"
   style='width: 12%; font-size: 22px;box-sizing:border-box;vertical-align:middle; '
 >
-<input type="text"  class='textlines' name="correctTxtArea" id="correctTxtArea"  value = "" placeholder = "豁｣隗｣謨ｰ"
+<input type="text"  class='textlines' name="correctTxtArea" id="correctTxtArea"  value = "" placeholder = "正解数"
   style='width: 10%; font-size: 22px;box-sizing:border-box;vertical-align:middle; '
 >
-<input type="text"  class='textlines' name="incorrectTxtArea" id="incorrectTxtArea"  value = "" placeholder = "荳肴ｭ｣隗｣謨ｰ"
+<input type="text"  class='textlines' name="incorrectTxtArea" id="incorrectTxtArea"  value = "" placeholder = "不正解数"
   style='width: 10%; font-size: 22px;box-sizing:border-box;vertical-align:middle; '
 >
-<input type="text"  class='textlines' name="pcaTxtArea" id="pcaTxtArea"  value = "" placeholder = "豁｣遲皮紫"
+<input type="text"  class='textlines' name="pcaTxtArea" id="pcaTxtArea"  value = "" placeholder = "正答率"
   style='width: 10%; font-size: 22px;box-sizing:border-box;vertical-align:middle; '
 >
-<input type="text"  class='textlines' name="qdateTxtArea" id="qdateTxtArea"  value = "" placeholder = "譌･莉・
+<input type="text"  class='textlines' name="qdateTxtArea" id="qdateTxtArea"  value = "" placeholder = "日付"
   style='width: 30%; font-size: 22px;box-sizing:border-box;vertical-align:middle; '
 >
 <br>
-<input type="text"  class='textlines' name="pre_qdateTxtArea" id="pre_qdateTxtArea"  value = "" placeholder = "驕主悉譌･莉・
+<input type="text"  class='textlines' name="pre_qdateTxtArea" id="pre_qdateTxtArea"  value = "" placeholder = "過去日付"
   style='width: 90%; font-size: 22px;box-sizing:border-box;vertical-align:middle; '
 >
-<input type="text"  class='textlines' name="nextQdateTxtArea" id="nextQdateTxtArea"  value = "" placeholder = "谺｡蝗・
+<input type="text"  class='textlines' name="nextQdateTxtArea" id="nextQdateTxtArea"  value = "" placeholder = "次回"
   style='width: 30%; font-size: 22px;box-sizing:border-box;vertical-align:middle; '
 >
 
 <br>
-<input type="button" class='textlines' name="botan08" id="button08" onClick="deleteQ();"value="蝠城｡悟炎髯､"
+<input type="button" class='textlines' name="botan08" id="button08" onClick="deleteQ();"value="問題削除"
 style="width:23.8%;height:5vh;font-size: 22px;margin:100px 0px 0px 0px">
-<!-- jQuery繧辰DN縺九ｉ隱ｭ縺ｿ霎ｼ縺ｿ -->
+<!-- jQueryをCDNから読み込み -->
 <script
   src="https://code.jquery.com/jquery-3.5.0.min.js"
   integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ="
@@ -629,13 +629,13 @@ style="width:23.8%;height:5vh;font-size: 22px;margin:100px 0px 0px 0px">
           questions = res.split('^^');
           // console.log('res is ' + questions);
           var qnum = questions.length;
-          //騾｣諠ｳ驟榊・繧偵Ν繝ｼ繝怜・逅・〒蛟､繧貞叙繧雁・縺励※繧ｻ繝ｬ繧ｯ繝医・繝・け繧ｹ縺ｫ繧ｻ繝・ヨ縺吶ｋ
+          //連想配列をループ処理で値を取り出してセレクトボックスにセットする
           let op = document.createElement("option");
           document.getElementById("questionList").appendChild(op);
           for(var i=0;i<questions.length;i++){
             let op = document.createElement("option");
-            op.value = questions[i];  //value蛟､
-            op.text = questions[i];   //繝・く繧ｹ繝亥､
+            op.value = questions[i];  //value値
+            op.text = questions[i];   //テキスト値
             document.getElementById("questionList").appendChild(op);
           }
 
@@ -677,15 +677,15 @@ style="width:23.8%;height:5vh;font-size: 22px;margin:100px 0px 0px 0px">
             var width2;
             var height2;
 
-            // document.getElementById("mypic2").style.width = "1000px";  // 讓ｪ蟷・ｒ400px縺ｫ繝ｪ繧ｵ繧､繧ｺ
-            // document.getElementById("mypic2").style.height = height2 * (1000 / width2)+"px"; // 鬮倥＆繧呈ｨｪ蟷・・螟牙喧蜑ｲ蜷医↓蜷医ｏ縺帙ｋ;
+            // document.getElementById("mypic2").style.width = "1000px";  // 横幅を400pxにリサイズ
+            // document.getElementById("mypic2").style.height = height2 * (1000 / width2)+"px"; // 高さを横幅の変化割合に合わせる;
             image2.onload = function(){
                 width2 = image2.width;
                 height2 = image2.height;
                 // if ((width2>height2)&&(width2>200)) {
                 if (width2>200) {
-                    document.getElementById("mypic2").style.width = "1000px";  // 讓ｪ蟷・ｒ400px縺ｫ繝ｪ繧ｵ繧､繧ｺ
-                    document.getElementById("mypic2").style.height = height2 * (1000 / width2)+"px"; // 鬮倥＆繧呈ｨｪ蟷・・螟牙喧蜑ｲ蜷医↓蜷医ｏ縺帙ｋ;
+                    document.getElementById("mypic2").style.width = "1000px";  // 横幅を400pxにリサイズ
+                    document.getElementById("mypic2").style.height = height2 * (1000 / width2)+"px"; // 高さを横幅の変化割合に合わせる;
                     if (parseInt(document.getElementById("mypic2").style.height)>parseInt(document.getElementById("div2").clientHeight)) {
                       // document.getElementById("mypic2").style.height = document.getElementById("div2").clientHeight +"px";
                       // document.getElementById("mypic2").style.width = (document.getElementById("mypic2").height*width2)/height2 + "px";
@@ -738,8 +738,8 @@ style="width:23.8%;height:5vh;font-size: 22px;margin:100px 0px 0px 0px">
               width = image1.width;
               height = image1.height;
               if ((width>height)&& (width>200)){
-                  document.getElementById("mypic1").style.width = "1000px";  // 讓ｪ蟷・ｒ400px縺ｫ繝ｪ繧ｵ繧､繧ｺ
-                  document.getElementById("mypic1").style.height = height * (1000 / width)+"px"; // 鬮倥＆繧呈ｨｪ蟷・・螟牙喧蜑ｲ蜷医↓蜷医ｏ縺帙ｋ;
+                  document.getElementById("mypic1").style.width = "1000px";  // 横幅を400pxにリサイズ
+                  document.getElementById("mypic1").style.height = height * (1000 / width)+"px"; // 高さを横幅の変化割合に合わせる;
                   // if (parseInt(document.getElementById("mypic1").style.height)>parseInt(document.getElementById("div1").clientHeight)) {
                   //   document.getElementById("mypic1").style.height = document.getElementById("div1").clientHeight +"px";
                   //   document.getElementById("mypic1").style.width = (document.getElementById("mypic1").height*width)/height + "px";
@@ -852,7 +852,7 @@ style="width:23.8%;height:5vh;font-size: 22px;margin:100px 0px 0px 0px">
     var xmlhttp=createXmlHttpRequest();
     if(xmlhttp!=null)
     {
-        xmlhttp.open("POST", "../modifyquestionanswer2.php", false);//荳肴ｭ｣隗｣繝懊ち繝ｳ繧呈款縺・
+        xmlhttp.open("POST", "../modifyquestionanswer2.php", false);//不正解ボタンを押す
         xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
         var data="data="+moji;
         xmlhttp.send(data);
@@ -902,7 +902,7 @@ style="width:23.8%;height:5vh;font-size: 22px;margin:100px 0px 0px 0px">
     var xmlhttp=createXmlHttpRequest();
     if(xmlhttp!=null)
     {
-        xmlhttp.open("POST", "../deleteQuestion.php", false);//荳肴ｭ｣隗｣繝懊ち繝ｳ繧呈款縺・
+        xmlhttp.open("POST", "../deleteQuestion.php", false);//不正解ボタンを押す
         xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
         var data="data="+moji;
         xmlhttp.send(data);
@@ -971,15 +971,15 @@ style="width:23.8%;height:5vh;font-size: 22px;margin:100px 0px 0px 0px">
 });
 
   /**
-   * 繝輔ぃ繧､繝ｫ繧｢繝・・繝ｭ繝ｼ繝芽ｦ∫ｴ縺ｮ繝ｩ繝・ヱ繝ｼ隕∫ｴ縺ｫ繝輔ぃ繧､繝ｫ繝峨Λ繝・げ・・ラ繝ｭ繝・・繧､繝吶Φ繝医ｒ霑ｽ蜉縺吶ｋ
+   * ファイルアップロード要素のラッパー要素にファイルドラッグ＆ドロップイベントを追加する
    * 
-   * @param wrap_slt 繝ｩ繝・ヱ繝ｼ隕∫ｴ縺ｮ繧ｻ繝ｬ繧ｯ繧ｿ
-   * @param fu_slt 繝輔ぃ繧､繝ｫ繧｢繝・・繝ｭ繝ｼ繝芽ｦ∫ｴ縺ｮ繧ｻ繝ｬ繧ｯ繧ｿ
-   * @param prog_slt 騾ｲ謐励ヰ繝ｼ隕∫ｴ縺ｮ繧ｻ繝ｬ繧ｯ繧ｿ
-   * @param ajax_url AJAX騾壻ｿ｡蜈・RL
-   * @param callback(res) 繝輔ぃ繧､繝ｫ繧｢繝・・繝ｭ繝ｼ繝牙ｾ後さ繝ｼ繝ｫ繝舌ャ繧ｯ
+   * @param wrap_slt ラッパー要素のセレクタ
+   * @param fu_slt ファイルアップロード要素のセレクタ
+   * @param prog_slt 進捗バー要素のセレクタ
+   * @param ajax_url AJAX通信先URL
+   * @param callback(res) ファイルアップロード後コールバック
    * @param option
-   *  - fu_show_flg 繝輔ぃ繧､繝ｫ繧｢繝・・繝ｭ繝ｼ繝芽ｦ∫ｴ縺ｮ陦ｨ遉ｺ 0:髱櫁｡ｨ遉ｺ・医ョ繝輔か繝ｫ繝茨ｼ・, 1:陦ｨ遉ｺ
+   *  - fu_show_flg ファイルアップロード要素の表示 0:非表示（デフォルト） , 1:表示
    */
   function fileuploadEx(wrap_slt,fu_slt,prog_slt,ajax_url,callback,option){
     
@@ -993,13 +993,13 @@ style="width:23.8%;height:5vh;font-size: 22px;margin:100px 0px 0px 0px">
     
     var fuw = $(wrap_slt);
     
-    // DnD繧､繝吶Φ繝医ｒ繝ｩ繝・ヱ繝ｼ隕∫ｴ縺ｫ霑ｽ蜉
+    // DnDイベントをラッパー要素に追加
     fuw[0].addEventListener('drop',function(evt){
       evt.stopPropagation();
       evt.preventDefault();
 
       var files = evt.dataTransfer.files; 
-      _uploadByAjax(files,prog_slt,ajax_url,callback,option); // AJAX縺ｫ繧医ｋ繧｢繝・・繝ｭ繝ｼ繝・
+      _uploadByAjax(files,prog_slt,ajax_url,callback,option); // AJAXによるアップロード
 
     },false);
     
@@ -1007,15 +1007,15 @@ style="width:23.8%;height:5vh;font-size: 22px;margin:100px 0px 0px 0px">
       evt.preventDefault();
     },false);
     
-    // 繝輔ぃ繧､繝ｫ繧｢繝・・繝ｭ繝ｼ繝芽ｦ∫ｴ縺ｮ繧､繝吶Φ繝・
+    // ファイルアップロード要素のイベント
     var fu = $(fu_slt);
     fu.change(function(e) {
       
-      var files = e.target.files; // 繝輔ぃ繧､繝ｫ繧ｪ繝悶ず繧ｧ繧ｯ繝磯・蛻励ｒ蜿門ｾ暦ｼ磯・蛻苓ｦ∫ｴ謨ｰ縺ｯ驕ｸ謚槭＠縺溘ヵ繧｡繧､繝ｫ謨ｰ繧定｡ｨ縺呻ｼ・
-      _uploadByAjax(files,prog_slt,ajax_url,callback,option); // AJAX縺ｫ繧医ｋ繧｢繝・・繝ｭ繝ｼ繝・
+      var files = e.target.files; // ファイルオブジェクト配列を取得（配列要素数は選択したファイル数を表す）
+      _uploadByAjax(files,prog_slt,ajax_url,callback,option); // AJAXによるアップロード
     });
     
-    // 繝輔ぃ繧､繝ｫ繧｢繝・・繝ｭ繝ｼ繝芽ｦ∫ｴ縺ｮ陦ｨ遉ｺ繝輔Λ繧ｰ縺薫FF縺ｪ繧峨ヵ繧｡繧､繝ｫ繧｢繝・・繝ｭ繝ｼ繝芽ｦ∫ｴ繧帝國縺吶・
+    // ファイルアップロード要素の表示フラグがOFFならファイルアップロード要素を隠す。
     if(option.fu_show_flg == 0){
       fu.hide();
     }
@@ -1023,11 +1023,11 @@ style="width:23.8%;height:5vh;font-size: 22px;margin:100px 0px 0px 0px">
   }
 
   /**
-   * AJAX縺ｫ繧医ｋ繧｢繝・・繝ｭ繝ｼ繝・
-   * @param files 繝輔ぃ繧､繝ｫ繧ｪ繝悶ず繧ｧ繧ｯ繝医Μ繧ｹ繝・
-   * @param prog_slt 騾ｲ謐励ヰ繝ｼ隕∫ｴ縺ｮ繧ｻ繝ｬ繧ｯ繧ｿ
-   * @param ajax_url AJAX騾壻ｿ｡蜈・RL
-   * @param callback(res) 繝輔ぃ繧､繝ｫ繧｢繝・・繝ｭ繝ｼ繝牙ｾ後さ繝ｼ繝ｫ繝舌ャ繧ｯ
+   * AJAXによるアップロード
+   * @param files ファイルオブジェクトリスト
+   * @param prog_slt 進捗バー要素のセレクタ
+   * @param ajax_url AJAX通信先URL
+   * @param callback(res) ファイルアップロード後コールバック
    * @param option
    */
 function _uploadByAjax(files,prog_slt,ajax_url,callback,option){
@@ -1040,7 +1040,7 @@ function _uploadByAjax(files,prog_slt,ajax_url,callback,option){
       var str01 = files[i]["name"];
       // document.getElementById("questionTxtArea").value =document.getElementById( "questionTxtArea").value + files[i]["name"];
       if (str01.indexOf('mp3') != -1) {
-        //str縺ｫhoge繧貞性繧蝣ｴ蜷医・蜃ｦ逅・
+        //strにhogeを含む場合の処理
         
         // document.getElementById("questionTxtArea").value ="";
         document.getElementById("answer1TxtArea").value =document.getElementById( "answer1TxtArea").value + files[i]["name"];
@@ -1050,7 +1050,7 @@ function _uploadByAjax(files,prog_slt,ajax_url,callback,option){
     } else if (i === "1") {
       var str01 = files[i]["name"];
       if (str01.indexOf('mp3') != -1) {
-        //str縺ｫhoge繧貞性繧蝣ｴ蜷医・蜃ｦ逅・         
+        //strにhogeを含む場合の処理          
         // document.getElementById("questionTxtArea").value ="";
         document.getElementById("answer1TxtArea").value =document.getElementById( "answer1TxtArea").value + files[i]["name"];
       }
@@ -1060,7 +1060,7 @@ function _uploadByAjax(files,prog_slt,ajax_url,callback,option){
     
     // if (typeof str01 === "number") {
     //   if (str01.indexOf('mp3') != -1) {
-    //     //str縺ｫhoge繧貞性繧蝣ｴ蜷医・蜃ｦ逅・
+    //     //strにhogeを含む場合の処理
         
     //     document.getElementById("questionTxtArea").value ="";
     //     document.getElementById("answer1TxtArea").value =document.getElementById( "answer1TxtArea").value + files[i]["name"];
@@ -1073,9 +1073,9 @@ function _uploadByAjax(files,prog_slt,ajax_url,callback,option){
     // }
   }
 
-  var prog1 = $(prog_slt); // 騾ｲ謐励ヰ繝ｼ隕∫ｴ
+  var prog1 = $(prog_slt); // 進捗バー要素
   
-  // AJAX縺ｫ繧医ｋ繝輔ぃ繧､繝ｫ繧｢繝・・繝ｭ繝ｼ繝・
+  // AJAXによるファイルアップロード
   $.ajax({
     type: "POST",
     url: ajax_url,
@@ -1084,7 +1084,7 @@ function _uploadByAjax(files,prog_slt,ajax_url,callback,option){
     dataType: "text",
     processData : false,
     contentType : false,
-    xhr : function() { // 騾ｲ謐励う繝吶Φ繝・
+    xhr : function() { // 進捗イベント
       var XHR = $.ajaxSettings.xhr();
       if (XHR.upload) {
         XHR.upload.addEventListener('progress',
@@ -1158,15 +1158,15 @@ function showImage (){
     var width2;
     var height2;
 
-    // document.getElementById("mypic2").style.width = "1000px";  // 讓ｪ蟷・ｒ400px縺ｫ繝ｪ繧ｵ繧､繧ｺ
-    // document.getElementById("mypic2").style.height = height2 * (1000 / width2)+"px"; // 鬮倥＆繧呈ｨｪ蟷・・螟牙喧蜑ｲ蜷医↓蜷医ｏ縺帙ｋ;
+    // document.getElementById("mypic2").style.width = "1000px";  // 横幅を400pxにリサイズ
+    // document.getElementById("mypic2").style.height = height2 * (1000 / width2)+"px"; // 高さを横幅の変化割合に合わせる;
     image2.onload = function(){
         width2 = image2.width;
         height2 = image2.height;
         // if ((width2>height2)&&(width2>200)) {
         if (width2>200) {
-            document.getElementById("mypic2").style.width = "1000px";  // 讓ｪ蟷・ｒ400px縺ｫ繝ｪ繧ｵ繧､繧ｺ
-            document.getElementById("mypic2").style.height = height2 * (1000 / width2)+"px"; // 鬮倥＆繧呈ｨｪ蟷・・螟牙喧蜑ｲ蜷医↓蜷医ｏ縺帙ｋ;
+            document.getElementById("mypic2").style.width = "1000px";  // 横幅を400pxにリサイズ
+            document.getElementById("mypic2").style.height = height2 * (1000 / width2)+"px"; // 高さを横幅の変化割合に合わせる;
             if (parseInt(document.getElementById("mypic2").style.height)>parseInt(document.getElementById("div2").clientHeight)) {
               // document.getElementById("mypic2").style.height = document.getElementById("div2").clientHeight +"px";
               // document.getElementById("mypic2").style.width = (document.getElementById("mypic2").height*width2)/height2 + "px";
@@ -1219,8 +1219,8 @@ function showImage (){
         width = image1.width;
         height = image1.height;
         if ((width>height)&& (width>200)){
-            document.getElementById("mypic1").style.width = "1000px";  // 讓ｪ蟷・ｒ400px縺ｫ繝ｪ繧ｵ繧､繧ｺ
-            document.getElementById("mypic1").style.height = height * (1000 / width)+"px"; // 鬮倥＆繧呈ｨｪ蟷・・螟牙喧蜑ｲ蜷医↓蜷医ｏ縺帙ｋ;
+            document.getElementById("mypic1").style.width = "1000px";  // 横幅を400pxにリサイズ
+            document.getElementById("mypic1").style.height = height * (1000 / width)+"px"; // 高さを横幅の変化割合に合わせる;
             // if (parseInt(document.getElementById("mypic1").style.height)>parseInt(document.getElementById("div1").clientHeight)) {
             //   document.getElementById("mypic1").style.height = document.getElementById("div1").clientHeight +"px";
             //   document.getElementById("mypic1").style.width = (document.getElementById("mypic1").height*width)/height + "px";
@@ -1263,7 +1263,7 @@ function listChange(categorySelect){
   
 
   var elem = document.getElementById('ctg1');
-  var opts = elem.options; // select隕∫ｴ縺ｮoption繝励Ο繝代ユ繧｣
+  var opts = elem.options; // select要素のoptionプロパティ
   // console.log(opts);       // HTMLOptionsCollection(3)
   var selectedCategory1 = [];
   for (var i = 0; i < opts.length; i++) {          
@@ -1274,7 +1274,7 @@ function listChange(categorySelect){
   var selectedCategory1 = selectedCategory1.join("^");
   //sampleArea.insertAdjacentHTML("beforebegin","selectedCategory1"+selectedCategory1+"<br><br><br>");
   var elem = document.getElementById('ctg2');
-  var opts = elem.options; // select隕∫ｴ縺ｮoption繝励Ο繝代ユ繧｣
+  var opts = elem.options; // select要素のoptionプロパティ
   // console.log(opts);       // HTMLOptionsCollection(3)
   var selectedCategory2 = [];
   for (var i = 0; i < opts.length; i++) {          
@@ -1285,7 +1285,7 @@ function listChange(categorySelect){
   var selectedCategory2 = selectedCategory2.join("^");
   //sampleArea.insertAdjacentHTML("beforebegin","selectedCategory2"+selectedCategory2+"<br><br><br>");
   var elem = document.getElementById('ctg3');
-  var opts = elem.options; // select隕∫ｴ縺ｮoption繝励Ο繝代ユ繧｣
+  var opts = elem.options; // select要素のoptionプロパティ
   // console.log(opts);       // HTMLOptionsCollection(3)
   var selectedCategory3 = [];
   for (var i = 0; i < opts.length; i++) {          
@@ -1296,7 +1296,7 @@ function listChange(categorySelect){
   var selectedCategory3 = selectedCategory3.join("^");
   //sampleArea.insertAdjacentHTML("beforebegin","selectedCategory3"+selectedCategory3+"<br><br><br>");
   var elem = document.getElementById('ctg4');
-  var opts = elem.options; // select隕∫ｴ縺ｮoption繝励Ο繝代ユ繧｣
+  var opts = elem.options; // select要素のoptionプロパティ
   // console.log(opts);       // HTMLOptionsCollection(3)
   var selectedCategory4 = [];
   for (var i = 0; i < opts.length; i++) {          
@@ -1307,7 +1307,7 @@ function listChange(categorySelect){
   var selectedCategory4 = selectedCategory4.join("^");
   //sampleArea.insertAdjacentHTML("beforebegin","selectedCategory4"+selectedCategory4+"<br><br><br>");
   var elem = document.getElementById('ctg5');
-  var opts = elem.options; // select隕∫ｴ縺ｮoption繝励Ο繝代ユ繧｣
+  var opts = elem.options; // select要素のoptionプロパティ
   // console.log(opts);       // HTMLOptionsCollection(3)
   var selectedCategory5 = [];
   for (var i = 0; i < opts.length; i++) {          
@@ -1546,13 +1546,13 @@ function listChanged(){
 }
 function imageSizeChange1(){
   imageSize = document.getElementById("imageSize1").value;
-  document.getElementById("mypic1").style.width = imageWidth1 * Number(imageSize) + "px";  // 讓ｪ蟷・ｒ400px縺ｫ繝ｪ繧ｵ繧､繧ｺ
-  document.getElementById("mypic1").style.height = imageHeight1 * Number(imageSize) + "px";  // 讓ｪ蟷・ｒ400px縺ｫ繝ｪ繧ｵ繧､繧ｺ
+  document.getElementById("mypic1").style.width = imageWidth1 * Number(imageSize) + "px";  // 横幅を400pxにリサイズ
+  document.getElementById("mypic1").style.height = imageHeight1 * Number(imageSize) + "px";  // 横幅を400pxにリサイズ
 }
 function imageSizeChange2(){
   imageSize = document.getElementById("imageSize2").value;
-  document.getElementById("mypic2").style.width = imageWidth2 * Number(imageSize) + "px";  // 讓ｪ蟷・ｒ400px縺ｫ繝ｪ繧ｵ繧､繧ｺ
-  document.getElementById("mypic2").style.height = imageHeight2 * Number(imageSize) + "px";  // 讓ｪ蟷・ｒ400px縺ｫ繝ｪ繧ｵ繧､繧ｺ
+  document.getElementById("mypic2").style.width = imageWidth2 * Number(imageSize) + "px";  // 横幅を400pxにリサイズ
+  document.getElementById("mypic2").style.height = imageHeight2 * Number(imageSize) + "px";  // 横幅を400pxにリサイズ
 }
 </script>
 </body>

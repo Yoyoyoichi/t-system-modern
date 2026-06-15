@@ -40,7 +40,7 @@ switch ($category1 == "" or $category1 == 'nul') {
 }
 switch ($category2 == "" or $category2 == 'nul') {
     case true:
-        // 縺ｪ縺ｫ繧ゅ＠縺ｪ縺・
+        // なにもしない
         break;
     case false:
       if ($categoryFlag) {
@@ -97,7 +97,7 @@ switch ($category5 == "" or $category5 == 'nul') {
 switch ($wordsearch == "") {
     case true:
 //        echo "7.1"."\n"."\n";
-        // 縺ｪ縺ｫ繧ゅ＠縺ｪ縺・
+        // なにもしない
         break;
     case !true:
 //      echo "7.2".$category6."\/"."\/";
@@ -137,7 +137,7 @@ $mysqli = new db_wrapper('localhost', 'terashimayo', 'Yoyoyo444', 'terashimayo')
 // $mysqli = new db_wrapper('localhost', 'root', 'yoichi41', 'terashimayo');
 if ($mysqli->connect_error) {error_log($mysqli->connect_error);exit;}
 
-//繝・ヵ繧ｩ繝ｫ繝域枚蟄励そ繝・ヨ繧定ｨｭ螳・
+//デフォルト文字セットを設定
 $mysqli->set_charset("utf8");
 $row = "";
 
@@ -161,7 +161,7 @@ else {
     echo 'Run Failed3';
 }
 
-// for 譁・
+// for 文
 $reply2 ="";
 for($i = 1; $i <= $row_cnt; $i++){
     if ($i == 1) {

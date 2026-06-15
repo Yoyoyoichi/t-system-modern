@@ -13,15 +13,17 @@
 
 
         if( $mysql->connect_errno){
-            echo 'Access Failed';//謗･邯壼､ｱ謨・            exit;///
+            echo 'Access Failed';//接続失敗
+            exit;///
         }/////
 
-        //繝・ヵ繧ｩ繝ｫ繝域枚蟄励そ繝・ヨ繧定ｨｭ螳・//
+        //デフォルト文字セットを設定///
         $mysqli->set_charset("utf8");////
 
 
         $data = array();
-        //繝・・繧ｿ繝吶・繧ｹ蜿門ｾ・        $str_sql = "show full tables;";
+        //データベース取得
+        $str_sql = "show full tables;";
         $res = $mysqli->query($str_sql);
         $row_cnt = mysqli_num_rows($res);
         echo "row_cnt is ".$row_cnt."\n"."\n";
@@ -36,13 +38,15 @@
         }
         // var_dump($data)."\n";
 
-        //螟画焚繧堤｢ｺ隱・        echo "<pre>";
+        //変数を確認
+        echo "<pre>";
         var_dump($data);
         echo "</pre>";
         print_r("data[1] is ".$data[1])."\n";
 
 
-        // for 譁・        for($i = 1; $i < $row_cnt; $i++){
+        // for 文
+        for($i = 1; $i < $row_cnt; $i++){
           $sql = "UPDATE terashimayo.$data[$i] SET pre_qdate=COALESCE(pre_qdate,'')";
           $res = $mysqli->query($sql);
 
@@ -53,7 +57,7 @@
 
 
 
-        //繝・・繧ｿ繝吶・繧ｹ蛻・妙
+        //データベース切断
         mysqli_close($mysqli);
       ?>
     </body>

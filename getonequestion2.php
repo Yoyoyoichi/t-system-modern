@@ -14,7 +14,7 @@ $mysqli = new db_wrapper('localhost', 'terashimayo', 'Yoyoyo444', 'terashimayo')
 
 // var_dump($pieces);
 if( $mysqli->connect_errno){
-    echo 'Access Failed5';//謗･邯壼､ｱ謨・
+    echo 'Access Failed5';//接続失敗
     exit;
 }
 
@@ -29,8 +29,8 @@ $pre_qdate= "";
 $imagefolder ="";
 if( $result = $mysqli->query($query) ){
     while($row = $result->fetch_assoc() ){
-        //1繝ｬ繧ｳ繝ｼ繝峨★縺､隱ｭ縺ｿ霎ｼ繧
-        //name蛻励ｒ陦ｨ遉ｺ縺吶ｋ蝣ｴ蜷・
+        //1レコードずつ読み込む
+        //name列を表示する場合
         $imagefolder = $row['imagefolder'];
         // echo ("pre_qdate is ").$pre_qdate."\n";
         $reply = $row["answer1"];
@@ -41,29 +41,29 @@ if( $result = $mysqli->query($query) ){
         }
          // $reply[] = $row["answer1"]."\n".$row["answer2"]."\n".$row["answer3"]."\n".$row["answer4"]."\n".$row["answer5"]."\n".$row["answer6"]."\n".$row["answer7"]."\n".$row["answer8"]."\n".$row["answer9"]."\n".$row["answer10"]."\n".$row["answer11"]."\n".$row["answer12"]."\n".$row["answer13"]."\n".$row["answer14"]."\n".$row["answer15"];
 //        var_dump( $replyy );
-// 縲縲縲縲echo "Level".$row["q_level"]." ";
-    echo "Level・・.$row["q_level"]." ";
+// 　　　　echo "Level".$row["q_level"]." ";
+    echo "Level：".$row["q_level"]." ";
     echo '<br>';
-    echo "豁｣隗｣謨ｰ・・.$row["correct2"]." 荳肴ｭ｣隗｣謨ｰ・・.$row["incorrect2"];
+    echo "正解数：".$row["correct2"]." 不正解数：".$row["incorrect2"];
     echo '<br>';
-    echo "蜑榊屓・・.substr($row['pre_qdate'],0,33);
+    echo "前回：".substr($row['pre_qdate'],0,33);
     echo '<br>';
-    echo "險倬鹸・・.$row['q_record']."^^^";
+    echo "記録：".$row['q_record']."^^^";
              // echo $reply[1]["q_record"];
 
     }
 }
 else {
-    echo '蝠城｡後′縺ゅｊ縺ｾ縺帙ｓ縲・;
+    echo '問題がありません。';
 }
 //print  $url;
 
 echo  $reply;
 echo $imagefolder;
-// echo "\n"."縺薙％莉･髯阪・莉企幕逋ｺ荳ｭ"."\n"."繝・せ繝医リ繝ｳ繝舌・ $testnumber";///aaaaaa縺ゅ≠縺・
-// print  "蝠城｡梧焚縺ｯ ".$row_cnt."\n";///縺ゅ≠縺・
-//print  "荵ｱ謨ｰ ".$url;
-//print "reply 縺ｯ ";
+// echo "\n"."ここ以降は今開発中"."\n"."テストナンバー $testnumber";///aaaaaaあああ
+// print  "問題数は ".$row_cnt."\n";///あああ
+//print  "乱数 ".$url;
+//print "reply は ";
 
 
 //print "data";

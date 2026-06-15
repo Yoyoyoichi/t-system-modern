@@ -7,7 +7,7 @@ $mysqli = new db_wrapper('localhost', 'terashimayo', 'Yoyoyo444', 'terashimayo')
     // $mysqli = new db_wrapper('localhost', 'root', 'yoichi41', 'terashimayo');
 // echo "getChartData 1"."\n"."\n";
 if( $mysqli->connect_errno){
-    echo 'Access Failed';//謗･邯壼､ｱ謨・
+    echo 'Access Failed';//接続失敗
     exit;
 }
 $pieces = explode("^", $_POST["data"]);
@@ -16,7 +16,7 @@ $db_name = $pieces[0];
 // echo "db_name is ".$db_name."\n"."\n";
 // $db_column = $pieces[1];
 
-//繝・ヵ繧ｩ繝ｫ繝域枚蟄励そ繝・ヨ繧定ｨｭ螳・
+//デフォルト文字セットを設定
 $mysqli->set_charset("utf8");
 
 $row_cnt = count($pieces);

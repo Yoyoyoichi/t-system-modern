@@ -20,7 +20,7 @@ $mysqli = new db_wrapper('localhost', 'terashimayo', 'Yoyoyo444', 'terashimayo')
 
 
 if( $mysql->connect_errno){
-    echo 'Access Failed7';//謗･邯壼､ｱ謨・
+    echo 'Access Failed7';//接続失敗
     exit;
 }
 
@@ -28,7 +28,7 @@ if( $mysql->connect_errno){
 
 
 
-//繝・・繧ｿ譖ｴ譁ｰ
+//データ更新
 $sql = "UPDATE $db_name SET
     correct = correct +1,
     PCA = correct / (correct + incorrect) * 100,
@@ -38,7 +38,7 @@ $sql = "UPDATE $db_name SET
     WHERE questionnumber = $questionnumber";
 echo "sql is ".$sql."\n"."\n";
 //////////////////////
-// SQL螳溯｡・
+// SQL実行
 $res = $mysqli->query($sql);
 
 
@@ -46,7 +46,7 @@ $sql = "update $db_name
     set
     q_record = (
     CASE WHEN  pre_qdate not like CONCAT(current_date,'%')
-    THEN CONCAT('笳・, q_record)
+    THEN CONCAT('○', q_record)
     ELSE q_record
     END)
     where questionnumber = $questionnumber";
@@ -95,18 +95,18 @@ $sql = "update $db_name
     (CASE
       WHEN pre_qdate = ''
         OR pre_qdate = null
-        OR (CHAR_LENGTH(q_record) = 1 AND q_record = 'ﾃ・ AND pre_qdate not like CONCAT(current_date,'%'))
-        OR (CHAR_LENGTH(q_record) = 1 AND q_record = '笳・ AND pre_qdate not like CONCAT(current_date,'%'))
-        OR (LEFT( q_record, 2 ) = '笳凝・ AND pre_qdate not like CONCAT(current_date,'%'))
-        OR (CHAR_LENGTH(q_record) = 2 AND q_record = '笳銀雷' AND pre_qdate not like CONCAT(current_date,'%'))
-        OR (LEFT( q_record, 3 ) = '笳銀雷ﾃ・ AND pre_qdate not like CONCAT(current_date,'%'))
-        OR (CHAR_LENGTH(q_record) = 3 AND q_record = '笳銀雷笳・ AND pre_qdate not like CONCAT(current_date,'%'))
-        OR (LEFT( q_record, 4 ) = '笳銀雷笳凝・ AND pre_qdate not like CONCAT(current_date,'%'))
-        OR (CHAR_LENGTH(q_record) = 4 AND q_record = '笳銀雷笳銀雷' AND pre_qdate not like CONCAT(current_date,'%'))
-        OR (LEFT( q_record, 5 ) = '笳銀雷笳銀雷ﾃ・ AND pre_qdate not like CONCAT(current_date,'%'))
-        OR (CHAR_LENGTH(q_record) = 5 AND q_record = '笳銀雷笳銀雷笳・ AND pre_qdate not like CONCAT(current_date,'%'))
-        OR (LEFT( q_record, 6 ) = '笳銀雷笳銀雷笳凝・ AND pre_qdate not like CONCAT(current_date,'%'))
-        OR (q_record like CONCAT('笳銀雷笳銀雷笳・,'%') AND pre_qdate not like CONCAT(current_date,'%'))
+        OR (CHAR_LENGTH(q_record) = 1 AND q_record = '×' AND pre_qdate not like CONCAT(current_date,'%'))
+        OR (CHAR_LENGTH(q_record) = 1 AND q_record = '○' AND pre_qdate not like CONCAT(current_date,'%'))
+        OR (LEFT( q_record, 2 ) = '○×' AND pre_qdate not like CONCAT(current_date,'%'))
+        OR (CHAR_LENGTH(q_record) = 2 AND q_record = '○○' AND pre_qdate not like CONCAT(current_date,'%'))
+        OR (LEFT( q_record, 3 ) = '○○×' AND pre_qdate not like CONCAT(current_date,'%'))
+        OR (CHAR_LENGTH(q_record) = 3 AND q_record = '○○○' AND pre_qdate not like CONCAT(current_date,'%'))
+        OR (LEFT( q_record, 4 ) = '○○○×' AND pre_qdate not like CONCAT(current_date,'%'))
+        OR (CHAR_LENGTH(q_record) = 4 AND q_record = '○○○○' AND pre_qdate not like CONCAT(current_date,'%'))
+        OR (LEFT( q_record, 5 ) = '○○○○×' AND pre_qdate not like CONCAT(current_date,'%'))
+        OR (CHAR_LENGTH(q_record) = 5 AND q_record = '○○○○○' AND pre_qdate not like CONCAT(current_date,'%'))
+        OR (LEFT( q_record, 6 ) = '○○○○○×' AND pre_qdate not like CONCAT(current_date,'%'))
+        OR (q_record like CONCAT('○○○○○','%') AND pre_qdate not like CONCAT(current_date,'%'))
       THEN q_level + 1
       ELSE q_level
     END)
@@ -158,12 +158,12 @@ if ($row_cnt>0) {
       correct = correct + 1
       WHERE qdate = current_date and id = '$db_name'";
   echo "sql is ".$sql."\n"."\n";
-  // SQL螳溯｡・
+  // SQL実行
   $res = $mysqli->query($sql);
 } else {
   $sql = "INSERT INTO A01tsystemrecord01 (id, correct, qdate,recordnumber) VALUES ('$db_name',1, current_date,$maxrecordnumber )";
   echo "sql is ".$sql."\n"."\n";
-  // SQL螳溯｡・
+  // SQL実行
   $res = $mysqli->query($sql);
 }
 
@@ -178,5 +178,5 @@ if( $result = $mysqli->query($query) ){
     }
 }
 
-print  "豁｣隗｣ ".$reply." : 荳肴ｭ｣隗｣ ".$reply2;
+print  "正解 ".$reply." : 不正解 ".$reply2;
 ?>

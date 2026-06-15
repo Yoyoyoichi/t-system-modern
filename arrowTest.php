@@ -25,17 +25,17 @@
 </head>
 <body>
     <div class="map">
-        <div class="main_comment" id="mc1">繝｡繧､繝ｳ繧ｳ繝｡繝ｳ繝・/div>
+        <div class="main_comment" id="mc1">メインコメント</div>
         <div class="comments">
-            <div class="comment" id="c1">繧ｳ繝｡繝ｳ繝茨ｼ・/div>
-            <div class="comment" id="c2">繧ｳ繝｡繝ｳ繝茨ｼ・/div>
+            <div class="comment" id="c1">コメント１</div>
+            <div class="comment" id="c2">コメント２</div>
         </div>
-        <div class="main_comment" id="mc2">繝｡繧､繝ｳ繧ｳ繝｡繝ｳ繝・/div>
+        <div class="main_comment" id="mc2">メインコメント</div>
         <div class="comments">
-            <div class="comment" id="c3">繧ｳ繝｡繝ｳ繝茨ｼ・/div>
-            <div class="comment" id="c4">繧ｳ繝｡繝ｳ繝茨ｼ・/div>
+            <div class="comment" id="c3">コメント１</div>
+            <div class="comment" id="c4">コメント２</div>
         </div>
-        <input class ="button" type="checkbox" id="arrowButton" value="遏｢蜊ｰ" onclick='showArrows()' style="font-size: 20px;margin:2vh 0px 0px 2vh">
+        <input class ="button" type="checkbox" id="arrowButton" value="矢印" onclick='showArrows()' style="font-size: 20px;margin:2vh 0px 0px 2vh">
     </div>
     <script>
 

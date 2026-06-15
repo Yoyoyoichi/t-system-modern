@@ -21,10 +21,10 @@ $mysqli = new db_wrapper('localhost', 'terashimayo', 'Yoyoyo444', 'terashimayo')
 // $mysqli = new db_wrapper('localhost', 'root', 'yoichi41', 'terashimayo');
 if ($mysqli->connect_error) {error_log($mysqli->connect_error);exit;}
 
-//繝・ヵ繧ｩ繝ｫ繝域枚蟄励そ繝・ヨ繧定ｨｭ螳・
+//デフォルト文字セットを設定
 $mysqli->set_charset("utf8");
 $row = "";
-//繝・・繧ｿ繝吶・繧ｹ蜿門ｾ・
+//データベース取得
 $result = $mysqli->query($str_sql);
 // //var_dump($result);
 $row_cnt = mysqli_num_rows($result);

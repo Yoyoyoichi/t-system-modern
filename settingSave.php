@@ -31,7 +31,7 @@ $mysqli = new db_wrapper('localhost', 'terashimayo', 'Yoyoyo444', 'terashimayo')
 // $mysqli = new db_wrapper('localhost', 'root', 'yoichi41', 'terashimayo');
 if ($mysqli->connect_error) {error_log($mysqli->connect_error);exit;}
 
-//蝠城｡檎分蜿ｷ譛螟ｧ蛟､蜿門ｾ・
+//問題番号最大値取得
 $str_sql = "SELECT max(questionnumber) FROM $DB_name";
 $result = $mysqli->query($str_sql);
 $result2  = $result->fetch_assoc();

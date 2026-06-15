@@ -77,7 +77,7 @@ $qlevel = $pieces[16];
 $categoryFlag = false;
 if (is_array($category1)) {
   $str_sql = "select questionnumber from $db_name where (category1 = '$category1[0]'";
-  // for 譁・
+  // for 文
   for($i = 1; $i < count($category1); $i++){
     $str_sql = $str_sql." OR category1 = '$category1[$i]'";
   }
@@ -107,7 +107,7 @@ switch ($category2 == "" or $category2 == 'nul') {
 
       if (is_array($category2)) {
         $str_sql = "select questionnumber from $db_name where (category2 = '$category2[0]'";
-        // for 譁・
+        // for 文
         for($i = 1; $i < count($category2); $i++){
           $str_sql = $str_sql." OR category2 = '$category2[$i]'";
         }
@@ -131,7 +131,7 @@ switch ($category3 == "" or $category3 == 'nul') {
 		//if else
     if (is_array($category3)) {
       $str_sql = "select questionnumber from $db_name where (category3 = '$category3[0]'";
-      // for 譁・
+      // for 文
       for($i = 1; $i < count($category3); $i++){
         $str_sql = $str_sql." OR category3 = '$category3[$i]'";
       }
@@ -154,7 +154,7 @@ switch ($category7 == "" or $category7 == 'nul') {
 		//if else
     if (is_array($category7)) {
       $str_sql = "select questionnumber from $db_name where (category4 = '$category7[0]'";
-      // for 譁・
+      // for 文
       for($i = 1; $i < count($category7); $i++){
         $str_sql = $str_sql." OR category4 = '$category7[$i]'";
       }
@@ -178,7 +178,7 @@ switch ($category8 == "" or $category8 == 'nul') {
   //if else
   if (is_array($category8)) {
     $str_sql = "select questionnumber from $db_name where (category5 = '$category8[0]'";
-    // for 譁・
+    // for 文
     for($i = 1; $i < count($category8); $i++){
       $str_sql = $str_sql." OR category5 = '$category8[$i]'";
     }
@@ -202,7 +202,7 @@ switch ($question == "" or $question == 'nul') {
   //if else
   if (is_array($question)) {
     $str_sql = "select questionnumber from $db_name where (question = '$question[0]'";
-    // for 譁・
+    // for 文
     for($i = 1; $i < count($question); $i++){
       $str_sql = $str_sql." OR question = '$question[$i]'";
     }
@@ -329,12 +329,12 @@ $halfanyearago = date('Ymd', strtotime('-6 month'));
 if ($category4 == "qdate" and $category5 == "qdate" and $category6 == "qdate" and $operator1 == "=" and $operator2 == "=" and $operator3 == "=") {
   $str_sql = "select questionnumber from $db_name where (REPLACE(pre_qdate,'-','') like '%$pieces[10]')
   OR (REPLACE(pre_qdate,'-','') like '%$pieces[11]') or (REPLACE(pre_qdate,'-','') like '%$pieces[12]')
-  OR (REPLACE(pre_qdate,'-','') = '%$halfanyearago')" ;//譛蛻昴↓繧・▲縺滓律縺悟ｿ伜唆譖ｲ邱壹・蝠城｡・
+  OR (REPLACE(pre_qdate,'-','') = '%$halfanyearago')" ;//最初にやった日が忘却曲線の問題
 
   $mysqli = new db_wrapper('localhost', 'terashimayo', 'Yoyoyo444', 'terashimayo');
   if ($mysqli->connect_error) {error_log($mysqli->connect_error);exit;}
 
-  //繝・ヵ繧ｩ繝ｫ繝域枚蟄励そ繝・ヨ繧定ｨｭ螳・
+  //デフォルト文字セットを設定
   $mysqli->set_charset("utf8");
   $row = "";
 
@@ -352,7 +352,7 @@ if ($category4 == "qdate" and $category5 == "qdate" and $category6 == "qdate" an
       }
   }
   else {
-      echo '蝠城｡後′縺ゅｊ縺ｾ縺帙ｓ縲・;
+      echo '問題がありません。';
   }
 
   // echo "reply"."\n";
@@ -372,7 +372,7 @@ if ($category4 == "qdate" and $category5 == "qdate" and $category6 == "qdate" an
       }
   }
   else {
-      echo '蝠城｡後′縺ゅｊ縺ｾ縺帙ｓ縲・;
+      echo '問題がありません。';
   }
 
   // echo "reply3"."\n";
@@ -382,9 +382,9 @@ if ($category4 == "qdate" and $category5 == "qdate" and $category6 == "qdate" an
   if (!count($reply3)==0){
 
     $reply2 ="";
-    //蜑企勁螳溯｡・
+    //削除実行
     $reply2 = array_diff($reply, $reply3);
-    // //index繧定ｩｰ繧√ｋ
+    // //indexを詰める
     $reply2 = array_values($reply2);
     // array_unshift($reply2, "");
     // echo "reply2"."\n";
@@ -432,12 +432,12 @@ if ($category4 == "qdate" and $category5 == "qdate" and $category6 == "qdate" an
   }
 
 }else{
-  // echo "else縺ｫ縺阪◆"."\n";
+  // echo "elseにきた"."\n";
   // echo $str_sql."\n";
   $mysqli = new db_wrapper('localhost', 'terashimayo', 'Yoyoyo444', 'terashimayo');
   if ($mysqli->connect_error) {error_log($mysqli->connect_error);exit;}
 
-  //繝・ヵ繧ｩ繝ｫ繝域枚蟄励そ繝・ヨ繧定ｨｭ螳・
+  //デフォルト文字セットを設定
   $mysqli->set_charset("utf8");
   $row = "";
 
@@ -453,7 +453,7 @@ if ($category4 == "qdate" and $category5 == "qdate" and $category6 == "qdate" an
       }
   }
   else {
-      echo '蝠城｡後′縺ゅｊ縺ｾ縺帙ｓ縲・;
+      echo '問題がありません。';
   }
   // echo "reply"."\n";
   // var_dump($reply);

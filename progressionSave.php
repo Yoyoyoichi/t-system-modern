@@ -15,7 +15,7 @@ $mysqli = new db_wrapper('localhost', 'terashimayo', 'Yoyoyo444', 'terashimayo')
 $song = $mysqli->real_escape_string($song);
 
 if( $mysql->connect_errno){
-    echo 'Access Failed7';//謗･邯壼､ｱ謨・
+    echo 'Access Failed7';//接続失敗
     exit;
 }
 
@@ -39,13 +39,13 @@ if ($row_cnt==0) {
   echo $str_sql  ;
   $res = $mysqli->query($str_sql);
 } else {
-  //繝・・繧ｿ譖ｴ譁ｰ
+  //データ更新
   $sql = "UPDATE $DB_name SET
       progression = '$progression'
       WHERE songs = '$song'";
   echo "sql is ".$sql."\n"."\n";
 
-  // SQL螳溯｡・
+  // SQL実行
   $res = $mysqli->query($sql);
 }
 

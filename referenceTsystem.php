@@ -29,7 +29,7 @@ src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
 </head>
 <style type="text/css">
 p {
-  margin: 0em 0px;   /* 荳贋ｸ九↓0em繝ｻ蟾ｦ蜿ｳ縺ｫ0px */
+  margin: 0em 0px;   /* 上下に0em・左右に0px */
 }
 span {
   /* display: inline-block; */
@@ -37,7 +37,7 @@ span {
 }
 body {
   background-color: #F0FFF0;
-  font-family: "繝偵Λ繧ｮ繝・;
+  font-family: "ヒラギノ";
 }
 div.top {
   width: 97%;
@@ -52,16 +52,16 @@ select {
   clear: both;
 }
 .textlines {
-  font-family: 'MS 繧ｴ繧ｷ繝・け';
-  border: 2px solid #0a0;  /* 譫邱・*/
-  border-radius: 0.67em;   /* 隗剃ｸｸ */
-  padding: 0.5em;          /* 蜀・・縺ｮ菴咏區驥・*/
-  background-color: snow;  /* 閭梧勹濶ｲ */
+  font-family: 'MS ゴシック';
+  border: 2px solid #0a0;  /* 枠線 */
+  border-radius: 0.67em;   /* 角丸 */
+  padding: 0.5em;          /* 内側の余白量 */
+  background-color: snow;  /* 背景色 */
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.25);
-  /* width: 20em;             /* 讓ｪ蟷・*/
-  /* height: 120px;           /* 鬮倥＆ */
-   font-size: 1em;          /* 譁・ｭ励し繧､繧ｺ 
-  line-height: 1.2;        /* 陦後・鬮倥＆ */
+  /* width: 20em;             /* 横幅 */
+  /* height: 120px;           /* 高さ */
+   font-size: 1em;          /* 文字サイズ 
+  line-height: 1.2;        /* 行の高さ */
 }
 .img-container--precedo {
   overflow: auto;
@@ -122,9 +122,9 @@ td {
 &nbsp;&nbsp;
 
 </p>
-<p><input type="submit" value="騾∽ｿ｡" onclick ='getCategoryOptions()' style='font-size: 25px;width: 20%; height: 70px'></p>
+<p><input type="submit" value="送信" onclick ='getCategoryOptions()' style='font-size: 25px;width: 20%; height: 70px'></p>
 <br><br><br>
-<p><input type="button" value="繝ｪ繧ｻ繝・ヨ" onClick='listChangeCategory1();listChanged()' style='font-size: 13px;width: 14%; height: 50px'></p>
+<p><input type="button" value="リセット" onClick='listChangeCategory1();listChanged()' style='font-size: 13px;width: 14%; height: 50px'></p>
 
 <?php
 // error_reporting(0);
@@ -132,7 +132,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
   if (!empty($_POST["DB_name"])) {
     $mysqli = new db_wrapper('localhost', 'terashimayo', 'Yoyoyo444', 'terashimayo');
     if( $mysqli->connect_errno){
-        echo 'Access Failed';//謗･邯壼､ｱ謨・
+        echo 'Access Failed';//接続失敗
         exit;
     }
 
@@ -142,12 +142,12 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $db_column = "category1";
 
 
-    //繝・ヵ繧ｩ繝ｫ繝域枚蟄励そ繝・ヨ繧定ｨｭ螳・
+    //デフォルト文字セットを設定
     $mysqli->set_charset("utf8");
     $row = "";
 
 
-    //繝・・繧ｿ繝吶・繧ｹ縺九ｉ繧ｫ繝・ざ繝ｪ繝ｼ1繧貞叙蠕・
+    //データベースからカテゴリー1を取得
     $str_sql = "select $db_column from $db_name where question != 'settings'";
     // echo $str_sql.",\n"."\n";//
     $result = $mysqli->query($str_sql);
@@ -176,7 +176,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     echo "{$sampleSelectBox}";
 
-    //繝・・繧ｿ繝吶・繧ｹ縺九ｉ繧ｫ繝・ざ繝ｪ繝ｼ2繧貞叙蠕・
+    //データベースからカテゴリー2を取得
     $str_sql = "select category2 from $db_name where question != 'settings'";
     $result = $mysqli->query($str_sql);
 
@@ -192,7 +192,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $row_cnt = count($response);
 
     $sampleSelectBox = "<select name=\"category2\" id='ctg2' onChange='listChange(this);listChanged()' multiple style='width:19%;height:20vh; font-size: 15px;margin:1px'>\n";
-    // $sampleSelectBox .= "\t<option value='' disabled selected style='display:none;' >荳ｭ繧ｫ繝・ざ繝ｪ繝ｼ</option>\n";
+    // $sampleSelectBox .= "\t<option value='' disabled selected style='display:none;' >中カテゴリー</option>\n";
 
     // $sampleSelectBox .="\t<option value=""></option>\n";
     for ( $i = 1; $i < $row_cnt; $i++ ) {
@@ -202,7 +202,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     echo "{$sampleSelectBox}";
 
 
-    //繝・・繧ｿ繝吶・繧ｹ縺九ｉ繧ｫ繝・ざ繝ｪ繝ｼ3繧貞叙蠕・
+    //データベースからカテゴリー3を取得
     $str_sql = "select category3 from $db_name where question != 'settings'";
     $result = $mysqli->query($str_sql);
 
@@ -225,7 +225,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $sampleSelectBox .= "</select>\n";//
     echo "{$sampleSelectBox}";
 
-    //繝・・繧ｿ繝吶・繧ｹ縺九ｉ繧ｫ繝・ざ繝ｪ繝ｼ4繧貞叙蠕・
+    //データベースからカテゴリー4を取得
     $str_sql = "select category4 from $db_name where question != 'settings'";
     $result = $mysqli->query($str_sql);
 
@@ -238,7 +238,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     $response = array_values(array_unique($response));
 
-    // ini_set('xdebug.var_display_max_children', -1);//var_dump蜈ｨ縺ｦ譖ｸ縺榊・縺輔○繧・
+    // ini_set('xdebug.var_display_max_children', -1);//var_dump全て書き出させる
     // ini_set('xdebug.var_display_max_data', -1);
     // ini_set('xdebug.var_display_max_depth', -1);
     // // var_dump($response);
@@ -252,7 +252,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $sampleSelectBox .= "</select>\n";//
     echo "{$sampleSelectBox}";
 
-    //繝・・繧ｿ繝吶・繧ｹ縺九ｉ繧ｫ繝・ざ繝ｪ繝ｼ5繧貞叙蠕・
+    //データベースからカテゴリー5を取得
     $str_sql = "select category5 from $db_name where question != 'settings'";
     $result = $mysqli->query($str_sql);
 
@@ -276,7 +276,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $sampleSelectBox .= "</select>\n";//
     echo "{$sampleSelectBox}";
 
-    //繝・・繧ｿ繝吶・繧ｹ縺九ｉquestion繧貞叙蠕・
+    //データベースからquestionを取得
 
     
 
@@ -298,7 +298,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     
 
   } else {
-    $err = "蜈･蜉帙＆繧後※縺・↑縺・・岼縺後≠繧翫∪縺吶・;
+    $err = "入力されていない項目があります。";
   }
 }
 global $testnumber;
@@ -306,18 +306,18 @@ $testnumber = 0;
 ?>
 
 
-<input type="text" name="wordsearch" id="wordsearch" onChange='listChange4()' placeholder = "讀懃ｴ｢"
+<input type="text" name="wordsearch" id="wordsearch" onChange='listChange4()' placeholder = "検索"
 style='width: 30%; font-size: 38px;box-sizing:border-box;vertical-align:middle; '>
 <br>
 
 </div>
 <p>
-  <input type="button" id="showButton" value="陦ｨ遉ｺ" onclick='sendRequest()' style='font-size: 25px;width: 20%; height: 200px'>
-  <input type="button" id="flexButton" value="讓ｪ荳ｦ縺ｳ" onclick='qaFlex()' style='font-size: 25px;width: 20%; height: 200px'>
+  <input type="button" id="showButton" value="表示" onclick='sendRequest()' style='font-size: 25px;width: 20%; height: 200px'>
+  <input type="button" id="flexButton" value="横並び" onclick='qaFlex()' style='font-size: 25px;width: 20%; height: 200px'>
 </p>
 <select class="selectBox" name='fontresize' id='fontsize' onChange="txtfontResize()"
     style='width: 10%; font-size: 20px;height: 5vh;line-height: 1vh;vertical-align:top;'>
-    <option value='' >譁・ｭ励し繧､繧ｺ</option>
+    <option value='' >文字サイズ</option>
     <option value='5px'>5</option>
     <option value='6px'>6</option>
     <option value='7px'>7</option>
@@ -350,7 +350,7 @@ style='width: 30%; font-size: 38px;box-sizing:border-box;vertical-align:middle; 
 </select>
 <select class="selectBox" name='imgresize' id='imgresize' onChange="imgResize()"
     style='width: 10%; font-size: 20px;height: 5vh;line-height: 1vh;vertical-align:top;'>
-    <option value='' >逕ｻ蜒上し繧､繧ｺ</option>
+    <option value='' >画像サイズ</option>
     <option value='5'>5</option>
     <option value='6'>6</option>
     <option value='7'>7</option>
@@ -398,7 +398,7 @@ style='width: 30%; font-size: 38px;box-sizing:border-box;vertical-align:middle; 
 </select>
 <select class="selectBox" name='imgresize2' id='imgresize2' onChange="imgResize2()"
     style='width: 10%; font-size: 20px;height: 5vh;line-height: 1vh;vertical-align:top;'>
-    <option value='' >逕ｻ蜒上し繧､繧ｺ</option>
+    <option value='' >画像サイズ</option>
     <option value='5'>5</option>
     <option value='6'>6</option>
     <option value='7'>7</option>
@@ -459,7 +459,7 @@ getCategoryOptions();
 MathJax.Hub.Config({
   "HTML-CSS": {
     linebreaks: { automatic: true },
-    undefinedFamily: "・ｭ・ｳ 譏取悃", // 譌･譛ｬ隱槭ヵ繧ｩ繝ｳ繝亥錐繧定・逕ｱ縺ｫ謖・ｮ・
+    undefinedFamily: "ＭＳ 明朝", // 日本語フォント名を自由に指定
   },
 });
 window.onload = function() {
@@ -517,7 +517,7 @@ function sendRequest(){
 
   var category1Value = new Array();
   var elemCategory1 = document.getElementById('ctg1');
-  var optsCategory1 = elemCategory1.options; // select隕∫ｴ縺ｮoption繝励Ο繝代ユ繧｣
+  var optsCategory1 = elemCategory1.options; // select要素のoptionプロパティ
   for (var i = 0; i < optsCategory1.length; i++) {
     if (optsCategory1[i].selected) {
       category1Value[i] = optsCategory1[i].value;
@@ -528,7 +528,7 @@ function sendRequest(){
 
   var category2Value = new Array();
   var elemCategory2 = document.getElementById('ctg2');
-  var optsCategory2 = elemCategory2.options; // select隕∫ｴ縺ｮoption繝励Ο繝代ユ繧｣
+  var optsCategory2 = elemCategory2.options; // select要素のoptionプロパティ
   for (var i = 0; i < optsCategory2.length; i++) {
     if (optsCategory2[i].selected) {
       category2Value[i] = optsCategory2[i].value;
@@ -540,7 +540,7 @@ function sendRequest(){
 
   var category3Value = new Array();
   var elemCategory3 = document.getElementById('ctg3');
-  var optsCategory3 = elemCategory3.options; // select隕∫ｴ縺ｮoption繝励Ο繝代ユ繧｣
+  var optsCategory3 = elemCategory3.options; // select要素のoptionプロパティ
   for (var i = 0; i < optsCategory3.length; i++) {
     if (optsCategory3[i].selected) {
       category3Value[i] = optsCategory3[i].value;
@@ -552,7 +552,7 @@ function sendRequest(){
 
   var category4Value = new Array();
   var elemCategory4 = document.getElementById('ctg4');
-  var optsCategory4 = elemCategory4.options; // select隕∫ｴ縺ｮoption繝励Ο繝代ユ繧｣
+  var optsCategory4 = elemCategory4.options; // select要素のoptionプロパティ
   for (var i = 0; i < optsCategory4.length; i++) {
     if (optsCategory4[i].selected) {
       category4Value[i] = optsCategory4[i].value;
@@ -563,7 +563,7 @@ function sendRequest(){
 
   var category5Value = new Array();
   var elemCategory5 = document.getElementById('ctg5');
-  var optsCategory5 = elemCategory5.options; // select隕∫ｴ縺ｮoption繝励Ο繝代ユ繧｣
+  var optsCategory5 = elemCategory5.options; // select要素のoptionプロパティ
   for (var i = 0; i < optsCategory5.length; i++) {
     if (optsCategory5[i].selected) {
       category5Value[i] = optsCategory5[i].value;
@@ -574,7 +574,7 @@ function sendRequest(){
 
   var categoryQValue = new Array();
   var elemCategoryQ = document.getElementById('ctgQ');
-  var optsCategoryQ = elemCategoryQ.options; // select隕∫ｴ縺ｮoption繝励Ο繝代ユ繧｣
+  var optsCategoryQ = elemCategoryQ.options; // select要素のoptionプロパティ
   for (var i = 0; i < optsCategoryQ.length; i++) {
     if (optsCategoryQ[i].selected) {
       categoryQValue[i] = optsCategoryQ[i].value;
@@ -597,7 +597,7 @@ function sendRequest(){
 
   var xmlhttp=createXmlHttpRequest();
   if(xmlhttp!=null)  {
-    xmlhttp.open("POST", "../referenceTsystemGetQuestions0.php", false);//荵ｱ謨ｰ繧貞叙蠕・
+    xmlhttp.open("POST", "../referenceTsystemGetQuestions0.php", false);//乱数を取得
     xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     var data="data="+moji;
     xmlhttp.send(data);
@@ -615,7 +615,7 @@ function sendRequest(){
   num=0;
   randoms = [];
 
-  /** 驥崎､・メ繧ｧ繝・け縺励↑縺後ｉ荵ｱ謨ｰ菴懈・ */
+  /** 重複チェックしながら乱数作成 */
   for(i = 0; i < questionnumbers.length; i++){
     while(true){
       // alert(i);
@@ -651,7 +651,7 @@ function sendRequest(){
 
    
     document.getElementById("imgresize2").insertAdjacentHTML('afterend',res);
-    MathJax.Hub.Typeset(document);//謨ｰ蠑丞・隱ｭ縺ｿ霎ｼ縺ｿ
+    MathJax.Hub.Typeset(document);//数式再読み込み
     findSameTitleImage();
   } 
 
@@ -660,7 +660,7 @@ function sendRequest(){
 }
 
 
-/** min莉･荳確ax莉･荳九・謨ｴ謨ｰ蛟､縺ｮ荵ｱ謨ｰ繧定ｿ斐☆ */
+/** min以上max以下の整数値の乱数を返す */
 function intRandom(min, max){
   return Math.floor( Math.random() * (max - min + 1)) + min;
 }
@@ -708,7 +708,7 @@ function qClick (ansId){
     var ary = str.trim().split('^').map(function(item){
       return item.trim().replace(/\s+/g,',').split(',');
     });
-    //縲・ (繧ｫ繝ｳ繝・縲阪〒蛹ｺ蛻・▲縺ｦ蛻・牡縺吶ｋ
+    //「, (カンマ)」で区切って分割する
     var result = stringToArray(str);
     // for (let i = 0; i < result.length; i++) {
       play_music(ary);
@@ -730,14 +730,14 @@ function qClick (ansId){
 }
 function clickOKNG(OKNG){
   if(OKNG.value === "OK"){
-  // if(window.confirm('譛ｬ蠖薙↓縺・＞繧薙〒縺吶・・・)){
+  // if(window.confirm('本当にいいんですね？')){
     var rand =  OKNG.id.replace( "radioOK", "" );
     var DBname = document.getElementById("DB_name").value;
     var moji=rand + "^" + DBname + "^" + "good1" + "^" +"";
     moji = encodeURIComponent(moji);
     var xmlhttp=createXmlHttpRequest();
     if(xmlhttp!=null){
-      xmlhttp.open("POST", "../addcorrect.php", false);//荳肴ｭ｣隗｣繝懊ち繝ｳ繧呈款縺・
+      xmlhttp.open("POST", "../addcorrect.php", false);//不正解ボタンを押す
       xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
       var data="data="+moji;
       xmlhttp.send(data);
@@ -751,14 +751,14 @@ function clickOKNG(OKNG){
 
     
   }else{
-  // if(window.confirm('譛ｬ蠖薙↓縺・＞繧薙〒縺吶・・・)){
+  // if(window.confirm('本当にいいんですね？')){
     var rand = OKNG.id.replace( "radioNG", "" );
     var DBname = document.getElementById("DB_name").value;
     var moji=rand + "^" + DBname + "^" + "poor4" + "^" + "";
     moji = encodeURIComponent(moji);
     var xmlhttp=createXmlHttpRequest();
     if(xmlhttp!=null){
-      xmlhttp.open("POST", "../addincorrect.php", false);//荳肴ｭ｣隗｣繝懊ち繝ｳ繧呈款縺・
+      xmlhttp.open("POST", "../addincorrect.php", false);//不正解ボタンを押す
       xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
       var data="data="+moji;
       xmlhttp.send(data);
@@ -776,17 +776,17 @@ function clickOKNG(OKNG){
 }
 function readQuestion(hidHintId){
 
-  // 隱ｭ縺ｿ荳翫￡縺ｾ縺・
+  // 読み上げます
   speech = new SpeechSynthesisUtterance();
 
-  // 隱ｭ縺ｿ荳翫￡繧九ユ繧ｭ繧ｹ繝医ｒ繧ｻ繝・ヨ縺吶ｋ
+  // 読み上げるテキストをセットする
   questiontext = document.getElementById(hidHintId).textContent;
   speech.text = questiontext;
 
 
-  // 繝斐ャ繝√ｒ隱ｿ謨ｴ縺吶ｋ・・.0 縲・2.0・会ｼ願ｨ隱槭↓繧医▲縺ｦ繝ｬ繝ｳ繧ｸ縺ｯ逡ｰ縺ｪ繧・
+  // ピッチを調整する（0.0 〜 2.0）＊言語によってレンジは異なる
   speech.pitch = 1.0;
-  // 蜀咲函縺吶ｋ
+  // 再生する
   speechSynthesis.speak(speech);
   speech.onend = function (event) {
     // console.log('1');
@@ -869,7 +869,7 @@ var formatDate = function (date, format) {
 };
 
 function play_music(result) {
-//繝｡繝ｭ繝・ぅ
+//メロディ
 const melodyLine1 = [
   {'time': '0:0:0', 'note': 'c5', 'duration': ' 16n'},
   {'time': '0:1:0', 'note': 'c5', 'duration': ' 16n'},
@@ -880,7 +880,7 @@ const melodyLine1 = [
 const melodyLine0 = result;
 // const melodyLine =array();
 keysAfter = [ 'time', 'note','duration'];
-melodyLine = melodyLine0.map(e => //繧ｭ繝ｼ繧貞､画峩
+melodyLine = melodyLine0.map(e => //キーを変更
    Object.fromEntries(                      
       Object.entries(e).map(([k, v]) => [keysAfter[k], v])
   )
@@ -888,27 +888,27 @@ melodyLine = melodyLine0.map(e => //繧ｭ繝ｼ繧貞､画峩
 
 
   
-//髻ｳ貅・
+//音源
 const synth = new Tone.AMSynth().toMaster(); 
  
-//蜀咲函險ｭ螳・
+//再生設定
 function setPlay(time, note) { synth.triggerAttackRelease(note.note, note.duration, time);}
 
-//繝｡繝ｭ繝・ぅ繧偵そ繝・ヨ  
+//メロディをセット  
 const melody = new Tone.Part(setPlay, melodyLine); 
 
-//繝｡繝ｭ繝・ぅ蜀咲函
+//メロディ再生
 melody.start();
 
-//繝ｫ繝ｼ繝暦ｼ医ョ繝輔か繝ｫ繝医〒false・・
+//ループ（デフォルトでfalse）
 melody.loop = false;
 melody.loopStart = "0";
 melody.loopEnd = "16";
   
-//繝・Φ繝・
+//テンポ
 Tone.Transport.bpm.value = 120;
   
-//蜀咲函螳溯｡・
+//再生実行
 Tone.Transport.start(); 
 
 
@@ -936,7 +936,7 @@ function listChange(categorySelect){
   
 
   var elem = document.getElementById('ctg1');
-  var opts = elem.options; // select隕∫ｴ縺ｮoption繝励Ο繝代ユ繧｣
+  var opts = elem.options; // select要素のoptionプロパティ
   // console.log(opts);       // HTMLOptionsCollection(3)
   var selectedCategory1 = [];
   for (var i = 0; i < opts.length; i++) {          
@@ -947,7 +947,7 @@ function listChange(categorySelect){
   var selectedCategory1 = selectedCategory1.join("^");
   //sampleArea.insertAdjacentHTML("beforebegin","selectedCategory1"+selectedCategory1+"<br><br><br>");
   var elem = document.getElementById('ctg2');
-  var opts = elem.options; // select隕∫ｴ縺ｮoption繝励Ο繝代ユ繧｣
+  var opts = elem.options; // select要素のoptionプロパティ
   // console.log(opts);       // HTMLOptionsCollection(3)
   var selectedCategory2 = [];
   for (var i = 0; i < opts.length; i++) {          
@@ -958,7 +958,7 @@ function listChange(categorySelect){
   var selectedCategory2 = selectedCategory2.join("^");
   //sampleArea.insertAdjacentHTML("beforebegin","selectedCategory2"+selectedCategory2+"<br><br><br>");
   var elem = document.getElementById('ctg3');
-  var opts = elem.options; // select隕∫ｴ縺ｮoption繝励Ο繝代ユ繧｣
+  var opts = elem.options; // select要素のoptionプロパティ
   // console.log(opts);       // HTMLOptionsCollection(3)
   var selectedCategory3 = [];
   for (var i = 0; i < opts.length; i++) {          
@@ -969,7 +969,7 @@ function listChange(categorySelect){
   var selectedCategory3 = selectedCategory3.join("^");
   //sampleArea.insertAdjacentHTML("beforebegin","selectedCategory3"+selectedCategory3+"<br><br><br>");
   var elem = document.getElementById('ctg4');
-  var opts = elem.options; // select隕∫ｴ縺ｮoption繝励Ο繝代ユ繧｣
+  var opts = elem.options; // select要素のoptionプロパティ
   // console.log(opts);       // HTMLOptionsCollection(3)
   var selectedCategory4 = [];
   for (var i = 0; i < opts.length; i++) {          
@@ -980,7 +980,7 @@ function listChange(categorySelect){
   var selectedCategory4 = selectedCategory4.join("^");
   //sampleArea.insertAdjacentHTML("beforebegin","selectedCategory4"+selectedCategory4+"<br><br><br>");
   var elem = document.getElementById('ctg5');
-  var opts = elem.options; // select隕∫ｴ縺ｮoption繝励Ο繝代ユ繧｣
+  var opts = elem.options; // select要素のoptionプロパティ
   // console.log(opts);       // HTMLOptionsCollection(3)
   var selectedCategory5 = [];
   for (var i = 0; i < opts.length; i++) {          
@@ -1213,7 +1213,7 @@ function listChange(categorySelect){
 function questionListChange(){
   
   var elem = document.getElementById('ctg1');
-  var opts = elem.options; // select隕∫ｴ縺ｮoption繝励Ο繝代ユ繧｣
+  var opts = elem.options; // select要素のoptionプロパティ
   // console.log(opts);       // HTMLOptionsCollection(3)
   var selectedCategory1 = [];
   for (var i = 0; i < opts.length; i++) {          
@@ -1224,7 +1224,7 @@ function questionListChange(){
   var selectedCategory1 = selectedCategory1.join("^");
   //sampleArea.insertAdjacentHTML("beforebegin","selectedCategory1"+selectedCategory1+"<br><br><br>");
   var elem = document.getElementById('ctg2');
-  var opts = elem.options; // select隕∫ｴ縺ｮoption繝励Ο繝代ユ繧｣
+  var opts = elem.options; // select要素のoptionプロパティ
   // console.log(opts);       // HTMLOptionsCollection(3)
   var selectedCategory2 = [];
   for (var i = 0; i < opts.length; i++) {          
@@ -1235,7 +1235,7 @@ function questionListChange(){
   var selectedCategory2 = selectedCategory2.join("^");
   //sampleArea.insertAdjacentHTML("beforebegin","selectedCategory2"+selectedCategory2+"<br><br><br>");
   var elem = document.getElementById('ctg3');
-  var opts = elem.options; // select隕∫ｴ縺ｮoption繝励Ο繝代ユ繧｣
+  var opts = elem.options; // select要素のoptionプロパティ
   // console.log(opts);       // HTMLOptionsCollection(3)
   var selectedCategory3 = [];
   for (var i = 0; i < opts.length; i++) {          
@@ -1246,7 +1246,7 @@ function questionListChange(){
   var selectedCategory3 = selectedCategory3.join("^");
   //sampleArea.insertAdjacentHTML("beforebegin","selectedCategory3"+selectedCategory3+"<br><br><br>");
   var elem = document.getElementById('ctg4');
-  var opts = elem.options; // select隕∫ｴ縺ｮoption繝励Ο繝代ユ繧｣
+  var opts = elem.options; // select要素のoptionプロパティ
   // console.log(opts);       // HTMLOptionsCollection(3)
   var selectedCategory4 = [];
   for (var i = 0; i < opts.length; i++) {          
@@ -1257,7 +1257,7 @@ function questionListChange(){
   var selectedCategory4 = selectedCategory4.join("^");
   //sampleArea.insertAdjacentHTML("beforebegin","selectedCategory4"+selectedCategory4+"<br><br><br>");
   var elem = document.getElementById('ctg5');
-  var opts = elem.options; // select隕∫ｴ縺ｮoption繝励Ο繝代ユ繧｣
+  var opts = elem.options; // select要素のoptionプロパティ
   // console.log(opts);       // HTMLOptionsCollection(3)
   var selectedCategory5 = [];
   for (var i = 0; i < opts.length; i++) {          
@@ -1317,7 +1317,7 @@ function questionListChange(){
 
 
 
-const myEscape = function (str) {//繧ｨ繧ｹ繧ｱ繝ｼ繝鈴未謨ｰ
+const myEscape = function (str) {//エスケープ関数
   return str
   .replace(/\'/g, "\\'")
   .replace(/\"/g, '\\"')
@@ -1564,40 +1564,40 @@ function listChanged(){
   // alert(flag1);
 }
 function getCategoryOptions(){
-  //繧ｫ繝・ざ繝ｪ繝ｼ縺ｮ繧ｪ繝励す繝ｧ繝ｳ繧貞叙蠕励＠縺ｦ縺翫￥
+  //カテゴリーのオプションを取得しておく
   var elem = document.getElementById('ctg1');
   
-  var opts= elem.options; // select隕∫ｴ縺ｮoption繝励Ο繝代ユ繧｣
+  var opts= elem.options; // select要素のoptionプロパティ
   for (var i = 0; i < opts.length; i++) {          
     categoryOpt1[i] = opts[i].value
   }
   var elem = document.getElementById('ctg2');
   
-  var opts= elem.options; // select隕∫ｴ縺ｮoption繝励Ο繝代ユ繧｣
+  var opts= elem.options; // select要素のoptionプロパティ
   for (var i = 0; i < opts.length; i++) {          
     categoryOpt2[i] = opts[i].value
   }
   var elem = document.getElementById('ctg3');
   
-  var opts= elem.options; // select隕∫ｴ縺ｮoption繝励Ο繝代ユ繧｣
+  var opts= elem.options; // select要素のoptionプロパティ
   for (var i = 0; i < opts.length; i++) {          
     categoryOpt3[i] = opts[i].value
   }
   var elem = document.getElementById('ctg4');
   
-  var opts= elem.options; // select隕∫ｴ縺ｮoption繝励Ο繝代ユ繧｣
+  var opts= elem.options; // select要素のoptionプロパティ
   for (var i = 0; i < opts.length; i++) {          
     categoryOpt4[i] = opts[i].value
   }
   var elem = document.getElementById('ctg5');
   
-  var opts= elem.options; // select隕∫ｴ縺ｮoption繝励Ο繝代ユ繧｣
+  var opts= elem.options; // select要素のoptionプロパティ
   for (var i = 0; i < opts.length; i++) {          
     categoryOpt5[i] = opts[i].value
   }
 
 }
-function escape_html (string) {//HTML繧ｨ繧ｹ繧ｱ繝ｼ繝怜・逅・
+function escape_html (string) {//HTMLエスケープ処理
   if(typeof string !== 'string') {
     return string;
   }
@@ -1628,58 +1628,58 @@ function txtfontResize(){
 
 
 function imgResize(){
-  //繝壹・繧ｸ蜀・・img隕∫ｴ繧偵☆縺ｹ縺ｦ蜿門ｾ・
+  //ページ内のimg要素をすべて取得
   var imgs = mainform.getElementsByClassName('images');
-  //Image繧ｪ繝悶ず繧ｧ繧ｯ繝医ｒ繧､繝ｳ繧ｹ繧ｿ繝ｳ繧ｹ蛹・
+  //Imageオブジェクトをインスタンス化
   var image = new Image();
   var height = document.getElementById('imgresize').value +"vh"
 
-  //img隕∫ｴ縺ｮ謨ｰ縺縺醍ｹｰ繧願ｿ斐＠蜃ｦ逅・
+  //img要素の数だけ繰り返し処理
   for (var img of imgs) {
 
-      //img隕∫ｴ縺九ｉsrc螻樊ｧ縺ｮ蛟､繧貞叙蠕・
-      //Image繧ｪ繝悶ず繧ｧ繧ｯ繝医・src繝励Ο繝代ユ繧｣縺ｫ莉｣蜈･    
+      //img要素からsrc属性の値を取得
+      //Imageオブジェクトのsrcプロパティに代入    
       // image.src = img.getAttribute('src');
       img.style.maxHeight = height;
       img.style.maxWidth = "150vw";
       img.style.height = height;
 
-      // //逕ｻ蜒上・讓ｪ蟷・ｒimg隕∫ｴ縺ｮwidth螻樊ｧ縺ｮ蛟､縺ｫ險ｭ螳・
+      // //画像の横幅をimg要素のwidth属性の値に設定
       // img.setAttribute('width', image.width);
 
-      //逕ｻ蜒上・鬮倥＆繧段mg隕∫ｴ縺ｮheight螻樊ｧ縺ｮ蛟､縺ｫ險ｭ螳・
+      //画像の高さをimg要素のheight属性の値に設定
       // img.setAttribute('height', "100px");
   }
 }
 function imgResize2(){
-  //繝壹・繧ｸ蜀・・img隕∫ｴ繧偵☆縺ｹ縺ｦ蜿門ｾ・
+  //ページ内のimg要素をすべて取得
   var imgs = mainform.getElementsByClassName('images');
-  //Image繧ｪ繝悶ず繧ｧ繧ｯ繝医ｒ繧､繝ｳ繧ｹ繧ｿ繝ｳ繧ｹ蛹・
+  //Imageオブジェクトをインスタンス化
   var image = new Image();
   var width = document.getElementById('imgresize2').value +"vw"
 
-  //img隕∫ｴ縺ｮ謨ｰ縺縺醍ｹｰ繧願ｿ斐＠蜃ｦ逅・
+  //img要素の数だけ繰り返し処理
   for (var img of imgs) {
 
-      //img隕∫ｴ縺九ｉsrc螻樊ｧ縺ｮ蛟､繧貞叙蠕・
-      //Image繧ｪ繝悶ず繧ｧ繧ｯ繝医・src繝励Ο繝代ユ繧｣縺ｫ莉｣蜈･    
+      //img要素からsrc属性の値を取得
+      //Imageオブジェクトのsrcプロパティに代入    
       // image.src = img.getAttribute('src');
       // img.style.maxHeight = "100vh";
       img.style.maxWidth = "150vw";
       img.style.width = width;
 
-      // //逕ｻ蜒上・讓ｪ蟷・ｒimg隕∫ｴ縺ｮwidth螻樊ｧ縺ｮ蛟､縺ｫ險ｭ螳・
+      // //画像の横幅をimg要素のwidth属性の値に設定
       // img.setAttribute('width', image.width);
 
-      //逕ｻ蜒上・鬮倥＆繧段mg隕∫ｴ縺ｮheight螻樊ｧ縺ｮ蛟､縺ｫ險ｭ螳・
+      //画像の高さをimg要素のheight属性の値に設定
       // img.setAttribute('height', "100px");
   }
 }
 function findSameTitleImage(){
-  //繝壹・繧ｸ蜀・・img隕∫ｴ繧偵☆縺ｹ縺ｦ蜿門ｾ・
+  //ページ内のimg要素をすべて取得
   var divs = mainform.getElementsByClassName('questionTextArea');
   var a = 0;
-  //img隕∫ｴ縺ｮ謨ｰ縺縺醍ｹｰ繧願ｿ斐＠蜃ｦ逅・
+  //img要素の数だけ繰り返し処理
   for (var div of divs) {
     if (a > 0){
       if (!(divs[a].innerText === "") && divs[a].innerText === divs[a-1].innerText){

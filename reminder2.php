@@ -25,15 +25,15 @@
     }
   .textlines {
     font-family: "SimHei";
-    border: 2px solid #0a0;  /* 譫邱・*/
-    border-radius: 0.67em;   /* 隗剃ｸｸ */
-    padding: 0.5em;          /* 蜀・・縺ｮ菴咏區驥・*/
-    background-color: snow;  /* 閭梧勹濶ｲ */
+    border: 2px solid #0a0;  /* 枠線 */
+    border-radius: 0.67em;   /* 角丸 */
+    padding: 0.5em;          /* 内側の余白量 */
+    background-color: snow;  /* 背景色 */
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.25);
-    /*width: 20em;             /* 讓ｪ蟷・*/*/
-    /*height: 120px;           /* 鬮倥＆ */*/
-    /* /* /*font-size: 1em;          譁・ｭ励し繧､繧ｺ * */
-    line-height: 1.2;        /* 陦後・鬮倥＆ */
+    /*width: 20em;             /* 横幅 */*/
+    /*height: 120px;           /* 高さ */*/
+    /* /* /*font-size: 1em;          文字サイズ * */
+    line-height: 1.2;        /* 行の高さ */
   }
   .img-container--precedo {
     overflow:auto;
@@ -59,17 +59,17 @@
     <input type="text"  class='textlines' class="textlines" id="DB_name" name = "DB_name"
       value = "<?php if (isset($_POST["DB_name"])) {echo $_POST["DB_name"];}?>" placeholder = "id"
       style='width: 40%; height :5vh; font-size: 24px;'/>
-    <input type="submit" value="騾∽ｿ｡" class="textlines" style='background-color:#99FFFF;font-size: 22px;width: 20%; height: 70px'>
+    <input type="submit" value="送信" class="textlines" style='background-color:#99FFFF;font-size: 22px;width: 20%; height: 70px'>
     <a id="previous" href="sample020.php">
-      <font size="6" color="#FF0000" style=''>蟄ｦ鄙堤判髱｢</font>
+      <font size="6" color="#FF0000" style=''>学習画面</font>
     </a>
     <br>
     <select name='autoReading' id='autoReading' class="textlines" style='width: 23%; font-size: 20px;'>
-        <option value='no'' style='width: 23%' placeholder="隱ｭ荳企浹螢ｰ">隱ｭ荳企浹螢ｰ</option>
-        <option value='je'>蝠城｡・譌･譛ｬ隱・隗｣遲披占恭隱・/option>
-        <option value='ej'>蝠城｡・闍ｱ隱・隗｣遲披先律譛ｬ隱・/option>
-        <option value='jj'>蝠城｡・譌･譛ｬ隱・隗｣遲披先律譛ｬ隱・/option>
-        <option value='ee'>蝠城｡・闍ｱ隱・隗｣遲披占恭隱・/option>
+        <option value='no'' style='width: 23%' placeholder="読上音声">読上音声</option>
+        <option value='je'>問題-日本語/解答‐英語</option>
+        <option value='ej'>問題-英語/解答‐日本語</option>
+        <option value='jj'>問題-日本語/解答‐日本語</option>
+        <option value='ee'>問題-英語/解答‐英語</option>
     </select>
 
 <?php
@@ -82,16 +82,18 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $mysqli = new db_wrapper('localhost', 'terashimayo', 'Yoyoyo444', 'terashimayo');
 
     if( $mysqli->connect_errno){
-        echo 'Access Failed';//謗･邯壼､ｱ謨・        exit;
+        echo 'Access Failed';//接続失敗
+        exit;
     }
 
     $result0 = $mysqli->query("set names utf8");
     $db_name = $_POST["DB_name"];
 
-    //繝・ヵ繧ｩ繝ｫ繝域枚蟄励そ繝・ヨ繧定ｨｭ螳・
+    //デフォルト文字セットを設定'
     $mysqli->set_charset("utf8");
 
-    $str_sql = "SELECT max(recordnumber) FROM  A01tsystemrecord01";//蟋九∪繧翫・譎ょ綾繧貞叙蠕・    // echo $str_sql."\n"."\n";
+    $str_sql = "SELECT max(recordnumber) FROM  A01tsystemrecord01";//始まりの時刻を取得
+    // echo $str_sql."\n"."\n";
     $result = $mysqli->query($str_sql);
     $result2  = $result->fetch_assoc();
     $maxrecordnumber = $result2['max(recordnumber)'] +1;
@@ -105,11 +107,13 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
       $sql = "UPDATE A01tsystemrecord01 SET
           WHERE qdate = current_date and id = '$db_name'";
       // echo "sql is ".$sql."\n"."\n";
-      // SQL螳溯｡・      $res = $mysqli->query($sql);
+      // SQL実行
+      $res = $mysqli->query($sql);
     } else {
       $sql = "INSERT INTO A01tsystemrecord01 (id, qdate,recordnumber) VALUES ('$db_name', current_date,$maxrecordnumber )";
       // echo "sql is ".$sql."\n"."\n";
-      // SQL螳溯｡・      $res = $mysqli->query($sql);
+      // SQL実行
+      $res = $mysqli->query($sql);
   
       $sql = "UPDATE A01tsystemrecord01 SET
       startTime = CURRENT_TIME()
@@ -119,7 +123,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     }
 
     
-    // //繝・・繧ｿ繝吶・繧ｹ蜿門ｾ・    $str_sql = "
+    // //データベース取得
+    $str_sql = "
     select answer1, question, imagefolder, questionnumber,
     answer2,answer3,answer4,answer5,answer6,answer7,answer8,answer9,answer10,qdate,pre_qdate,qsentence,nextQdate
     from $db_name 
@@ -151,7 +156,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     // echo(count($row));
     
     echo "<br>";
-    // for 譁・    for($i = 0; $i < count($row); $i++){
+    // for 文
+    for($i = 0; $i < count($row); $i++){
       $questionNumber[$i] =$row[$i][3];
       $sql = "update $db_name
           set nextQdate = CURRENT_DATE()   
@@ -160,11 +166,11 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
       $question[$i] = str_replace(array("\r\n", "\r", "\n"), '<br>', $row[$i][1]);
       // $question[$i] = $row[$i][1];
       $answer[$i] = $row[$i][0];
-      // echo "隍・焚蝗樒ｭ斐メ繧ｧ繝・け";
+      // echo "複数回答チェック";
       // echo "<br>";
       $pre_qdate=$row[$i][14];
       // echo "<br>";
-      // if(empty($row[$i][4])) echo '逵溘→隕九↑縺輔ｌ縺ｾ縺吶・;else echo '蛛ｽ縺ｨ隕九↑縺輔ｌ縺ｾ縺吶・;
+      // if(empty($row[$i][4])) echo '真と見なされます。';else echo '偽と見なされます。';
       if (!empty($row[$i][4])){
         for ($j = 4; $j < 13; $j++) {          
           if(!empty($row[$i][$j])){
@@ -172,7 +178,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
           } 
         }
       }
-      // echo "隍・焚蝗樒ｭ斐メ繧ｧ繝・け蠕・;
+      // echo "複数回答チェック後";
       $answer_json = json_encode($answer);
       $questionNumber[$i] =$row[$i][3];
       $imageFolder[$i]=$row[$i][2];
@@ -385,7 +391,8 @@ var TwoWeeksFlag = false;
 var OneWeekFlag = false;
 var TomorrowFlag = false;
 
-var imageFolder = JSON.parse('<?php echo $imageFolder_json; ?>');//php縺九ｉ驟榊・繧貞叙蠕・var answerShownFlag = false;
+var imageFolder = JSON.parse('<?php echo $imageFolder_json; ?>');//phpから配列を取得
+var answerShownFlag = false;
 window.onload = function(){
   var test = document.getElementById("aImg53");
 }
@@ -432,8 +439,10 @@ function aClick (ansId){
     img.width = document.getElementById(quesId).clientWidth;
     img.onload = function(){
       if (img.height > img.width) {
-        var orgWidth  = img.width;  // 蜈・・讓ｪ蟷・ｒ菫晏ｭ・        var orgHeight = img.height; // 蜈・・鬮倥＆繧剃ｿ晏ｭ・        img.height = 500;  // 讓ｪ蟷・ｒ400px縺ｫ繝ｪ繧ｵ繧､繧ｺ
-        img.width = Math.floor(orgWidth * (img.height / orgHeight)); // 鬮倥＆繧呈ｨｪ蟷・・螟牙喧蜑ｲ蜷医↓蜷医ｏ縺帙ｋ
+        var orgWidth  = img.width;  // 元の横幅を保存
+        var orgHeight = img.height; // 元の高さを保存
+        img.height = 500;  // 横幅を400pxにリサイズ
+        img.width = Math.floor(orgWidth * (img.height / orgHeight)); // 高さを横幅の変化割合に合わせる
       }  
     }
   }
@@ -577,7 +586,8 @@ function clickOKNG(OKNG){
     moji = encodeURIComponent(moji);
     var xmlhttp=createXmlHttpRequest();
     if(xmlhttp!=null){
-      xmlhttp.open("POST", "../FCaddincorrect.php", false);//荳肴ｭ｣隗｣繝懊ち繝ｳ繧呈款縺・      xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+      xmlhttp.open("POST", "../FCaddincorrect.php", false);//不正解ボタンを押す
+      xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
       var data="data="+moji;
       xmlhttp.send(data);
       var res=xmlhttp.responseText;
@@ -590,7 +600,8 @@ function clickOKNG(OKNG){
     moji = encodeURIComponent(moji);
     var xmlhttp=createXmlHttpRequest();
     if(xmlhttp!=null){
-      xmlhttp.open("POST", "../FCaddcorrect20200617.php", false);//荳肴ｭ｣隗｣繝懊ち繝ｳ繧呈款縺・      xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+      xmlhttp.open("POST", "../FCaddcorrect20200617.php", false);//不正解ボタンを押す
+      xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
       var data="data="+moji;
       xmlhttp.send(data);
       var res=xmlhttp.responseText;

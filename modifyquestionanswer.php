@@ -27,14 +27,14 @@ print_r($pieces2);
 // echo(count($pieces2))."\n";
 // echo "1"."\n"."\n";
 
-    //螟画焚繧堤｢ｺ隱・
+    //変数を確認
 
 
 $mysqli = new db_wrapper('localhost', 'terashimayo', 'Yoyoyo444', 'terashimayo');
 
 
 if( $mysql->connect_errno){
-    echo 'Access Failed7';//謗･邯壼､ｱ謨・
+    echo 'Access Failed7';//接続失敗
     exit;
 }
 $sql ="SELECT qsentence FROM `$db_name` WHERE questionnumber = '$questionnumber'";
@@ -111,7 +111,7 @@ if(count($pieces2)>1){
 
 
 
-//繝・・繧ｿ譖ｴ譁ｰ
+//データ更新
 // $sql = "UPDATE $db_name SET
 //     question = '$modifiedquestion',
 //     answer1 = '$modifiedanswer'
@@ -122,7 +122,7 @@ if(count($pieces2)>1){
 // echo "</pre>";
 echo "mdf98 sql is ".$sql."\n"."\n";
 
-// SQL螳溯｡・
+// SQL実行
 $res = $mysqli->query($sql);
 
 

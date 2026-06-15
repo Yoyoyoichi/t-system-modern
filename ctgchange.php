@@ -28,7 +28,7 @@ $mysqli = new db_wrapper('localhost', 'terashimayo', 'Yoyoyo444', 'terashimayo')
 // var_dump($category4);
 // var_dump($category5);
 if( $mysql->connect_errno){
-  echo 'Access Failed5';//謗･邯壼､ｱ謨・
+  echo 'Access Failed5';//接続失敗
   exit;
 }
 $queryFilledFlag = false;
@@ -147,8 +147,8 @@ $result = $mysqli->query($query);
 // }
 if($result->num_rows != 0 ){
   while($row = $result->fetch_assoc() ){
-      //1繝ｬ繧ｳ繝ｼ繝峨★縺､隱ｭ縺ｿ霎ｼ繧
-      //name蛻励ｒ陦ｨ遉ｺ縺吶ｋ蝣ｴ蜷・
+      //1レコードずつ読み込む
+      //name列を表示する場合
         $reply[] = $row[$searchCategory];
   }
   while( ($index = array_search( "", $reply, true )) !== false ) {
@@ -174,7 +174,7 @@ if($result->num_rows != 0 ){
   }
   // print_r($reply2);
   // $reply2 = json_encode($reply);
-  // print  "蝠城｡梧焚縺ｯ ".$row_cnt."\n";
+  // print  "問題数は ".$row_cnt."\n";
   echo "^^^";
   echo $reply2;
 } else {

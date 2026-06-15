@@ -67,13 +67,13 @@ $categoryFlag = false;
   $mysqli = new db_wrapper('localhost', 'terashimayo', 'Yoyoyo444', 'terashimayo');
   if ($mysqli->connect_error) {error_log($mysqli->connect_error);exit;}
 
-  //繝・ヵ繧ｩ繝ｫ繝域枚蟄励そ繝・ヨ繧定ｨｭ螳・
+  //デフォルト文字セットを設定
   $mysqli->set_charset("utf8");
 
 
 if (is_array($category1)) {
 //   $str_sql = "select questionnumber from $db_name where (category1 = '$category1[0]'";
-  // for 譁・
+  // for 文
   // echo "count(category1) is ";
   // print_r(count($category1));
   // echo "\n"."\n";
@@ -100,7 +100,7 @@ if (is_array($category1)) {
             $reply[] = $row['questionnumber'];/////
         }
     } else {
-        echo '蝠城｡後′縺ゅｊ縺ｾ縺帙ｓ縲・;
+        echo '問題がありません。';
     }
     // echo "\n"."\n";
     // echo "reply"."\n"."\n";
@@ -154,7 +154,7 @@ switch ($category2 == "" or $category2 == 'nul') {
                   $reply[] = $row['questionnumber'];/////
               }
           } else {
-              echo '蝠城｡後′縺ゅｊ縺ｾ縺帙ｓ縲・;
+              echo '問題がありません。';
           }
           // echo "\n"."\n";
           // echo "reply"."\n"."\n";
@@ -201,7 +201,7 @@ switch ($category3 == "" or $category3 == 'nul') {
                 $reply[] = $row['questionnumber'];/////
             }
         } else {
-            echo '蝠城｡後′縺ゅｊ縺ｾ縺帙ｓ縲・;
+            echo '問題がありません。';
         }
         // echo "\n"."\n";
         // echo "reply"."\n"."\n";
@@ -228,7 +228,7 @@ switch ($category7 == "" or $category7 == 'nul') {
 		//if else
     if (is_array($category7)) {
     //   $str_sql = "select questionnumber from $db_name where (category4 = '$category7[0]'";
-      // for 譁・
+      // for 文
       for($i = 1; $i < count($category7); $i++){
         // $str_sql = $str_sql." OR category4 = '$category7[$i]'";
       }
@@ -252,7 +252,7 @@ switch ($category8 == "" or $category8 == 'nul') {
   //if else
   if (is_array($category8)) {
     // $str_sql = "select questionnumber from $db_name where (category5 = '$category8[0]'";
-    // for 譁・
+    // for 文
     for($i = 1; $i < count($category8); $i++){
     //   $str_sql = $str_sql." OR category5 = '$category8[$i]'";
     }

@@ -14,7 +14,7 @@ $mysqli = new db_wrapper('localhost', 'terashimayo', 'Yoyoyo444', 'terashimayo')
 
 // var_dump($pieces);
 if( $mysqli->connect_errno){
-    echo 'Access Failed5';//謗･邯壼､ｱ謨・
+    echo 'Access Failed5';//接続失敗
     exit;
 }
 
@@ -28,8 +28,8 @@ $row_cnt = mysqli_num_rows($result);
 
 if( $result = $mysqli->query($query) ){
     while($row = $result->fetch_assoc() ){
-        //1繝ｬ繧ｳ繝ｼ繝峨★縺､隱ｭ縺ｿ霎ｼ繧
-        //name蛻励ｒ陦ｨ遉ｺ縺吶ｋ蝣ｴ蜷・
+        //1レコードずつ読み込む
+        //name列を表示する場合
         $reply = $row["answer1"];
         for ($i = 2; $i <= 15; $i++) {
         	if(!$row['answer'.$i]==""){
@@ -44,14 +44,14 @@ if( $result = $mysqli->query($query) ){
     }
 }
 else {
-    echo '蝠城｡後′縺ゅｊ縺ｾ縺帙ｓ縲・;
+    echo '問題がありません。';
 }
 //print  $url;
 
 print  $reply;
 
-//print  "荵ｱ謨ｰ ".$url;
-//print "reply 縺ｯ ";
+//print  "乱数 ".$url;
+//print "reply は ";
 
 
 //print "data";

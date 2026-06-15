@@ -48,8 +48,8 @@
     </style>
 <body>
 <form name ="mainform" action="" method="post">
-  <p><input type="text" id="DB_name"  name="DB_name" value="<?php if (isset($_POST["DB_name"])) {echo $_POST["DB_name"];}?>" style='width: 400px; font-size: 50px;height:80px;'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://terashimayo.s1008.xrea.com//UpdateSql.php"><font size="5" color="#00aa00">蝠城｡瑚ｿｽ蜉</font></a></p>
-  <p><input type="submit" value="騾∽ｿ｡" style='font-size: 25px;width: 120px; height: 70px'></p>
+  <p><input type="text" id="DB_name"  name="DB_name" value="<?php if (isset($_POST["DB_name"])) {echo $_POST["DB_name"];}?>" style='width: 400px; font-size: 50px;height:80px;'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://terashimayo.s1008.xrea.com//UpdateSql.php"><font size="5" color="#00aa00">問題追加</font></a></p>
+  <p><input type="submit" value="送信" style='font-size: 25px;width: 120px; height: 70px'></p>
 
 <?php
 // error_reporting(0);
@@ -62,7 +62,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     /////
 //    echo "";
      if( $mysqli->connect_errno){
-        echo 'Access Failed';//謗･邯壼､ｱ謨・
+        echo 'Access Failed';//接続失敗
         exit;
     }
 
@@ -71,11 +71,11 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $db_column = "category1";
 
 
-    //繝・ヵ繧ｩ繝ｫ繝域枚蟄励そ繝・ヨ繧定ｨｭ螳・
+    //デフォルト文字セットを設定
     $mysqli->set_charset("utf8");
     $row = "";
     // echo "1".",\n"."\n";
-    //繝・・繧ｿ繝吶・繧ｹ縺九ｉ豁｣隗｣荳肴ｭ｣隗｣縺ｮ蜷郁ｨ医ｒ蜿門ｾ・
+    //データベースから正解不正解の合計を取得
     $str_sql = "SELECT sum(correct) FROM  $db_name";
     $result = $mysqli->query($str_sql);
     $test  = $result->fetch_assoc();
@@ -95,17 +95,17 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
 
 
-    echo "<p style='font-size:30px;color:#FF0000;'> 豁｣隗｣縺ｮ蜷郁ｨ医・ $test2 縺ｧ縺吶・br>
-    荳肴ｭ｣隗｣縺ｮ蜷郁ｨ医・ $test3 縺ｧ縺吶・<br>
-    蜑榊屓縺ｯ $test4 縺ｧ縺励◆縲・/p>";////<font size="5" color="#000000">蝠冗岼</font>
+    echo "<p style='font-size:30px;color:#FF0000;'> 正解の合計は $test2 です。<br>
+    不正解の合計は $test3 です。 <br>
+    前回は $test4 でした。</p>";////<font size="5" color="#000000">問目</font>
 
     $today = date("Y/m/d");
     $target_day = $test4;
     if(strtotime($today) - strtotime($target_day) > 604800){
-      echo "<p> 縺輔⊂縺｣縺ｦ繧薙§繧・・縺茨ｼ・</p>"."\n";/////aaaa
+      echo "<p> さぼってんじゃねえ！ </p>"."\n";/////aaaa
     }
 
-    //繝・・繧ｿ繝吶・繧ｹ蜿門ｾ・
+    //データベース取得
     $str_sql = "select $db_column from $db_name";
 //     echo $str_sql.",\n"."\n";//
     $result = $mysqli->query($str_sql);
@@ -130,7 +130,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $sampleSelectBox .= "</select>\n";
     echo "{$sampleSelectBox}";
 
-    //繝・・繧ｿ繝吶・繧ｹ蜿門ｾ・
+    //データベース取得
     $str_sql = "select category2 from $db_name";
     $result = $mysqli->query($str_sql);
 
@@ -154,7 +154,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     echo "{$sampleSelectBox}";
 
 
-    //繝・・繧ｿ繝吶・繧ｹ蜿門ｾ・
+    //データベース取得
     $str_sql = "select category3 from $db_name";
     $result = $mysqli->query($str_sql);
 
@@ -174,14 +174,14 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     for ( $i = 0; $i < $row_cnt; $i++ ) {
         $sampleSelectBox .= "\t<option value=\"{$response[$i]}\">{$response[$i]}</option>\n";
     }
-    $sampleSelectBox .= "</select>\n";//aaaaaa縺ゅ≠縺・
+    $sampleSelectBox .= "</select>\n";//aaaaaaあああ
     echo "{$sampleSelectBox}";
 
 
 
 
   } else {
-    $err = "蜈･蜉帙＆繧後※縺・↑縺・・岼縺後≠繧翫∪縺吶・;
+    $err = "入力されていない項目があります。";
   }
 }
 global $testnumber;
@@ -245,10 +245,10 @@ $testnumber = 0;
 
 <div class="questionbuttonbox" >
     <input type="checkbox" id = "qachange" style="font-size: 30px;">
-    <font size="5" color="#000000" ;>蝠城｡・隗｣遲・/font>&ensp; &ensp; &ensp;
+    <font size="5" color="#000000" ;>問題/解答</font>&ensp; &ensp; &ensp;
     <span style="font-size: 30px;" id="press-button">0</span>
-    <font size="5" color="#000000">蝠冗岼</font>
-    <input type="button" name="botan" id="button01" onClick="sendRequest();"value="蝠城｡・
+    <font size="5" color="#000000">問目</font>
+    <input type="button" name="botan" id="button01" onClick="sendRequest();"value="問題"
     style="position: absolute; left: 380px;width:200px;height:100px;font-size: 25px"><br>
 </div>
 <div id="div0"></div>
@@ -260,24 +260,24 @@ $testnumber = 0;
 <br>
 <div class="modifyanswerbox" >
     <div class="modifybuttonbox" >
-        <input type="button" name="botan" id="button03" onClick="sendRequest5();" value="菫ｮ豁｣"
+        <input type="button" name="botan" id="button03" onClick="sendRequest5();" value="修正"
         style="position: absolute; left: 10px;width:200px;height:100px; font-size: 25px">
     </div>
     <div class="answerbuttonbox" >
-        <input type="button" name="botan" id="button02" onClick="sendRequest2();" value="隗｣遲・
+        <input type="button" name="botan" id="button02" onClick="sendRequest2();" value="解答"
         style="position: absolute; left: 380px;width:200px;height:100px; font-size: 25px"><br>
     </div>
 </div>
 <TEXTAREA id="textareas2" style="width:570px;height:260px;" wrap="soft" style="font-size:50px;"></TEXTAREA>
 <div id ="div2" class="img-container--precedo">
-    <img id="mypic2" src=""縲>
+    <img id="mypic2" src=""　>
 </div>
 <br>
-<input type="button" name="botan" id="button01" onClick="sendRequest3();" value="豁｣隗｣"
+<input type="button" name="botan" id="button01" onClick="sendRequest3();" value="正解"
 style="width:280px;height:100px; font-size: 25px">
-<input type="button" name="botan" id="button01" onClick="sendRequest4();" value="荳肴ｭ｣隗｣"
+<input type="button" name="botan" id="button01" onClick="sendRequest4();" value="不正解"
 style="width:280px;height:100px; font-size: 25px"><br>
-<!-- 縺薙％縺ｫHTML繧呈嶌縺上☆繧・-->
+<!-- ここにHTMLを書くする -->
 
 
 <script type="text/javascript">
@@ -317,7 +317,7 @@ style="width:280px;height:100px; font-size: 25px"><br>
        {
            // alert(flag1);
            if (flag1 == false){
-               xmlhttp.open("POST", "../getqestions.php", false);//荵ｱ謨ｰ繧貞叙蠕・
+               xmlhttp.open("POST", "../getqestions.php", false);//乱数を取得
                xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
                var data="data="+moji;
                xmlhttp.send(data);
@@ -328,9 +328,9 @@ style="width:280px;height:100px; font-size: 25px"><br>
                console.log('320 questionnumbers is '+questionnumbers);
 
 
-                /** 驥崎､・メ繧ｧ繝・け逕ｨ驟榊・ */
+                /** 重複チェック用配列 */
 
-                /** 譛蟆丞､縺ｨ譛螟ｧ蛟､ */
+                /** 最小値と最大値 */
 
                 max = questionnumbers.length-1;
                 if (max==0) {
@@ -353,7 +353,7 @@ style="width:280px;height:100px; font-size: 25px"><br>
             if (flag1 == false){
                 // alert(max);
                  randoms = [];
-                /** 驥崎､・メ繧ｧ繝・け縺励↑縺後ｉ荵ｱ謨ｰ菴懈・ */
+                /** 重複チェックしながら乱数作成 */
                 for(i = min; i < max+1; i++){
                   while(true){
                     // alert(i);
@@ -397,7 +397,7 @@ style="width:280px;height:100px; font-size: 25px"><br>
         if(xmlhttp!=null)
         {
 
-            xmlhttp.open("POST", "../"+phpfile1, false);//荵ｱ謨ｰ繧偵ｂ縺ｨ縺ｫ蝠城｡後ｒ蜿門ｾ・
+            xmlhttp.open("POST", "../"+phpfile1, false);//乱数をもとに問題を取得
             xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
             var data="data="+moji;
 
@@ -418,7 +418,7 @@ style="width:280px;height:100px; font-size: 25px"><br>
             
             var correctNum = ""
             var question = ""
-            if (res[0].indexOf("豁｣隗｣謨ｰ")<0) {
+            if (res[0].indexOf("正解数")<0) {
                 question = res[0];
                 correctNum = res[1];
             } else {
@@ -447,7 +447,7 @@ style="width:280px;height:100px; font-size: 25px"><br>
 
 
 
-        }縲
+        }　
     }
 
     function createXmlHttpRequest()
@@ -495,7 +495,7 @@ function sendRequest2()
     if(xmlhttp!=null)
     {
         // alert(phpfile2);
-        xmlhttp.open("POST", "../"縲+ phpfile2 , false);//荵ｱ謨ｰ繧偵ｂ縺ｨ縺ｫ隗｣遲斐ｒ蜿門ｾ・
+        xmlhttp.open("POST", "../"　+ phpfile2 , false);//乱数をもとに解答を取得
         xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
         var data="data="+moji;
         xmlhttp.send(data);
@@ -526,7 +526,7 @@ function sendRequest3()
     var xmlhttp=createXmlHttpRequest2();
     if(xmlhttp!=null)
     {
-        xmlhttp.open("POST", "../addcorrect.php", false);//豁｣隗｣繝懊ち繝ｳ繧呈款縺・
+        xmlhttp.open("POST", "../addcorrect.php", false);//正解ボタンを押す
         xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
         var data="data="+moji;
         xmlhttp.send(data);
@@ -546,7 +546,7 @@ function sendRequest4()
     var xmlhttp=createXmlHttpRequest2();
     if(xmlhttp!=null)
     {
-        xmlhttp.open("POST", "../addincorrect.php", false);//荳肴ｭ｣隗｣繝懊ち繝ｳ繧呈款縺・
+        xmlhttp.open("POST", "../addincorrect.php", false);//不正解ボタンを押す
         xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
         var data="data="+moji;
         xmlhttp.send(data);
@@ -573,7 +573,7 @@ function sendRequest5()
     var xmlhttp=createXmlHttpRequest2();
     if(xmlhttp!=null)
     {
-        xmlhttp.open("POST", "../modifyquestionanswer.php", false);//荳肴ｭ｣隗｣繝懊ち繝ｳ繧呈款縺・
+        xmlhttp.open("POST", "../modifyquestionanswer.php", false);//不正解ボタンを押す
         xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
         var data="data="+moji;
         xmlhttp.send(data);
@@ -611,7 +611,7 @@ function createXmlHttpRequest2()
     return xmlhttp;
 }
 
-/** min莉･荳確ax莉･荳九・謨ｴ謨ｰ蛟､縺ｮ荵ｱ謨ｰ繧定ｿ斐☆ */
+/** min以上max以下の整数値の乱数を返す */
 function intRandom(min, max){
   return Math.floor( Math.random() * (max - min + 1)) + min;
 }

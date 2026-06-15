@@ -13,16 +13,16 @@
 
 
         if( $mysql->connect_errno){
-            echo 'Access Failed';//謗･邯壼､ｱ謨・
+            echo 'Access Failed';//接続失敗
             exit;///
         }/////
 
-        //繝・ヵ繧ｩ繝ｫ繝域枚蟄励そ繝・ヨ繧定ｨｭ螳・//
+        //デフォルト文字セットを設定///
         $mysqli->set_charset("utf8");////
 
 
         $data = array();
-        //繝・・繧ｿ繝吶・繧ｹ蜿門ｾ・
+        //データベース取得
         $str_sql = "show full tables;";
         $res = $mysqli->query($str_sql);
         $row_cnt = mysqli_num_rows($res);
@@ -40,7 +40,7 @@
 
 
 
-        // for 譁・////
+        // for 文/////
         for($i = 1; $i < $row_cnt; $i++){          
           $str_sql = "SELECT min(questionnumber) FROM terashimayo.$data[$i]";
           $result = $mysqli->query($str_sql);
@@ -63,7 +63,7 @@
 
 
 
-        //繝・・繧ｿ繝吶・繧ｹ蛻・妙
+        //データベース切断
         mysqli_close($mysqli);
       ?>
     </body>

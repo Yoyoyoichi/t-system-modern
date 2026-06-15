@@ -18,7 +18,7 @@ $mysqli = new db_wrapper('localhost', 'terashimayo', 'Yoyoyo444', 'terashimayo')
 
 
 if( $mysql->connect_errno){
-    echo 'Access Failed7';//謗･邯壼､ｱ謨・
+    echo 'Access Failed7';//接続失敗
     exit;
 }
 
@@ -46,7 +46,7 @@ if( $row_cnt==0){
 //     $res = $mysqli->query($sql);
 //     // echo $sql."\n"."\n";
 // }
-//繝・・繧ｿ譖ｴ譁ｰ
+//データ更新
 $sql = "UPDATE $db_name SET
     incorrect = incorrect + 1,
     PCA = correct / (correct + incorrect) * 100,
@@ -57,7 +57,7 @@ $sql = "UPDATE $db_name SET
 
 echo "sql is ".$sql."\n"."\n";
 ///////////////////////////////////////////
-// SQL螳溯｡・
+// SQL実行
 $res = $mysqli->query($sql);
 
 
@@ -85,9 +85,9 @@ if( $row_cnt==0){
     $res = $mysqli->query($sql);
 }
 
-// //繝・・繧ｿ譖ｴ譁ｰ
+// //データ更新
 // $sql = "UPDATE $db_name SET
-//     q_record = CONCAT('笳・, q_record)
+//     q_record = CONCAT('○', q_record)
 //     WHERE questionnumber = $questionnumber";
 
 // echo $sql."\n"."\n";
@@ -102,7 +102,7 @@ if( $row_cnt==0){
 // echo current_date;
 // echo "inarray ".in_array(current_date,$pre_qdate)."\n"."\n";
 
-// SQL螳溯｡・
+// SQL実行
 // $res = $mysqli->query($sql);
 // $current_date = current_date;
 
@@ -110,7 +110,7 @@ $sql = "update $db_name
     set
     q_record = (
     CASE WHEN  pre_qdate not like CONCAT(current_date,'%')
-    THEN CONCAT('ﾃ・, q_record)
+    THEN CONCAT('×', q_record)
     ELSE q_record
     END),
     incorrect2 = (
@@ -209,17 +209,17 @@ $row_cnt = mysqli_num_rows($res);
 if ($row_cnt>0) {
   $sql = "UPDATE A01tsystemrecord01 SET
       incorrect = incorrect + 1,      
-      CorrectRecord = CONCAT (CorrectRecord, 'ﾃ・),
+      CorrectRecord = CONCAT (CorrectRecord, '×'),
       endTime = CURRENT_TIME(),
       totalTime = totalTime + '$getPastTime'
       WHERE qdate = current_date and id = '$db_name'";
   echo "sql is ".$sql."\n"."\n";
-  // SQL螳溯｡・
+  // SQL実行
   $res = $mysqli->query($sql);
 } else {
   $sql = "INSERT INTO A01tsystemrecord01 (id, incorrect, qdate,recordnumber) VALUES ('$db_name',1, current_date,$maxrecordnumber )";
   // echo "sql is ".$sql."\n"."\n";
-  // SQL螳溯｡・
+  // SQL実行
   $res = $mysqli->query($sql);
 }
 
@@ -244,5 +244,5 @@ if( $result = $mysqli->query($query) ){
 
 
 
-print  "豁｣隗｣ ".$reply." : 荳肴ｭ｣隗｣ ".$reply2;
+print  "正解 ".$reply." : 不正解 ".$reply2;
 ?>

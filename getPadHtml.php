@@ -11,10 +11,10 @@ $pieces = explode("^^^", $_POST["data"]);
 $mysqli = new db_wrapper('localhost', 'terashimayo', 'Yoyoyo444', 'terashimayo');
 if ($mysqli->connect_error) {error_log($mysqli->connect_error);exit;}
 
-//繝・ヵ繧ｩ繝ｫ繝域枚蟄励そ繝・ヨ繧定ｨｭ螳・
+//デフォルト文字セットを設定
 $mysqli->set_charset("utf8");
 
-//繝・・繧ｿ繝吶・繧ｹ縺九ｉ繧ｫ繝・ざ繝ｪ繝ｼ1繧貞叙蠕・
+//データベースからカテゴリー1を取得
 $str_sql = "select padChordHtml from ChordProgressions where name = '$pieces[0]'";
 // echo $str_sql.",\n"."\n";//
 $result = $mysqli->query($str_sql);

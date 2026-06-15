@@ -12,7 +12,7 @@ $mysqli = new db_wrapper('localhost', 'terashimayo', 'Yoyoyo444', 'terashimayo')
 
 
 if( $mysql->connect_errno){
-    echo 'Access Failed7';//謗･邯壼､ｱ謨・
+    echo 'Access Failed7';//接続失敗
     exit;
 }
 
@@ -20,7 +20,7 @@ $str_sql = "SELECT min(questionnumber) FROM $db_name";
 $result = $mysqli->query($str_sql);
 $test  = $result->fetch_assoc();
 $minimum = $test['min(questionnumber)'];
-// // //繝・・繧ｿ譖ｴ譁ｰ
+// // //データ更新
 // $sql = "UPDATE $db_name SET
 //     information = '$information'
 //     WHERE questionnumber = $minimum";
@@ -34,7 +34,7 @@ $information = $test['information'];
 // echo "sql is ".$sql."\n"."\n";
 echo $information;
 
-// // SQL螳溯｡・
+// // SQL実行
 $res = $mysqli->query($sql);
 
 

@@ -29,9 +29,9 @@
 
     ?>
 
-        <p><font size="10" color="#00aa00" style='position: absolute; left: 10vw; top: <?php echo $anstopPos1-6;?>vh;'>蝠城｡瑚ｿｽ蜉</font>
+        <p><font size="10" color="#00aa00" style='position: absolute; left: 10vw; top: <?php echo $anstopPos1-6;?>vh;'>問題追加</font>
           <a id="previous" href="sample020.php">
-            <font size="6" color="#FF0000" style='position: absolute; left: 33vw; top: <?php echo $anstopPos1-4;?>vh;'>蟄ｦ鄙堤判髱｢</font>
+            <font size="6" color="#FF0000" style='position: absolute; left: 33vw; top: <?php echo $anstopPos1-4;?>vh;'>学習画面</font>
           </a>
         </p>
         <form name ="mainform" action="" method="post">
@@ -41,7 +41,7 @@
           style='position: absolute; left: <?php echo $ansleftPos1;?>vh; top: <?php echo $anstopPos1;?>vh;
           width: 40%; height :5vh; font-size: 24px;'/>
 
-        <input type="submit" value="騾∽ｿ｡"
+        <input type="submit" value="送信"
           style='position: absolute;
           top: <?php echo $anstopPos1 -5;?>vh;
           left:70%;
@@ -115,7 +115,8 @@
         if ($mysqli->connect_error) {error_log($mysqli->connect_error);exit;}
 
         // echo "<pre>  3  </pre>";
-        //繝・ヵ繧ｩ繝ｫ繝域枚蟄励そ繝・ヨ繧定ｨｭ螳・        $mysqli->set_charset("utf8");
+        //デフォルト文字セットを設定
+        $mysqli->set_charset("utf8");
 
 
         // $str_sql = "SELECT question FROM  $database where question = '$question'";
@@ -139,8 +140,9 @@
         // echo "<pre>";
         // print_r($maxQuestionNumber);
         // echo "</pre>";
-        //繝・・繧ｿ繝吶・繧ｹ蜿門ｾ・        // $str_sql = "select question  from `MuAnki` ";
-        //譚｡莉ｶ縺ｫ隧ｲ蠖薙☆繧九ョ繝ｼ繧ｿ縺悟ｭ伜惠縺励↑縺・凾縺縺醍匳骭ｲ縺吶ｋSQL
+        //データベース取得
+        // $str_sql = "select question  from `MuAnki` ";
+        //条件に該当するデータが存在しない時だけ登録するSQL
 
         $qdate =2000-01-01;
         $correct = 0;
@@ -154,7 +156,7 @@
         //         select '$question','$maxQuestionNumber','$answer1','$category1','$category2','$category3'
         //         where NOT EXISTS (select 1 from $database where question = '$question')";
 
-        // $str_sql = "INSERT INTO $database (question,questionnumber,answer1,category1,category2,category3)ﾂVALUES ('$question','$maxQuestionNumber','$answer1','$category1','$category2','$category3') SELECT questionﾂFROMﾂ$databaseﾂWHERE NOT SELECT EXISTS(SELECT question FROM $database WHERE question = '$question')";
+        // $str_sql = "INSERT INTO $database (question,questionnumber,answer1,category1,category2,category3) VALUES ('$question','$maxQuestionNumber','$answer1','$category1','$category2','$category3') SELECT question FROM $database WHERE NOT SELECT EXISTS(SELECT question FROM $database WHERE question = '$question')";
 
         // $str_sql = "INSERT INTO $database (question,questionnumber,answer1,category1,category2,category3)  VALUES ('$question','$maxQuestionNumber','$answer1','$category1','$category2','$category3')";
         // echo "<pre>  $str_sql  </pre>";
@@ -168,7 +170,7 @@
         //   var_dump($dat);
         //   echo "<br>";
         // }
-        //繝・・繧ｿ繝吶・繧ｹ蛻・妙
+        //データベース切断
         $sql = "ALTER TABLE $database CHANGE `q_record` `q_record` VARCHAR(1500) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '';";
         $res = $mysqli->query($sql);
         // print_r("sql is ".$sql)."\n";

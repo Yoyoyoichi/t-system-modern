@@ -6,7 +6,7 @@ mb_internal_encoding('UTF-8');
 $pieces = explode("^^", $_POST["data"]);
 // echo "modifyqa pieces is".$pieces."\n"."\n";
 // var_dump ($pieces);
-// for 譁・
+// for 文
 for($i = 0; $i < count($pieces); $i++){
   $pieces[$i] = addslashes($pieces[$i]);
 }
@@ -17,7 +17,7 @@ $mysqli = new db_wrapper('localhost', 'terashimayo', 'Yoyoyo444', 'terashimayo')
 // $mysqli = new db_wrapper('localhost', 'root', 'yoichi41', 'terashimayo');
 if ($mysqli->connect_error) {error_log($mysqli->connect_error);exit;}
 
-//繝・ヵ繧ｩ繝ｫ繝域枚蟄励そ繝・ヨ繧定ｨｭ螳・
+//デフォルト文字セットを設定
 $mysqli->set_charset("utf8");
 
 $str_sql = "SELECT max(questionnumber) FROM  $pieces[45]";
@@ -74,7 +74,7 @@ if(!$pieces[44]=="")
   var_dump ($pieces);  
   echo "\n"."\n";
   echo "^^^^".$pieces[44];  
-  // SQL螳溯｡・
+  // SQL実行
   $res = $mysqli->query($sql);
 } else {
   $str_sql = "insert into $pieces[45]
@@ -104,7 +104,7 @@ if(!$pieces[44]=="")
 
 
 
-//繝・・繧ｿ譖ｴ譁ｰ
+//データ更新
 // $sql = "UPDATE $db_name SET
 //     question = '$modifiedquestion',
 //     answer1 = '$modifiedanswer'

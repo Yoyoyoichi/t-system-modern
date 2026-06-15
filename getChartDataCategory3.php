@@ -3,14 +3,14 @@ $mysqli = new db_wrapper('localhost', 'terashimayo', 'Yoyoyo444', 'terashimayo')
     // $mysqli = new db_wrapper('localhost', 'root', 'yoichi41', 'terashimayo');
 // echo "getChartData 1"."\n"."\n";
 if( $mysqli->connect_errno){
-    echo 'Access Failed';//謗･邯壼､ｱ謨・
+    echo 'Access Failed';//接続失敗
     exit;
 }
 
 $db_name = $_POST["data"];//$_GET["DB_name"];///////
 // echo ("db_name is ").$db_name."\n"."\n";
 
-//繝・ヵ繧ｩ繝ｫ繝域枚蟄励そ繝・ヨ繧定ｨｭ螳・
+//デフォルト文字セットを設定
 $mysqli->set_charset("utf8");
 $row = "";
 
@@ -36,9 +36,9 @@ while($dat = $result->fetch_assoc()){
 $response = array_values(array_unique($response));
 // echo "1"."\n";
 // var_dump ($response);
-//蜑企勁螳溯｡・
+//削除実行
 for ($i = 0 ; $i < count($response); $i++){
-  //謖・ｮ壹＠縺滓擅莉ｶ縺ｮ譁・ｭ怜・縺ｪ繧蛾・蛻励ｒ蜑企勁
+  //指定した条件の文字列なら配列を削除
   if ($response[$i] == ''){
     unset($response[$i]);
   }

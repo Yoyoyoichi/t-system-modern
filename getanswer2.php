@@ -20,10 +20,10 @@ $str_sql = "select * from $db_name where questionnumber = $questionnumber";
 $mysqli = new db_wrapper('localhost', 'terashimayo', 'Yoyoyo444', 'terashimayo');
 if ($mysqli->connect_error) {error_log($mysqli->connect_error);exit;}
 // mysql_query("set names utf8"); or $db_obj->Query("set names utf8");
-//繝・ヵ繧ｩ繝ｫ繝域枚蟄励そ繝・ヨ繧定ｨｭ螳・
+//デフォルト文字セットを設定
 $mysqli->set_charset("utf8");
 $row = "";
-//繝・・繧ｿ繝吶・繧ｹ蜿門ｾ・
+//データベース取得
 $result = $mysqli->query($str_sql);
 // var_dump($result);
 $row_cnt = mysqli_num_rows($result);
@@ -40,7 +40,7 @@ if( $result = $mysqli->query($str_sql) ){
     }
 }
 else {
-    echo '蝠城｡後′縺ゅｊ縺ｾ縺帙ｓ縲・;
+    echo '問題がありません。';
 }
 //echo ""."\n"."\n";
 // echo $reply[3];
@@ -60,8 +60,8 @@ if (!($reply[1]["qsentence"])=="") {
 
 echo $reply[1]["question"];
 
-// echo "\n"."縺薙％莉･髯阪・莉企幕逋ｺ荳ｭ"."\n"."繝・せ繝医リ繝ｳ繝舌・ $testnumber";///aaaaaa縺ゅ≠縺・
-// print  "蝠城｡梧焚縺ｯ ".$row_cnt."\n";///縺ゅ≠縺・
+// echo "\n"."ここ以降は今開発中"."\n"."テストナンバー $testnumber";///aaaaaaあああ
+// print  "問題数は ".$row_cnt."\n";///あああ
 
 
 

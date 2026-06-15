@@ -5,7 +5,7 @@
         <title>All Messages</title>
         <style type="text/css">
         .textlines {
-          font-family: '・ｭ・ｳ ・ｰ繧ｴ繧ｷ繝・け';
+          font-family: 'ＭＳ Ｐゴシック';
         }
         </style>
     </head>
@@ -17,16 +17,16 @@
 
 
         if( $mysql->connect_errno){
-            echo 'Access Failed';//謗･邯壼､ｱ謨・
+            echo 'Access Failed';//接続失敗
             exit;///
         }/////
 
-        //繝・ヵ繧ｩ繝ｫ繝域枚蟄励そ繝・ヨ繧定ｨｭ螳・//
+        //デフォルト文字セットを設定///
         $mysqli->set_charset("utf8");////
 
 
         $data = array();
-        //繝・・繧ｿ繝吶・繧ｹ蜿門ｾ・
+        //データベース取得
         $str_sql = "show full tables;";
         $res = $mysqli->query($str_sql);
         
@@ -50,7 +50,7 @@
         $row_cnt = count($data);
         echo "<div style='display:inline-flex'>";
 
-        // for 譁・////
+        // for 文/////
         for($i = 1; $i < $row_cnt; $i++){
           
           // echo $i;
@@ -101,7 +101,7 @@
             <font size= 5px>$data[$i]</font>
             <br>
           ";
-          // for 譁・
+          // for 文
           for($k = 0; $k < 15; $k++){
             echo $qdate[$k]; 
             echo " - "; 
@@ -135,7 +135,7 @@
 
 
 
-        //繝・・繧ｿ繝吶・繧ｹ蛻・妙
+        //データベース切断
         mysqli_close($mysqli);
       ?>
       <script type="text/javascript">
@@ -147,7 +147,7 @@
           var xmlhttp=createXmlHttpRequest();
           if(xmlhttp!=null)
           {
-              xmlhttp.open("POST", "../informationChange.php", false);//荳肴ｭ｣隗｣繝懊ち繝ｳ繧呈款縺・
+              xmlhttp.open("POST", "../informationChange.php", false);//不正解ボタンを押す
               xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
               var data="data="+moji;
               xmlhttp.send(data);

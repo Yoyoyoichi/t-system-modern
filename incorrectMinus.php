@@ -20,7 +20,7 @@ $mysqli = new db_wrapper('localhost', 'terashimayo', 'Yoyoyo444', 'terashimayo')
 
 
 if( $mysql->connect_errno){
-    echo 'Access Failed7';//謗･邯壼､ｱ謨・
+    echo 'Access Failed7';//接続失敗
     exit;
 }
 
@@ -53,14 +53,14 @@ if( $row_cnt==0){
 
 
 
-//繝・・繧ｿ譖ｴ譁ｰ
+//データ更新
 $sql = "UPDATE $db_name SET
     incorrect = incorrect -1,
     PCA = correct / (correct + incorrect) * 100,
     qdate = current_date
     WHERE questionnumber = $questionnumber";
 // echo "sql is ".$sql."\n"."\n";
-// SQL螳溯｡・
+// SQL実行
 $res = $mysqli->query($sql);
 
 
@@ -88,13 +88,13 @@ $res = $mysqli->query($sql);
 //     // echo $sql."\n"."\n";
 // }
 
-//繝・・繧ｿ譖ｴ譁ｰ
+//データ更新
 // $sql = "UPDATE $db_name SET
-//     q_record = CONCAT('笳・, q_record)
+//     q_record = CONCAT('○', q_record)
 //     WHERE questionnumber = $questionnumber";
 // // echo $sql."\n"."\n";
 
-// SQL螳溯｡・
+// SQL実行
 // $res = $mysqli->query($sql);
 // $current_date = current_date;
 
@@ -102,7 +102,7 @@ $res = $mysqli->query($sql);
 //     set
 //     q_record = (
 //     CASE WHEN  pre_qdate not like CONCAT(current_date,'%')
-//     THEN CONCAT('笳・, q_record)
+//     THEN CONCAT('○', q_record)
 //     ELSE q_record
 //     END)
 //     where questionnumber = $questionnumber";
@@ -141,12 +141,12 @@ if ($row_cnt>0) {
       incorrect = incorrect - 1
       WHERE qdate = current_date and id = '$db_name'";
   // echo "sql is ".$sql."\n"."\n";
-  // SQL螳溯｡・
+  // SQL実行
   $res = $mysqli->query($sql);
 } else {
   $sql = "INSERT INTO A01tsystemrecord01 (id, correct, qdate,recordnumber) VALUES ('$db_name',1, current_date,$maxrecordnumber )";
   // echo "sql is ".$sql."\n"."\n";
-  // SQL螳溯｡・
+  // SQL実行
   $res = $mysqli->query($sql);
 }
 
@@ -161,5 +161,5 @@ if( $result = $mysqli->query($query) ){
     }
 }
 
-print  "豁｣隗｣ ".$reply." : 荳肴ｭ｣隗｣ ".$reply2;
+print  "正解 ".$reply." : 不正解 ".$reply2;
 ?>

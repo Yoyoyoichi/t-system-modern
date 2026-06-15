@@ -13,16 +13,16 @@
 
 
         if( $mysql->connect_errno){
-            echo 'Access Failed';//謗･邯壼､ｱ謨・
+            echo 'Access Failed';//接続失敗
             exit;///
         }/////
 
-        //繝・ヵ繧ｩ繝ｫ繝域枚蟄励そ繝・ヨ繧定ｨｭ螳・//
+        //デフォルト文字セットを設定///
         $mysqli->set_charset("utf8");////
 
 
         $data = array();
-        //繝・・繧ｿ繝吶・繧ｹ蜿門ｾ・
+        //データベース取得
         $str_sql = "show full tables;";
         $res = $mysqli->query($str_sql);
         $row_cnt = mysqli_num_rows($res);
@@ -38,14 +38,14 @@
         }
         // var_dump($data)."\n";
 
-        //螟画焚繧堤｢ｺ隱・
+        //変数を確認
         echo "<pre>";
         var_dump($data);
         echo "</pre>";
         print_r("data[1] is ".$data[1])."\n";
 
 
-        // for 譁・
+        // for 文
         for($i = 1; $i < $row_cnt; $i++){
           // $sql = "UPDATE terashimayo.$data[$i] SET pre_qdate=COALESCE(pre_qdate,'')";
           // $res = $mysqli->query($sql);
@@ -147,7 +147,7 @@
           // $res = $mysqli->query($sql);
           // print_r("sql is ".$sql)."\n";
           // echo "<br>";
-          $sql = "UPDATE terashimayo.$data[$i] SET correct2 = CHAR_LENGTH(REPLACE(q_record,'ﾃ・,'')), incorrect2 = CHAR_LENGTH(q_record)-correct2";
+          $sql = "UPDATE terashimayo.$data[$i] SET correct2 = CHAR_LENGTH(REPLACE(q_record,'×','')), incorrect2 = CHAR_LENGTH(q_record)-correct2";
           $res = $mysqli->query($sql);
           print_r("sql is ".$sql)."\n";
           echo "<br>";
@@ -195,7 +195,7 @@
 
 
 
-        //繝・・繧ｿ繝吶・繧ｹ蛻・妙
+        //データベース切断
         mysqli_close($mysqli);
       ?>
     </body>

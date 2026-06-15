@@ -77,7 +77,7 @@ $categories ="answer1,question,category1,category2,category3,category4,category5
 $categoryFlag = false;
 if (is_array($category1)) {
   $str_sql = "select $categories from $db_name where (category1 = '$category1[0]'";
-  // for 譁・
+  // for 文
   for($i = 1; $i < count($category1); $i++){
     $str_sql = $str_sql." OR category1 = '$category1[$i]'";
   }
@@ -107,7 +107,7 @@ switch ($category2 == "" or $category2 == 'nul') {
 
       if (is_array($category2)) {
         $str_sql = "select $categories from $db_name where (category2 = '$category2[0]'";
-        // for 譁・
+        // for 文
         for($i = 1; $i < count($category2); $i++){
           $str_sql = $str_sql." OR category2 = '$category2[$i]'";
         }
@@ -131,7 +131,7 @@ switch ($category3 == "" or $category3 == 'nul') {
 		//if else
     if (is_array($category3)) {
       $str_sql = "select $categories from $db_name where (category3 = '$category3[0]'";
-      // for 譁・
+      // for 文
       for($i = 1; $i < count($category3); $i++){
         $str_sql = $str_sql." OR category3 = '$category3[$i]'";
       }
@@ -154,7 +154,7 @@ switch ($category7 == "" or $category7 == 'nul') {
 		//if else
     if (is_array($category7)) {
       $str_sql = "select $categories from $db_name where (category4 = '$category7[0]'";
-      // for 譁・
+      // for 文
       for($i = 1; $i < count($category7); $i++){
         $str_sql = $str_sql." OR category4 = '$category7[$i]'";
       }
@@ -178,7 +178,7 @@ switch ($category8 == "" or $category8 == 'nul') {
   //if else
   if (is_array($category8)) {
     $str_sql = "select $categories from $db_name where (category5 = '$category8[0]'";
-    // for 譁・
+    // for 文
     for($i = 1; $i < count($category8); $i++){
       $str_sql = $str_sql." OR category5 = '$category8[$i]'";
     }
@@ -202,7 +202,7 @@ switch ($question == "" or $question == 'nul') {
   //if else
   if (is_array($question)) {
     $str_sql = "select $categories from $db_name where (question = '$question[0]'";
-    // for 譁・
+    // for 文
     for($i = 1; $i < count($question); $i++){
       $str_sql = $str_sql." OR question = '$question[$i]'";
     }
@@ -327,12 +327,12 @@ switch ($qlevel == "") {
 
 
 
-// echo "else縺ｫ縺阪◆"."\n";
+// echo "elseにきた"."\n";
 echo $str_sql."\n";
 $mysqli = new db_wrapper('localhost', 'terashimayo', 'Yoyoyo444', 'terashimayo');
 if ($mysqli->connect_error) {error_log($mysqli->connect_error);exit;}
 
-//繝・ヵ繧ｩ繝ｫ繝域枚蟄励そ繝・ヨ繧定ｨｭ螳・
+//デフォルト文字セットを設定
 $mysqli->set_charset("utf8");
 $row = array();
 
@@ -349,7 +349,7 @@ if( $result = $mysqli->query($str_sql) ){
     }
 }
 else {
-    echo '蝠城｡後′縺ゅｊ縺ｾ縺帙ｓ縲・';
+    echo '問題がありません。1';
 }
 
 // echo "reply"."\n";
@@ -385,7 +385,7 @@ if( $result = $mysqli->query($str_sql) ){
     }
 }
 else {
-    echo '蝠城｡後′縺ゅｊ縺ｾ縺帙ｓ縲・';
+    echo '問題がありません。2';
 }
 
 // echo "reply"."\n";
@@ -422,7 +422,7 @@ if( $result = $mysqli->query($str_sql) ){
     }
 }
 else {
-    echo '蝠城｡後′縺ゅｊ縺ｾ縺帙ｓ縲・';
+    echo '問題がありません。3';
 }
 
 // echo "reply"."\n";
@@ -454,7 +454,7 @@ require_once('jsonconfig.php');
 require_once('jsonfunctions.php');
 
 mb_language("uni");
-mb_internal_encoding("utf-8"); //蜀・Κ譁・ｭ励さ繝ｼ繝峨ｒ螟画峩
+mb_internal_encoding("utf-8"); //内部文字コードを変更
 mb_http_input("auto");
 mb_http_output("utf-8");
 $dbh = connectDb();
