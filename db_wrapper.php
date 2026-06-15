@@ -55,6 +55,7 @@ class db_wrapper {
             return new db_result_wrapper($stmt);
         } catch (PDOException $e) {
             $this->error = $e->getMessage();
+            echo "SQL Query Error: " . $this->error . " | SQL: " . $sql . "<br>";
             return false;
         }
     }
