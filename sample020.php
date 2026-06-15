@@ -1,6 +1,7 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ja">
 <head>
+    <meta charset="utf-8">
 	<link rel="icon" href="./favicon.ico">
 	<link rel="apple-touch-icon" href="./apple-touch-icon.png" sizes="180x180">
   <script type="text/javascript"
