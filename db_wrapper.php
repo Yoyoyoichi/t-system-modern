@@ -38,6 +38,13 @@ class db_wrapper {
         $sql = str_ireplace('CURDATE()', 'CURRENT_DATE', $sql);
         // sum(correct)などのバッククォートを完全に削除する（PostgreSQLの小文字統一仕様に合わせるため）
         $sql = str_replace('`', '', $sql);
+        
+        // MySQLの fetch_assoc 互換性のため、集計関数に自動で元の文字列のエイリアスを付ける
+        // 例: SELECT sum(correct) -> SELECT sum(correct) AS "sum(correct)"
+        $sql = preg_replace('/(sum\([^)]+\))/i', '$1 AS "$1"', $sql);
+        $sql = preg_replace('/(max\([^)]+\))/i', '$1 AS "$1"', $sql);
+        $sql = preg_replace('/(min\([^)]+\))/i', '$1 AS "$1"', $sql);
+        $sql = preg_replace('/(count\([^)]+\))/i', '$1 AS "$1"', $sql);
 
         try {
             // INSERT, UPDATE, DELETEの場合は影響行数を返すかtrueを返す
