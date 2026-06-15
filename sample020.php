@@ -425,7 +425,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     mysqli_close($mysqli);
 
   } else {
-    $err = "入力されていない項目があります。";
+    $err = "error";
   }
 }
 global $testnumber;
