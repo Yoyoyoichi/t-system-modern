@@ -26,6 +26,7 @@ class db_wrapper {
         } catch (PDOException $e) {
             $this->connect_errno = 1;
             $this->error = $e->getMessage();
+            echo "DB Connection Error: " . $this->error . "<br>";
         }
     }
 
