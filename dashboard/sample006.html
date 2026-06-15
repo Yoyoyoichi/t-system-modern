@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ja">
+<form>
+<input type="number" name="example1" id="example1" min="1" max="4">
+<input type="button" name="botan" id="button01" onClick="sendRequest();" value="ボタン">
+<TEXTAREA id="textareas" style="width:100%;height:160px;" wrap="off"></TEXTAREA>
+</form>
+    <head>
+        <meta charset="UTF-8">
+        <title>HTML5</title>
+    </head>
+    <body>
+        <script type="text/javascript">
+
+function sendRequest()
+{
+　　//var button = document.getElementById("example1");
+    //alert(document.forms.example1.value);
+    var moji=document.getElementById("example1").value;
+    var xmlhttp=createXmlHttpRequest();
+    if(xmlhttp!=null)
+    {
+        xmlhttp.open("POST", "../sample006.php", false);
+        xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        var data="data="+moji;
+        xmlhttp.send(data);
+        var res=xmlhttp.responseText;
+        document.getElementById( "textareas" ).value = res;
+    }
+}
+
+function createXmlHttpRequest()
+{
+    var xmlhttp=null;
+    if(window.ActiveXObject)
+    {
+        try
+        {
+            xmlhttp=new ActiveXObject("Msxml2.XMLHTTP");
+        }
+        catch(e)
+        {
+            try
+            {
+                xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+            }
+            catch (e2)
+            {
+            }
+        }
+    }
+    else if(window.XMLHttpRequest)
+    {
+        xmlhttp = new XMLHttpRequest();
+    }
+    return xmlhttp;
+}
+
+
+        </script>
+    </body>
+</html>

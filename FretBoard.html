@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title></title>
+</head>
+<style type="text/css">
+body {
+  line-height:clamp(0.35em, 0.55em, 0.65em);
+  margin:0;
+}
+span {
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  width:100%;
+}
+#div01{
+  padding:0px 0px 0px 20px;
+}
+.textlines{
+  font-size:30px;
+  padding:5px 0px 0px 0px;
+}
+.grandGrandParentContainer{
+  padding:10px 0px 200px 10px;
+  height:auto;
+  overflow:hidden
+}
+.ParentContainer {
+  /* display: inline-block; */
+  float: left;
+  border: 1px solid;
+
+}
+
+.container {
+  
+  margin: 10px;
+  
+
+}
+
+
+.fretboard{
+  display:flex;
+  position:relative;
+  width:fit-content;
+  
+}
+.fretNumbers{
+  display:flex;
+  padding:5px 0px 5px 0px;
+}
+.fretNumber{
+  text-align:center;
+  width:3vw;
+  border: 1px solid #ffffff;
+}
+.frets {
+  text-align:center;
+  text-overflow: clip;
+  position:relative;
+}
+.notes{
+  border:solid 1px;
+  width:2vw;
+  height:2vw;
+  margin:0;
+  padding:0;
+  position:relative;
+  /* display: table; */
+}
+
+.fret-notes{
+  padding:5px 5px 5px 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: hidden; 
+  position:relative;
+}
+.noteCircle{
+  /* display: table-cell;
+  text-align: center;
+  vertical-align: middle; */
+
+}
+</style>
+<body>
+<script type="text/javascript">
+</script>
+<div class = "grandGrandParentContainer" id="grandGrandParentContainer">
+  <div class = "grandParentContainer" id="grandParentContainer">
+    <div style ="float:left;">
+      <div class = "ParentContainer" id = "ParentContainer">
+        <div class="container" id = "container">
+          <div id = "ChordOrScaleName" style ="font-size:30px;margin:17px 0px 10px 0px;box-sizing:border-box;"></div>
+
+          <div class = "fretboard" id = "fretboard">
+            <div class = "frets 4Fret" >
+              <div class="fret-notes">
+                <div class = "notes string0" fretnum = "4" name = "1"></div><br>
+                <div class = "notes string1" fretnum = "4" name = "8"></div><br>
+                <div class = "notes string2" fretnum = "4" name = "3"></div><br>
+                <div class = "notes string3" fretnum = "4" name = "11"></div><br>
+                <div class = "notes string4" fretnum = "4" name = "6"></div><br>
+                <div class = "notes string5" fretnum = "4" name = "1"></div><br>
+                <div class = "notes string6" fretnum = "4" name = "8"></div><br>
+                <div class = "notes string7" fretnum = "4" name = "3"></div>
+              </div>
+            </div>
+            <div class = "frets 5Fret" >
+              <div class="fret-notes">
+                <div class = "notes string0" fretnum = "5" name = "2">●</div><br>
+                <div class = "notes string1" fretnum = "5" name = "9"><span>●</span></div><br>
+                <div class = "notes string2" fretnum = "5" name = "4"></div><br>
+                <div class = "notes string3" fretnum = "5" name = "0"></div><br>
+                <div class = "notes string4" fretnum = "5" name = "7"></div><br>
+                <div class = "notes string5" fretnum = "5" name = "2"></div><br>
+                <div class = "notes string6" fretnum = "5" name = "9"></div><br>
+                <div class = "notes string7" fretnum = "5" name = "4"></div>
+              </div>
+            </div>
+            <div class = "frets 6Fret" >
+              <div class="fret-notes">
+                <div class = "notes string0" fretnum = "6" name = "3"></div><br>
+                <div class = "notes string1" fretnum = "6" name = "10"></div><br>
+                <div class = "notes string2" fretnum = "6" name = "5"></div><br>
+                <div class = "notes string3" fretnum = "6" name = "1"></div><br>
+                <div class = "notes string4" fretnum = "6" name = "8"></div><br>
+                <div class = "notes string5" fretnum = "6" name = "3"></div><br>
+                <div class = "notes string6" fretnum = "6" name = "10"></div><br>
+                <div class = "notes string7" fretnum = "6" name = "5"></div>
+              </div>
+            </div>
+            <div class = "frets 7Fret" >
+              <div class="fret-notes">
+                <div class = "notes string0" fretnum = "7" name = "4"></div><br>
+                <div class = "notes string1" fretnum = "7" name = "11"></div><br>
+                <div class = "notes string2" fretnum = "7" name = "6"></div><br>
+                <div class = "notes string3" fretnum = "7" name = "2"></div><br>
+                <div class = "notes string4" fretnum = "7" name = "9"></div><br>
+                <div class = "notes string5" fretnum = "7" name = "4"></div><br>
+                <div class = "notes string6" fretnum = "7" name = "11"></div><br>
+                <div class = "notes string7" fretnum = "7" name = "6"></div>
+              </div>
+            </div>
+            <div class = "frets 8Fret" >
+              <div class="fret-notes">
+                <div class = "notes string0" fretnum = "8" name = "5"></div><br>
+                <div class = "notes string1" fretnum = "8" name = "0"></div><br>
+                <div class = "notes string2" fretnum = "8" name = "7"></div><br>
+                <div class = "notes string3" fretnum = "8" name = "3"></div><br>
+                <div class = "notes string4" fretnum = "8" name = "10"></div><br>
+                <div class = "notes string5" fretnum = "8" name = "5"></div><br>
+                <div class = "notes string6" fretnum = "8" name = "0"></div><br>
+                <div class = "notes string7" fretnum = "8" name = "7"></div>
+              </div>
+            </div>
+            <div class = "frets 9Fret" >
+              <div class="fret-notes">
+                <div class = "notes string0" fretnum = "9" name = "6"></div><br>
+                <div class = "notes string1" fretnum = "9" name = "1"></div><br>
+                <div class = "notes string2" fretnum = "9" name = "8"></div><br>
+                <div class = "notes string3" fretnum = "9" name = "4"></div><br>
+                <div class = "notes string4" fretnum = "9" name = "11"></div><br>
+                <div class = "notes string5" fretnum = "9" name = "6"></div><br>
+                <div class = "notes string6" fretnum = "9" name = "1"></div><br>
+                <div class = "notes string7" fretnum = "9" name = "8"></div>
+              </div>
+            </div>
+            <div class = "frets 10Fret" >
+              <div class="fret-notes">
+                <div class = "notes string0" fretnum = "10" name = "7"></div><br>
+                <div class = "notes string1" fretnum = "10" name = "2"></div><br>
+                <div class = "notes string2" fretnum = "10" name = "9"></div><br>
+                <div class = "notes string3" fretnum = "10" name = "5"></div><br>
+                <div class = "notes string4" fretnum = "10" name = "0"></div><br>
+                <div class = "notes string5" fretnum = "10" name = "7"></div><br>
+                <div class = "notes string6" fretnum = "10" name = "2"></div><br>
+                <div class = "notes string7" fretnum = "10" name = "9"></div>
+              </div>
+            </div>
+            <div class = "frets 11Fret" >
+              <div class="fret-notes">
+                <div class = "notes string0" fretnum = "11" name = "8"></div><br>
+                <div class = "notes string1" fretnum = "11" name = "3"></div><br>
+                <div class = "notes string2" fretnum = "11" name = "10"></div><br>
+                <div class = "notes string3" fretnum = "11" name = "6"></div><br>
+                <div class = "notes string4" fretnum = "11" name = "1"></div><br>
+                <div class = "notes string5" fretnum = "11" name = "8"></div><br>
+                <div class = "notes string6" fretnum = "11" name = "3"></div><br>
+                <div class = "notes string7" fretnum = "11" name = "10"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class = "LineupStart" id = "LineupStart"></div>
+      </div>
+      <div class = "ParentContainer" id="ParentContainer2">
+        <div class = "LineupStart" id = "LineupStart2"></div>
+      </div>
+    </div>
+    <div style ="float:left;">
+      <div class = "ParentContainer" id="ParentContainer3">
+        <div class = "LineupStart" id = "LineupStart3"></div>
+      </div>
+      <div class = "ParentContainer" id="ParentContainer4">
+        <div class = "LineupStart" id = "LineupStart3"></div>
+      </div> 
+    </div> 
+    <div style ="float:left;">
+      <div class = "ParentContainer" id="ParentContainer5">
+        <div class = "LineupStart" id = "LineupStart5"></div>
+      </div>
+      <div class = "ParentContainer" id="ParentContainer6">
+        <div class = "LineupStart" id = "LineupStart6"></div>
+      </div>
+    </div>
+    <div style ="float:left;">
+      <div class = "ParentContainer" id="ParentContainer7">
+        <div class = "LineupStart" id = "LineupStart7"></div>
+      </div>
+      <div class = "ParentContainer" id="ParentContainer8">
+        <div class = "LineupStart" id = "LineupStart8"></div>
+      </div>
+    </div>
+    <div style ="float:left;">
+      <div class = "ParentContainer" id="ParentContainer9">
+        <div class = "LineupStart" id = "LineupStart9"></div>
+      </div>
+      <div class = "ParentContainer" id="ParentContainer10">
+        <div class = "LineupStart" id = "LineupStart10"></div>
+      </div>
+    </div>   
+  </div>
+</div>
+</body>
+</html>

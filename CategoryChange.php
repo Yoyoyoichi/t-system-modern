@@ -1,0 +1,827 @@
+﻿<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>T-System</title>
+    <style type="text/css">
+        textarea{font-size:22px; background-color:#ffccff; padding:5px;}
+        img {
+         max-width: 100%;
+         max-height: 100%;
+         width: auto;
+         height: auto;
+         top: 50%;
+        }
+        .img-container--precedo {
+         position: relative;
+         width: 550px;
+         height: 260px;
+         text-align: center;
+         border: 1px solid darkgray;
+         &:before {
+         content: '';
+         display: inline-block;
+         vertical-align: middle;
+         height: 100%;
+         width: 0;
+         margin-left: -0.3em;
+         }
+         img {
+         vertical-align: middle;
+         }
+        }
+        div.questionbuttonbox {
+        width:550px; height:95px;
+        margin:5px; padding:10px;
+        }
+        div.answerbuttonbox {
+        width:550px; height:95px;
+        margin:5px; padding:10px;
+        }
+    </style>
+<body>
+<form name ="mainform" action="" method="post">
+  <p><input type="text" id="DB_name"  name="DB_name" value="<?php echo $_POST["DB_name"]?>" style='width: 400px; font-size: 50px;height:80px;'></p>
+  <p><input type="submit" value="騾∽ｿ｡" style='font-size: 25px;width: 120px; height: 70px'></p>
+
+<?php
+
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+  if (!empty($_POST["DB_name"])) {
+
+//    echo $_POST["DB_name"].",\n"."\n";//
+    require_once __DIR__ . '/db_wrapper.php';
+		$mysqli = new db_wrapper();
+    /////
+//    echo "";
+    if( $mysql->connect_errno){
+        echo 'Access Failed';//謗･邯壼､ｱ謨・
+        exit;
+    }
+
+    $db_name = $_POST["DB_name"];//$_GET["DB_name"];///////
+
+    $db_column = "category1";
+
+
+    //繝・ヵ繧ｩ繝ｫ繝域枚蟄励そ繝・ヨ繧定ｨｭ螳・
+    $mysqli->set_charset("utf8");
+    $row = "";
+    // echo "1".",\n"."\n";
+    //繝・・繧ｿ繝吶・繧ｹ縺九ｉ豁｣隗｣荳肴ｭ｣隗｣縺ｮ蜷郁ｨ医ｒ蜿門ｾ・
+    $str_sql = "SELECT sum(correct) FROM  $db_name";
+    $result = $mysqli->query($str_sql);
+    $test  = $result->fetch_assoc();
+    $test2 = $test['sum(correct)'];
+
+    // echo "1".",\n"."\n";
+
+    $str_sql = "SELECT sum(incorrect) FROM  $db_name";
+    $result = $mysqli->query($str_sql);
+    $test  = $result->fetch_assoc();
+    $test3 = $test['sum(incorrect)'];//
+
+    $str_sql = "SELECT max(qdate) FROM  $db_name";
+    $result = $mysqli->query($str_sql);
+    $test  = $result->fetch_assoc();
+    $test4 = $test['max(qdate)'];
+
+
+
+    echo "<p style='font-size:30px;color:#FF0000;'> 豁｣隗｣縺ｮ蜷郁ｨ医・ $test2 縺ｧ縺吶ゆｸ肴ｭ｣隗｣縺ｮ蜷郁ｨ医・ $test3 縺ｧ縺吶・<br>
+    蜑榊屓縺ｯ $test4 縺ｧ縺励◆縲・/p>";////<font size="5" color="#000000">蝠冗岼</font>
+
+    $today = date("Y/m/d");
+    $target_day = $test4;
+    if(strtotime($today) - strtotime($target_day) > 604800){
+      echo "<p> 縺輔⊂縺｣縺ｦ繧薙§繧・・縺茨ｼ・</p>"."\n";/////aaaa
+    }
+
+    //繝・・繧ｿ繝吶・繧ｹ蜿門ｾ・
+    $str_sql = "select $db_column from $db_name";
+//     echo $str_sql.",\n"."\n";//
+    $result = $mysqli->query($str_sql);
+    $row_cnt = count($result);
+//     var_dump($result);
+//     echo $row_cnt.",\n"."\n";
+
+    if (!$result) {error_log($mysqli->error);exit;}
+    // $response[] = array();
+    while($dat = $result->fetch_assoc()){
+        $response[] = $dat['category1'];
+    }
+
+    $response = array_values(array_unique($response));
+//    var_dump($response);
+    $row_cnt = count($response);
+
+    $sampleSelectBox = "<select name=\"category1\" id='ctg1' onChange='listChange()' style='width: 200px; font-size: 25px;'>\n";
+    for ( $i = -1; $i < $row_cnt; $i++ ) {
+        $sampleSelectBox .= "\t<option value=\"{$response[$i]}\">{$response[$i]}</option>\n";
+    }
+    $sampleSelectBox .= "</select>\n";
+    echo "{$sampleSelectBox}";
+
+    //繝・・繧ｿ繝吶・繧ｹ蜿門ｾ・
+    $str_sql = "select category2 from $db_name";
+    $result = $mysqli->query($str_sql);
+
+    if (!$result) {error_log($mysqli->error);exit;}
+    unset($response);
+    while($dat = $result->fetch_assoc()){
+        $response[] = $dat['category2'];
+    }
+
+    $response = array_values(array_unique($response));
+    // var_dump($response);
+    $row_cnt = count($response);
+
+    $sampleSelectBox = "<select name=\"category2\" id='ctg2' onChange='listChange2()' style='width: 200px; font-size: 25px;'>\n";
+    // $sampleSelectBox .="\t<option value=""></option>\n";
+    for ( $i = -1; $i < $row_cnt; $i++ ) {
+        $sampleSelectBox .= "\t<option value=\"{$response[$i]}\">{$response[$i]}</option>\n";
+    }//
+    $sampleSelectBox .= "</select>\n";
+    echo "{$sampleSelectBox}";
+
+
+    //繝・・繧ｿ繝吶・繧ｹ蜿門ｾ・
+    $str_sql = "select category3 from $db_name";
+    $result = $mysqli->query($str_sql);
+
+    if (!$result) {error_log($mysqli->error);exit;}
+    unset($response);
+    while($dat = $result->fetch_assoc()){
+        $response[] = $dat['category3'];
+    }
+
+    $response = array_values(array_unique($response));
+    // var_dump($response);
+    $row_cnt = count($response);
+
+    $sampleSelectBox = "<select name=\"category3\" id='ctg3' onChange='listChange3()' style='width: 200px; font-size: 25px;'>\n";
+
+    for ( $i = -1; $i < $row_cnt; $i++ ) {
+        $sampleSelectBox .= "\t<option value=\"{$response[$i]}\">{$response[$i]}</option>\n";
+    }
+    $sampleSelectBox .= "</select>\n";//aaaaaa縺ゅ≠縺・
+    echo "{$sampleSelectBox}";
+
+
+
+
+  } else {
+    $err = "蜈･蜉帙＆繧後※縺・↑縺・・岼縺後≠繧翫∪縺吶・;
+  }
+}
+global $testnumber;
+$testnumber = 0;
+?>
+<!-- <p><?php echo $testnumber ?></p> -->
+
+
+
+
+<br>
+<select name='category4' onChange='listChange4()' style="width: 200px; font-size: 25px;">
+    <option value='nul'> </option>
+    <option value='incorrect'>incorrect</option>
+    <option value='correct'>correct </option>
+    <option value='pca'>pca </option>
+    <option value='qdate'>qdate</option>
+    <option value='questionnumber'>questionnumber</option>
+</select>
+<select name='operator1'  onChange='listChange4()' style='width: 200px; font-size: 25px;'>
+    <option value='nul'> </option>
+    <option value='='>=</option>
+    <option value='>'>></option>
+    <option value='<'><</option>
+</select>
+<input type="text" name="criteria1" value = "" style='width: 200px; font-size: 20px;'>
+<br>
+<select name='category5'  onChange='listChange4()' style='width: 200px; font-size: 25px;'>
+    <option value='nul'> </option>
+    <option value='incorrect'>incorrect</option>
+    <option value='correct'>correct </option>
+    <option value='pca'>pca </option>
+    <option value='qdate'>qdate</option>
+    <option value='questionnumber'>questionnumber</option>
+</select>
+<select name='operator2'  onChange='listChange4()' style='width: 200px; font-size: 25px;'>
+    <option value='nul'> </option>
+    <option value='='>=</option>
+    <option value='>'>></option>
+    <option value='<'><</option>
+</select>
+<input type="text" name="criteria2" value = "" style='width: 200px; font-size: 20px;'>
+<br>
+<select name='category6'  onChange='listChange4()' style='width: 200px; font-size: 25px;'>
+    <option value='nul'> </option>
+    <option value='incorrect'>incorrect</option>
+    <option value='correct'>correct </option>
+    <option value='pca'>pca </option>
+    <option value='qdate'>qdate</option>
+    <option value='questionnumber'>questionnumber</option>
+</select>
+<select name='operator3'  onChange='listChange4()' style='width: 200px; font-size: 25px;'>
+    <option value='nul'> </option>
+    <option value='='>=</option>
+    <option value='>'>></option>
+    <option value='<'><</option>
+</select>
+<input type="text" name="criteria3" value = "" style='width: 200px; font-size: 20px;'>
+<br>
+<div id="div0"></div>
+
+<div class="questionbuttonbox" >
+    <input type="checkbox" id = "qachange" style="font-size: 30px;">
+    <font size="5" color="#000000" ;>蝠城｡・隗｣遲・/font>&ensp; &ensp; &ensp;
+    <span style="font-size: 30px;" id="press-button">0</span>
+    <font size="5" color="#000000">蝠冗岼</font>
+    <input type="button" name="botan" id="button01" onClick="sendRequest();"value="蝠城｡・
+    style="position: absolute; left: 380px;width:200px;height:100px;font-size: 25px"><br>
+</div>
+
+
+<TEXTAREA id="textareas" style="width:570px;height:260px;" wrap="soft" style="visibility:hidden"></TEXTAREA>
+<div id ="div1" class="img-container--precedo">
+    <img id="mypic1" src="">
+</div>
+<br>
+
+<div class="answerbuttonbox" >
+    <input type="button" name="botan" id="button01" onClick="sendRequest2();" value="隗｣遲・
+    style="position: absolute; left: 380px;width:200px;height:100px; font-size: 25px"><br>
+</div>
+
+<TEXTAREA id="textareas2" style="width:570px;height:260px;" wrap="soft" style="font-size:50px;"></TEXTAREA>
+<div id ="div2" class="img-container--precedo">
+    <img id="mypic2" src=""縲>
+</div>
+<br>
+<input type="button" name="botan" id="button01" onClick="sendRequest3();" value="豁｣隗｣"
+style="width:280px;height:100px; font-size: 25px">
+<input type="button" name="botan" id="button01" onClick="sendRequest4();" value="荳肴ｭ｣隗｣"
+style="width:280px;height:100px; font-size: 25px"><br>
+<!-- 縺薙％縺ｫHTML繧呈嶌縺上☆繧・-->
+
+
+<script type="text/javascript">
+    document.getElementById("div2").style.display = "none";
+    document.getElementById("div1").style.display = "none";
+    // document.write('ja');
+    console.log("1");
+    var num = 0;
+    var flag1 = false
+    var randoms = [];
+    let rand = "";
+    var questionnumbers = ""
+    var min = 1, max = ""
+    var phpfile1 = ""
+    var phpfile2 = ""
+    function sendRequest()
+    {
+        var QAChangeChecked = document.getElementById("qachange").checked;////
+
+        if (QAChangeChecked) {
+        var phpfile1 = "getonequestion2.php";
+        var phpfile2 = "getanswer2.php";
+        } else {
+        var phpfile1 = "getonequestion1.php";
+        var phpfile2 = "getanswer1.php";
+        }
+
+
+
+       var moji=rand + "." + document.mainform.category1.value + "." + document.mainform.category2.value + "." + document.mainform.category3.value + "." + document.mainform.category4.value + "." + document.mainform.category5.value + "." + document.mainform.category6.value + "." + document.mainform.operator1.value + "." + document.mainform.operator2.value + "." + document.mainform.operator3.value + "." + document.mainform.criteria1.value + "." + document.mainform.criteria2.value + "." + document.mainform.criteria3.value + "." + document.mainform.DB_name.value ;
+
+
+
+       var xmlhttp=createXmlHttpRequest();
+       if(xmlhttp!=null)
+       {
+           // alert(flag1);
+           if (flag1 == false){
+               xmlhttp.open("POST", "../getqestions.php", false);//荵ｱ謨ｰ繧貞叙蠕・
+               xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+               var data="data="+moji;
+               xmlhttp.send(data);
+               var res=xmlhttp.responseText;
+               // alert("res縺ｯ"+res);
+               questionnumbers = res.split(',');
+
+               //
+
+
+                /** 驥崎､・メ繧ｧ繝・け逕ｨ驟榊・ */
+
+                /** 譛蟆丞､縺ｨ譛螟ｧ蛟､ */
+                max = questionnumbers.length-1;
+             }
+            // alert(questionnumbers);
+
+
+            document.getElementById("press-button").innerHTML = num+1  +"/"+max;
+
+            if (num+1 < max ) {
+            num++;
+            } else {
+            num=0;
+            }
+
+            // alert(flag1);///
+
+            if (flag1 == false){
+                // alert(max);
+                 randoms = [];
+                /** 驥崎､・メ繧ｧ繝・け縺励↑縺後ｉ荵ｱ謨ｰ菴懈・ */
+                for(i = min; i < max+1; i++){
+                  while(true){
+                    // alert(i);
+                    var tmp = intRandom(min, max);
+                    if(!randoms.includes(tmp)){
+                      randoms.push(tmp);
+                      break;
+                    }
+                  }
+                }
+                flag1 = true;
+            }
+
+            var str01 = randoms + "///" + num +"///" + randoms[num] + "///" + questionnumbers[randoms[num]]
+            // alert(str01);
+
+
+           // document.getElementById("textareas").value = questionnumbers[2];////
+        }
+
+        rand = questionnumbers[randoms[num]];
+
+
+        // alert(num);
+        /*alert(rand);*/
+        // alert(questionnumbers[1]);
+
+        var doc0= document.getElementById("div0");
+        // doc0.innerHTML= rand;
+        var moji=rand + "." + document.mainform.DB_name.value;
+
+//      doc0.innerHTML= moji;
+
+        var xmlhttp=createXmlHttpRequest();
+        if(xmlhttp!=null)
+        {
+
+            xmlhttp.open("POST", "../"+phpfile1, false);//荵ｱ謨ｰ繧偵ｂ縺ｨ縺ｫ蝠城｡後ｒ蜿門ｾ・
+            xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+            var data="data="+moji;
+    //        var dataa="data="+moji;
+            xmlhttp.send(data);
+            //xmlhttp.send(dataa);
+
+            //var datata="data="+mojiji;
+            //xmlhttp.send(datata);
+
+            var res=xmlhttp.responseText;
+
+
+            if (res.indexOf( "jpg" ) > 0) {
+            document.getElementById("textareas").style.display = "none";
+            document.getElementById("div1").style.display = "block";
+            var imageadress =  res.split('\n');
+            document.getElementById("mypic1").src='images/HS-MATH2B/' + imageadress[0];
+            document.getElementById("mypic1").style.width = "700px";
+
+
+            } else {
+            document.getElementById("div1").style.display = "none";
+            document.getElementById("textareas").style.display = "block";
+            document.getElementById( "textareas" ).value = res ;////////
+            document.getElementById( "textareas2" ).value = "";;
+            }
+
+
+
+        }縲
+    }
+
+    function createXmlHttpRequest()
+    {
+        var xmlhttp=null;
+        //alert("3");
+        if(window.ActiveXObject)
+        {
+            try
+            {
+                xmlhttp=new ActiveXObject("Msxml2.XMLHTTP");
+            }
+            catch(e)
+            {
+                try
+                {
+                    xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+                }
+                catch (e2)
+                {
+                }
+            }
+        }
+        else if(window.XMLHttpRequest)
+        {
+            xmlhttp = new XMLHttpRequest();
+        }
+        return xmlhttp;
+    }
+
+
+function sendRequest2()
+{
+    var QAChangeChecked = document.getElementById("qachange").checked;////
+
+    if (QAChangeChecked) {
+        var phpfile1 = "getonequestion2.php";
+        var phpfile2 = "getanswer2.php";
+    } else {
+        var phpfile1 = "getonequestion1.php";
+        var phpfile2 = "getanswer1.php";
+    }
+    var moji=rand + "." + document.mainform.DB_name.value;
+    var xmlhttp=createXmlHttpRequest();
+    if(xmlhttp!=null)
+    {
+        // alert(phpfile2);
+        xmlhttp.open("POST", "../"縲+ phpfile2 , false);//荵ｱ謨ｰ繧偵ｂ縺ｨ縺ｫ隗｣遲斐ｒ蜿門ｾ・
+        xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        var data="data="+moji;
+        xmlhttp.send(data);
+        var res=xmlhttp.responseText;
+        document.getElementById( "textareas2" ).value = res;
+        if (res.indexOf( "jpg" ) > 0) {
+            document.getElementById("textareas2").style.display = "none";
+            document.getElementById("div2").style.display = "block";
+            var imageadress =  res.split('\n');
+            document.getElementById("mypic2").src='images/HS-MATH2B/' + imageadress[0];
+            // alert('images/HS-MATH2B/' + imageadress[0]);
+            // alert(document.getElementById("mypic").src);
+        } else {
+            document.getElementById("div2").style.display = "none";
+            document.getElementById("textareas2").style.display = "block";
+            document.getElementById( "textareas2" ).value = res ;////////
+        }
+    }
+}
+
+function sendRequest3()
+{
+
+    var moji=rand + "." + document.mainform.DB_name.value;
+    var xmlhttp=createXmlHttpRequest2();
+    if(xmlhttp!=null)
+    {
+        xmlhttp.open("POST", "../addcorrect.php", false);//豁｣隗｣繝懊ち繝ｳ繧呈款縺・
+        xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        var data="data="+moji;
+        xmlhttp.send(data);
+        var res=xmlhttp.responseText;
+        document.getElementById( "textareas2" ).value = res;
+        document.getElementById("div2").style.display = "none";
+        document.getElementById("textareas2").style.display = "block";
+    }
+}
+
+function sendRequest4()
+{
+
+    var moji=rand + "." + document.mainform.DB_name.value;
+    var xmlhttp=createXmlHttpRequest2();
+    if(xmlhttp!=null)
+    {
+        xmlhttp.open("POST", "../addincorrect.php", false);//荳肴ｭ｣隗｣繝懊ち繝ｳ繧呈款縺・
+        xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        var data="data="+moji;
+        xmlhttp.send(data);
+        var res=xmlhttp.responseText;
+        document.getElementById( "textareas2" ).value = res;
+        document.getElementById("div2").style.display = "none";
+        document.getElementById("textareas2").style.display = "block";
+    }
+}
+
+
+function createXmlHttpRequest2()
+{
+    var xmlhttp=null;
+    if(window.ActiveXObject)
+    {
+        try
+        {
+            xmlhttp=new ActiveXObject("Msxml2.XMLHTTP");
+        }
+        catch(e)
+        {
+            try
+            {
+                xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+            }
+            catch (e2)
+            {
+            }
+        }
+    }
+    else if(window.XMLHttpRequest)
+    {
+        xmlhttp = new XMLHttpRequest();
+    }
+    return xmlhttp;
+}
+
+/** min莉･荳確ax莉･荳九・謨ｴ謨ｰ蛟､縺ｮ荵ｱ謨ｰ繧定ｿ斐☆ */
+function intRandom(min, max){
+  return Math.floor( Math.random() * (max - min + 1)) + min;
+}
+
+function listChange(){
+	console.log("1");
+	console.log(flag1);
+
+	num=0;
+	// document.getElementById("press-button").innerHTML = num +"/"+ max;
+	flag1 = false;
+
+	var moji= document.mainform.DB_name.value + "." + document.getElementById("ctg1").value 
+	+ "." + "category1" + "." + "category2";
+	console.log(moji);
+	var xmlhttp=createXmlHttpRequest();
+	if(xmlhttp!=null)
+	{
+		// console.log("2");
+		xmlhttp.open("POST", "../ctgchange.php", false);//
+		xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+		var data="data=" + moji;
+		// console.log("2.1");
+		xmlhttp.send(data);
+		var res=xmlhttp.responseText;
+		// console.log("2.2"+" "+res);
+		console.log("2.2"+res);
+		var selectedcategory2 = res.split(',');
+		// console.log(selectedcategory2);
+		// console.log(selectedcategory2[1]);
+		var ctg2selectedindex = document.getElementById('ctg2').value;
+		// console.log(ctg2selectedindex);
+		var sl = document.getElementById('ctg2');
+		while(sl.lastChild)
+		{
+			sl.removeChild(sl.lastChild);
+		}
+
+		var selectElement = document.getElementById("ctg2");
+
+		for(var i = 0; i < selectedcategory2.length; i ++){
+		    var option = document.createElement("option");
+		    option.value = selectedcategory2[i];
+		    option.innerText = selectedcategory2[i];
+		    selectElement.appendChild(option);
+		}
+		// console.log(ctg2selectedindex);
+		document.getElementById('ctg2').value = ctg2selectedindex;
+		// console.log(document.getElementById('ctg2').value);
+		// $("#ctg2").val(ctg2selectedindex);
+	}
+
+	var moji= document.mainform.DB_name.value + "." + document.getElementById("ctg1").value 
+	+ "." + "category1" + "." + "category3";
+	// console.log(moji);
+	var xmlhttp=createXmlHttpRequest();
+	if(xmlhttp!=null)
+	{
+		console.log("3");
+		xmlhttp.open("POST", "../ctgchange.php", false);//
+		xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+		var data="data=" + moji;
+		// console.log("2.1");
+		xmlhttp.send(data);
+		var res=xmlhttp.responseText;
+		// console.log("2.2"+" "+res);
+		console.log("3.2"+res);
+		var selectedcategory3 = res.split(',');
+		console.log(selectedcategory3);
+		// console.log(selectedcategory2[1]);
+		var ctg3selectedindex = document.getElementById('ctg3').value;
+		// console.log(ctg2selectedindex);
+		var sl = document.getElementById('ctg3');
+		while(sl.lastChild)
+		{
+			sl.removeChild(sl.lastChild);
+		}
+
+		var selectElement = document.getElementById("ctg3");
+
+		for(var i = 0; i < selectedcategory3.length; i ++){
+		    var option = document.createElement("option");
+		    option.value = selectedcategory3[i];
+		    option.innerText = selectedcategory3[i];
+		    selectElement.appendChild(option);
+		}
+		console.log(ctg2selectedindex);
+		document.getElementById('ctg3').value = ctg3selectedindex;
+		// console.log(document.getElementById('ctg3').value);
+		// $("#ctg2").val(ctg2selectedindex);
+
+	}
+
+
+
+
+
+}
+
+
+function listChange2(){
+	num=0;
+	flag1 = false;
+	var moji= document.mainform.DB_name.value + "." + document.getElementById("ctg2").value 
+	+ "." + "category2" + "." + "category1";
+	console.log(moji);
+	var xmlhttp=createXmlHttpRequest();
+	if(xmlhttp!=null)
+	{
+		// console.log("2");
+		xmlhttp.open("POST", "../ctgchange.php", false);//
+		xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+		var data="data=" + moji;
+		// console.log("2.1");
+		xmlhttp.send(data);
+		var res=xmlhttp.responseText;
+		// console.log("2.2"+" "+res);
+		console.log("4.2"+res);
+		var selectedcategory1 = res.split(',');
+		// console.log(selectedcategory2);
+		// console.log(selectedcategory2[1]);
+		var ctg1selectedindex = document.getElementById('ctg1').value;
+		// console.log(ctg2selectedindex);
+		var sl = document.getElementById('ctg1');
+		while(sl.lastChild)
+		{
+			sl.removeChild(sl.lastChild);
+		}
+
+		var selectElement = document.getElementById("ctg1");
+
+		for(var i = 0; i < selectedcategory1.length; i ++){
+		    var option = document.createElement("option");
+		    option.value = selectedcategory1[i];
+		    option.innerText = selectedcategory1[i];
+		    selectElement.appendChild(option);
+		}
+		// console.log(ctg2selectedindex);
+		document.getElementById('ctg1').value = ctg1selectedindex;
+		// console.log(document.getElementById('ctg2').value);
+		// $("#ctg2").val(ctg2selectedindex);
+	}
+
+	var moji= document.mainform.DB_name.value + "." + document.getElementById("ctg2").value 
+	+ "." + "category2" + "." + "category3";
+	// console.log(moji);
+	var xmlhttp=createXmlHttpRequest();
+	if(xmlhttp!=null)
+	{
+		console.log("5");
+		xmlhttp.open("POST", "../ctgchange.php", false);//
+		xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+		var data="data=" + moji;
+		// console.log("2.1");
+		xmlhttp.send(data);
+		var res=xmlhttp.responseText;
+		// console.log("2.2"+" "+res);
+		console.log("3.2"+res);
+		var selectedcategory3 = res.split(',');
+		console.log(selectedcategory3);
+		// console.log(selectedcategory2[1]);
+		var ctg3selectedindex = document.getElementById('ctg3').value;
+		// console.log(ctg2selectedindex);
+		var sl = document.getElementById('ctg3');
+		while(sl.lastChild)
+		{
+			sl.removeChild(sl.lastChild);
+		}
+
+		var selectElement = document.getElementById("ctg3");
+
+		for(var i = 0; i < selectedcategory3.length; i ++){
+		    var option = document.createElement("option");
+		    option.value = selectedcategory3[i];
+		    option.innerText = selectedcategory3[i];
+		    selectElement.appendChild(option);
+		}
+		// console.log(ctg2selectedindex);
+		document.getElementById('ctg3').value = ctg3selectedindex;
+		// console.log(document.getElementById('ctg3').value);
+		// $("#ctg2").val(ctg2selectedindex);
+
+	}
+
+
+	}
+function listChange3(){
+    num=0;
+    flag1 = false;
+    var moji= document.mainform.DB_name.value + "." + document.getElementById("ctg3").value 
+	+ "." + "category3" + "." + "category1";
+	console.log(moji);
+	var xmlhttp=createXmlHttpRequest();
+	if(xmlhttp!=null)
+	{
+		// console.log("2");
+		xmlhttp.open("POST", "../ctgchange.php", false);//
+		xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+		var data="data=" + moji;
+		// console.log("2.1");
+		xmlhttp.send(data);
+		var res=xmlhttp.responseText;
+		// console.log("2.2"+" "+res);
+		console.log("4.2"+res);
+		var selectedcategory1 = res.split(',');
+		// console.log(selectedcategory2);
+		// console.log(selectedcategory2[1]);
+		var ctg1selectedindex = document.getElementById('ctg1').value;
+		// console.log(ctg2selectedindex);
+		var sl = document.getElementById('ctg1');
+		while(sl.lastChild)
+		{
+			sl.removeChild(sl.lastChild);
+		}
+
+		var selectElement = document.getElementById("ctg1");
+
+		for(var i = 0; i < selectedcategory1.length; i ++){
+		    var option = document.createElement("option");
+		    option.value = selectedcategory1[i];
+		    option.innerText = selectedcategory1[i];
+		    selectElement.appendChild(option);
+		}
+		// console.log(ctg2selectedindex);
+		document.getElementById('ctg1').value = ctg1selectedindex;
+		// console.log(document.getElementById('ctg2').value);
+		// $("#ctg2").val(ctg2selectedindex);
+	}
+
+	var moji= document.mainform.DB_name.value + "." + document.getElementById("ctg3").value 
+	+ "." + "category3" + "." + "category2";
+	// console.log(moji);
+	var xmlhttp=createXmlHttpRequest();
+	if(xmlhttp!=null)
+	{
+		console.log("5");
+		xmlhttp.open("POST", "../ctgchange.php", false);//
+		xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+		var data="data=" + moji;
+		// console.log("2.1");
+		xmlhttp.send(data);
+		var res=xmlhttp.responseText;
+		// console.log("2.2"+" "+res);
+		console.log("3.2"+res);
+		var selectedcategory2 = res.split(',');
+		console.log(selectedcategory2);
+		// console.log(selectedcategory2[1]);
+		var ctg2selectedindex = document.getElementById('ctg2').value;
+		// console.log(ctg2selectedindex);
+		var sl = document.getElementById('ctg2');
+		while(sl.lastChild)
+		{
+			sl.removeChild(sl.lastChild);
+		}
+
+		var selectElement = document.getElementById("ctg2");
+
+		for(var i = 0; i < selectedcategory2.length; i ++){
+		    var option = document.createElement("option");
+		    option.value = selectedcategory2[i];
+		    option.innerText = selectedcategory2[i];
+		    selectElement.appendChild(option);
+		}
+		console.log(ctg2selectedindex);
+		document.getElementById('ctg2').value = ctg2selectedindex;
+		console.log(document.getElementById('ctg2').value);
+		// $("#ctg2").val(ctg2selectedindex);
+
+	}
+    
+
+
+
+}
+function listChange4(){
+    // alert(flag1);
+    num=0;
+    // document.getElementById("press-button").innerHTML = num +"/"+ max;
+    flag1 = false;
+    // alert(flag1);
+
+
+
+}
+</script>
+
+</body>
+</html>
+

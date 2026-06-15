@@ -1,0 +1,31 @@
+.ql-snow .ql-Table-Input .ql-picker-options
+{
+    padding: 3px 5px;
+    width: 152px;
+}
+
+.ql-snow .ql-Table-Input .ql-picker-item
+{
+    border: 1px solid transparent;
+    float: left;
+    height: 16px;
+    margin: 2px;
+    padding: 0px;
+    width: 16px;
+    background: lightsteelblue;
+}
+
+.ql-snow .ql-Table-Input .ql-picker-item:hover, .ql-snow .ql-Table-Input .ql-picker-item.ql-picker-item-highlight
+{
+    border-color: #000;
+    background: steelblue;
+}
+
+.ql-snow .ql-Table-Input.ql-picker
+{
+    width: 28px;
+}
+
+.ql-snow .ql-Table-Input.ql-picker .ql-picker-label {
+    padding: 2px 4px;
+}

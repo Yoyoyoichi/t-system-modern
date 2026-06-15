@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="ja">
+<form>
+
+<input type="button" name="botan" id="button01" onClick="sendRequest();" value="問題" style="width:100px;height:50px"><br>
+<TEXTAREA id="textareas" style="width:40%;height:200px;" wrap="soft" style="font-size:80%;"></TEXTAREA><br>
+<input type="button" name="botan" id="button01" onClick="sendRequest2();" value="解答" style="width:100px;height:50px"><br>
+<TEXTAREA id="textareas2" style="width:40%;height:200px;" wrap="soft" style="font-size:80%;"></TEXTAREA><br>
+<input type="button" name="botan" id="button01" onClick="sendRequest3();" value="正解" style="width:100px;height:50px">
+<input type="button" name="botan" id="button01" onClick="sendRequest4();" value="不正解" style="width:100px;height:50px"><br>
+
+    <head>
+        <meta charset="UTF-8">
+        <title>HTML5</title>
+
+<style type="text/css">
+textarea{font-size:25px; background-color:#ffccff; padding:5px;}
+</style>
+
+    </head>
+    <body>
+        <script type="text/javascript">
+var rand = "";
+function sendRequest()
+{
+    var moji="a";
+    var xmlhttp=createXmlHttpRequest();
+    if(xmlhttp!=null)
+    {
+        xmlhttp.open("POST", "../sample012b.php", false);//乱数を取得
+        xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        var data="data="+moji;
+        xmlhttp.send(data);
+        var res=xmlhttp.responseText;
+        //document.getElementById( "textareas3" ).value = "";
+    }　　
+
+
+    var moji=res;
+    rand = res;
+    var xmlhttp=createXmlHttpRequest();
+    if(xmlhttp!=null)
+    {
+        xmlhttp.open("POST", "../sample012.php", false);//乱数をもとに問題を取得
+        xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        var data="data="+moji;
+        xmlhttp.send(data);
+        var res=xmlhttp.responseText;
+        document.getElementById( "textareas" ).value = res;
+    }
+}
+
+function createXmlHttpRequest()
+{
+    var xmlhttp=null;
+    if(window.ActiveXObject)
+    {
+        try
+        {
+            xmlhttp=new ActiveXObject("Msxml2.XMLHTTP");
+        }
+        catch(e)
+        {
+            try
+            {
+                xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+            }
+            catch (e2)
+            {
+            }
+        }
+    }
+    else if(window.XMLHttpRequest)
+    {
+        xmlhttp = new XMLHttpRequest();
+    }
+    return xmlhttp;
+}
+
+
+function sendRequest2()
+{
+
+    var moji=rand;
+    var xmlhttp=createXmlHttpRequest2();
+    if(xmlhttp!=null)
+    {
+        xmlhttp.open("POST", "../sample012a.php", false);//乱数をもとに解答を取得
+        xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        var data="data="+moji;
+        xmlhttp.send(data);
+        var res=xmlhttp.responseText;
+        document.getElementById( "textareas2" ).value = res;
+    }
+}
+
+function sendRequest3()
+{
+
+    var moji=rand;
+    var xmlhttp=createXmlHttpRequest2();
+    if(xmlhttp!=null)
+    {
+        xmlhttp.open("POST", "../sample012c.php", false);//正解ボタンを押す
+        xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        var data="data="+moji;
+        xmlhttp.send(data);
+        var res=xmlhttp.responseText;
+        document.getElementById( "textareas2" ).value = res;
+    }
+}            
+
+function sendRequest4()
+{
+
+    var moji=rand;
+    var xmlhttp=createXmlHttpRequest2();
+    if(xmlhttp!=null)
+    {
+        xmlhttp.open("POST", "../sample012d.php", false);//不正解ボタンを押す
+        xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        var data="data="+moji;
+        xmlhttp.send(data);
+        var res=xmlhttp.responseText;
+        document.getElementById( "textareas2" ).value = res;
+    }
+}            
+            
+            
+function createXmlHttpRequest2()
+{
+    var xmlhttp=null;
+    if(window.ActiveXObject)
+    {
+        try
+        {
+            xmlhttp=new ActiveXObject("Msxml2.XMLHTTP");
+        }
+        catch(e)
+        {
+            try
+            {
+                xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+            }
+            catch (e2)
+            {
+            }
+        }
+    }
+    else if(window.XMLHttpRequest)
+    {
+        xmlhttp = new XMLHttpRequest();
+    }
+    return xmlhttp;
+}
+
+        </script>
+    </body>
+</html>

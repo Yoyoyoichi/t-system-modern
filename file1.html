@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8">
+    <title>ファイル送信ページ1</title>
+  </head>
+  <body>
+    <form method="post" enctype="multipart/form-data" action="file1.php">
+      <input type="file" name="up">
+      <input type="hidden" id="hiddenTxt" value = "xxx" name ="hiddenTxt" >
+      <input type="submit" value="アップロード">
+    </form>
+    <input type="text" id="txt1" onchange = 'txtChange()'>
+<script type="text/javascript">
+
+    function txtChange(){
+        console.log('hiddenTxt is ' + document.getElementById("hiddenTxt").value);
+        document.getElementById("hiddenTxt").value = document.getElementById("txt1").value
+        console.log('hiddenTxt is ' + document.getElementById("hiddenTxt").value);
+
+    }
+
+</script>
+  </body>
+</html>

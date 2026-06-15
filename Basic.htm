@@ -1,0 +1,54 @@
+﻿<!DOCTYPE HTML>
+<!-- saved from url=(0039)https://galactic.ink/midi-js/Basic.html -->
+<!DOCTYPE html PUBLIC "" ""><HTML><HEAD><META content="IE=11.0000" 
+http-equiv="X-UA-Compatible">
+	 
+<META http-equiv="content-type" content="text/html; charset=utf-8">	 <!-- shims -->
+	 
+<SCRIPT src="Basic.files/Base64.js" type="text/javascript"></SCRIPT>
+	 
+<SCRIPT src="Basic.files/Base64binary.js" type="text/javascript"></SCRIPT>
+	 
+<SCRIPT src="Basic.files/WebAudioAPI.js" type="text/javascript"></SCRIPT>
+	 <!-- midi.js -->	 
+<SCRIPT src="Basic.files/audioDetect.js" type="text/javascript"></SCRIPT>
+	 
+<SCRIPT src="Basic.files/gm.js" type="text/javascript"></SCRIPT>
+	 
+<SCRIPT src="Basic.files/loader.js" type="text/javascript"></SCRIPT>
+	 
+<SCRIPT src="Basic.files/plugin.audiotag.js" type="text/javascript"></SCRIPT>
+	 
+<SCRIPT src="Basic.files/plugin.webaudio.js" type="text/javascript"></SCRIPT>
+	 
+<SCRIPT src="Basic.files/plugin.webmidi.js" type="text/javascript"></SCRIPT>
+	 <!-- utils -->	 
+<SCRIPT src="Basic.files/dom_request_xhr.js" type="text/javascript"></SCRIPT>
+	 
+<SCRIPT src="Basic.files/dom_request_script.js" type="text/javascript"></SCRIPT>
+ 
+<META name="GENERATOR" content="MSHTML 11.00.9600.19507"></HEAD> 
+<BODY>
+<SCRIPT>
+
+window.onload = function () {
+	MIDI.loadPlugin({
+		soundfontUrl: "./soundfont/",
+		instrument: "acoustic_grand_piano",
+		onprogress: function(state, progress) {
+			console.log(state, progress);
+		},
+		onsuccess: function() {
+			var delay = 0; // play one note every quarter second
+			var note = 50; // the MIDI note
+			var velocity = 127; // how hard the note hits
+			// play the note
+			MIDI.setVolume(0, 127);
+			MIDI.noteOn(0, note, velocity, delay);
+			MIDI.noteOff(0, note, delay + 0.75);
+		}
+	});
+};
+
+</SCRIPT>
+ </BODY></HTML>

@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title></title>
+<link rel="stylesheet" href="./editor.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/quill/2.0.0-dev.1/quill.min.js"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/quill/2.0.0-dev.1/quill.snow.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/quill-better-table@latest/dist/quill-better-table.min.js"></script>
+<link type="text/css" href="https://unpkg.com/quill-better-table@latest/dist/quill-better-table.css" rel="stylesheet">
+<script src="/js/image-resize.min.js"></script>
+</head>
+
+<body>
+<div id="myeditor"></div>
+<button id="save-button">Save</button>
+<button id="export-button">Export to HTML</button>
+<div id="output"></div>
+
+<script>
+var _MODE = (typeof window.ontouchstart == "undefined") ? 'click' : 'touchstart';
+var _MODE_HOVER = (typeof window.ontouchstart == "undefined") ? 'mouseover' : 'touchstart';
+
+// WYSIWYGクラス
+class C_Editor {
+    constructor(id) {
+        this.editor = this.Init(id);
+        this.IconSet(id)
+    }
+
+    // Quill起動
+    Init(id) {
+        // 表の大きさ指定用（最大７ｘ７マス）
+        var tableopt = []
+        for (let r = 1; r <= 7; r++) {
+            for (let c = 1; c <= 7; c++) {
+                tableopt.push('newtable_' + r + '_' + c);
+            }
+        }
+
+        // ツールバーに表示する機能
+        var tb_opt = [
+            ['bold', 'italic', 'underline', 'strike'], // toggled buttons
+            ['blockquote', 'code-block'],
+            ['link', 'image', 'video', 'formula'],
+            [{
+                'header': 1
+            }, {
+                'header': 2
+            }], // custom button values
+            [{
+                'list': 'ordered'
+            }, {
+                'list': 'bullet'
+            }, {
+                'list': 'check'
+            }],
+            [{
+                'script': 'sub'
+            }, {
+                'script': 'super'
+            }], // superscript/subscript
+            [{
+                'indent': '-1'
+            }, {
+                'indent': '+1'
+            }], // outdent/indent
+            [{
+                'direction': 'rtl'
+            }], // text direction
+            [{
+                'size': ['small', false, 'large', 'huge']
+            }], // custom dropdown
+            [{
+                'header': [1, 2, 3, 4, 5, 6, false]
+            }],
+            [{
+                'color': []
+            }, {
+                'background': []
+            }], // dropdown with defaults from theme
+            [{
+                'font': []
+            }],
+            [{
+                'align': []
+            }],
+            [{
+                'Table-Input': tableopt
+            }],
+            ['clean'] // remove formatting button
+        ];
+
+        var quill = new Quill(
+            document.getElementById(id), {
+                theme: 'snow',
+                modules: {
+                    toolbar: {
+                        container: tb_opt,
+                        handlers: {
+                            'Table-Input': () => {}
+                        }
+                    },
+                    // 表
+                    table: false,
+                    'better-table': {
+                        operationMenu: {}
+                    },
+                    ImageResize: {
+                        parchment: Quill.import('parchment')
+                    }
+                }
+            }
+        );
+        return quill;
+    }
+
+    // 表範囲の選択CSS
+    TableSizeCSS() {
+        var row = Number(this.dom.dataset.value.substring(9).split('_')[0]);
+        var col = Number(this.dom.dataset.value.substring(9).split('_')[1]);
+        for (var elm of this.dom.parentNode.children) {
+            var rowindex1 = Number(elm.dataset.value.substring(9).split('_')[0]);
+            var colindex1 = Number(elm.dataset.value.substring(9).split('_')[1]);
+            if (rowindex1 <= row && colindex1 <= col) {
+                elm.classList.add("ql-picker-item-highlight");
+            } else {
+                elm.classList.remove("ql-picker-item-highlight");
+            }
+        };
+    }
+
+    // 表の挿入
+    TableDraw() {
+        var row = Number(this.dataset.value.substring(9).split('_')[0]);
+        var col = Number(this.dataset.value.substring(9).split('_')[1]);
+
+        // 表の挿入
+        var qbt = this.ed.getModule('better-table');
+        qbt.insertTable(row, col);
+    }
+
+    // 表のサイズ設定
+    TableInit(dom) {
+        var ed = this.editor;
+
+        var tabledoms = dom.childNodes[1].children;
+        for (var tabledom of tabledoms) {
+            // クリック時の挙動
+            tabledom.addEventListener(_MODE, {
+                ed: this.editor,
+                dataset: tabledom.dataset,
+                handleEvent: this.TableDraw
+            });
+
+            //　マウスオーバー時の挙動
+            tabledom.addEventListener(_MODE_HOVER, {
+                dom: tabledom,
+                handleEvent: this.TableSizeCSS
+            });
+        }
+    }
+
+    // quillBetterTableアイコン表示＆動作
+    IconSet(id) {
+        var dom = document.getElementById(id).parentNode.getElementsByClassName('ql-Table-Input')[0];
+        dom.children[0].innerHTML = "<svg style=\"right: 4px;\" viewbox=\"0 0 18 18\"> <rect class=ql-stroke height=12 width=12 x=3 y=3></rect> <rect class=ql-fill height=2 width=3 x=5 y=5></rect> <rect class=ql-fill height=2 width=4 x=9 y=5></rect> <g class=\"ql-fill ql-transparent\"> <rect height=2 width=3 x=5 y=8></rect> <rect height=2 width=4 x=9 y=8></rect> <rect height=2 width=3 x=5 y=11></rect> <rect height=2 width=4 x=9 y=11></rect> </g> </svg>";
+
+        this.TableInit(dom);
+    }
+}
+
+window.addEventListener('load', function() {
+    // Quillにquill-better-tableを登録
+    Quill.register({
+        'modules/better-table': window.quillBetterTable
+    }, true);
+    var editorInstance = new C_Editor("myeditor");
+
+    // 保存ボタンのクリックイベント
+    document.getElementById('save-button').addEventListener('click', function() {
+        var content = editorInstance.editor.getContents();
+        console.log('Content:', content);
+        // ここでサーバーに送信したり、ローカルストレージに保存したりできます
+    });
+
+   
+    // エクスポートボタンのクリックイベント
+    document.getElementById('export-button').addEventListener('click', function() {
+        var html = editorInstance.editor.root.innerHTML;
+
+        // 特殊文字をエスケープするための関数
+        function escapeHTML(html) {
+            return html
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;")
+                .replace(/"/g, "&quot;")
+                .replace(/'/g, "&#039;");
+        }
+
+        // HTMLをエスケープして出力
+        var escapedHTML = html;
+
+        // スタイルを含めたHTMLを生成
+        var styledHTML =  escapedHTML ;
+
+        // output要素に生成したHTMLを挿入
+        var outputElement = document.getElementById('output');
+        if (outputElement) {
+            outputElement.innerHTML = styledHTML;
+        } else {
+            console.error('Output element not found.');
+        }
+    });
+});
+</script>
+</body>
+</html>
