@@ -1,4 +1,5 @@
 ﻿<?php
+require_once 'db_wrapper.php';
 $mysqli = new db_wrapper('localhost', 'terashimayo', 'Yoyoyo444', 'terashimayo');
     // $mysqli = new db_wrapper('localhost', 'root', 'yoichi41', 'terashimayo');
 // echo "getChartData 1"."\n"."\n";

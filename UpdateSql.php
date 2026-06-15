@@ -13,6 +13,7 @@
   </head>
   <body>
     <?php
+require_once 'db_wrapper.php';
       $sqlhost = "localhost";
       $sqluser = "terashimayo";
       $sqlpass = "Yoyoyo444";

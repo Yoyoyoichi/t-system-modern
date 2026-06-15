@@ -1,4 +1,5 @@
 ﻿<?php
+require_once 'db_wrapper.php';
 // $testnumber = $testnumber + 1;
 error_reporting(0);
 mb_language("ja");

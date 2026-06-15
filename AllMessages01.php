@@ -8,6 +8,7 @@
       <script type="text/javascript">
       </script>
       <?php
+require_once 'db_wrapper.php';
 
         $mysqli = new db_wrapper('localhost', 'terashimayo', 'Yoyoyo444', 'terashimayo');
 

@@ -19,6 +19,7 @@
       id="DB_name" 
       name = "DB_name"
       value = "<?php if (isset($_POST["DB_name"])) {echo $_POST["DB_name"];}?>"
+require_once 'db_wrapper.php';
       placeholder = "id"
       style='width: 40%; height :5vh; font-size: 24px;'/>
     <input type="submit" value="送信" class="textlines" style='background-color:#99FFFF;font-size: 22px;width: 20%; height: 70px'>

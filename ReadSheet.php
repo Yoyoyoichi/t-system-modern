@@ -97,6 +97,7 @@ span {font-size:30px;}
 </style>
 <body>
 <?php
+require_once 'db_wrapper.php';
 $mysqli = new db_wrapper('localhost', 'terashimayo', 'Yoyoyo444', 'terashimayo');
 if( $mysqli->connect_errno){
     echo 'Access Failed';//接続失敗

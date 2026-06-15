@@ -11,6 +11,7 @@
     </head>
     <body>
       <?php
+require_once 'db_wrapper.php';
         // error_reporting(-1);
         $mysqli = new db_wrapper('localhost', 'terashimayo', 'Yoyoyo444', 'terashimayo');
 

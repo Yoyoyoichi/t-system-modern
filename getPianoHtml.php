@@ -1,4 +1,5 @@
 ﻿<?php
+require_once 'db_wrapper.php';
 // ini_set('display_errors', "On");
 mb_language("ja");
 mb_internal_encoding('UTF-8');

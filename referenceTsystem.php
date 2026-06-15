@@ -114,6 +114,7 @@ td {
     <input
         type="text" id="DB_name"  name="DB_name"  class='textlines'
         value="<?php
+require_once 'db_wrapper.php';
             if (isset($_POST["DB_name"])) {echo $_POST["DB_name"];
         }?>"
         style='width: 50%; font-size: 40px;height:50px;'

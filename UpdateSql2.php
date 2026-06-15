@@ -55,6 +55,7 @@
   <form name ="mainform" action="" method="post">
     <input type="text"  class='textlines' class="textlines" id="DB_name" name = "DB_name"
       value = "<?php if (isset($_POST["DB_name"])) {echo $_POST["DB_name"];}?>" placeholder = "id"
+require_once 'db_wrapper.php';
       style='width: 40%; height :5vh; font-size: 24px;'/>
     <input type="submit" value="送信" class="textlines" style='background-color:#99FFFF;font-size: 22px;width: 20%; height: 70px'>
     <a id="previous" href="sample020.php">

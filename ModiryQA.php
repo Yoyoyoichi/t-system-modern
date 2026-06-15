@@ -49,6 +49,7 @@
 <body>
 <form name ="mainform" action="" method="post">
   <p><input type="text" id="DB_name"  name="DB_name" value="<?php if (isset($_POST["DB_name"])) {echo $_POST["DB_name"];}?>" style='width: 400px; font-size: 50px;height:80px;'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://terashimayo.s1008.xrea.com//UpdateSql.php"><font size="5" color="#00aa00">問題追加</font></a></p>
+require_once 'db_wrapper.php';
   <p><input type="submit" value="送信" style='font-size: 25px;width: 120px; height: 70px'></p>
 
 <?php
