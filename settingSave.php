@@ -27,10 +27,8 @@ $turnBlack = $pieces[18];
 
 
 // echo "addcorrect poorat is ".$poorat."\n"."\n";
-require_once __DIR__ . '/db_wrapper.php';
-		$mysqli = new db_wrapper();
-// require_once __DIR__ . '/db_wrapper.php';
-		$mysqli = new db_wrapper();
+$mysqli = new db_wrapper('localhost', 'terashimayo', 'Yoyoyo444', 'terashimayo');
+// $mysqli = new db_wrapper('localhost', 'root', 'yoichi41', 'terashimayo');
 if ($mysqli->connect_error) {error_log($mysqli->connect_error);exit;}
 
 //蝠城｡檎分蜿ｷ譛螟ｧ蛟､蜿門ｾ・
@@ -81,4 +79,3 @@ $result = $mysqli->query($str_sql);
 
 
 ?>
-

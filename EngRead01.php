@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
@@ -24,7 +24,7 @@ if (!"speechSynthesis" in window) {
     "Sorry. Your browser <strong>does not support</strong> speech synthesis."
   );
 } else {
-  $("#msg").html("👍Your browser supports speech synthesis.");
+  $("#msg").html("総Your browser supports speech synthesis.");
 }
 
 // Fetch the list of voices and populate the voice options.

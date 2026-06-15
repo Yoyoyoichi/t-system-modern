@@ -12,8 +12,7 @@ $pieces = $_POST["data"];
 
 
 // //蟆剰ｪｬ逡ｪ蜿ｷ險倬鹸
-require_once __DIR__ . '/db_wrapper.php';
-		$mysqli = new db_wrapper();
+$mysqli = new db_wrapper('localhost', 'terashimayo', 'Yoyoyo444', 'terashimayo');
 if ($mysqli->connect_error) {error_log($mysqli->connect_error);exit;}
 $mysqli->set_charset("utf8");
 $str = "Select answer1 From SentencePattern WHERE question like '%$pieces%'";
@@ -49,4 +48,3 @@ echo $reply[$i];
 
 mysqli_close($mysqli);
 ?>
-

@@ -143,7 +143,21 @@
 <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script> -->
 <script type="text/javascript" src="jquery-3.4.1.min.js"></script>
 
-
+<script src="midiChord.js"></script>
+<!-- shims -->
+<script src="./Basic.files/Base64.js" type="text/javascript"></script>
+<script src="./Basic.files/Base64binary.js" type="text/javascript"></script>
+<script src="./Basic.files/WebAudioAPI.js" type="text/javascript"></script>
+<!-- midi.js -->
+<script src="./Basic.files/audioDetect.js" type="text/javascript"></script>
+<script src="./Basic.files/gm.js" type="text/javascript"></script>
+<script src="./Basic.files/loader.js" type="text/javascript"></script>
+<script src="./Basic.files/plugin.audiotag.js" type="text/javascript"></script>
+<script src="./Basic.files/plugin.webaudio.js" type="text/javascript"></script>
+<script src="./Basic.files/plugin.webmidi.js" type="text/javascript"></script>
+<!-- utils -->
+<script src="./Basic.files/dom_request_xhr.js" type="text/javascript"></script>
+<script src="./Basic.files/dom_request_script.js" type="text/javascript"></script>
 <body>
 
 <form name ="mainform" id ="mainform"縲action="" method="post">
@@ -176,7 +190,9 @@
         <font size="4" color="#38a3ea">邨先棡繧ｰ繝ｩ繝・/font>
     </a>
     &nbsp;&nbsp;
-
+    <a id="ranking" href="ranking.php">
+        <font size="4" color="#38a3ea">繝ｩ繝ｳ繧ｭ繝ｳ繧ｰ</font>
+    </a>
     &nbsp;&nbsp;
     <a id="reminder" href="reminder.php">
         <font size="4" color="#38a3ea">蠕ｩ鄙・/font>
@@ -199,8 +215,7 @@
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
   if (!empty($_POST["DB_name"])) {
-    require_once __DIR__ . '/db_wrapper.php';
-		$mysqli = new db_wrapper();
+    $mysqli = new db_wrapper('localhost', 'terashimayo', 'Yoyoyo444', 'terashimayo');
     if( $mysqli->connect_errno){
         echo 'Access Failed';//謗･邯壼､ｱ謨・
         exit;
@@ -1047,8 +1062,7 @@ word-wrap:break-word;'></pre>
 
 <?php
   if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    require_once __DIR__ . '/db_wrapper.php';
-		$mysqli = new db_wrapper();
+    $mysqli = new db_wrapper('localhost', 'terashimayo', 'Yoyoyo444', 'terashimayo');
     if( $mysqli->connect_errno){
         echo 'Access Failed';//謗･邯壼､ｱ謨・
         exit;
@@ -4119,4 +4133,3 @@ document.addEventListener('keydown', function(event) {
 
 </body>
 </html>
-

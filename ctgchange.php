@@ -20,8 +20,7 @@ $category3 = explode("^", $pieces[3]);
 $category4 = explode("^", $pieces[4]);
 $category5 = explode("^", $pieces[5]);
 $searchCategory = $pieces[6];
-require_once __DIR__ . '/db_wrapper.php';
-		$mysqli = new db_wrapper();
+$mysqli = new db_wrapper('localhost', 'terashimayo', 'Yoyoyo444', 'terashimayo');
 
 // var_dump($category1);
 // var_dump($category2);
@@ -185,4 +184,3 @@ if($result->num_rows != 0 ){
 
 
 ?>
-

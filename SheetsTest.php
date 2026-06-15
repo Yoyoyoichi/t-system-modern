@@ -39,8 +39,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
   if (!empty($_POST["DB_name"])) {
     echo $_POST["DB_name"];
     echo "aaaa";
-    require_once __DIR__ . '/db_wrapper.php';
-		$mysqli = new db_wrapper();
+    $mysqli = new db_wrapper('localhost', 'terashimayo', 'Yoyoyo444', 'terashimayo');
     if( $mysqli->connect_errno){
         echo 'Access Failed';//謗･邯壼､ｱ謨・
         exit;
@@ -776,4 +775,3 @@ function createXmlHttpRequest()
 
 </script>
 </html>
-

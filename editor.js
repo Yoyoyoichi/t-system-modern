@@ -1,7 +1,7 @@
-var _MODE = (typeof window.ontouchstart == "undefined")? 'click' : 'touchstart';
+﻿var _MODE = (typeof window.ontouchstart == "undefined")? 'click' : 'touchstart';
 var _MODE_HOVER = (typeof window.ontouchstart == "undefined")? 'mouseover' : 'touchstart';
 
-// WYSIWYGクラス
+// WYSIWYG繧ｯ繝ｩ繧ｹ
 class C_Editor
 {
     constructor(id)
@@ -10,10 +10,10 @@ class C_Editor
         this.IconSet(id)
     }
 
-    // Quill起動
+    // Quill襍ｷ蜍・
     Init(id)
     {
-        // 表の大きさ指定用（最大７ｘ７マス）
+        // 陦ｨ縺ｮ螟ｧ縺阪＆謖・ｮ夂畑・域怙螟ｧ・暦ｽ假ｼ励・繧ｹ・・
         var tableopt = []
         for (let r = 1; r <= 7; r++)
         {
@@ -23,31 +23,31 @@ class C_Editor
             }
         }
 
-        // ツールバーに表示する機能
+        // 繝・・繝ｫ繝舌・縺ｫ陦ｨ遉ｺ縺吶ｋ讖溯・
         var tb_opt = [
-            // 見出し
+            // 隕句・縺・
             {'header': [1, 2, 3, false]},
-            // 太字、斜体、下線、打消線
+            // 螟ｪ蟄励∵万菴薙∽ｸ狗ｷ壹∵遠豸育ｷ・
             'bold', 'italic', 'underline', 'strike',
-            // 上／下付き文字
+            // 荳奇ｼ丈ｸ倶ｻ倥″譁・ｭ・
             {'script': 'super'}, {'script': 'sub'},
-            // 文字色、文字背景色
+            // 譁・ｭ苓牡縲∵枚蟄苓レ譎ｯ濶ｲ
             {'color': []}, {'background': []},
-            // リスト
+            // 繝ｪ繧ｹ繝・
             {'list': 'ordered'}, {'list': 'bullet'},
-            // 文字寄せ
+            // 譁・ｭ怜ｯ・○
             {'align': []},
-            // インデント
+            // 繧､繝ｳ繝・Φ繝・
             {'indent': '-1'}, {'indent': '+1'},
-            // コードブロック(インラインコードのアイコンと区別がつかないのでコードブロックのみ)
+            // 繧ｳ繝ｼ繝峨ヶ繝ｭ繝・け(繧､繝ｳ繝ｩ繧､繝ｳ繧ｳ繝ｼ繝峨・繧｢繧､繧ｳ繝ｳ縺ｨ蛹ｺ蛻･縺後▽縺九↑縺・・縺ｧ繧ｳ繝ｼ繝峨ヶ繝ｭ繝・け縺ｮ縺ｿ)
             'code-block',
-            // 数式
+            // 謨ｰ蠑・
             'formula',
-            // 表
+            // 陦ｨ
             {'Table-Input': tableopt},
-            //画像・動画挿入、URLリンク
+            //逕ｻ蜒上・蜍慕判謖ｿ蜈･縲ゞRL繝ｪ繝ｳ繧ｯ
             'image', 'video', 'link',
-            // 装飾の削除
+            // 陬・｣ｾ縺ｮ蜑企勁
             'clean',
         ];
 
@@ -62,7 +62,7 @@ class C_Editor
                                             container: tb_opt,
                                             handlers: {'Table-Input': () => {}}
                                         },
-                                        // 表
+                                        // 陦ｨ
                                         table: false,
                                         'better-table': {operationMenu: {}}
                                     }
@@ -71,7 +71,7 @@ class C_Editor
         return quill;
     }
 
-    // 表範囲の選択CSS
+    // 陦ｨ遽・峇縺ｮ驕ｸ謚曚SS
     TableSizeCSS()
     {
         var row = Number(this.dom.dataset.value.substring(9).split('_')[0]);
@@ -91,18 +91,18 @@ class C_Editor
         };
     }
 
-    // 表の挿入
+    // 陦ｨ縺ｮ謖ｿ蜈･
     TableDraw()
     {
         var row = Number(this.dataset.value.substring(9).split('_')[0]);
         var col = Number(this.dataset.value.substring(9).split('_')[1]);
 
-        // 表の挿入
+        // 陦ｨ縺ｮ謖ｿ蜈･
         var qbt = this.ed.getModule('better-table');
             qbt.insertTable(row, col);
     }
 
-    // 表のサイズ設定
+    // 陦ｨ縺ｮ繧ｵ繧､繧ｺ險ｭ螳・
     TableInit(dom)
     {
         var ed = this.editor;
@@ -110,15 +110,15 @@ class C_Editor
         var tabledoms = dom.childNodes[1].children;
             for (var tabledom of tabledoms)
             {
-                // クリック時の挙動
+                // 繧ｯ繝ｪ繝・け譎ゅ・謖吝虚
                 tabledom.addEventListener(_MODE, {ed:this.editor, dataset:tabledom.dataset, handleEvent:this.TableDraw});
 
-                //　マウスオーバー時の挙動
+                //縲繝槭え繧ｹ繧ｪ繝ｼ繝舌・譎ゅ・謖吝虚
                 tabledom.addEventListener(_MODE_HOVER, {dom:tabledom, handleEvent:this.TableSizeCSS});
             }
     }
 
-    // quillBetterTableアイコン表示＆動作設定
+    // quillBetterTable繧｢繧､繧ｳ繝ｳ陦ｨ遉ｺ・・虚菴懆ｨｭ螳・
     IconSet(id)
     {
         var dom = document.getElementById(id).parentNode.getElementsByClassName('ql-Table-Input')[0];
@@ -130,7 +130,7 @@ class C_Editor
 
 window.addEventListener('load', function()
 {
-    // Quillにquill-better-tableを登録
+    // Quill縺ｫquill-better-table繧堤匳骭ｲ
     Quill.register({
         'modules/better-table': window.quillBetterTable
     }, true);

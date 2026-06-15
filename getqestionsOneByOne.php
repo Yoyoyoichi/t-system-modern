@@ -64,8 +64,7 @@ var_dump($pieces);
 
 $categoryFlag = false;
 
-  require_once __DIR__ . '/db_wrapper.php';
-		$mysqli = new db_wrapper();
+  $mysqli = new db_wrapper('localhost', 'terashimayo', 'Yoyoyo444', 'terashimayo');
   if ($mysqli->connect_error) {error_log($mysqli->connect_error);exit;}
 
   //繝・ヵ繧ｩ繝ｫ繝域枚蟄励そ繝・ヨ繧定ｨｭ螳・
@@ -356,8 +355,7 @@ switch ($qlevel == "") {
 //   OR (REPLACE(pre_qdate,'-','') like '%$pieces[11]') or (REPLACE(pre_qdate,'-','') like '%$pieces[12]')
 //   OR (REPLACE(pre_qdate,'-','') = '%$halfanyearago')" ;//譛蛻昴↓繧・▲縺滓律縺悟ｿ伜唆譖ｲ邱壹・蝠城｡・
 
-//   require_once __DIR__ . '/db_wrapper.php';
-		$mysqli = new db_wrapper();
+//   $mysqli = new db_wrapper('localhost', 'terashimayo', 'Yoyoyo444', 'terashimayo');
 //   if ($mysqli->connect_error) {error_log($mysqli->connect_error);exit;}
 
 //   //繝・ヵ繧ｩ繝ｫ繝域枚蟄励そ繝・ヨ繧定ｨｭ螳・
@@ -460,8 +458,7 @@ switch ($qlevel == "") {
 // }else{
 //   // echo "else縺ｫ縺阪◆"."\n";
 //   echo $str_sql."\n";
-  // require_once __DIR__ . '/db_wrapper.php';
-		$mysqli = new db_wrapper();
+  // $mysqli = new db_wrapper('localhost', 'terashimayo', 'Yoyoyo444', 'terashimayo');
   // if ($mysqli->connect_error) {error_log($mysqli->connect_error);exit;}
 
   // //繝・ヵ繧ｩ繝ｫ繝域枚蟄励そ繝・ヨ繧定ｨｭ螳・
@@ -529,4 +526,3 @@ function console_log( $data ){
   echo '</script>';
 }
 ?>
-

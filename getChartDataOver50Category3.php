@@ -3,10 +3,8 @@ error_reporting(0);
 mb_language("ja");
 mb_internal_encoding('UTF-8');
 
-require_once __DIR__ . '/db_wrapper.php';
-		$mysqli = new db_wrapper();
-    // require_once __DIR__ . '/db_wrapper.php';
-		$mysqli = new db_wrapper();
+$mysqli = new db_wrapper('localhost', 'terashimayo', 'Yoyoyo444', 'terashimayo');
+    // $mysqli = new db_wrapper('localhost', 'root', 'yoichi41', 'terashimayo');
 // echo "getChartData 1"."\n"."\n";
 if( $mysqli->connect_errno){
     echo 'Access Failed';//謗･邯壼､ｱ謨・
@@ -61,4 +59,3 @@ echo $reply;
 // echo $row_cnt;
 
 ?>
-

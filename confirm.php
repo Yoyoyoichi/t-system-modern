@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
   <head>
     <meta charset="utf-8" />
@@ -11,9 +11,9 @@
       $title = $_POST['title'];
       $content = $_POST['content'];
       if(mb_send_mail($to, $title, $content)){
-        echo "メールを送信しました";
+        echo "繝｡繝ｼ繝ｫ繧帝∽ｿ｡縺励∪縺励◆";
       } else {
-        echo "メールの送信に失敗しました";
+        echo "繝｡繝ｼ繝ｫ縺ｮ騾∽ｿ｡縺ｫ螟ｱ謨励＠縺ｾ縺励◆";
       };
     ?>
   </body>

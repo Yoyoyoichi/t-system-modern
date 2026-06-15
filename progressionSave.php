@@ -10,8 +10,7 @@ $DB_name =  $pieces[0];
 $progression = $pieces[2];
 $song =  $pieces[1];
 
-require_once __DIR__ . '/db_wrapper.php';
-		$mysqli = new db_wrapper();
+$mysqli = new db_wrapper('localhost', 'terashimayo', 'Yoyoyo444', 'terashimayo');
 
 $song = $mysqli->real_escape_string($song);
 
@@ -54,4 +53,3 @@ if ($row_cnt==0) {
 
 
 ?>
-

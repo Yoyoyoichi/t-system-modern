@@ -12,8 +12,7 @@
     <body>
       <?php
         // error_reporting(-1);
-        require_once __DIR__ . '/db_wrapper.php';
-		$mysqli = new db_wrapper();
+        $mysqli = new db_wrapper('localhost', 'terashimayo', 'Yoyoyo444', 'terashimayo');
 
 
 
@@ -190,4 +189,3 @@
       </script>
     </body>
 </html>
-

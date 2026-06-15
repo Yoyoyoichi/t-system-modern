@@ -57,10 +57,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
   if (!empty($_POST["DB_name"])) {
 
 //    echo $_POST["DB_name"].",\n"."\n";//
-    require_once __DIR__ . '/db_wrapper.php';
-		$mysqli = new db_wrapper();
-    // require_once __DIR__ . '/db_wrapper.php';
-		$mysqli = new db_wrapper();
+    $mysqli = new db_wrapper('localhost', 'terashimayo', 'Yoyoyo444', 'terashimayo');
+    // $mysqli = new db_wrapper('localhost', 'root', 'yoichi41', 'terashimayo');
     /////
 //    echo "";
      if( $mysqli->connect_errno){
@@ -902,4 +900,3 @@ function listChange4(){
 
 </body>
 </html>
-

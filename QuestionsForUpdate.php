@@ -133,10 +133,8 @@ switch ($wordsearch == "") {
 
 }
 
-require_once __DIR__ . '/db_wrapper.php';
-		$mysqli = new db_wrapper();
-// require_once __DIR__ . '/db_wrapper.php';
-		$mysqli = new db_wrapper();
+$mysqli = new db_wrapper('localhost', 'terashimayo', 'Yoyoyo444', 'terashimayo');
+// $mysqli = new db_wrapper('localhost', 'root', 'yoichi41', 'terashimayo');
 if ($mysqli->connect_error) {error_log($mysqli->connect_error);exit;}
 
 //繝・ヵ繧ｩ繝ｫ繝域枚蟄励そ繝・ヨ繧定ｨｭ螳・
@@ -183,4 +181,3 @@ echo $reply2;
 mysqli_close($mysqli);
 
 ?>
-

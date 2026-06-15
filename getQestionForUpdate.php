@@ -17,10 +17,8 @@ $questionnumber = addslashes($pieces2[1]);
 
 $str_sql = "select * from $db_name where questionnumber = '$questionnumber'";
 // echo "str_sql is ".$str_sql."\n"."\n";/////
-require_once __DIR__ . '/db_wrapper.php';
-		$mysqli = new db_wrapper();
-// require_once __DIR__ . '/db_wrapper.php';
-		$mysqli = new db_wrapper();
+$mysqli = new db_wrapper('localhost', 'terashimayo', 'Yoyoyo444', 'terashimayo');
+// $mysqli = new db_wrapper('localhost', 'root', 'yoichi41', 'terashimayo');
 if ($mysqli->connect_error) {error_log($mysqli->connect_error);exit;}
 
 //繝・ヵ繧ｩ繝ｫ繝域枚蟄励そ繝・ヨ繧定ｨｭ螳・
@@ -120,4 +118,3 @@ else {
 
 mysqli_close($mysqli);
 ?>
-

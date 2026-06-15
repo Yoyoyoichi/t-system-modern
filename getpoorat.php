@@ -10,8 +10,7 @@ $questionnumber = $pieces[0];///
 $db_name =  $pieces[1];
 // $pieces = explode(".", $_POST["data"]);
 //print $_POST["data"];
-require_once __DIR__ . '/db_wrapper.php';
-		$mysqli = new db_wrapper();
+$mysqli = new db_wrapper('localhost', 'terashimayo', 'Yoyoyo444', 'terashimayo');
 
 // var_dump($pieces);
 if( $mysqli->connect_errno){
@@ -50,4 +49,3 @@ print  $reply;
 
 
 ?>
-

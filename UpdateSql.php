@@ -110,10 +110,8 @@
           $category2 = $_POST["category2"];
           $category3 = $_POST["category3"];
           // echo "<pre>  2.1  </pre>";
-          // require_once __DIR__ . '/db_wrapper.php';
-		$mysqli = new db_wrapper();
-          require_once __DIR__ . '/db_wrapper.php';
-		$mysqli = new db_wrapper();
+          // $mysqli = new db_wrapper('localhost', 'terashimayo', 'Yoyoyo444', 'terashimayo');
+          $mysqli = new db_wrapper($sqlhost, $sqluser, $sqlpass, $sqldtbs);
         if ($mysqli->connect_error) {error_log($mysqli->connect_error);exit;}
 
         // echo "<pre>  3  </pre>";
@@ -195,4 +193,3 @@
     ?>
   </body>
 </html>
-

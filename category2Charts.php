@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ja">
 <head>
   <title>Chart.js TEST</title>
@@ -9,34 +9,34 @@
 </style>
 <body>
   <a href="sample020.php">
-      <font size="5" color="#FF0000">学習画面</font>
+      <font size="5" color="#FF0000">蟄ｦ鄙堤判髱｢</font>
   </a>
 
   <a id="resultgraph" href="testJSCharts.php">
-      <font size="5" color="#38a3ea">大カテゴリー</font>
+      <font size="5" color="#38a3ea">螟ｧ繧ｫ繝・ざ繝ｪ繝ｼ</font>
   </a>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.2.1/Chart.js"></script>
 
   <p>
-  <canvas id="myChart4"style="min-width: 400px; max-width: 1500px">お使いのブラウザはcanvasに対応していません。</canvas>
+  <canvas id="myChart4"style="min-width: 400px; max-width: 1500px">縺贋ｽｿ縺・・繝悶Λ繧ｦ繧ｶ縺ｯcanvas縺ｫ蟇ｾ蠢懊＠縺ｦ縺・∪縺帙ｓ縲・/canvas>
   <br>
   <br>
   <br>
-  <canvas id="myChart3"style="min-width: 400px; max-width: 1500px">お使いのブラウザはcanvasに対応していません。</canvas>
+  <canvas id="myChart3"style="min-width: 400px; max-width: 1500px">縺贋ｽｿ縺・・繝悶Λ繧ｦ繧ｶ縺ｯcanvas縺ｫ蟇ｾ蠢懊＠縺ｦ縺・∪縺帙ｓ縲・/canvas>
   <br>
   <br>
   <br>
-  <canvas id="myChart2"style="min-width: 400px; max-width: 1500px">お使いのブラウザはcanvasに対応していません。</canvas>
+  <canvas id="myChart2"style="min-width: 400px; max-width: 1500px">縺贋ｽｿ縺・・繝悶Λ繧ｦ繧ｶ縺ｯcanvas縺ｫ蟇ｾ蠢懊＠縺ｦ縺・∪縺帙ｓ縲・/canvas>
   <br>
   <br>
   <br>
 
-  <canvas id="myChart5"style="min-width: 400px; max-width: 1500px">お使いのブラウザはcanvasに対応していません。</canvas>
+  <canvas id="myChart5"style="min-width: 400px; max-width: 1500px">縺贋ｽｿ縺・・繝悶Λ繧ｦ繧ｶ縺ｯcanvas縺ｫ蟇ｾ蠢懊＠縺ｦ縺・∪縺帙ｓ縲・/canvas>
   <br>
   <br>
   <br>
-  <canvas id="myChart"style="min-width: 400px; max-width: 1500px">お使いのブラウザはcanvasに対応していません。</canvas>
+  <canvas id="myChart"style="min-width: 400px; max-width: 1500px">縺贋ｽｿ縺・・繝悶Λ繧ｦ繧ｶ縺ｯcanvas縺ｫ蟇ｾ蠢懊＠縺ｦ縺・∪縺帙ｓ縲・/canvas>
   </p>
 
   <script>
@@ -57,7 +57,7 @@
     if(xmlhttp!=null)
     {
         // console.log(`1`);
-        xmlhttp.open("POST", "../getChartDataCategory2.php", false);//正解ボタンを押す
+        xmlhttp.open("POST", "../getChartDataCategory2.php", false);//豁｣隗｣繝懊ち繝ｳ繧呈款縺・
         xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
         var data="data="+moji;
         // console.log('testJSCharts data is '+data);
@@ -68,11 +68,11 @@
         gotcategory1_2 = res.split('^');
     }
 
-    var moji= DatabaseName　+ "^" + gotcategory1
+    var moji= DatabaseName縲+ "^" + gotcategory1
     var xmlhttp=createXmlHttpRequest();
     if(xmlhttp!=null)
     {
-        xmlhttp.open("POST", "../getChartDataOver50Category2.php", false);//正解ボタンを押す
+        xmlhttp.open("POST", "../getChartDataOver50Category2.php", false);//豁｣隗｣繝懊ち繝ｳ繧呈款縺・
         xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
         var data="data="+moji;
         // console.log('testJSCharts data is '+data);
@@ -82,11 +82,11 @@
         gotover50 = res.split('^');
     }
 
-    var moji= DatabaseName　+ "^" + gotcategory1
+    var moji= DatabaseName縲+ "^" + gotcategory1
     var xmlhttp=createXmlHttpRequest();
     if(xmlhttp!=null)
     {
-        xmlhttp.open("POST", "../getChartDataUnder50Category2.php", false);//正解ボタンを押す
+        xmlhttp.open("POST", "../getChartDataUnder50Category2.php", false);//豁｣隗｣繝懊ち繝ｳ繧呈款縺・
         xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
         var data="data="+moji;
         // console.log('testJSCharts data is '+data);
@@ -96,11 +96,11 @@
         gotUnder50 = res.split('^');
     }
 
-    var moji= DatabaseName　+ "^" + gotcategory1
+    var moji= DatabaseName縲+ "^" + gotcategory1
     var xmlhttp=createXmlHttpRequest();
     if(xmlhttp!=null)
     {
-        xmlhttp.open("POST", "../getChartData0Category2.php", false);//正解ボタンを押す
+        xmlhttp.open("POST", "../getChartData0Category2.php", false);//豁｣隗｣繝懊ち繝ｳ繧呈款縺・
         xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
         var data="data="+moji;
         // console.log('testJSCharts data is '+data);
@@ -110,12 +110,12 @@
         got0 = res.split('^');
     }
 
-    var moji= DatabaseName　+ "^" + gotcategory1
+    var moji= DatabaseName縲+ "^" + gotcategory1
     var xmlhttp=createXmlHttpRequest();
     if(xmlhttp!=null)
     {
 
-        xmlhttp.open("POST", "../getChartDataCorrectCategory2.php", false);//正解ボタンを押す
+        xmlhttp.open("POST", "../getChartDataCorrectCategory2.php", false);//豁｣隗｣繝懊ち繝ｳ繧呈款縺・
         xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
         var data="data="+moji;
         // console.log('testJSCharts data is '+data);
@@ -127,12 +127,12 @@
           // console.log(gotcorrect);
     }
 
-    var moji= DatabaseName　+ "^" + gotcategory1
+    var moji= DatabaseName縲+ "^" + gotcategory1
     var xmlhttp=createXmlHttpRequest();
     if(xmlhttp!=null)
     {
 
-        xmlhttp.open("POST", "../getChartDataIncorrectCategory2.php", false);//正解ボタンを押す
+        xmlhttp.open("POST", "../getChartDataIncorrectCategory2.php", false);//豁｣隗｣繝懊ち繝ｳ繧呈款縺・
         xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
         var data="data="+moji;
         // console.log('testJSCharts data is '+data);
@@ -142,13 +142,13 @@
         gotincorrect = res.split('^');
     }
 
-    var moji= DatabaseName　+ "^" + gotcategory1
+    var moji= DatabaseName縲+ "^" + gotcategory1
     // console.log('JScharts 141 moji is ' + moji);
     var xmlhttp=createXmlHttpRequest();
     if(xmlhttp!=null)
     {
 
-        xmlhttp.open("POST", "../getChartLevelCategory2.php", false);//正解ボタンを押す
+        xmlhttp.open("POST", "../getChartLevelCategory2.php", false);//豁｣隗｣繝懊ち繝ｳ繧呈款縺・
         xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
         var data="data="+moji;
         // console.log('getChartLevel data is '+data);
@@ -228,11 +228,11 @@
     }
     // console.log('gotUnder50_2 is ' + got0_2);
 
-    var moji= DatabaseName　+ "^" + gotcategory1
+    var moji= DatabaseName縲+ "^" + gotcategory1
     var xmlhttp=createXmlHttpRequest();
     if(xmlhttp!=null)
     {
-        xmlhttp.open("POST", "../getChartPoorCategory2.php", false);//正解ボタンを押す
+        xmlhttp.open("POST", "../getChartPoorCategory2.php", false);//豁｣隗｣繝懊ち繝ｳ繧呈款縺・
         xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
         var data="data="+moji;
         xmlhttp.send(data);
@@ -340,28 +340,28 @@
           options: {
               title: {
                   display: true,
-                  text: 'レベル', //グラフの見出し
+                  text: '繝ｬ繝吶Ν', //繧ｰ繝ｩ繝輔・隕句・縺・
                   fontSize: 30,
                   padding:3
               },
               scales: {
                   xAxes: [{
-                        stacked: true, //積み上げ棒グラフにする設定
-                        categoryPercentage:0.4 //棒グラフの太さ
+                        stacked: true, //遨阪∩荳翫￡譽偵げ繝ｩ繝輔↓縺吶ｋ險ｭ螳・
+                        categoryPercentage:0.4 //譽偵げ繝ｩ繝輔・螟ｪ縺・
                   }],
                   yAxes: [{
-                        stacked: true //積み上げ棒グラフにする設定
+                        stacked: true //遨阪∩荳翫￡譽偵げ繝ｩ繝輔↓縺吶ｋ險ｭ螳・
                   }]
               },
               legend: {
                   labels: {
                         boxWidth:30,
-                        padding:20 //凡例の各要素間の距離
+                        padding:20 //蜃｡萓九・蜷・ｦ∫ｴ髢薙・霍晞屬
                   },
                   display: true
               },
               tooltips:{
-                mode:'label' //マウスオーバー時に表示されるtooltip
+                mode:'label' //繝槭え繧ｹ繧ｪ繝ｼ繝舌・譎ゅ↓陦ｨ遉ｺ縺輔ｌ繧逆ooltip
               }
           }
       });
@@ -373,20 +373,20 @@
         data: {
             labels: gotcategory1_2,
             datasets: [{
-                label: "正解3回以上で正解率81%以上",
+                label: "豁｣隗｣3蝗樔ｻ･荳翫〒豁｣隗｣邇・1%莉･荳・,
                 borderWidth:1,
                 backgroundColor: "#4beded",
                 borderColor: "#4beded",
                 data: gotover50_2
             },
              {
-                label: "正解3回未満か正解率80%以下",
+                label: "豁｣隗｣3蝗樊悴貅縺区ｭ｣隗｣邇・0%莉･荳・,
                 borderWidth:1,
                 backgroundColor: "#1d3681",
                 borderColor: "#1d3681",
                 data: gotUnder50_2
             },{
-                label: "未回答",
+                label: "譛ｪ蝗樒ｭ・,
                 borderWidth:1,
                 backgroundColor: "#deefef",
                 borderColor: "#deefef",
@@ -397,28 +397,28 @@
         options: {
             title: {
                 display: true,
-                text: '比率', //グラフの見出し
+                text: '豈皮紫', //繧ｰ繝ｩ繝輔・隕句・縺・
                 fontSize: 30,
                 padding:3
             },
             scales: {
                 xAxes: [{
-                      stacked: true, //積み上げ棒グラフにする設定
-                      categoryPercentage:0.4 //棒グラフの太さ
+                      stacked: true, //遨阪∩荳翫￡譽偵げ繝ｩ繝輔↓縺吶ｋ險ｭ螳・
+                      categoryPercentage:0.4 //譽偵げ繝ｩ繝輔・螟ｪ縺・
                 }],
                 yAxes: [{
-                      stacked: true //積み上げ棒グラフにする設定
+                      stacked: true //遨阪∩荳翫￡譽偵げ繝ｩ繝輔↓縺吶ｋ險ｭ螳・
                 }]
             },
             legend: {
                 labels: {
                       boxWidth:30,
-                      padding:20 //凡例の各要素間の距離
+                      padding:20 //蜃｡萓九・蜷・ｦ∫ｴ髢薙・霍晞屬
                 },
                 display: true
             },
             tooltips:{
-              mode:'label' //マウスオーバー時に表示されるtooltip
+              mode:'label' //繝槭え繧ｹ繧ｪ繝ｼ繝舌・譎ゅ↓陦ｨ遉ｺ縺輔ｌ繧逆ooltip
             }
         }
     });
@@ -429,20 +429,20 @@
         data: {
             labels: gotcategory1_2,
             datasets: [{
-                label: "正解3回以上で正解率81%以上",
+                label: "豁｣隗｣3蝗樔ｻ･荳翫〒豁｣隗｣邇・1%莉･荳・,
                 borderWidth:1,
                 backgroundColor: "#4beded",
                 borderColor: "#4beded",
                 data: gotover50
             },
              {
-                label: "正解3回未満か正解率80%以下",
+                label: "豁｣隗｣3蝗樊悴貅縺区ｭ｣隗｣邇・0%莉･荳・,
                 borderWidth:1,
                 backgroundColor: "#1d3681",
                 borderColor: "#1d3681",
                 data: gotUnder50
             },{
-                label: "未回答",
+                label: "譛ｪ蝗樒ｭ・,
                 borderWidth:1,
                 backgroundColor: "#deefef",
                 borderColor: "#deefef",
@@ -453,28 +453,28 @@
         options: {
             title: {
                 display: true,
-                text: '集計', //グラフの見出し
+                text: '髮・ｨ・, //繧ｰ繝ｩ繝輔・隕句・縺・
                 fontSize: 30,
                 padding:3
             },
             scales: {
                 xAxes: [{
-                      stacked: true, //積み上げ棒グラフにする設定
-                      categoryPercentage:0.4 //棒グラフの太さ
+                      stacked: true, //遨阪∩荳翫￡譽偵げ繝ｩ繝輔↓縺吶ｋ險ｭ螳・
+                      categoryPercentage:0.4 //譽偵げ繝ｩ繝輔・螟ｪ縺・
                 }],
                 yAxes: [{
-                      stacked: true //積み上げ棒グラフにする設定
+                      stacked: true //遨阪∩荳翫￡譽偵げ繝ｩ繝輔↓縺吶ｋ險ｭ螳・
                 }]
             },
             legend: {
                 labels: {
                       boxWidth:30,
-                      padding:20 //凡例の各要素間の距離
+                      padding:20 //蜃｡萓九・蜷・ｦ∫ｴ髢薙・霍晞屬
                 },
                 display: true
             },
             tooltips:{
-              mode:'label' //マウスオーバー時に表示されるtooltip
+              mode:'label' //繝槭え繧ｹ繧ｪ繝ｼ繝舌・譎ゅ↓陦ｨ遉ｺ縺輔ｌ繧逆ooltip
             }
         }
     });
@@ -541,11 +541,11 @@
     var yesterdays2 = yesterdays.join('^');
 
     var gotcorrectdays = new Array();
-    var moji= DatabaseName　+ "^" + yesterdays2;
+    var moji= DatabaseName縲+ "^" + yesterdays2;
     var xmlhttp=createXmlHttpRequest();
     if(xmlhttp!=null)
     {
-        xmlhttp.open("POST", "../getChartDataCorrectDays.php", false);//正解ボタンを押す
+        xmlhttp.open("POST", "../getChartDataCorrectDays.php", false);//豁｣隗｣繝懊ち繝ｳ繧呈款縺・
         xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
         var data="data="+moji;
         // console.log('testJSCharts data is '+data);
@@ -556,11 +556,11 @@
     }
 
     var gotincorrectdays = new Array();
-    var moji= DatabaseName　+ "^" + yesterdays2;
+    var moji= DatabaseName縲+ "^" + yesterdays2;
     var xmlhttp=createXmlHttpRequest();
     if(xmlhttp!=null)
     {
-        xmlhttp.open("POST", "../getChartDataIncorrectDays.php", false);//正解ボタンを押す
+        xmlhttp.open("POST", "../getChartDataIncorrectDays.php", false);//豁｣隗｣繝懊ち繝ｳ繧呈款縺・
         xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
         var data="data="+moji;
         // console.log('testJSCharts data is '+data);
@@ -578,22 +578,22 @@
           data: {
               labels: yesterdays,
               datasets: [{
-                  label: "正解数",
+                  label: "豁｣隗｣謨ｰ",
                   fontSize: 25 ,
                   borderWidth:1,
-          //背景色
+          //閭梧勹濶ｲ
 		          backgroundColor: "rgba(75,192,192,0.4)",
-		          //枠線の色
+		          //譫邱壹・濶ｲ
 		          borderColor: "rgba(75,192,192,1)",
                   data: gotcorrectdays
               },
                {
-                  label: "不正解数",
+                  label: "荳肴ｭ｣隗｣謨ｰ",
                   fontSize: 25 ,
                   borderWidth:1,
-          //背景色
+          //閭梧勹濶ｲ
 		          backgroundColor: "rgba(75,192,90,0.4)",
-		          //枠線の色
+		          //譫邱壹・濶ｲ
 		          borderColor: "rgba(75,192,90,1)",
                   data: gotincorrectdays
               }]
@@ -602,28 +602,28 @@
           options: {
               title: {
                   display: true,
-                  text: '過去60日間', //グラフの見出し
+                  text: '驕主悉60譌･髢・, //繧ｰ繝ｩ繝輔・隕句・縺・
                   fontSize: 30,
                   padding:3
               },
               scales: {
                   xAxes: [{
-                        stacked: true, //積み上げ棒グラフにする設定
-                        categoryPercentage:0.4 //棒グラフの太さ
+                        stacked: true, //遨阪∩荳翫￡譽偵げ繝ｩ繝輔↓縺吶ｋ險ｭ螳・
+                        categoryPercentage:0.4 //譽偵げ繝ｩ繝輔・螟ｪ縺・
                   }],
                   yAxes: [{
-                        stacked: true //積み上げ棒グラフにする設定
+                        stacked: true //遨阪∩荳翫￡譽偵げ繝ｩ繝輔↓縺吶ｋ險ｭ螳・
                   }]
               },
               legend: {
                   labels: {
                         boxWidth:30,
-                        padding:20 //凡例の各要素間の距離
+                        padding:20 //蜃｡萓九・蜷・ｦ∫ｴ髢薙・霍晞屬
                   },
                   display: true
               },
               tooltips:{
-                mode:'label' //マウスオーバー時に表示されるtooltip
+                mode:'label' //繝槭え繧ｹ繧ｪ繝ｼ繝舌・譎ゅ↓陦ｨ遉ｺ縺輔ｌ繧逆ooltip
               }
           }
       });
@@ -634,63 +634,63 @@
             data: {
                 labels: gotcategory1_2,
                 datasets: [{
-                    label: "☆☆☆☆",
+                    label: "笘・・笘・・",
                     borderWidth:1,
                     backgroundColor: "#21ffff",
                     borderColor: "#21ffff",
                     data: good4
                 },
                  {
-                    label: "☆☆☆",
+                    label: "笘・・笘・,
                     borderWidth:1,
                     backgroundColor: "#20d2ff",
                     borderColor: "#20d2ff",
                     data: good3
                 },
                  {
-                   label: "☆☆",
+                   label: "笘・・",
                    borderWidth:1,
                    backgroundColor: "#20a2ff",
                    borderColor: "#20a2ff",
                    data: good2
                 },
                  {
-                    label: "☆",
+                    label: "笘・,
                     borderWidth:1,
                     backgroundColor: "#627fd6",
                     borderColor: "#627fd6",
                     data: good1
                 },
                  {
-                   label: "×",
+                   label: "ﾃ・,
                    borderWidth:1,
                    backgroundColor: "#4569d6",
                    borderColor: "#4569d6",
                    data: poor1
                },
                {
-                 label: "××",
+                 label: "ﾃ療・,
                  borderWidth:1,
                  backgroundColor: "#2d50ba",
                  borderColor: "#2d50ba",
                  data: poor2
                },
                {
-                 label: "×××",
+                 label: "ﾃ療療・,
                  borderWidth:1,
                  backgroundColor: "#1d3b96",
                  borderColor: "#1d3b96",
                  data: poor3
                },
                {
-                 label: "××××",
+                 label: "ﾃ療療療・,
                  borderWidth:1,
                  backgroundColor: "#0e2261",
                  borderColor: "#0e2261",
                  data: poor4
                },
                {
-                 label: "なし",
+                 label: "縺ｪ縺・,
                  borderWidth:1,
                  backgroundColor: "#deefef",
                  borderColor: "#deefef",
@@ -701,28 +701,28 @@
             options: {
                 title: {
                     display: true,
-                    text: '達成度', //グラフの見出し
+                    text: '驕疲・蠎ｦ', //繧ｰ繝ｩ繝輔・隕句・縺・
                     fontSize: 30,
                     padding:3
                 },
                 scales: {
                     xAxes: [{
-                          stacked: true, //積み上げ棒グラフにする設定
-                          categoryPercentage:0.4 //棒グラフの太さ
+                          stacked: true, //遨阪∩荳翫￡譽偵げ繝ｩ繝輔↓縺吶ｋ險ｭ螳・
+                          categoryPercentage:0.4 //譽偵げ繝ｩ繝輔・螟ｪ縺・
                     }],
                     yAxes: [{
-                          stacked: true //積み上げ棒グラフにする設定
+                          stacked: true //遨阪∩荳翫￡譽偵げ繝ｩ繝輔↓縺吶ｋ險ｭ螳・
                     }]
                 },
                 legend: {
                     labels: {
                           boxWidth:30,
-                          padding:20 //凡例の各要素間の距離
+                          padding:20 //蜃｡萓九・蜷・ｦ∫ｴ髢薙・霍晞屬
                     },
                     display: true
                 },
                 tooltips:{
-                  mode:'label' //マウスオーバー時に表示されるtooltip
+                  mode:'label' //繝槭え繧ｹ繧ｪ繝ｼ繝舌・譎ゅ↓陦ｨ遉ｺ縺輔ｌ繧逆ooltip
                 }
             }
         });

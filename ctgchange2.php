@@ -11,8 +11,7 @@ $questionnumber = $pieces[0];///
 // $DB_name =  $pieces[1];
 $db_name =  $pieces[0];
 $db_column = $pieces[1];
-require_once __DIR__ . '/db_wrapper.php';
-		$mysqli = new db_wrapper();
+$mysqli = new db_wrapper('localhost', 'terashimayo', 'Yoyoyo444', 'terashimayo');
 
 // var_dump($pieces);
 if( $mysql->connect_errno){
@@ -59,4 +58,3 @@ echo $reply2;
 
 
 ?>
-

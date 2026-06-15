@@ -9,8 +9,7 @@ $DB_name =  $pieces[0];///
 $novelNumber = $pieces[1];///
 $novel = $pieces[2];
 // echo $pieces[0];
-require_once __DIR__ . '/db_wrapper.php';
-		$mysqli = new db_wrapper();
+$mysqli = new db_wrapper('localhost', 'terashimayo', 'Yoyoyo444', 'terashimayo');
 
 
 if( $mysql->connect_errno){
@@ -32,4 +31,3 @@ $result = $result['sentence'];//
 // echo $query;
 echo $result;
 ?>
-

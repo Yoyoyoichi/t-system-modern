@@ -15,8 +15,7 @@ $questionnumbers = explode(",", $pieces[1]);
 // echo $db_name."\n";
 // var_dump ($questionnumbers); 
 
-require_once __DIR__ . '/db_wrapper.php';
-		$mysqli = new db_wrapper();
+$mysqli = new db_wrapper('localhost', 'terashimayo', 'Yoyoyo444', 'terashimayo');
 
 if( $mysqli->connect_errno){
     echo 'Access Failed';//謗･邯壼､ｱ謨・
@@ -276,4 +275,3 @@ echo $answer[0];
 
 mysqli_close($mysqli);
 ?>
-

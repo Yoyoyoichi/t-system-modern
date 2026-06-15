@@ -16,8 +16,7 @@ $getPastTime = $pieces[3];
 // echo "addcorrect poorat is ".$poorat."\n"."\n";
 $pieces = explode(".", $_POST["data"]);
 
-require_once __DIR__ . '/db_wrapper.php';
-		$mysqli = new db_wrapper();
+$mysqli = new db_wrapper('localhost', 'terashimayo', 'Yoyoyo444', 'terashimayo');
 
 
 if( $mysql->connect_errno){
@@ -164,4 +163,3 @@ if( $result = $mysqli->query($query) ){
 
 print  "豁｣隗｣ ".$reply." : 荳肴ｭ｣隗｣ ".$reply2;
 ?>
-
