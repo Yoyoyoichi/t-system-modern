@@ -8,11 +8,11 @@ class db_wrapper {
     public $error = "";
 
     public function __construct() {
-        // Supabase PostgreSQL接続情報
-        $host = "db.eqtxzxqvkprnmkiyczvv.supabase.co";
-        $port = "5432";
+        // Supabase PostgreSQL接続情報 (Connection Pooler: IPv4対応)
+        $host = "aws-0-ap-northeast-1.pooler.supabase.com";
+        $port = "6543";
         $dbname = "postgres";
-        $user = "postgres";
+        $user = "postgres.eqtxzxqvkprnmkiyczvv";
         // ==========================================
         // 【重要】ここにパスワードを設定してください
         // ==========================================
