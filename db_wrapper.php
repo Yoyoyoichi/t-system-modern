@@ -9,8 +9,8 @@ class db_wrapper {
 
     public function __construct() {
         // Supabase PostgreSQL接続情報 (Connection Pooler: IPv4対応)
-        $host = "aws-0-ap-northeast-1.pooler.supabase.com";
-        $port = "6543";
+        $host = "aws-1-ap-northeast-1.pooler.supabase.com";
+        $port = "5432";
         $dbname = "postgres";
         $user = "postgres.eqtxzxqvkprnmkiyczvv";
         // ==========================================
