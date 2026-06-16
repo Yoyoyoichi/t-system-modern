@@ -35,9 +35,10 @@
                 const supabaseClient = supabase.createClient(url, key);
 
                 // PostgreSQLは大文字小文字を区別するため、小文字でテストします
+                // カラム名は answer ではなく answer1 でした！
                 const { data, error } = await supabaseClient
                     .from('terashima01')
-                    .select('question, answer')
+                    .select('question, answer1')
                     .limit(1);
 
                 if (error) {
