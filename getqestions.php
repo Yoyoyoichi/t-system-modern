@@ -6,7 +6,7 @@ mb_internal_encoding('UTF-8');
 // echo "19bb"."\n"."\n";
 $pieces = explode(".", $_POST["data"]);
 var_dump($pieces);
-echo "\n"."\n";
+// echo "\n"."\n";
 
 
 // echo $DB."\n"."\n";
@@ -60,9 +60,9 @@ $poorat2 = $pieces[14];
 $wordsearch = $pieces[15];
 $qlevel = $pieces[16];
 $yesterday = $pieces[20];
-echo $category4."\n"."\n";
-echo $$operator1."\n"."\n";
-echo $criteria1."\n"."\n";
+// echo $category4."\n"."\n";
+// echo $$operator1."\n"."\n";
+// echo $criteria1."\n"."\n";
 if ($category4==="qdate") {
   if ($operator1==="="){
     $category4 = "pre_qdate";
@@ -109,7 +109,7 @@ if (is_array($category1)) {
 
 switch ($category2 == "" or $category2 == 'nul') {
     case true:
-        if($category2 == 'nul'){echo "3.11"."\n"."\n";}  //
+//         if($category2 == 'nul'){echo "3.11"."\n"."\n";}  //
         break;
     case false:
 
@@ -310,7 +310,7 @@ switch ($qlevel == "") {
 
 
 if ($yesterday == "true") {  
-    echo "a";
+//     echo "a";
     if ($categoryFlag) {
       $str_sql = $str_sql." And left(q_record,1) = '×'";//
       $categoryFlag = true;
@@ -323,7 +323,7 @@ if ($yesterday == "true") {
     
 }
 
-// echo $str_sql;/////
+// // echo $str_sql;/////
 $halfanyearago = date('Ymd', strtotime('-6 month'));
 if ($category4 == "qdate" and $category5 == "qdate" and $category6 == "qdate" and $operator1 == "=" and $operator2 == "=" and $operator3 == "=") {
   $str_sql = "select questionnumber from $db_name where (REPLACE(pre_qdate,'-','') like '%$pieces[10]')
@@ -356,7 +356,7 @@ if ($category4 == "qdate" and $category5 == "qdate" and $category6 == "qdate" an
 
   // echo "reply"."\n";
   // var_dump($reply);
-  // echo "\n"."\n";
+//   // echo "\n"."\n";
 
   $str_sql = "select questionnumber from $db_name where qdate = current_date" ;
 
@@ -376,7 +376,7 @@ if ($category4 == "qdate" and $category5 == "qdate" and $category6 == "qdate" an
 
   // echo "reply3"."\n";
   // var_dump($reply3);
-  // echo "\n"."\n";
+//   // echo "\n"."\n";
 
   if (!count($reply3)==0){
 
@@ -388,7 +388,7 @@ if ($category4 == "qdate" and $category5 == "qdate" and $category6 == "qdate" an
     // array_unshift($reply2, "");
     // echo "reply2"."\n";
     // var_dump($reply2);
-    // echo "\n"."\n";
+//     // echo "\n"."\n";
 
     $reply4 ="";
 
@@ -432,8 +432,8 @@ if ($category4 == "qdate" and $category5 == "qdate" and $category6 == "qdate" an
 
 }else{
   // echo "elseにきた"."\n";
-  echo $str_sql;
-  echo "\n"."\n";
+//   echo $str_sql;
+//   echo "\n"."\n";
   require_once __DIR__ . '/db_wrapper.php';
   if ($mysqli->connect_error) {error_log($mysqli->connect_error);exit;}
 
@@ -457,7 +457,7 @@ if ($category4 == "qdate" and $category5 == "qdate" and $category6 == "qdate" an
   }
   // echo "reply"."\n";
   // var_dump($reply);
-  // echo "\n"."\n";
+//   // echo "\n"."\n";
   $reply2 ="";
 
   for($i = 0; $i < count($reply); $i++){

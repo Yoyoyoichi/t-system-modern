@@ -6,7 +6,7 @@ mb_internal_encoding('UTF-8');
 // echo "19bb"."\n"."\n";
 $pieces = explode(".", $_POST["data"]);
 // var_dump($pieces);
-//echo "\n"."\n";
+// //echo "\n"."\n";
 
 
 // echo $DB."\n"."\n";
@@ -76,7 +76,7 @@ if (is_array($category1)) {
   // for 文
   // echo "count(category1) is ";
   // print_r(count($category1));
-  // echo "\n"."\n";
+//   // echo "\n"."\n";
 
   
   for($i = 0; $i < count($category1); $i++){
@@ -92,9 +92,9 @@ if (is_array($category1)) {
     $row_cnt = mysqli_num_rows($result);
     // echo "row_cnt is ".$row_cnt."\n"."\n";
     // $reply[] = "";
-    // echo "\n"."\n";
-    // echo $str_sql;/////
-    // echo "\n"."\n";
+//     // echo "\n"."\n";
+//     // echo $str_sql;/////
+//     // echo "\n"."\n";
     if( $result = $mysqli->query($str_sql) ){
         while($row = $result->fetch_assoc() ){
             $reply[] = $row['questionnumber'];/////
@@ -102,11 +102,11 @@ if (is_array($category1)) {
     } else {
         echo '問題がありません。';
     }
-    // echo "\n"."\n";
+//     // echo "\n"."\n";
     // echo "reply"."\n"."\n";
     // // var_dump($reply);
     // print_r($reply)."\n";
-    // echo "\n"."\n";
+//     // echo "\n"."\n";
   }
 //   $str_sql = $str_sql.")";
 //   $categoryFlag = true;
@@ -128,7 +128,7 @@ if (is_array($category1)) {
 
 switch ($category2 == "" or $category2 == 'nul') {
     case true:
-        // if($category2 == 'nul'){echo "3.11"."\n"."\n";}  //
+//         // if($category2 == 'nul'){echo "3.11"."\n"."\n";}  //
         break;
     case false:
 
@@ -146,9 +146,9 @@ switch ($category2 == "" or $category2 == 'nul') {
           $row_cnt = mysqli_num_rows($result);
           // echo "row_cnt is ".$row_cnt."\n"."\n";
           // $reply[] = "";
-          // echo "\n"."\n";
-          // echo $str_sql;/////
-          // echo "\n"."\n";
+//           // echo "\n"."\n";
+//           // echo $str_sql;/////
+//           // echo "\n"."\n";
           if( $result = $mysqli->query($str_sql) ){
               while($row = $result->fetch_assoc() ){
                   $reply[] = $row['questionnumber'];/////
@@ -156,11 +156,11 @@ switch ($category2 == "" or $category2 == 'nul') {
           } else {
               echo '問題がありません。';
           }
-          // echo "\n"."\n";
+//           // echo "\n"."\n";
           // echo "reply"."\n"."\n";
           // // var_dump($reply);
           // print_r($reply)."\n";
-          // echo "\n"."\n";
+//           // echo "\n"."\n";
         }
       } else {
   	    if ($categoryFlag) {
@@ -193,9 +193,9 @@ switch ($category3 == "" or $category3 == 'nul') {
         $row_cnt = mysqli_num_rows($result);
         // echo "row_cnt is ".$row_cnt."\n"."\n";
         // $reply[] = "";
-        // echo "\n"."\n";
-        // echo $str_sql;/////
-        // echo "\n"."\n";
+//         // echo "\n"."\n";
+//         // echo $str_sql;/////
+//         // echo "\n"."\n";
         if( $result = $mysqli->query($str_sql) ){
             while($row = $result->fetch_assoc() ){
                 $reply[] = $row['questionnumber'];/////
@@ -203,11 +203,11 @@ switch ($category3 == "" or $category3 == 'nul') {
         } else {
             echo '問題がありません。';
         }
-        // echo "\n"."\n";
+//         // echo "\n"."\n";
         // echo "reply"."\n"."\n";
         // // var_dump($reply);
         // print_r($reply)."\n";
-        // echo "\n"."\n";
+//         // echo "\n"."\n";
       }
     //   $str_sql = $str_sql.")";
     //   $categoryFlag = true;
@@ -353,25 +353,25 @@ switch ($qlevel == "") {
   $reply2 ="";
 
   for($i = 0; $i < count($reply); $i++){
-    // echo "\n"."\n";
+//     // echo "\n"."\n";
     // echo $i;
-    // echo "\n"."\n";
+//     // echo "\n"."\n";
     if ($i == 0) {
       $reply2= $reply[$i];
       // echo "reply2"."\n";
       // print_r($reply2);
-      // echo "\n"."\n";
+//       // echo "\n"."\n";
     } else {
       $reply2 = $reply2.",".$reply[$i];
       // echo "reply2"."\n";
       // print_r($reply2);
-      // echo "\n"."\n";
+//       // echo "\n"."\n";
     }
   }
 
   // echo "reply2"."\n";
   // var_dump($reply2);
-  // echo "\n"."\n";
+//   // echo "\n"."\n";
   echo "^^^";
   if (count($reply) == 1) {
     echo $reply[1];
