@@ -1,3 +1,4 @@
+<?php error_reporting(0); ?>
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -3432,7 +3433,7 @@ function parseStrToBoolean(str) {
 }
 
 var selectElement = document.getElementById("novelSelect");
-var novels = "<?php echo $novelsArray; ?>";　// 変数受け渡し。
+var novels = "<?php echo isset($novelsArray) ? $novelsArray : ''; ?>";　// 変数受け渡し。
 novels = novels.split(",", -1);　// bb_csvをsplit()でカンマ区切り配列に再編成。
 for(var i = 1; i < novels.length; i ++){
   var option = document.createElement("option");
@@ -3443,7 +3444,7 @@ for(var i = 1; i < novels.length; i ++){
 
 
 
-var response = '<?php echo $response;?>';
+var response = '<?php echo isset($response) ? $response : ''; ?>';
 response = response.split('^');
 // console.log('response is '+response);
 if (response[0]) {
