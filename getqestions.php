@@ -5,7 +5,7 @@ mb_internal_encoding('UTF-8');
 
 // echo "19bb"."\n"."\n";
 $pieces = explode(".", $_POST["data"]);
-var_dump($pieces);
+// var_dump($pieces);
 // echo "\n"."\n";
 
 
@@ -79,7 +79,7 @@ if ($category5==="qdate") {
 }
 
 
-// var_dump($pieces);
+// // var_dump($pieces);
 // echo "category1 is ".$category1."\n"."\n";
 
 $categoryFlag = false;
@@ -340,7 +340,7 @@ if ($category4 == "qdate" and $category5 == "qdate" and $category6 == "qdate" an
 
 
   $result = $mysqli->query($str_sql);
-  // //var_dump($result);
+  // //// var_dump($result);
   $row_cnt = mysqli_num_rows($result);
 
   $reply[] = "";
@@ -355,7 +355,7 @@ if ($category4 == "qdate" and $category5 == "qdate" and $category6 == "qdate" an
   }
 
   // echo "reply"."\n";
-  // var_dump($reply);
+  // // var_dump($reply);
 //   // echo "\n"."\n";
 
   $str_sql = "select questionnumber from $db_name where qdate = current_date" ;
@@ -375,7 +375,7 @@ if ($category4 == "qdate" and $category5 == "qdate" and $category6 == "qdate" an
   }
 
   // echo "reply3"."\n";
-  // var_dump($reply3);
+  // // var_dump($reply3);
 //   // echo "\n"."\n";
 
   if (!count($reply3)==0){
@@ -387,7 +387,7 @@ if ($category4 == "qdate" and $category5 == "qdate" and $category6 == "qdate" an
     $reply2 = array_values($reply2);
     // array_unshift($reply2, "");
     // echo "reply2"."\n";
-    // var_dump($reply2);
+    // // var_dump($reply2);
 //     // echo "\n"."\n";
 
     $reply4 ="";
@@ -442,7 +442,7 @@ if ($category4 == "qdate" and $category5 == "qdate" and $category6 == "qdate" an
   $row = "";
 
   $result = $mysqli->query($str_sql);
-  // //var_dump($result);
+  // //// var_dump($result);
   $row_cnt = mysqli_num_rows($result);
   // echo "row_cnt is ".$row_cnt."\n"."\n";
   $reply[] = "";
@@ -456,7 +456,7 @@ if ($category4 == "qdate" and $category5 == "qdate" and $category6 == "qdate" an
     echo '問題がありません。';
   }
   // echo "reply"."\n";
-  // var_dump($reply);
+  // // var_dump($reply);
 //   // echo "\n"."\n";
   $reply2 ="";
 
@@ -471,7 +471,7 @@ if ($category4 == "qdate" and $category5 == "qdate" and $category6 == "qdate" an
   }
 
   // echo "reply2"."\n";
-  // var_dump($reply2);
+  // // var_dump($reply2);
   echo "^^^";
 
   if ($row_cnt == 1) {

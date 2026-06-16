@@ -5,7 +5,7 @@ mb_internal_encoding('UTF-8');
 
 // echo "19bb"."\n"."\n";
 $pieces = explode(".", $_POST["data"]);
-// var_dump($pieces);
+// // var_dump($pieces);
 // //echo "\n"."\n";
 
 
@@ -59,7 +59,7 @@ $db_name = $pieces[13];
 $poorat2 = $pieces[14];
 $wordsearch = $pieces[15];
 $qlevel = $pieces[16];
-var_dump($pieces);
+// var_dump($pieces);
 // echo "category1 is ".$category1."\n"."\n";
 
 $categoryFlag = false;
@@ -88,7 +88,7 @@ if (is_array($category1)) {
     $row = "";
 
     $result = $mysqli->query($str_sql);
-    // var_dump($result);
+    // // var_dump($result);
     $row_cnt = mysqli_num_rows($result);
     // echo "row_cnt is ".$row_cnt."\n"."\n";
     // $reply[] = "";
@@ -104,7 +104,7 @@ if (is_array($category1)) {
     }
 //     // echo "\n"."\n";
     // echo "reply"."\n"."\n";
-    // // var_dump($reply);
+    // // // var_dump($reply);
     // print_r($reply)."\n";
 //     // echo "\n"."\n";
   }
@@ -142,7 +142,7 @@ switch ($category2 == "" or $category2 == 'nul') {
           $row = "";
       
           $result = $mysqli->query($str_sql);
-          // var_dump($result);
+          // // var_dump($result);
           $row_cnt = mysqli_num_rows($result);
           // echo "row_cnt is ".$row_cnt."\n"."\n";
           // $reply[] = "";
@@ -158,7 +158,7 @@ switch ($category2 == "" or $category2 == 'nul') {
           }
 //           // echo "\n"."\n";
           // echo "reply"."\n"."\n";
-          // // var_dump($reply);
+          // // // var_dump($reply);
           // print_r($reply)."\n";
 //           // echo "\n"."\n";
         }
@@ -189,7 +189,7 @@ switch ($category3 == "" or $category3 == 'nul') {
         $row = "";
     
         $result = $mysqli->query($str_sql);
-        // var_dump($result);
+        // // var_dump($result);
         $row_cnt = mysqli_num_rows($result);
         // echo "row_cnt is ".$row_cnt."\n"."\n";
         // $reply[] = "";
@@ -205,7 +205,7 @@ switch ($category3 == "" or $category3 == 'nul') {
         }
 //         // echo "\n"."\n";
         // echo "reply"."\n"."\n";
-        // // var_dump($reply);
+        // // // var_dump($reply);
         // print_r($reply)."\n";
 //         // echo "\n"."\n";
       }
@@ -370,7 +370,7 @@ switch ($qlevel == "") {
   }
 
   // echo "reply2"."\n";
-  // var_dump($reply2);
+  // // var_dump($reply2);
 //   // echo "\n"."\n";
   echo "^^^";
   if (count($reply) == 1) {

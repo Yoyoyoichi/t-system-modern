@@ -116,8 +116,6 @@ if (!function_exists('mysqli_close')) {
         }
         return true;
     }
-}?>
-
-
+}
  = new db_wrapper();
 ?>
