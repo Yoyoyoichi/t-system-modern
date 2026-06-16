@@ -1089,6 +1089,10 @@ word-wrap:break-word;'></pre>
 
 
 <script type="text/javascript">
+const supabaseUrl = 'https://eqtxzxqvkprnmkiyczvv.supabase.co';
+const supabaseKey = 'sb_publishable_L9iiPiRICnSt60jLa_xT9A_dgTphJ2e';
+const supabaseClient = supabase.createClient(supabaseUrl, supabaseKey);
+
 async function myFetch(url, dataStr) {
     try {
         let response = await fetch(url, {
