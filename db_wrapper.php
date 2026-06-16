@@ -48,6 +48,9 @@ class db_wrapper {
         $sql = preg_replace('/(min\([^)]+\))/i', '$1 AS "$1"', $sql);
         $sql = preg_replace('/(count\([^)]+\))/i', '$1 AS "$1"', $sql);
 
+        // Fix PostgreSQL date comparison operator error by quoting raw integers
+        $sql = preg_replace('/(\b\w+\b)\s*([<>=!]+)\s*(?<!\')(\d+)(?!\')\b/i', "$1 $2 '$3'", $sql);
+
         try {
             // INSERT, UPDATE, DELETEの場合は影響行数を返すかtrueを返す
             if (preg_match('/^\s*(INSERT|UPDATE|DELETE|ALTER|DROP|CREATE)/i', $sql)) {
