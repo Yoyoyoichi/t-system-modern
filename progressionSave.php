@@ -1,4 +1,4 @@
-ï»¿<?php
+?<?php
 require_once 'db_wrapper.php';
 // error_reporting(0);
 mb_language("ja");
@@ -16,7 +16,7 @@ $mysqli = new db_wrapper('localhost', 'terashimayo', 'Yoyoyo444', 'terashimayo')
 $song = $mysqli->real_escape_string($song);
 
 if( $mysql->connect_errno){
-    echo 'Access Failed7';//æŽ¥ç¶šå¤±æ•—
+    echo 'Access Failed7';//Ú‘±Ž¸”s
     exit;
 }
 
@@ -40,13 +40,13 @@ if ($row_cnt==0) {
   echo $str_sql  ;
   $res = $mysqli->query($str_sql);
 } else {
-  //ãƒ‡ãƒ¼ã‚¿æ›´æ–°
+  //ƒf[ƒ^XV
   $sql = "UPDATE $DB_name SET
       progression = '$progression'
       WHERE songs = '$song'";
   echo "sql is ".$sql."\n"."\n";
 
-  // SQLå®Ÿè¡Œ
+  // SQLŽÀs
   $res = $mysqli->query($sql);
 }
 

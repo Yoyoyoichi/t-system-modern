@@ -1,4 +1,4 @@
-ï»¿<?php
+?<?php
 require_once 'db_wrapper.php';
 error_reporting(0);
 mb_language("ja");
@@ -19,7 +19,7 @@ $mysqli = new db_wrapper('localhost', 'terashimayo', 'Yoyoyo444', 'terashimayo')
 
 
 if( $mysql->connect_errno){
-    echo 'Access Failed7';//æŽ¥ç¶šå¤±æ•—
+    echo 'Access Failed7';//Ú‘±Ž¸”s
     exit;
 }
 
@@ -47,7 +47,7 @@ if( $row_cnt==0){
 //     $res = $mysqli->query($sql);
 //     // echo $sql."\n"."\n";
 // }
-//ãƒ‡ãƒ¼ã‚¿æ›´æ–°
+//ƒf[ƒ^XV
 $sql = "UPDATE $db_name SET
     incorrect = incorrect + 1,
     PCA = correct / (correct + incorrect) * 100,
@@ -58,7 +58,7 @@ $sql = "UPDATE $db_name SET
 
 echo "sql is ".$sql."\n"."\n";
 ///////////////////////////////////////////
-// SQLå®Ÿè¡Œ
+// SQLŽÀs
 $res = $mysqli->query($sql);
 
 
@@ -86,9 +86,9 @@ if( $row_cnt==0){
     $res = $mysqli->query($sql);
 }
 
-// //ãƒ‡ãƒ¼ã‚¿æ›´æ–°
+// //ƒf[ƒ^XV
 // $sql = "UPDATE $db_name SET
-//     q_record = CONCAT('â—‹', q_record)
+//     q_record = CONCAT('›', q_record)
 //     WHERE questionnumber = $questionnumber";
 
 // echo $sql."\n"."\n";
@@ -103,7 +103,7 @@ if( $row_cnt==0){
 // echo current_date;
 // echo "inarray ".in_array(current_date,$pre_qdate)."\n"."\n";
 
-// SQLå®Ÿè¡Œ
+// SQLŽÀs
 // $res = $mysqli->query($sql);
 // $current_date = current_date;
 
@@ -111,7 +111,7 @@ $sql = "update $db_name
     set
     q_record = (
     CASE WHEN  pre_qdate not like CONCAT(current_date,'%')
-    THEN CONCAT('Ã—', q_record)
+    THEN CONCAT('~', q_record)
     ELSE q_record
     END),
     incorrect2 = (
@@ -210,17 +210,17 @@ $row_cnt = mysqli_num_rows($res);
 if ($row_cnt>0) {
   $sql = "UPDATE A01tsystemrecord01 SET
       incorrect = incorrect + 1,      
-      CorrectRecord = CONCAT (CorrectRecord, 'Ã—'),
+      CorrectRecord = CONCAT (CorrectRecord, '~'),
       endTime = CURRENT_TIME(),
       totalTime = totalTime + '$getPastTime'
       WHERE qdate = current_date and id = '$db_name'";
   echo "sql is ".$sql."\n"."\n";
-  // SQLå®Ÿè¡Œ
+  // SQLŽÀs
   $res = $mysqli->query($sql);
 } else {
   $sql = "INSERT INTO A01tsystemrecord01 (id, incorrect, qdate,recordnumber) VALUES ('$db_name',1, current_date,$maxrecordnumber )";
   // echo "sql is ".$sql."\n"."\n";
-  // SQLå®Ÿè¡Œ
+  // SQLŽÀs
   $res = $mysqli->query($sql);
 }
 
@@ -245,6 +245,6 @@ if( $result = $mysqli->query($query) ){
 
 
 
-print  "æ­£è§£ ".$reply." : ä¸æ­£è§£ ".$reply2;
+print  "³‰ð ".$reply." : •s³‰ð ".$reply2;
 ?>
 

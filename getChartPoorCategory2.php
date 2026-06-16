@@ -1,4 +1,4 @@
-ï»¿<?php
+?<?php
 require_once 'db_wrapper.php';
 error_reporting(0);
 mb_language("ja");
@@ -8,7 +8,7 @@ $mysqli = new db_wrapper('localhost', 'terashimayo', 'Yoyoyo444', 'terashimayo')
     // $mysqli = new db_wrapper('localhost', 'root', 'yoichi41', 'terashimayo');
 // echo "getChartData 1"."\n"."\n";
 if( $mysqli->connect_errno){
-    echo 'Access Failed';//æŽ¥ç¶šå¤±æ•—
+    echo 'Access Failed';//Ú‘±Ž¸”s
     exit;
 }
 $pieces = explode("^", $_POST["data"]);
@@ -17,7 +17,7 @@ $db_name = $pieces[0];
 // echo "db_name is ".$db_name."\n"."\n";
 // $db_column = $pieces[1];
 
-//ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆæ–‡å­—ã‚»ãƒƒãƒˆã‚’è¨­å®š
+//ƒfƒtƒHƒ‹ƒg•¶ŽšƒZƒbƒg‚ðÝ’è
 $mysqli->set_charset("utf8");
 
 $row_cnt = count($pieces);

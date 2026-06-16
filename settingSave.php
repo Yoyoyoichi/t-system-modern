@@ -1,4 +1,4 @@
-ï»¿<?php
+?<?php
 require_once 'db_wrapper.php';
 error_reporting(0);
 mb_language("ja");
@@ -32,7 +32,7 @@ $mysqli = new db_wrapper('localhost', 'terashimayo', 'Yoyoyo444', 'terashimayo')
 // $mysqli = new db_wrapper('localhost', 'root', 'yoichi41', 'terashimayo');
 if ($mysqli->connect_error) {error_log($mysqli->connect_error);exit;}
 
-//å•é¡Œç•ªå·æœ€å¤§å€¤å–å¾—
+//–â‘è”Ô†Å‘å’lŽæ“¾
 $str_sql = "SELECT max(questionnumber) FROM $DB_name";
 $result = $mysqli->query($str_sql);
 $result2  = $result->fetch_assoc();

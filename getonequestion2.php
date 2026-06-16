@@ -1,4 +1,4 @@
-ï»¿<?php
+?<?php
 require_once 'db_wrapper.php';
 error_reporting(0);
 mb_language("ja");
@@ -15,7 +15,7 @@ $mysqli = new db_wrapper('localhost', 'terashimayo', 'Yoyoyo444', 'terashimayo')
 
 // var_dump($pieces);
 if( $mysqli->connect_errno){
-    echo 'Access Failed5';//æ¥ç¶šå¤±æ•—
+    echo 'Access Failed5';//Ú‘±¸”s
     exit;
 }
 
@@ -30,8 +30,8 @@ $pre_qdate= "";
 $imagefolder ="";
 if( $result = $mysqli->query($query) ){
     while($row = $result->fetch_assoc() ){
-        //1ãƒ¬ã‚³ãƒ¼ãƒ‰ãšã¤èª­ã¿è¾¼ã‚€
-        //nameåˆ—ã‚’è¡¨ç¤ºã™ã‚‹å ´åˆ
+        //1ƒŒƒR[ƒh‚¸‚Â“Ç‚İ‚Ş
+        //name—ñ‚ğ•\¦‚·‚éê‡
         $imagefolder = $row['imagefolder'];
         // echo ("pre_qdate is ").$pre_qdate."\n";
         $reply = $row["answer1"];
@@ -42,29 +42,29 @@ if( $result = $mysqli->query($query) ){
         }
          // $reply[] = $row["answer1"]."\n".$row["answer2"]."\n".$row["answer3"]."\n".$row["answer4"]."\n".$row["answer5"]."\n".$row["answer6"]."\n".$row["answer7"]."\n".$row["answer8"]."\n".$row["answer9"]."\n".$row["answer10"]."\n".$row["answer11"]."\n".$row["answer12"]."\n".$row["answer13"]."\n".$row["answer14"]."\n".$row["answer15"];
 //        var_dump( $replyy );
-// ã€€ã€€ã€€ã€€echo "Level".$row["q_level"]." ";
-    echo "Levelï¼š".$row["q_level"]." ";
+// @@@@echo "Level".$row["q_level"]." ";
+    echo "LevelF".$row["q_level"]." ";
     echo '<br>';
-    echo "æ­£è§£æ•°ï¼š".$row["correct2"]." ä¸æ­£è§£æ•°ï¼š".$row["incorrect2"];
+    echo "³‰ğ”F".$row["correct2"]." •s³‰ğ”F".$row["incorrect2"];
     echo '<br>';
-    echo "å‰å›ï¼š".substr($row['pre_qdate'],0,33);
+    echo "‘O‰ñF".substr($row['pre_qdate'],0,33);
     echo '<br>';
-    echo "è¨˜éŒ²ï¼š".$row['q_record']."^^^";
+    echo "‹L˜^F".$row['q_record']."^^^";
              // echo $reply[1]["q_record"];
 
     }
 }
 else {
-    echo 'å•é¡ŒãŒã‚ã‚Šã¾ã›ã‚“ã€‚';
+    echo '–â‘è‚ª‚ ‚è‚Ü‚¹‚ñB';
 }
 //print  $url;
 
 echo  $reply;
 echo $imagefolder;
-// echo "\n"."ã“ã“ä»¥é™ã¯ä»Šé–‹ç™ºä¸­"."\n"."ãƒ†ã‚¹ãƒˆãƒŠãƒ³ãƒãƒ¼ $testnumber";///aaaaaaã‚ã‚ã‚
-// print  "å•é¡Œæ•°ã¯ ".$row_cnt."\n";///ã‚ã‚ã‚
-//print  "ä¹±æ•° ".$url;
-//print "reply ã¯ ";
+// echo "\n"."‚±‚±ˆÈ~‚Í¡ŠJ”­’†"."\n"."ƒeƒXƒgƒiƒ“ƒo[ $testnumber";///aaaaaa‚ ‚ ‚ 
+// print  "–â‘è”‚Í ".$row_cnt."\n";///‚ ‚ ‚ 
+//print  "—” ".$url;
+//print "reply ‚Í ";
 
 
 //print "data";

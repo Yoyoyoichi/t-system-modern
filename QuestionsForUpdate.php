@@ -1,4 +1,4 @@
-ï»¿<?php
+?<?php
 require_once 'db_wrapper.php';
 error_reporting(0);
 mb_language("ja");
@@ -41,7 +41,7 @@ switch ($category1 == "" or $category1 == 'nul') {
 }
 switch ($category2 == "" or $category2 == 'nul') {
     case true:
-        // ãªã«ã‚‚ã—ãªã„
+        // ‚È‚É‚à‚µ‚È‚¢
         break;
     case false:
       if ($categoryFlag) {
@@ -98,7 +98,7 @@ switch ($category5 == "" or $category5 == 'nul') {
 switch ($wordsearch == "") {
     case true:
 //        echo "7.1"."\n"."\n";
-        // ãªã«ã‚‚ã—ãªã„
+        // ‚È‚É‚à‚µ‚È‚¢
         break;
     case !true:
 //      echo "7.2".$category6."\/"."\/";
@@ -138,7 +138,7 @@ $mysqli = new db_wrapper('localhost', 'terashimayo', 'Yoyoyo444', 'terashimayo')
 // $mysqli = new db_wrapper('localhost', 'root', 'yoichi41', 'terashimayo');
 if ($mysqli->connect_error) {error_log($mysqli->connect_error);exit;}
 
-//ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆæ–‡å­—ã‚»ãƒƒãƒˆã‚’è¨­å®š
+//ƒfƒtƒHƒ‹ƒg•¶ŽšƒZƒbƒg‚ðÝ’è
 $mysqli->set_charset("utf8");
 $row = "";
 
@@ -162,7 +162,7 @@ else {
     echo 'Run Failed3';
 }
 
-// for æ–‡
+// for •¶
 $reply2 ="";
 for($i = 1; $i <= $row_cnt; $i++){
     if ($i == 1) {

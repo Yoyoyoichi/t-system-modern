@@ -1,4 +1,4 @@
-ï»¿<?php
+?<?php
 require_once 'db_wrapper.php';
 // error_reporting(0);
 mb_language("ja");
@@ -7,7 +7,7 @@ mb_internal_encoding('UTF-8');
 $pieces = explode("^^", $_POST["data"]);
 // echo "modifyqa pieces is".$pieces."\n"."\n";
 // var_dump ($pieces);
-// for æ–‡
+// for •¶
 for($i = 0; $i < count($pieces); $i++){
   $pieces[$i] = addslashes($pieces[$i]);
 }
@@ -18,7 +18,7 @@ $mysqli = new db_wrapper('localhost', 'terashimayo', 'Yoyoyo444', 'terashimayo')
 // $mysqli = new db_wrapper('localhost', 'root', 'yoichi41', 'terashimayo');
 if ($mysqli->connect_error) {error_log($mysqli->connect_error);exit;}
 
-//ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆæ–‡å­—ã‚»ãƒƒãƒˆã‚’è¨­å®š
+//ƒfƒtƒHƒ‹ƒg•¶šƒZƒbƒg‚ğİ’è
 $mysqli->set_charset("utf8");
 
 $str_sql = "SELECT max(questionnumber) FROM  $pieces[45]";
@@ -75,7 +75,7 @@ if(!$pieces[44]=="")
   var_dump ($pieces);  
   echo "\n"."\n";
   echo "^^^^".$pieces[44];  
-  // SQLå®Ÿè¡Œ
+  // SQLÀs
   $res = $mysqli->query($sql);
 } else {
   $str_sql = "insert into $pieces[45]
@@ -105,7 +105,7 @@ if(!$pieces[44]=="")
 
 
 
-//ãƒ‡ãƒ¼ã‚¿æ›´æ–°
+//ƒf[ƒ^XV
 // $sql = "UPDATE $db_name SET
 //     question = '$modifiedquestion',
 //     answer1 = '$modifiedanswer'

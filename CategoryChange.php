@@ -1,4 +1,4 @@
-ï»¿<!DOCTYPE html>
+?<!DOCTYPE html>
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
@@ -43,7 +43,7 @@
 <form name ="mainform" action="" method="post">
   <p><input type="text" id="DB_name"  name="DB_name" value="<?php echo $_POST["DB_name"]?>" style='width: 400px; font-size: 50px;height:80px;'></p>
 require_once 'db_wrapper.php';
-  <p><input type="submit" value="é€ä¿¡" style='font-size: 25px;width: 120px; height: 70px'></p>
+  <p><input type="submit" value="‘—M" style='font-size: 25px;width: 120px; height: 70px'></p>
 
 <?php
 
@@ -55,7 +55,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     /////
 //    echo "";
     if( $mysql->connect_errno){
-        echo 'Access Failed';//æ¥ç¶šå¤±æ•—
+        echo 'Access Failed';//Ú‘±¸”s
         exit;
     }
 
@@ -64,11 +64,11 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $db_column = "category1";
 
 
-    //ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆæ–‡å­—ã‚»ãƒƒãƒˆã‚’è¨­å®š
+    //ƒfƒtƒHƒ‹ƒg•¶šƒZƒbƒg‚ğİ’è
     $mysqli->set_charset("utf8");
     $row = "";
     // echo "1".",\n"."\n";
-    //ãƒ‡ãƒ¼ã‚¿ãƒ™ãƒ¼ã‚¹ã‹ã‚‰æ­£è§£ä¸æ­£è§£ã®åˆè¨ˆã‚’å–å¾—
+    //ƒf[ƒ^ƒx[ƒX‚©‚ç³‰ğ•s³‰ğ‚Ì‡Œv‚ğæ“¾
     $str_sql = "SELECT sum(correct) FROM  $db_name";
     $result = $mysqli->query($str_sql);
     $test  = $result->fetch_assoc();
@@ -88,16 +88,16 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
 
 
-    echo "<p style='font-size:30px;color:#FF0000;'> æ­£è§£ã®åˆè¨ˆã¯ $test2 ã§ã™ã€‚ä¸æ­£è§£ã®åˆè¨ˆã¯ $test3 ã§ã™ã€‚ <br>
-    å‰å›ã¯ $test4 ã§ã—ãŸã€‚</p>";////<font size="5" color="#000000">å•ç›®</font>
+    echo "<p style='font-size:30px;color:#FF0000;'> ³‰ğ‚Ì‡Œv‚Í $test2 ‚Å‚·B•s³‰ğ‚Ì‡Œv‚Í $test3 ‚Å‚·B <br>
+    ‘O‰ñ‚Í $test4 ‚Å‚µ‚½B</p>";////<font size="5" color="#000000">–â–Ú</font>
 
     $today = date("Y/m/d");
     $target_day = $test4;
     if(strtotime($today) - strtotime($target_day) > 604800){
-      echo "<p> ã•ã¼ã£ã¦ã‚“ã˜ã‚ƒã­ãˆï¼ </p>"."\n";/////aaaa
+      echo "<p> ‚³‚Ú‚Á‚Ä‚ñ‚¶‚á‚Ë‚¦I </p>"."\n";/////aaaa
     }
 
-    //ãƒ‡ãƒ¼ã‚¿ãƒ™ãƒ¼ã‚¹å–å¾—
+    //ƒf[ƒ^ƒx[ƒXæ“¾
     $str_sql = "select $db_column from $db_name";
 //     echo $str_sql.",\n"."\n";//
     $result = $mysqli->query($str_sql);
@@ -122,7 +122,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $sampleSelectBox .= "</select>\n";
     echo "{$sampleSelectBox}";
 
-    //ãƒ‡ãƒ¼ã‚¿ãƒ™ãƒ¼ã‚¹å–å¾—
+    //ƒf[ƒ^ƒx[ƒXæ“¾
     $str_sql = "select category2 from $db_name";
     $result = $mysqli->query($str_sql);
 
@@ -145,7 +145,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     echo "{$sampleSelectBox}";
 
 
-    //ãƒ‡ãƒ¼ã‚¿ãƒ™ãƒ¼ã‚¹å–å¾—
+    //ƒf[ƒ^ƒx[ƒXæ“¾
     $str_sql = "select category3 from $db_name";
     $result = $mysqli->query($str_sql);
 
@@ -164,14 +164,14 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     for ( $i = -1; $i < $row_cnt; $i++ ) {
         $sampleSelectBox .= "\t<option value=\"{$response[$i]}\">{$response[$i]}</option>\n";
     }
-    $sampleSelectBox .= "</select>\n";//aaaaaaã‚ã‚ã‚
+    $sampleSelectBox .= "</select>\n";//aaaaaa‚ ‚ ‚ 
     echo "{$sampleSelectBox}";
 
 
 
 
   } else {
-    $err = "å…¥åŠ›ã•ã‚Œã¦ã„ãªã„é …ç›®ãŒã‚ã‚Šã¾ã™ã€‚";
+    $err = "“ü—Í‚³‚ê‚Ä‚¢‚È‚¢€–Ú‚ª‚ ‚è‚Ü‚·B";
   }
 }
 global $testnumber;
@@ -235,10 +235,10 @@ $testnumber = 0;
 
 <div class="questionbuttonbox" >
     <input type="checkbox" id = "qachange" style="font-size: 30px;">
-    <font size="5" color="#000000" ;>å•é¡Œ/è§£ç­”</font>&ensp; &ensp; &ensp;
+    <font size="5" color="#000000" ;>–â‘è/‰ğ“š</font>&ensp; &ensp; &ensp;
     <span style="font-size: 30px;" id="press-button">0</span>
-    <font size="5" color="#000000">å•ç›®</font>
-    <input type="button" name="botan" id="button01" onClick="sendRequest();"value="å•é¡Œ"
+    <font size="5" color="#000000">–â–Ú</font>
+    <input type="button" name="botan" id="button01" onClick="sendRequest();"value="–â‘è"
     style="position: absolute; left: 380px;width:200px;height:100px;font-size: 25px"><br>
 </div>
 
@@ -250,20 +250,20 @@ $testnumber = 0;
 <br>
 
 <div class="answerbuttonbox" >
-    <input type="button" name="botan" id="button01" onClick="sendRequest2();" value="è§£ç­”"
+    <input type="button" name="botan" id="button01" onClick="sendRequest2();" value="‰ğ“š"
     style="position: absolute; left: 380px;width:200px;height:100px; font-size: 25px"><br>
 </div>
 
 <TEXTAREA id="textareas2" style="width:570px;height:260px;" wrap="soft" style="font-size:50px;"></TEXTAREA>
 <div id ="div2" class="img-container--precedo">
-    <img id="mypic2" src=""ã€€>
+    <img id="mypic2" src=""@>
 </div>
 <br>
-<input type="button" name="botan" id="button01" onClick="sendRequest3();" value="æ­£è§£"
+<input type="button" name="botan" id="button01" onClick="sendRequest3();" value="³‰ğ"
 style="width:280px;height:100px; font-size: 25px">
-<input type="button" name="botan" id="button01" onClick="sendRequest4();" value="ä¸æ­£è§£"
+<input type="button" name="botan" id="button01" onClick="sendRequest4();" value="•s³‰ğ"
 style="width:280px;height:100px; font-size: 25px"><br>
-<!-- ã“ã“ã«HTMLã‚’æ›¸ãã™ã‚‹ -->
+<!-- ‚±‚±‚ÉHTML‚ğ‘‚­‚·‚é -->
 
 
 <script type="text/javascript">
@@ -302,20 +302,20 @@ style="width:280px;height:100px; font-size: 25px"><br>
        {
            // alert(flag1);
            if (flag1 == false){
-               xmlhttp.open("POST", "../getqestions.php", false);//ä¹±æ•°ã‚’å–å¾—
+               xmlhttp.open("POST", "../getqestions.php", false);//—”‚ğæ“¾
                xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
                var data="data="+moji;
                xmlhttp.send(data);
                var res=xmlhttp.responseText;
-               // alert("resã¯"+res);
+               // alert("res‚Í"+res);
                questionnumbers = res.split(',');
 
                //
 
 
-                /** é‡è¤‡ãƒã‚§ãƒƒã‚¯ç”¨é…åˆ— */
+                /** d•¡ƒ`ƒFƒbƒN—p”z—ñ */
 
-                /** æœ€å°å€¤ã¨æœ€å¤§å€¤ */
+                /** Å¬’l‚ÆÅ‘å’l */
                 max = questionnumbers.length-1;
              }
             // alert(questionnumbers);
@@ -334,7 +334,7 @@ style="width:280px;height:100px; font-size: 25px"><br>
             if (flag1 == false){
                 // alert(max);
                  randoms = [];
-                /** é‡è¤‡ãƒã‚§ãƒƒã‚¯ã—ãªãŒã‚‰ä¹±æ•°ä½œæˆ */
+                /** d•¡ƒ`ƒFƒbƒN‚µ‚È‚ª‚ç—”ì¬ */
                 for(i = min; i < max+1; i++){
                   while(true){
                     // alert(i);
@@ -372,7 +372,7 @@ style="width:280px;height:100px; font-size: 25px"><br>
         if(xmlhttp!=null)
         {
 
-            xmlhttp.open("POST", "../"+phpfile1, false);//ä¹±æ•°ã‚’ã‚‚ã¨ã«å•é¡Œã‚’å–å¾—
+            xmlhttp.open("POST", "../"+phpfile1, false);//—”‚ğ‚à‚Æ‚É–â‘è‚ğæ“¾
             xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
             var data="data="+moji;
     //        var dataa="data="+moji;
@@ -402,7 +402,7 @@ style="width:280px;height:100px; font-size: 25px"><br>
 
 
 
-        }ã€€
+        }@
     }
 
     function createXmlHttpRequest()
@@ -450,7 +450,7 @@ function sendRequest2()
     if(xmlhttp!=null)
     {
         // alert(phpfile2);
-        xmlhttp.open("POST", "../"ã€€+ phpfile2 , false);//ä¹±æ•°ã‚’ã‚‚ã¨ã«è§£ç­”ã‚’å–å¾—
+        xmlhttp.open("POST", "../"@+ phpfile2 , false);//—”‚ğ‚à‚Æ‚É‰ğ“š‚ğæ“¾
         xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
         var data="data="+moji;
         xmlhttp.send(data);
@@ -478,7 +478,7 @@ function sendRequest3()
     var xmlhttp=createXmlHttpRequest2();
     if(xmlhttp!=null)
     {
-        xmlhttp.open("POST", "../addcorrect.php", false);//æ­£è§£ãƒœã‚¿ãƒ³ã‚’æŠ¼ã™
+        xmlhttp.open("POST", "../addcorrect.php", false);//³‰ğƒ{ƒ^ƒ“‚ğ‰Ÿ‚·
         xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
         var data="data="+moji;
         xmlhttp.send(data);
@@ -496,7 +496,7 @@ function sendRequest4()
     var xmlhttp=createXmlHttpRequest2();
     if(xmlhttp!=null)
     {
-        xmlhttp.open("POST", "../addincorrect.php", false);//ä¸æ­£è§£ãƒœã‚¿ãƒ³ã‚’æŠ¼ã™
+        xmlhttp.open("POST", "../addincorrect.php", false);//•s³‰ğƒ{ƒ^ƒ“‚ğ‰Ÿ‚·
         xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
         var data="data="+moji;
         xmlhttp.send(data);
@@ -535,7 +535,7 @@ function createXmlHttpRequest2()
     return xmlhttp;
 }
 
-/** minä»¥ä¸Šmaxä»¥ä¸‹ã®æ•´æ•°å€¤ã®ä¹±æ•°ã‚’è¿”ã™ */
+/** minˆÈãmaxˆÈ‰º‚Ì®”’l‚Ì—”‚ğ•Ô‚· */
 function intRandom(min, max){
   return Math.floor( Math.random() * (max - min + 1)) + min;
 }

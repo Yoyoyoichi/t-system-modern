@@ -1,4 +1,4 @@
-ï»¿<!DOCTYPE html>
+?<!DOCTYPE html>
 <html lang="ja">
   <head>
     <meta charset="UTF-8">
@@ -30,9 +30,9 @@ require_once 'db_wrapper.php';
 
     ?>
 
-        <p><font size="10" color="#00aa00" style='position: absolute; left: 10vw; top: <?php echo $anstopPos1-6;?>vh;'>å•é¡Œè¿½åŠ </font>
+        <p><font size="10" color="#00aa00" style='position: absolute; left: 10vw; top: <?php echo $anstopPos1-6;?>vh;'>–â‘è’Ç‰Á</font>
           <a id="previous" href="sample020.php">
-            <font size="6" color="#FF0000" style='position: absolute; left: 33vw; top: <?php echo $anstopPos1-4;?>vh;'>å­¦ç¿’ç”»é¢</font>
+            <font size="6" color="#FF0000" style='position: absolute; left: 33vw; top: <?php echo $anstopPos1-4;?>vh;'>ŠwK‰æ–Ê</font>
           </a>
         </p>
         <form name ="mainform" action="" method="post">
@@ -42,7 +42,7 @@ require_once 'db_wrapper.php';
           style='position: absolute; left: <?php echo $ansleftPos1;?>vh; top: <?php echo $anstopPos1;?>vh;
           width: 40%; height :5vh; font-size: 24px;'/>
 
-        <input type="submit" value="é€ä¿¡"
+        <input type="submit" value="‘—M"
           style='position: absolute;
           top: <?php echo $anstopPos1 -5;?>vh;
           left:70%;
@@ -116,7 +116,7 @@ require_once 'db_wrapper.php';
         if ($mysqli->connect_error) {error_log($mysqli->connect_error);exit;}
 
         // echo "<pre>  3  </pre>";
-        //ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆæ–‡å­—ã‚»ãƒƒãƒˆã‚’è¨­å®š
+        //ƒfƒtƒHƒ‹ƒg•¶šƒZƒbƒg‚ğİ’è
         $mysqli->set_charset("utf8");
 
 
@@ -141,9 +141,9 @@ require_once 'db_wrapper.php';
         // echo "<pre>";
         // print_r($maxQuestionNumber);
         // echo "</pre>";
-        //ãƒ‡ãƒ¼ã‚¿ãƒ™ãƒ¼ã‚¹å–å¾—
+        //ƒf[ƒ^ƒx[ƒXæ“¾
         // $str_sql = "select question  from `MuAnki` ";
-        //æ¡ä»¶ã«è©²å½“ã™ã‚‹ãƒ‡ãƒ¼ã‚¿ãŒå­˜åœ¨ã—ãªã„æ™‚ã ã‘ç™»éŒ²ã™ã‚‹SQL
+        //ğŒ‚ÉŠY“–‚·‚éƒf[ƒ^‚ª‘¶İ‚µ‚È‚¢‚¾‚¯“o˜^‚·‚éSQL
 
         $qdate =2000-01-01;
         $correct = 0;
@@ -157,7 +157,7 @@ require_once 'db_wrapper.php';
         //         select '$question','$maxQuestionNumber','$answer1','$category1','$category2','$category3'
         //         where NOT EXISTS (select 1 from $database where question = '$question')";
 
-        // $str_sql = "INSERT INTO $database (question,questionnumber,answer1,category1,category2,category3)Â VALUES ('$question','$maxQuestionNumber','$answer1','$category1','$category2','$category3') SELECT questionÂ FROMÂ $databaseÂ WHERE NOT SELECT EXISTS(SELECT question FROM $database WHERE question = '$question')";
+        // $str_sql = "INSERT INTO $database (question,questionnumber,answer1,category1,category2,category3)?VALUES ('$question','$maxQuestionNumber','$answer1','$category1','$category2','$category3') SELECT question?FROM?$database?WHERE NOT SELECT EXISTS(SELECT question FROM $database WHERE question = '$question')";
 
         // $str_sql = "INSERT INTO $database (question,questionnumber,answer1,category1,category2,category3)  VALUES ('$question','$maxQuestionNumber','$answer1','$category1','$category2','$category3')";
         // echo "<pre>  $str_sql  </pre>";
@@ -171,7 +171,7 @@ require_once 'db_wrapper.php';
         //   var_dump($dat);
         //   echo "<br>";
         // }
-        //ãƒ‡ãƒ¼ã‚¿ãƒ™ãƒ¼ã‚¹åˆ‡æ–­
+        //ƒf[ƒ^ƒx[ƒXØ’f
         $sql = "ALTER TABLE $database CHANGE `q_record` `q_record` VARCHAR(1500) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '';";
         $res = $mysqli->query($sql);
         // print_r("sql is ".$sql)."\n";

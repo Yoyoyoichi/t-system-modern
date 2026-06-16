@@ -1,4 +1,4 @@
-ï»¿<!DOCTYPE html>
+?<!DOCTYPE html>
 <html>
   <head>
     <meta charset="utf-8" />
@@ -11,9 +11,9 @@
       $title = $_POST['title'];
       $content = $_POST['content'];
       if(mb_send_mail($to, $title, $content)){
-        echo "ãƒ¡ãƒ¼ãƒ«ã‚’é€ä¿¡ã—ã¾ã—ãŸ";
+        echo "ƒ[ƒ‹‚ð‘—M‚µ‚Ü‚µ‚½";
       } else {
-        echo "ãƒ¡ãƒ¼ãƒ«ã®é€ä¿¡ã«å¤±æ•—ã—ã¾ã—ãŸ";
+        echo "ƒ[ƒ‹‚Ì‘—M‚ÉŽ¸”s‚µ‚Ü‚µ‚½";
       };
     ?>
   </body>

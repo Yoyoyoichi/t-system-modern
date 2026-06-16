@@ -1,4 +1,4 @@
-ï»¿<?php
+?<?php
 require_once 'db_wrapper.php';
 error_reporting(0);
 mb_language("ja");
@@ -18,7 +18,7 @@ $mysqli = new db_wrapper('localhost', 'terashimayo', 'Yoyoyo444', 'terashimayo')
 
 
 if( $mysql->connect_errno){
-    echo 'Access Failed7';//æŽ¥ç¶šå¤±æ•—
+    echo 'Access Failed7';//Ú‘±Ž¸”s
     exit;
 }
 
@@ -27,7 +27,7 @@ $sql = "DELETE FROM $db_name WHERE questionnumber = $questionnumber";
 
 
 echo "sql is ".$sql."\n"."\n";
-// // SQLå®Ÿè¡Œ
+// // SQLŽÀs
 $res = $mysqli->query($sql);
 
 

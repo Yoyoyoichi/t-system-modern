@@ -1,4 +1,4 @@
-ï»¿<!DOCTYPE html>
+?<!DOCTYPE html>
 <head>
     <script src="https://cdn.jsdelivr.net/npm/leader-line@1.0.1/leader-line.min.js"></script>
     <style type="text/css">
@@ -25,17 +25,17 @@
 </head>
 <body>
     <div class="map">
-        <div class="main_comment" id="mc1">ãƒ¡ã‚¤ãƒ³ã‚³ãƒ¡ãƒ³ãƒˆ</div>
+        <div class="main_comment" id="mc1">ƒƒCƒ“ƒRƒƒ“ƒg</div>
         <div class="comments">
-            <div class="comment" id="c1">ã‚³ãƒ¡ãƒ³ãƒˆï¼‘</div>
-            <div class="comment" id="c2">ã‚³ãƒ¡ãƒ³ãƒˆï¼’</div>
+            <div class="comment" id="c1">ƒRƒƒ“ƒg‚P</div>
+            <div class="comment" id="c2">ƒRƒƒ“ƒg‚Q</div>
         </div>
-        <div class="main_comment" id="mc2">ãƒ¡ã‚¤ãƒ³ã‚³ãƒ¡ãƒ³ãƒˆ</div>
+        <div class="main_comment" id="mc2">ƒƒCƒ“ƒRƒƒ“ƒg</div>
         <div class="comments">
-            <div class="comment" id="c3">ã‚³ãƒ¡ãƒ³ãƒˆï¼‘</div>
-            <div class="comment" id="c4">ã‚³ãƒ¡ãƒ³ãƒˆï¼’</div>
+            <div class="comment" id="c3">ƒRƒƒ“ƒg‚P</div>
+            <div class="comment" id="c4">ƒRƒƒ“ƒg‚Q</div>
         </div>
-        <input class ="button" type="checkbox" id="arrowButton" value="çŸ¢å°" onclick='showArrows()' style="font-size: 20px;margin:2vh 0px 0px 2vh">
+        <input class ="button" type="checkbox" id="arrowButton" value="–îˆó" onclick='showArrows()' style="font-size: 20px;margin:2vh 0px 0px 2vh">
     </div>
     <script>
 

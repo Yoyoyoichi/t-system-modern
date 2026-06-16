@@ -1,4 +1,4 @@
-﻿<?php
+?<?php
 define('DSN','mysql:host=localhost;dbname=terashimayo');
 define('DB_USER','terashimayo');
 define('DB_PASSWORD','Yoyoyo444');

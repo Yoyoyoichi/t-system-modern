@@ -1,4 +1,4 @@
-ï»¿<?php
+?<?php
 require_once 'db_wrapper.php';
 error_reporting(0);
 mb_language("ja");
@@ -13,7 +13,7 @@ $mysqli = new db_wrapper('localhost', 'terashimayo', 'Yoyoyo444', 'terashimayo')
 
 
 if( $mysql->connect_errno){
-    echo 'Access Failed7';//æŽ¥ç¶šå¤±æ•—
+    echo 'Access Failed7';//Ú‘±Ž¸”s
     exit;
 }
 
@@ -21,7 +21,7 @@ $str_sql = "SELECT min(questionnumber) FROM $db_name";
 $result = $mysqli->query($str_sql);
 $test  = $result->fetch_assoc();
 $minimum = $test['min(questionnumber)'];
-// //ãƒ‡ãƒ¼ã‚¿æ›´æ–°
+// //ƒf[ƒ^XV
 $sql = "UPDATE $db_name SET
     information = '$information'
     WHERE questionnumber = $minimum";
@@ -29,7 +29,7 @@ $sql = "UPDATE $db_name SET
 $res = $mysqli->query($sql);
 
 echo "sql is ".$sql."\n"."\n";
-// // SQLå®Ÿè¡Œ
+// // SQLŽÀs
 $res = $mysqli->query($sql);
 
 

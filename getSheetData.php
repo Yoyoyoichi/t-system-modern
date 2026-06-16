@@ -1,4 +1,4 @@
-ï»¿<?php
+?<?php
 require_once 'db_wrapper.php';
 error_reporting(0);
 mb_language("ja");
@@ -78,7 +78,7 @@ $categories ="answer1,question,category1,category2,category3,category4,category5
 $categoryFlag = false;
 if (is_array($category1)) {
   $str_sql = "select $categories from $db_name where (category1 = '$category1[0]'";
-  // for æ–‡
+  // for •¶
   for($i = 1; $i < count($category1); $i++){
     $str_sql = $str_sql." OR category1 = '$category1[$i]'";
   }
@@ -108,7 +108,7 @@ switch ($category2 == "" or $category2 == 'nul') {
 
       if (is_array($category2)) {
         $str_sql = "select $categories from $db_name where (category2 = '$category2[0]'";
-        // for æ–‡
+        // for •¶
         for($i = 1; $i < count($category2); $i++){
           $str_sql = $str_sql." OR category2 = '$category2[$i]'";
         }
@@ -132,7 +132,7 @@ switch ($category3 == "" or $category3 == 'nul') {
 		//if else
     if (is_array($category3)) {
       $str_sql = "select $categories from $db_name where (category3 = '$category3[0]'";
-      // for æ–‡
+      // for •¶
       for($i = 1; $i < count($category3); $i++){
         $str_sql = $str_sql." OR category3 = '$category3[$i]'";
       }
@@ -155,7 +155,7 @@ switch ($category7 == "" or $category7 == 'nul') {
 		//if else
     if (is_array($category7)) {
       $str_sql = "select $categories from $db_name where (category4 = '$category7[0]'";
-      // for æ–‡
+      // for •¶
       for($i = 1; $i < count($category7); $i++){
         $str_sql = $str_sql." OR category4 = '$category7[$i]'";
       }
@@ -179,7 +179,7 @@ switch ($category8 == "" or $category8 == 'nul') {
   //if else
   if (is_array($category8)) {
     $str_sql = "select $categories from $db_name where (category5 = '$category8[0]'";
-    // for æ–‡
+    // for •¶
     for($i = 1; $i < count($category8); $i++){
       $str_sql = $str_sql." OR category5 = '$category8[$i]'";
     }
@@ -203,7 +203,7 @@ switch ($question == "" or $question == 'nul') {
   //if else
   if (is_array($question)) {
     $str_sql = "select $categories from $db_name where (question = '$question[0]'";
-    // for æ–‡
+    // for •¶
     for($i = 1; $i < count($question); $i++){
       $str_sql = $str_sql." OR question = '$question[$i]'";
     }
@@ -328,12 +328,12 @@ switch ($qlevel == "") {
 
 
 
-// echo "elseã«ããŸ"."\n";
+// echo "else‚É‚«‚½"."\n";
 echo $str_sql."\n";
 $mysqli = new db_wrapper('localhost', 'terashimayo', 'Yoyoyo444', 'terashimayo');
 if ($mysqli->connect_error) {error_log($mysqli->connect_error);exit;}
 
-//ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆæ–‡å­—ã‚»ãƒƒãƒˆã‚’è¨­å®š
+//ƒfƒtƒHƒ‹ƒg•¶šƒZƒbƒg‚ğİ’è
 $mysqli->set_charset("utf8");
 $row = array();
 
@@ -350,7 +350,7 @@ if( $result = $mysqli->query($str_sql) ){
     }
 }
 else {
-    echo 'å•é¡ŒãŒã‚ã‚Šã¾ã›ã‚“ã€‚1';
+    echo '–â‘è‚ª‚ ‚è‚Ü‚¹‚ñB1';
 }
 
 // echo "reply"."\n";
@@ -386,7 +386,7 @@ if( $result = $mysqli->query($str_sql) ){
     }
 }
 else {
-    echo 'å•é¡ŒãŒã‚ã‚Šã¾ã›ã‚“ã€‚2';
+    echo '–â‘è‚ª‚ ‚è‚Ü‚¹‚ñB2';
 }
 
 // echo "reply"."\n";
@@ -423,7 +423,7 @@ if( $result = $mysqli->query($str_sql) ){
     }
 }
 else {
-    echo 'å•é¡ŒãŒã‚ã‚Šã¾ã›ã‚“ã€‚3';
+    echo '–â‘è‚ª‚ ‚è‚Ü‚¹‚ñB3';
 }
 
 // echo "reply"."\n";
@@ -455,7 +455,7 @@ require_once('jsonconfig.php');
 require_once('jsonfunctions.php');
 
 mb_language("uni");
-mb_internal_encoding("utf-8"); //å†…éƒ¨æ–‡å­—ã‚³ãƒ¼ãƒ‰ã‚’å¤‰æ›´
+mb_internal_encoding("utf-8"); //“à•”•¶šƒR[ƒh‚ğ•ÏX
 mb_http_input("auto");
 mb_http_output("utf-8");
 $dbh = connectDb();

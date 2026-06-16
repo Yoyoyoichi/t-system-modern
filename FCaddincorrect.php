@@ -1,4 +1,4 @@
-ï»¿<?php
+?<?php
 require_once 'db_wrapper.php';
 error_reporting(0);
 mb_language("ja");
@@ -36,7 +36,7 @@ $mysqli = new db_wrapper('localhost', 'terashimayo', 'Yoyoyo444', 'terashimayo')
 
 
 if( $mysql->connect_errno){
-    echo 'Access Failed7';//æŽ¥ç¶šå¤±æ•—
+    echo 'Access Failed7';//Ú‘±Ž¸”s
     exit;
 }
 
@@ -64,7 +64,7 @@ if( $row_cnt==0){
 //     $res = $mysqli->query($sql);
 //     // echo $sql."\n"."\n";
 // }
-//ãƒ‡ãƒ¼ã‚¿æ›´æ–°
+//ƒf[ƒ^XV
 $sql = "UPDATE $db_name SET
     incorrect = incorrect + 1,
     PCA = correct / (correct + incorrect) * 100,
@@ -76,7 +76,7 @@ $sql = "UPDATE $db_name SET
 
 echo "sql is ".$sql."\n"."\n";
 ///////////////////////////////////////////
-// SQLå®Ÿè¡Œ
+// SQLŽÀs
 $res = $mysqli->query($sql);
 
 
@@ -110,7 +110,7 @@ $sql = "update $db_name
     set
     q_record = (
     CASE WHEN  pre_qdate not like CONCAT(current_date,'%')
-    THEN CONCAT('Ã—', q_record)
+    THEN CONCAT('~', q_record)
     ELSE q_record
     END)
     where questionnumber = $questionnumber";
@@ -205,12 +205,12 @@ if ($row_cnt>0) {
       incorrect = incorrect + 1
       WHERE qdate = current_date and id = '$db_name'";
   // echo "sql is ".$sql."\n"."\n";
-  // SQLå®Ÿè¡Œ
+  // SQLŽÀs
   $res = $mysqli->query($sql);
 } else {
   $sql = "INSERT INTO A01tsystemrecord01 (id, incorrect, qdate,recordnumber) VALUES ('$db_name',1, current_date,$maxrecordnumber )";
   // echo "sql is ".$sql."\n"."\n";
-  // SQLå®Ÿè¡Œ
+  // SQLŽÀs
   $res = $mysqli->query($sql);
 }
 
@@ -235,6 +235,6 @@ if( $result = $mysqli->query($query) ){
 
 
 
-print  "æ­£è§£ ".$reply." : ä¸æ­£è§£ ".$reply2;
+print  "³‰ð ".$reply." : •s³‰ð ".$reply2;
 ?>
 

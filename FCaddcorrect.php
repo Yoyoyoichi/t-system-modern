@@ -1,4 +1,4 @@
-ï»¿<?php
+?<?php
 require_once 'db_wrapper.php';
 error_reporting(0);
 mb_language("ja");
@@ -21,7 +21,7 @@ $mysqli = new db_wrapper('localhost', 'terashimayo', 'Yoyoyo444', 'terashimayo')
 
 
 if( $mysql->connect_errno){
-    echo 'Access Failed7';//æŽ¥ç¶šå¤±æ•—
+    echo 'Access Failed7';//Ú‘±Ž¸”s
     exit;
 }
 
@@ -29,7 +29,7 @@ if( $mysql->connect_errno){
 
 
 
-//ãƒ‡ãƒ¼ã‚¿æ›´æ–°
+//ƒf[ƒ^XV
 $sql = "UPDATE $db_name SET
     correct = correct +1,
     PCA = correct / (correct + incorrect) * 100,
@@ -39,7 +39,7 @@ $sql = "UPDATE $db_name SET
     WHERE questionnumber = $questionnumber";
 echo "sql is ".$sql."\n"."\n";
 //////////////////////
-// SQLå®Ÿè¡Œ
+// SQLŽÀs
 $res = $mysqli->query($sql);
 
 
@@ -47,7 +47,7 @@ $sql = "update $db_name
     set
     q_record = (
     CASE WHEN  pre_qdate not like CONCAT(current_date,'%')
-    THEN CONCAT('â—‹', q_record)
+    THEN CONCAT('›', q_record)
     ELSE q_record
     END)
     where questionnumber = $questionnumber";
@@ -96,18 +96,18 @@ $sql = "update $db_name
     (CASE
       WHEN pre_qdate = ''
         OR pre_qdate = null
-        OR (CHAR_LENGTH(q_record) = 1 AND q_record = 'Ã—' AND pre_qdate not like CONCAT(current_date,'%'))
-        OR (CHAR_LENGTH(q_record) = 1 AND q_record = 'â—‹' AND pre_qdate not like CONCAT(current_date,'%'))
-        OR (LEFT( q_record, 2 ) = 'â—‹Ã—' AND pre_qdate not like CONCAT(current_date,'%'))
-        OR (CHAR_LENGTH(q_record) = 2 AND q_record = 'â—‹â—‹' AND pre_qdate not like CONCAT(current_date,'%'))
-        OR (LEFT( q_record, 3 ) = 'â—‹â—‹Ã—' AND pre_qdate not like CONCAT(current_date,'%'))
-        OR (CHAR_LENGTH(q_record) = 3 AND q_record = 'â—‹â—‹â—‹' AND pre_qdate not like CONCAT(current_date,'%'))
-        OR (LEFT( q_record, 4 ) = 'â—‹â—‹â—‹Ã—' AND pre_qdate not like CONCAT(current_date,'%'))
-        OR (CHAR_LENGTH(q_record) = 4 AND q_record = 'â—‹â—‹â—‹â—‹' AND pre_qdate not like CONCAT(current_date,'%'))
-        OR (LEFT( q_record, 5 ) = 'â—‹â—‹â—‹â—‹Ã—' AND pre_qdate not like CONCAT(current_date,'%'))
-        OR (CHAR_LENGTH(q_record) = 5 AND q_record = 'â—‹â—‹â—‹â—‹â—‹' AND pre_qdate not like CONCAT(current_date,'%'))
-        OR (LEFT( q_record, 6 ) = 'â—‹â—‹â—‹â—‹â—‹Ã—' AND pre_qdate not like CONCAT(current_date,'%'))
-        OR (q_record like CONCAT('â—‹â—‹â—‹â—‹â—‹','%') AND pre_qdate not like CONCAT(current_date,'%'))
+        OR (CHAR_LENGTH(q_record) = 1 AND q_record = '~' AND pre_qdate not like CONCAT(current_date,'%'))
+        OR (CHAR_LENGTH(q_record) = 1 AND q_record = '›' AND pre_qdate not like CONCAT(current_date,'%'))
+        OR (LEFT( q_record, 2 ) = '›~' AND pre_qdate not like CONCAT(current_date,'%'))
+        OR (CHAR_LENGTH(q_record) = 2 AND q_record = '››' AND pre_qdate not like CONCAT(current_date,'%'))
+        OR (LEFT( q_record, 3 ) = '››~' AND pre_qdate not like CONCAT(current_date,'%'))
+        OR (CHAR_LENGTH(q_record) = 3 AND q_record = '›››' AND pre_qdate not like CONCAT(current_date,'%'))
+        OR (LEFT( q_record, 4 ) = '›››~' AND pre_qdate not like CONCAT(current_date,'%'))
+        OR (CHAR_LENGTH(q_record) = 4 AND q_record = '››››' AND pre_qdate not like CONCAT(current_date,'%'))
+        OR (LEFT( q_record, 5 ) = '››››~' AND pre_qdate not like CONCAT(current_date,'%'))
+        OR (CHAR_LENGTH(q_record) = 5 AND q_record = '›››››' AND pre_qdate not like CONCAT(current_date,'%'))
+        OR (LEFT( q_record, 6 ) = '›››››~' AND pre_qdate not like CONCAT(current_date,'%'))
+        OR (q_record like CONCAT('›››››','%') AND pre_qdate not like CONCAT(current_date,'%'))
       THEN q_level + 1
       ELSE q_level
     END)
@@ -159,12 +159,12 @@ if ($row_cnt>0) {
       correct = correct + 1
       WHERE qdate = current_date and id = '$db_name'";
   echo "sql is ".$sql."\n"."\n";
-  // SQLå®Ÿè¡Œ
+  // SQLŽÀs
   $res = $mysqli->query($sql);
 } else {
   $sql = "INSERT INTO A01tsystemrecord01 (id, correct, qdate,recordnumber) VALUES ('$db_name',1, current_date,$maxrecordnumber )";
   echo "sql is ".$sql."\n"."\n";
-  // SQLå®Ÿè¡Œ
+  // SQLŽÀs
   $res = $mysqli->query($sql);
 }
 
@@ -179,6 +179,6 @@ if( $result = $mysqli->query($query) ){
     }
 }
 
-print  "æ­£è§£ ".$reply." : ä¸æ­£è§£ ".$reply2;
+print  "³‰ð ".$reply." : •s³‰ð ".$reply2;
 ?>
 

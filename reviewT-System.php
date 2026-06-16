@@ -1,4 +1,4 @@
-ï»¿<!DOCTYPE html>
+?<!DOCTYPE html>
 <html lang="ja">
 <head>
 <script type="text/javascript"
@@ -46,7 +46,7 @@
       height: 30vh;
       text-align: center;
       border: 1px solid darkgray;
-      border-radius: 0.67em;   /* è§’ä¸¸ */
+      border-radius: 0.67em;   /* ŠpŠÛ */
 
       &:before {
       content: '';
@@ -61,15 +61,15 @@
     }
     .textlines {
       font-family: "SimHei";
-      border: 2px solid #0a0;  /* æ ç·š */
-      border-radius: 0.67em;   /* è§’ä¸¸ */
-      padding: 0.5em;          /* å†…å´ã®ä½™ç™½é‡ */
-      background-color: #ffccff;  /* èƒŒæ™¯è‰² */
+      border: 2px solid #0a0;  /* ˜gü */
+      border-radius: 0.67em;   /* ŠpŠÛ */
+      padding: 0.5em;          /* “à‘¤‚Ì—]”’—Ê */
+      background-color: #ffccff;  /* ”wŒiF */
       box-shadow: 0 3px 6px rgba(0, 0, 0, 0.25);
-      /*width: 20em;             /* æ¨ªå¹… */*/
-      /*height: 120px;           /* é«˜ã• */*/
-      /*font-size: 1em;          /* æ–‡å­—ã‚µã‚¤ã‚º */*/
-      line-height: 1.2;        /* è¡Œã®é«˜ã• */
+      /*width: 20em;             /* ‰¡• */*/
+      /*height: 120px;           /* ‚‚³ */*/
+      /*font-size: 1em;          /* •¶šƒTƒCƒY */*/
+      line-height: 1.2;        /* s‚Ì‚‚³ */
     }
     div.questionbuttonbox {
         width:97%; height:50px;
@@ -91,16 +91,16 @@
         margin:1vh; padding:0px;
     }
     #information{
-      font-family: "ï¼­ï¼³ ï¼°ã‚´ã‚·ãƒƒã‚¯";
-      border: 2px solid #0a0;  /* æ ç·š */
-      border-radius: 0.67em;   /* è§’ä¸¸ */
-      padding: 0.5em;          /* å†…å´ã®ä½™ç™½é‡ */
-      background-color: #ffccff;  /* èƒŒæ™¯è‰² */
+      font-family: "‚l‚r ‚oƒSƒVƒbƒN";
+      border: 2px solid #0a0;  /* ˜gü */
+      border-radius: 0.67em;   /* ŠpŠÛ */
+      padding: 0.5em;          /* “à‘¤‚Ì—]”’—Ê */
+      background-color: #ffccff;  /* ”wŒiF */
         box-shadow: 0 3px 6px rgba(0, 0, 0, 0.25);
-      /*width: 20em;             /* æ¨ªå¹… */*/
-      /*height: 120px;           /* é«˜ã• */*/
-      /*font-size: 1em;          /* æ–‡å­—ã‚µã‚¤ã‚º */*/
-      line-height: 1.2;        /* è¡Œã®é«˜ã• */
+      /*width: 20em;             /* ‰¡• */*/
+      /*height: 120px;           /* ‚‚³ */*/
+      /*font-size: 1em;          /* •¶šƒTƒCƒY */*/
+      line-height: 1.2;        /* s‚Ì‚‚³ */
     }
     div.bottomButtonBox{
 
@@ -112,9 +112,9 @@
       padding: 0.5em 1em;
       margin: 1%;
       color: #00BCD4;
-      background: #e4fcff;/*èƒŒæ™¯è‰²*/
+      background: #e4fcff;/*”wŒiF*/
       border-top: solid 6px #1dc1d6;
-      box-shadow: 0 3px 4px rgba(0, 0, 0, 0.32);/*å½±*/
+      box-shadow: 0 3px 4px rgba(0, 0, 0, 0.32);/*‰e*/
     }
 
 
@@ -153,35 +153,35 @@ require_once 'db_wrapper.php';
 
 </p>
  <p>
-    <input type="submit" value="é€ä¿¡" style='font-size: 25px;width: 20%; height: 120px'>
+    <input type="submit" value="‘—M" style='font-size: 25px;width: 20%; height: 120px'>
 
     <a id="previous" href="sample020.php">
-      <font size="6" color="#FF0000" style=''>å­¦ç¿’ç”»é¢</font>
+      <font size="6" color="#FF0000" style=''>ŠwK‰æ–Ê</font>
     </a>
     
     <br>
     <br>
     <br>
 	<div>
-		<input class ="button" type="button" name="Lv0" id="Lv0" onClick="levelZero()" value="ãƒ¬ãƒ™ãƒ«ã‚¼ãƒ­"
+		<input class ="button" type="button" name="Lv0" id="Lv0" onClick="levelZero()" value="ƒŒƒxƒ‹ƒ[ƒ"
 	  style=" width:15vw;height:150px; font-size: 20px">
-	  <input class ="button" type="button" name="Lv1" id="Lv1" onClick="levelOne()" value="ãƒ¬ãƒ™ãƒ«1"
+	  <input class ="button" type="button" name="Lv1" id="Lv1" onClick="levelOne()" value="ƒŒƒxƒ‹1"
 	  style=" width:15vw;height:150px; font-size: 20px">
-	  <input class ="button" type="button" name="Lv2" id="Lv2" onClick="levelTwo()" value="ãƒ¬ãƒ™ãƒ«2"
+	  <input class ="button" type="button" name="Lv2" id="Lv2" onClick="levelTwo()" value="ƒŒƒxƒ‹2"
 	  style=" width:15vw;height:150px; font-size: 20px">
-	  <input class ="button" type="button" name="Lv3" id="Lv3" onClick="levelThree()" value="ãƒ¬ãƒ™ãƒ«3"
+	  <input class ="button" type="button" name="Lv3" id="Lv3" onClick="levelThree()" value="ƒŒƒxƒ‹3"
 	  style=" width:15vw;height:150px; font-size: 20px">
-	  <input class ="button" type="button" name="Lv3" id="Lv4" onClick="levelFour()" value="ãƒ¬ãƒ™ãƒ«4"
+	  <input class ="button" type="button" name="Lv3" id="Lv4" onClick="levelFour()" value="ƒŒƒxƒ‹4"
 	  style=" width:15vw;height:150px; font-size: 20px"><br>
-	  <input class ="button" type="button" name="atLeastOne" id="atLeastOne" onClick="atLeastOneFunc()" value="å›ç­”æ¸ˆã¿"
+	  <input class ="button" type="button" name="atLeastOne" id="atLeastOne" onClick="atLeastOneFunc()" value="‰ñ“šÏ‚İ"
 	  style=" width:15vw;height:150px; font-size: 20px">
-	  <input class ="button" type="button" name="NotYet" id="NotYet" onClick="NotYetQuestion()" value="æœªå›ç­”"
+	  <input class ="button" type="button" name="NotYet" id="NotYet" onClick="NotYetQuestion()" value="–¢‰ñ“š"
 	  style=" width:15vw;height:150px; font-size: 20px">
-	  <input class ="button" type="button" name="yesterday" id="yesterday" onClick="yesterdayQuestion()" value="æ˜¨æ—¥"
+	  <input class ="button" type="button" name="yesterday" id="yesterday" onClick="yesterdayQuestion()" value="ğ“ú"
 	  style=" width:15vw;height:150px; font-size: 20px">
-	  <input class ="button" type="button" name="noToday" id="noToday" onClick="noTodayQuestion()" value="ä»Šæ—¥ã‚„ã£ã¦ãªã„"
+	  <input class ="button" type="button" name="noToday" id="noToday" onClick="noTodayQuestion()" value="¡“ú‚â‚Á‚Ä‚È‚¢"
 	    style=" width:15vw;height:150px; font-size: 20px;margin:5px 0px 0px 0px">
-	  <input class ="button"  type="button" name="U50" id="U50" onClick="UnderFifty()" value="50ï¼…ä»¥ä¸‹"
+	  <input class ="button"  type="button" name="U50" id="U50" onClick="UnderFifty()" value="50“ˆÈ‰º"
 	  style=" width:15vw;height:150px; font-size: 20px;margin:5px 0px 0px 0px">
 	  <div style="display:flex">
 
@@ -206,7 +206,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
   if (!empty($_POST["DB_name"])) {
     $mysqli = new db_wrapper('localhost', 'terashimayo', 'Yoyoyo444', 'terashimayo');
     if( $mysqli->connect_errno){
-        echo 'Access Failed';//æ¥ç¶šå¤±æ•—
+        echo 'Access Failed';//Ú‘±¸”s
         exit;
     }
 
@@ -216,10 +216,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $db_column = "category1";
 
 
-    //ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆæ–‡å­—ã‚»ãƒƒãƒˆã‚’è¨­å®š
+    //ƒfƒtƒHƒ‹ƒg•¶šƒZƒbƒg‚ğİ’è
     $mysqli->set_charset("utf8");
     $row = "";
-    //ãƒ‡ãƒ¼ã‚¿ãƒ™ãƒ¼ã‚¹ã‹ã‚‰æ­£è§£ä¸æ­£è§£ã®åˆè¨ˆã‚’å–å¾—
+    //ƒf[ƒ^ƒx[ƒX‚©‚ç³‰ğ•s³‰ğ‚Ì‡Œv‚ğæ“¾
     $str_sql = "SELECT sum(correct) FROM  $db_name";
     $result = $mysqli->query($str_sql);
     $test  = $result->fetch_assoc();
@@ -257,13 +257,13 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $test  = $result->fetch_assoc();
     $information = $test['information'];
     echo"<div id = 'massages' style='display:inline-flex;width:100vw'> ";
-    echo "<p style='font-size:20px;color:#FF0000;width:60vw;padding : 0px 0px 0px 0px;'> ã‚„ã£ãŸå•é¡Œæ•°ã®åˆè¨ˆã¯$testo ã§ã™ã€‚<br><br>
-    ä»Šæ—¥ã‚„ã£ãŸåˆè¨ˆã¯ $todayQuestonDone ã§ã™ã€‚<br><br>
-    æ­£è§£ã®åˆè¨ˆã¯ $test2 ã§ã™ã€‚<br><br>
-    ä¸æ­£è§£ã®åˆè¨ˆã¯ $test3 ã§ã™ã€‚ <br><br>
-    æ­£ç­”ç‡ã¯ $seitoritu ï¼…ã§ã™ã€‚<br><br>
-    å‰å›ã¯ $test4 ã§ã—ãŸã€‚ <br><br>
-    </p>"."\n"."\n";////<font size="5" color="#000000">å•ç›®</fsont>
+    echo "<p style='font-size:20px;color:#FF0000;width:60vw;padding : 0px 0px 0px 0px;'> ‚â‚Á‚½–â‘è”‚Ì‡Œv‚Í$testo ‚Å‚·B<br><br>
+    ¡“ú‚â‚Á‚½‡Œv‚Í $todayQuestonDone ‚Å‚·B<br><br>
+    ³‰ğ‚Ì‡Œv‚Í $test2 ‚Å‚·B<br><br>
+    •s³‰ğ‚Ì‡Œv‚Í $test3 ‚Å‚·B <br><br>
+    ³“š—¦‚Í $seitoritu “‚Å‚·B<br><br>
+    ‘O‰ñ‚Í $test4 ‚Å‚µ‚½B <br><br>
+    </p>"."\n"."\n";////<font size="5" color="#000000">–â–Ú</fsont>
     if (!($db_name==="AOI0501")) {
       echo "
       <div style='height:10vh;width:30vw;'>
@@ -286,10 +286,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $today = date("Y/m/d");
     $target_day = $test4;
     if(strtotime($today) - strtotime($target_day) > 604800){
-      echo "<pã€€style='font-size:40px;'> ã•ã¼ã£ã¦ã‚“ã˜ã‚ƒã­ãˆï¼ </p>"."\n";/////aaaa
+      echo "<p@style='font-size:40px;'> ‚³‚Ú‚Á‚Ä‚ñ‚¶‚á‚Ë‚¦I </p>"."\n";/////aaaa
     }
 
-    //ãƒ‡ãƒ¼ã‚¿ãƒ™ãƒ¼ã‚¹ã‹ã‚‰ã‚«ãƒ†ã‚´ãƒªãƒ¼1ã‚’å–å¾—
+    //ƒf[ƒ^ƒx[ƒX‚©‚çƒJƒeƒSƒŠ[1‚ğæ“¾
     $str_sql = "select $db_column from $db_name where question != 'settings'";
         // echo $str_sql.",\n"."\n";//
     $result = $mysqli->query($str_sql);
@@ -318,7 +318,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     echo "{$sampleSelectBox}";
 
-    //ãƒ‡ãƒ¼ã‚¿ãƒ™ãƒ¼ã‚¹ã‹ã‚‰ã‚«ãƒ†ã‚´ãƒªãƒ¼2ã‚’å–å¾—
+    //ƒf[ƒ^ƒx[ƒX‚©‚çƒJƒeƒSƒŠ[2‚ğæ“¾
     $str_sql = "select category2 from $db_name where question != 'settings'";
     $result = $mysqli->query($str_sql);
 
@@ -334,7 +334,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $row_cnt = count($response);
 
     $sampleSelectBox = "<select name=\"category2\" id='ctg2' onChange='listChange(this);listChanged()' multiple style='width:19%;height:15vh; font-size: 15px;margin:1px'>\n";
-    // $sampleSelectBox .= "\t<option value='' disabled selected style='display:none;' >ä¸­ã‚«ãƒ†ã‚´ãƒªãƒ¼</option>\n";
+    // $sampleSelectBox .= "\t<option value='' disabled selected style='display:none;' >’†ƒJƒeƒSƒŠ[</option>\n";
 
     // $sampleSelectBox .="\t<option value=""></option>\n";
     for ( $i = 1; $i < $row_cnt; $i++ ) {
@@ -344,7 +344,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     echo "{$sampleSelectBox}";
 
 
-    //ãƒ‡ãƒ¼ã‚¿ãƒ™ãƒ¼ã‚¹ã‹ã‚‰ã‚«ãƒ†ã‚´ãƒªãƒ¼3ã‚’å–å¾—
+    //ƒf[ƒ^ƒx[ƒX‚©‚çƒJƒeƒSƒŠ[3‚ğæ“¾
     $str_sql = "select category3 from $db_name where question != 'settings'";
     $result = $mysqli->query($str_sql);
 
@@ -367,7 +367,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $sampleSelectBox .= "</select>\n";//
     echo "{$sampleSelectBox}";
 
-    //ãƒ‡ãƒ¼ã‚¿ãƒ™ãƒ¼ã‚¹ã‹ã‚‰ã‚«ãƒ†ã‚´ãƒªãƒ¼4ã‚’å–å¾—
+    //ƒf[ƒ^ƒx[ƒX‚©‚çƒJƒeƒSƒŠ[4‚ğæ“¾
     $str_sql = "select category4 from $db_name where question != 'settings'";
     $result = $mysqli->query($str_sql);
 
@@ -390,7 +390,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $sampleSelectBox .= "</select>\n";//
     echo "{$sampleSelectBox}";
 
-    //ãƒ‡ãƒ¼ã‚¿ãƒ™ãƒ¼ã‚¹ã‹ã‚‰ã‚«ãƒ†ã‚´ãƒªãƒ¼5ã‚’å–å¾—
+    //ƒf[ƒ^ƒx[ƒX‚©‚çƒJƒeƒSƒŠ[5‚ğæ“¾
     $str_sql = "select category5 from $db_name where question != 'settings'";
     $result = $mysqli->query($str_sql);
 
@@ -427,7 +427,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     mysqli_close($mysqli);
 
   } else {
-    $err = "å…¥åŠ›ã•ã‚Œã¦ã„ãªã„é …ç›®ãŒã‚ã‚Šã¾ã™ã€‚";
+    $err = "“ü—Í‚³‚ê‚Ä‚¢‚È‚¢€–Ú‚ª‚ ‚è‚Ü‚·B";
   }
 }
 global $testnumber;
@@ -439,12 +439,12 @@ $testnumber = 0;
 <div class ="criterias" style="width: 99%;line-height: 6vh;">
 <select name='category4' id='category4' onChange='listChanged()' style="width: 32%; font-size: 40px;">
   <option value='nul'> </option>
-  <option value='incorrect'>ä¸æ­£è§£æ•°</option>
-  <option value='correct'>æ­£è§£æ•°</option>
-  <option value='pca'>æ­£ç­”ç‡</option>
-  <option value='qdate'>æ—¥ä»˜</option>
-  <option value='pasttime'>çµŒéæ™‚é–“</option>
-  <option value='questionnumber'>å•é¡Œç•ªå·</option>
+  <option value='incorrect'>•s³‰ğ”</option>
+  <option value='correct'>³‰ğ”</option>
+  <option value='pca'>³“š—¦</option>
+  <option value='qdate'>“ú•t</option>
+  <option value='pasttime'>Œo‰ßŠÔ</option>
+  <option value='questionnumber'>–â‘è”Ô†</option>
 </select>
 <select name='operator1' id='operator1'  onChange='listChanged()' style='width: 32%; font-size: 40px;'>
   <option value='nul'> </option>
@@ -453,16 +453,16 @@ $testnumber = 0;
   <option value='<'><</option>
 </select>
 <input type="text" name="criteria1" id="criteria1" onChange='listChanged()' value = "" style='width: 30%; font-size: 40px;box-sizing:border-box;vertical-align:middle; '>
-<input type="button" name="getTodayNumber" id="getTodayNumber" onClick="getTodayNumberFunc()" value="ä»Š">
+<input type="button" name="getTodayNumber" id="getTodayNumber" onClick="getTodayNumberFunc()" value="¡">
 <br>
 <select name='category5' id='category5' onChange='listChanged()' style='width: 32%; font-size: 40px;'>
   <option value='nul'> </option>
-  <option value='incorrect'>ä¸æ­£è§£æ•°</option>
-  <option value='correct'>æ­£è§£æ•°</option>
-  <option value='pca'>æ­£ç­”ç‡</option>
-  <option value='qdate'>æ—¥ä»˜</option>
-  <option value='pasttime'>çµŒéæ™‚é–“</option>
-  <option value='questionnumber'>å•é¡Œç•ªå·</option>
+  <option value='incorrect'>•s³‰ğ”</option>
+  <option value='correct'>³‰ğ”</option>
+  <option value='pca'>³“š—¦</option>
+  <option value='qdate'>“ú•t</option>
+  <option value='pasttime'>Œo‰ßŠÔ</option>
+  <option value='questionnumber'>–â‘è”Ô†</option>
 </select>
 <select name='operator2' id='operator2' onChange='listChanged()' style='width: 32%; font-size: 40px;'>
   <option value='nul'> </option>
@@ -471,16 +471,16 @@ $testnumber = 0;
   <option value='<'><</option>
 </select>
 <input type="text" name="criteria2" id="criteria2" onChange='listChanged()' value = "" style='width: 30%; font-size: 40px;box-sizing:border-box;vertical-align:middle; '>
-<input type="button" name="getfirstDayNumber" id="getfirstDayNumber" onClick="getFirstDayFunc()" value="æœª">
+<input type="button" name="getfirstDayNumber" id="getfirstDayNumber" onClick="getFirstDayFunc()" value="–¢">
 <br>
 <select name='category6' id='category6' onChange='listChanged()' style='width: 32%; font-size: 40px;'>
   <option value='nul'> </option>
-  <option value='incorrect'>ä¸æ­£è§£æ•°</option>
-  <option value='correct'>æ­£è§£æ•°</option>
-  <option value='pca'>æ­£ç­”ç‡</option>
-  <option value='qdate'>æ—¥ä»˜</option>
-  <option value='pasttime'>çµŒéæ™‚é–“</option>
-  <option value='questionnumber'>å•é¡Œç•ªå·</option>
+  <option value='incorrect'>•s³‰ğ”</option>
+  <option value='correct'>³‰ğ”</option>
+  <option value='pca'>³“š—¦</option>
+  <option value='qdate'>“ú•t</option>
+  <option value='pasttime'>Œo‰ßŠÔ</option>
+  <option value='questionnumber'>–â‘è”Ô†</option>
 </select>
 <select name='operator3' id='operator3' onChange='listChanged()' style='width: 32%; font-size: 40px;'>
   <option value='nul'> </option>
@@ -491,20 +491,20 @@ $testnumber = 0;
 <input type="text" name="criteria3" id="criteria3" onChange='listChanged()' value = "" style='width: 30%; font-size: 40px;box-sizing:border-box;vertical-align:middle; '>
 <br>
 
-<select name='poorat2' id='poorat2' onChange='listChanged()'ã€€ style='width: 32%; font-size: 40px;'>
-  <option value='' disabled selected style='display:none;' >é”æˆåº¦é¸æŠ</option>
-  <option value='good4'>â˜†â˜†â˜†â˜†</option>
-  <option value='good3'>â˜†â˜†â˜†</option>
-  <option value='good2'>â˜†â˜†</option>
-  <option value='good1'>â˜†</option>
+<select name='poorat2' id='poorat2' onChange='listChanged()'@ style='width: 32%; font-size: 40px;'>
+  <option value='' disabled selected style='display:none;' >’B¬“x‘I‘ğ</option>
+  <option value='good4'>™™™™</option>
+  <option value='good3'>™™™</option>
+  <option value='good2'>™™</option>
+  <option value='good1'>™</option>
   <option value=''> </option>
-  <option value='poor1'>Ã—</option>
-  <option value='poor2'>Ã—Ã—</option>
-  <option value='poor3'>Ã—Ã—Ã—</option>
-  <option value='poor4'>Ã—Ã—Ã—Ã—</option>
+  <option value='poor1'>~</option>
+  <option value='poor2'>~~</option>
+  <option value='poor3'>~~~</option>
+  <option value='poor4'>~~~~</option>
 </select>
-<select name='qlevel' id='qlevel' onChange='listChanged()'ã€€ style='width: 32%; font-size: 40px;'>
-  <option value='' disabled selected style='display:none;' >ãƒ¬ãƒ™ãƒ«é¸æŠ</option>
+<select name='qlevel' id='qlevel' onChange='listChanged()'@ style='width: 32%; font-size: 40px;'>
+  <option value='' disabled selected style='display:none;' >ƒŒƒxƒ‹‘I‘ğ</option>
   <option value='8'>8</option>
   <option value='7'>7</option>
   <option value='6'>6</option>
@@ -517,29 +517,29 @@ $testnumber = 0;
   <option value=''></option>
 </select>
 
-<input type="text" name="wordSearch" id="wordSearch" onChange='listChanged()' placeholder = "æ¤œç´¢"
+<input type="text" name="wordSearch" id="wordSearch" onChange='listChanged()' placeholder = "ŒŸõ"
 style='width: 30%; font-size: 38px;box-sizing:border-box;vertical-align:middle; '>
 <br>
 
 </div>
-<input type="button" name="botan01" id="button01" onClick="sendRequest();"value="å•é¡Œä¸€è¦§"
+<input type="button" name="botan01" id="button01" onClick="sendRequest();"value="–â‘èˆê——"
   style="width:30%;height :10vh;font-size: 40px;margin:0px 0px 10px 0px ">
 
 <div hidden class="questionbuttonbox" style='line-height: 2vh;vertical-align:bottom' >
 
   <span style="font-size: 30px;vertical-align:middle" id="press-button">0</span>
-  <font size="6" color="#000000" style=";vertical-align:bottom">å•ç›®</font>&ensp; &ensp;
-  <font size="6" color="#000000" style=";vertical-align:middle">å…¨</font>
+  <font size="6" color="#000000" style=";vertical-align:bottom">–â–Ú</font>&ensp; &ensp;
+  <font size="6" color="#000000" style=";vertical-align:middle">‘S</font>
   <span style="font-size: 30px;vertical-align:middle" id="totalQuestionNumber"></span>
-  <font size="6" color="#000000" style=";vertical-align:middle">å•</font>
+  <font size="6" color="#000000" style=";vertical-align:middle">–â</font>
 
-  <input type="button" name="botan" id="buttonmodifyquestion" onClick="sendRequest5();" value="ä¿®æ­£"
+  <input type="button" name="botan" id="buttonmodifyquestion" onClick="sendRequest5();" value="C³"
   style="float: right; left: 52%;width:26%;height :5vh; font-size: 40px;line-height: 1vh;vertical-align:top">
   <input type="button" name="botan" id="autoQuestionButton" onClick="autoQuestion();" value="Auto"
   style="float: right; left: 75;width:26%;height: 5vh; font-size: 40px;line-height: 1vh;margin:0px 5px 5px 0px">
   <select name='MaxQuestionNumber' id='MaxQuestionNumber' onchange = "settingSave()"
   style='width: 12%; font-size: 25px;height: 5vh;line-height: 1vh;vertical-align:top;float: right;margin:0px 5px 5px 0px'>
-    <option value=20 >å•é¡Œæ•°</option>
+    <option value=20 >–â‘è”</option>
     <option value="all">all</option>
     <option value=5>5</option>
     <option value=6>6</option>
@@ -579,20 +579,20 @@ word-wrap:break-word;'></pre>
 <div hidden class="questionbuttonbox" style='line-height: 2vh;vertical-align:bottom' >
 
   <select name='poorat' id='poorat' onChange='listChanged()' style='width: 10%; font-size: 25px;height: 5vh;line-height: 1vh;vertical-align:top;'>
-    <option value='' disabled selected style='display:none;'>é”æˆåº¦</option>
-    <option value='good4'>â˜†â˜†â˜†â˜†</option>
-    <option value='good3'>â˜†â˜†â˜†</option>
-    <option value='good2'>â˜†â˜†</option>
-    <option value='good1'>â˜†</option>
+    <option value='' disabled selected style='display:none;'>’B¬“x</option>
+    <option value='good4'>™™™™</option>
+    <option value='good3'>™™™</option>
+    <option value='good2'>™™</option>
+    <option value='good1'>™</option>
     <option value=''> </option>
-    <option value='poor1'>Ã—</option>
-    <option value='poor2'>Ã—Ã—</option>
-    <option value='poor3'>Ã—Ã—Ã—</option>
-    <option value='poor4'>Ã—Ã—Ã—Ã—</option>
+    <option value='poor1'>~</option>
+    <option value='poor2'>~~</option>
+    <option value='poor3'>~~~</option>
+    <option value='poor4'>~~~~</option>
   </select>
   <select name='fontresize' id='fontresize' onChange="textareafontresize();settingSave()"
     style='width: 10%; font-size: 20px;height: 5vh;line-height: 1vh;vertical-align:top;'>
-    <option value='' >æ–‡å­—ã‚µã‚¤ã‚º</option>
+    <option value='' >•¶šƒTƒCƒY</option>
     <option value='5px'>5</option>
     <option value='6px'>6</option>
     <option value='7px'>7</option>
@@ -642,7 +642,7 @@ word-wrap:break-word;'></pre>
 
   <select name="imageSize1" id = "imageSize1" value="1" min="-10" max="10" step="0.1" onChange="imageSizeChange1()"
   style="width:4%;font-size: 20px;height: 5vh;">
-    <option value=1>ç”»åƒâ‘ </option>
+    <option value=1>‰æ‘œ‡@</option>
     <option value=0.5>0.5</option>
     <option value=0.6>0.6</option>
     <option value=0.7>0.7</option>
@@ -662,7 +662,7 @@ word-wrap:break-word;'></pre>
   </select>
   <select  name="imageSize2" id = "imageSize2" value="1" min="-10" max="10" step="0.1" onChange="imageSizeChange2()"
   style="width:4%;font-size: 20px;height: 5vh;">
-    <option value=1>ç”»åƒâ‘¡</option>
+    <option value=1>‰æ‘œ‡A</option>
     <option value=0.5>0.5</option>
     <option value=0.6>0.6</option>
     <option value=0.7>0.7</option>
@@ -681,9 +681,9 @@ word-wrap:break-word;'></pre>
     <option value=2>2</option>
   </select>
 
-  <input type="button" name="botan" id="buttonreadtxt" onClick="readAnswer();" value="èª­ã¿ä¸Šã’"
+  <input type="button" name="botan" id="buttonreadtxt" onClick="readAnswer();" value="“Ç‚İã‚°"
     style="float: right; left: 75%;width:26%;height: 5vh; font-size: 40px;line-height: 1vh;vertical-align:top">
-  <input type="button" name="botan" id="buttonreadtxt" onClick="readQuestion();" value="èª­ã¿ä¸Šã’"
+  <input type="button" name="botan" id="buttonreadtxt" onClick="readQuestion();" value="“Ç‚İã‚°"
     style="float: right; left: 75;width:26%;height: 5vh; font-size: 40px;vertical-align:top;margin:0px 0px 0px 5px">
 
 </div>
@@ -703,44 +703,44 @@ word-wrap:break-word;'></pre>
 <br>
 
 <div id ="div2" class="img-container--precedo" style="width:97%;height: 27.5vh;">
-  <img id="mypic2" src=""ã€€style="height: 27.5vh;">
+  <img id="mypic2" src=""@style="height: 27.5vh;">
 </div>
 <br>
 <div hidden id = "bottomButtonBox" class="bottomButtonBox">
-  <input type="button" name="botan01" id="button01" onClick="sendRequest();"value="æ¬¡ã®å•é¡Œ"
+  <input type="button" name="botan01" id="button01" onClick="sendRequest();"value="Ÿ‚Ì–â‘è"
   style="width:49%;height :10vh;font-size: 40px;margin:0px 0px 10px 0px ">
-  <input type="button" name="botan02" id="button02" onClick="sendRequest2();" value="è§£ç­”"
+  <input type="button" name="botan02" id="button02" onClick="sendRequest2();" value="‰ğ“š"
   style="width:49%;height :10vh;font-size: 40px;margin:0px 0px 10px 0px ">
-  <input type="button" name="botan03" id="button03" onClick="sendRequest3('good4');" value="â˜†â˜†â˜†â˜†"
+  <input type="button" name="botan03" id="button03" onClick="sendRequest3('good4');" value="™™™™"
   style="width:24.2%;height:7vh; font-size: 30px">
-  <input type="button" name="botan03" id="button03" onClick="sendRequest3('good3');" value="â˜†â˜†â˜†"
+  <input type="button" name="botan03" id="button03" onClick="sendRequest3('good3');" value="™™™"
   style="width:24.2%;height:7vh; font-size: 30px">
-  <input type="button" name="botan03" id="button03" onClick="sendRequest3('good2');" value="â˜†â˜†"
+  <input type="button" name="botan03" id="button03" onClick="sendRequest3('good2');" value="™™"
   style="width:24.2%;height:7vh; font-size: 30px">
-  <input type="button" name="botan03" id="button03" onClick="sendRequest3('good1');" value="â˜†"
+  <input type="button" name="botan03" id="button03" onClick="sendRequest3('good1');" value="™"
   style="width:24.2%;height:7vh; font-size: 30px"><br><br>
-    <input type="button" name="botan04" id="button04" onClick="sendRequest4('poor4');" value="âœ–âœ–âœ–âœ–"
+    <input type="button" name="botan04" id="button04" onClick="sendRequest4('poor4');" value="????"
   style="width:24.2%;height:7vh; font-size: 30px">
-  <input type="button" name="botan04" id="button04" onClick="sendRequest4('poor3');" value="âœ–âœ–âœ–"
+  <input type="button" name="botan04" id="button04" onClick="sendRequest4('poor3');" value="???"
   style="width:24.2%;height:7vh; font-size: 30px">
-  <input type="button" name="botan04" id="button04" onClick="sendRequest4('poor2');" value="âœ–âœ–"
+  <input type="button" name="botan04" id="button04" onClick="sendRequest4('poor2');" value="??"
   style="width:24.2%;height:7vh; font-size: 30px">
-  <input type="button" name="botan04" id="button04" onClick="sendRequest4('poor1');" value="âœ–"
+  <input type="button" name="botan04" id="button04" onClick="sendRequest4('poor1');" value="?"
   style="width:24.2%;height:7vh; font-size: 30px"><br><br>
-  <input type="button" name="botan05" id="button05" onClick="backQuestion();"value="å‰ã®å•é¡Œ"
+  <input type="button" name="botan05" id="button05" onClick="backQuestion();"value="‘O‚Ì–â‘è"
   style="width:24.2%;height:5vh;font-size: 40px">
-  <input type="button"  name="botan06" id="button06" onClick="correctMinus();"value="æ­£è§£-"
+  <input type="button"  name="botan06" id="button06" onClick="correctMinus();"value="³‰ğ-"
   style="position: absolute;left:50%;width:23.8%;height:5vh;font-size: 20px">
-  <input type="button" name="botan07" id="button07" onClick="incorrectMinus();"value="ä¸æ­£è§£-"
+  <input type="button" name="botan07" id="button07" onClick="incorrectMinus();"value="•s³‰ğ-"
   style="position: absolute;left:74.5%;width:23.8%;height:5vh;font-size: 20px">
 
 </div>
 
 <div id ="setting" class="setting" style=" width:93%" >
-  <pre style='font-size: 25px'>è¨­å®š</pre>
+  <pre style='font-size: 25px'>İ’è</pre>
 
   <select name='autoSpeed' id='autoSpeed' onchange = "settingSave()" style='width: 23%; font-size: 20px;'>
-    <option value=3 style='width: 23%' placeholder="Autoé€Ÿã•">Autoé€Ÿã•</option>
+    <option value=3 style='width: 23%' placeholder="Auto‘¬‚³">Auto‘¬‚³</option>
     <option value=1>1</option>
     <option value=2>2</option>
     <option value=3>3</option>
@@ -753,19 +753,19 @@ word-wrap:break-word;'></pre>
     <option value=10>10</option>
   </select>
   <select name='autoReading' id='autoReading' onchange = "settingSave()" style='width: 23%; font-size: 20px;'>
-    <option value='je' style='width: 23%' placeholder="èª­ä¸ŠéŸ³å£°">èª­ä¸ŠéŸ³å£°</option>
-    <option value='je'>å•é¡Œ-æ—¥æœ¬èª/è§£ç­”â€è‹±èª</option>
-    <option value='ej'>å•é¡Œ-è‹±èª/è§£ç­”â€æ—¥æœ¬èª</option>
-    <option value='jj'>å•é¡Œ-æ—¥æœ¬èª/è§£ç­”â€æ—¥æœ¬èª</option>
-    <option value='ee'>å•é¡Œ-è‹±èª/è§£ç­”â€è‹±èª</option>
-    <option value='j*'>å•é¡Œã ã‘-æ—¥æœ¬èª</option>
-    <option value='e*'>å•é¡Œã ã‘-è‹±èª</option>
-    <option value='*j'>è§£ç­”ã ã‘â€æ—¥æœ¬èª</option>
-    <option value='*e'>è§£ç­”ã ã‘â€è‹±èª</option>
+    <option value='je' style='width: 23%' placeholder="“Çã‰¹º">“Çã‰¹º</option>
+    <option value='je'>–â‘è-“ú–{Œê/‰ğ“š]‰pŒê</option>
+    <option value='ej'>–â‘è-‰pŒê/‰ğ“š]“ú–{Œê</option>
+    <option value='jj'>–â‘è-“ú–{Œê/‰ğ“š]“ú–{Œê</option>
+    <option value='ee'>–â‘è-‰pŒê/‰ğ“š]‰pŒê</option>
+    <option value='j*'>–â‘è‚¾‚¯-“ú–{Œê</option>
+    <option value='e*'>–â‘è‚¾‚¯-‰pŒê</option>
+    <option value='*j'>‰ğ“š‚¾‚¯]“ú–{Œê</option>
+    <option value='*e'>‰ğ“š‚¾‚¯]‰pŒê</option>
   </select>
 
   <select name='jpSpeed' id='jpSpeed' onchange = "settingSave()" style='width: 23%; font-size: 20px;'>
-    <option value=1.2 style='width: 23%' placeholder="æ—¥æœ¬èªèª­ã¿ä¸Šã’é€Ÿã•">æ—¥æœ¬èªèª­ã¿ä¸Šã’é€Ÿã•</option>
+    <option value=1.2 style='width: 23%' placeholder="“ú–{Œê“Ç‚İã‚°‘¬‚³">“ú–{Œê“Ç‚İã‚°‘¬‚³</option>
     <option value=0.3>0.3</option>
     <option value=0.4>0.4</option>
     <option value=0.5>0.5</option>
@@ -783,7 +783,7 @@ word-wrap:break-word;'></pre>
     <option value=1.7>1.7</option>
   </select>
   <select name='engSpeed' id='engSpeed' onchange = "settingSave()" style='width: 23%; font-size: 20px;'>
-    <option value=0.7 style='width: 23%' placeholder="è‹±èªèª­ã¿ä¸Šã’é€Ÿã•">è‹±èªèª­ã¿ä¸Šã’é€Ÿã•</option>
+    <option value=0.7 style='width: 23%' placeholder="‰pŒê“Ç‚İã‚°‘¬‚³">‰pŒê“Ç‚İã‚°‘¬‚³</option>
     <option value=0.4>0.4</option>
     <option value=0.5>0.5</option>
     <option value=0.6>0.6</option>
@@ -799,7 +799,7 @@ word-wrap:break-word;'></pre>
   </select>
   <br>
   <select name='NOC' id='NOC' onchange = "settingSave()" style='width: 23%; font-size: 20px;margin:30px 0px 0px 0px' >
-    <option value=3 style='width: 23%' placeholder="æœ€ä½æ­£è§£æ•°">æœ€ä½æ­£è§£æ•°</option>
+    <option value=3 style='width: 23%' placeholder="Å’á³‰ğ”">Å’á³‰ğ”</option>
     <option value=0>0</option>
     <option value=1>1</option>
     <option value=2>2</option>
@@ -813,8 +813,8 @@ word-wrap:break-word;'></pre>
     <option value=10>10</option>
   </select>
   <select name='autoAnswer' id='autoAnswer' onchange = "settingSave()" style='width: 23%; font-size: 20px;margin:30px 0px 0px 0px'>
-    <option value=0 style='width: 23%' placeholder="è‡ªå‹•è§£ç­”ç§’æ•°">è‡ªå‹•è§£ç­”ç§’æ•°</option>
-    <option value=0>ãªã—</option>
+    <option value=0 style='width: 23%' placeholder="©“®‰ğ“š•b”">©“®‰ğ“š•b”</option>
+    <option value=0>‚È‚µ</option>
     <option value=1>1</option>
     <option value=1.2>1.2</option>
     <option value=1.3>1.3</option>
@@ -842,45 +842,45 @@ word-wrap:break-word;'></pre>
     <option value=300>300</option>
   </select>
   <select name='backGround' id='backGround' style='width: 23%; font-size: 20px;margin:30px 0px 0px 0px' onchange = 'changeBG();settingSave()'>
-    <option value="RRice-colorful-wall.jpg" style='width: 23%' placeholder="èƒŒæ™¯ç”»åƒ">èƒŒæ™¯ç”»åƒ</option>
-    <option value="colored-pencil-pattern1144.png">â‘ </option>
-    <option value="fancy-floral-pattern-384.jpg">â‘¡</option>
-    <option value="mint-green-chevron-stripes-2361.png">â‘¢</option>
-    <option value="RRice-colorful-wall.jpg">â‘£</option>
-    <option value="p_da0686_m_da06860.jpg">â‘¤</option>
-    <option value="b065.gif">â‘¥</option>
-    <option value="p_da0671_m_da06710.jpg">â‘¦</option>
-    <option value="p_da0725_m_da07250.jpg">â‘§</option>
-    <option value="p_da0689_m_da06892.jpg">â‘¨</option>
-    <option value="p_da0667_m_da06670.jpg">â‘©</option>
-    <option value="p_da0669_m_da06693.jpg">â‘ª</option>
-    <option value="p_da0491_m_da04913.jpg">â‘«</option>
-    <option value="p_da0451_m_da04510.jpg">â‘¬</option>
-    <option value="p_da0438_m_da04380.jpg">â‘­</option>
-    <option value="0341_mosaictile_s.jpg">â‘®</option>
-    <option value="0108_brick_s.jpg">â‘¯</option>
-    <option value="p_da0694_l_da06940.jpg">â‘°</option>
-    <option value="49502.jpg">â‘±</option>
-    <option value="stylish-floral-pattern.png">â‘²</option>
-    <option value="painted-wood-planks-large-background.jpg">â‘³</option>
-    <option value="seamless-bamboo-pattern-842.png">ã‰‘</option>
-    <option value="dandelion-seeds-pattern.png">ã‰’</option>
-    <option value="music-pattern-with-trumpet-1929.png">ã‰“</option>
-    <option value="canadian-dollar.png">ã‰”</option>
-    <option value="pixel-heart.png">ã‰•</option>
-    <option value="christmas-colour.png">ã‰–</option>
-    <option value="food.png">ã‰—</option>
-    <option value="donuts.png">ã‰˜</option>
-    <option value="dinos.png">ã‰™</option>
-    <option value="panda-madness.gif">ã‰š</option>
-    <option value="pattern8-pattern-44a.png">ã‰›</option>
-    <option value="patternhead64a-thumb.png">ã‰œ</option>
-    <option value="repeated-square.png">ã‰</option>
-    <option value="1702.png">ã‰</option>
+    <option value="RRice-colorful-wall.jpg" style='width: 23%' placeholder="”wŒi‰æ‘œ">”wŒi‰æ‘œ</option>
+    <option value="colored-pencil-pattern1144.png">‡@</option>
+    <option value="fancy-floral-pattern-384.jpg">‡A</option>
+    <option value="mint-green-chevron-stripes-2361.png">‡B</option>
+    <option value="RRice-colorful-wall.jpg">‡C</option>
+    <option value="p_da0686_m_da06860.jpg">‡D</option>
+    <option value="b065.gif">‡E</option>
+    <option value="p_da0671_m_da06710.jpg">‡F</option>
+    <option value="p_da0725_m_da07250.jpg">‡G</option>
+    <option value="p_da0689_m_da06892.jpg">‡H</option>
+    <option value="p_da0667_m_da06670.jpg">‡I</option>
+    <option value="p_da0669_m_da06693.jpg">‡J</option>
+    <option value="p_da0491_m_da04913.jpg">‡K</option>
+    <option value="p_da0451_m_da04510.jpg">‡L</option>
+    <option value="p_da0438_m_da04380.jpg">‡M</option>
+    <option value="0341_mosaictile_s.jpg">‡N</option>
+    <option value="0108_brick_s.jpg">‡O</option>
+    <option value="p_da0694_l_da06940.jpg">‡P</option>
+    <option value="49502.jpg">‡Q</option>
+    <option value="stylish-floral-pattern.png">‡R</option>
+    <option value="painted-wood-planks-large-background.jpg">‡S</option>
+    <option value="seamless-bamboo-pattern-842.png">?</option>
+    <option value="dandelion-seeds-pattern.png">?</option>
+    <option value="music-pattern-with-trumpet-1929.png">?</option>
+    <option value="canadian-dollar.png">?</option>
+    <option value="pixel-heart.png">?</option>
+    <option value="christmas-colour.png">?</option>
+    <option value="food.png">?</option>
+    <option value="donuts.png">?</option>
+    <option value="dinos.png">?</option>
+    <option value="panda-madness.gif">?</option>
+    <option value="pattern8-pattern-44a.png">?</option>
+    <option value="patternhead64a-thumb.png">?</option>
+    <option value="repeated-square.png">?</option>
+    <option value="1702.png">?</option>
   </select>
     <select name='fontSelect' id='fontSelect' style='width: 23%; font-size: 20px;margin:30px 0px 0px 0px' onchange = 'settingSave()'>
-    <option value="SimHei" style='width: 23%' placeholder="ãƒ•ã‚©ãƒ³ãƒˆ">ãƒ•ã‚©ãƒ³ãƒˆ</option>
-    <option value="ï¼­ï¼³ æ˜æœ">ï¼­ï¼³ æ˜æœ</option>
+    <option value="SimHei" style='width: 23%' placeholder="ƒtƒHƒ“ƒg">ƒtƒHƒ“ƒg</option>
+    <option value="‚l‚r –¾’©">‚l‚r –¾’©</option>
     <option value="SimHei">SimHei</option>
     <option value="Times">Times</option>
     <option value="Arial">Arial</option>
@@ -905,26 +905,26 @@ word-wrap:break-word;'></pre>
   </select>
   </select>
     <select hidden name='novelSelect' id='novelSelect' style='width: 23%; font-size: 20px;margin:30px 0px 0px 0px' onchange = 'settingSave()'>
-    <option value="ãªã—" style='width: 23%' placeholder="ãƒ•ã‚©ãƒ³ãƒˆ">å°èª¬</option>
-    <option value="ãªã—">ãªã—</option>
+    <option value="‚È‚µ" style='width: 23%' placeholder="ƒtƒHƒ“ƒg">¬à</option>
+    <option value="‚È‚µ">‚È‚µ</option>
   </select>
   <input hidden type="text" name="novelSentenceNumber" id="novelSentenceNumber" onChange='settingSave()' value = "" 
   style='width: 8%; font-size: 16px;box-sizing:border-box;vertical-align:middle;margin:30px 0px 0px 0px '>
 
   <br>
   <input type="checkbox" id = "qachange" onchange = "settingSave()" style="font-size: 20px;margin:2vh 0px 0px 0px">
-  <font size="4" color="#000000" ;>å•é¡Œ/è§£ç­”</font>
+  <font size="4" color="#000000" ;>–â‘è/‰ğ“š</font>
   <input type="checkbox" id = "autoread" onchange = "settingSave()" style="font-size: 20px;margin:2vh 0px 0px 2vh">
-  <font size="4" color="#000000" ;>è‡ªå‹•èª­ã¿ä¸Šã’</font>
+  <font size="4" color="#000000" ;>©“®“Ç‚İã‚°</font>
   <input type="checkbox" id = "keyControl" onchange = "settingSave()" style="font-size: 20px;margin:2vh 0px 0px 2vh">
-  <font size="4" color="#000000" ;>ã‚­ãƒ¼æ“ä½œ</font>
+  <font size="4" color="#000000" ;>ƒL[‘€ì</font>
   <br>
   <input type="checkbox" id = "answerByMyself" onchange = "settingSave()" style="font-size: 20px;margin:2vh 0px 0px 0px">
-  <font size="4" color="#000000" ;>è§£ç­”å…¥åŠ›</font>
+  <font size="4" color="#000000" ;>‰ğ“š“ü—Í</font>
   <input type="checkbox" id = "randomOrNot" onchange = "settingSave()" style="font-size: 20px;margin:2vh 0px 0px 2vh">
-  <font size="4" color="#000000" ;>ãƒ©ãƒ³ãƒ€ãƒ </font>
+  <font size="4" color="#000000" ;>ƒ‰ƒ“ƒ_ƒ€</font>
   <input type="checkbox" id = "chordsOrNot" onchange = "settingSave()" style="font-size: 20px;margin:2vh 0px 0px 2vh">
-  <font size="4" color="#000000" ;>ã‚³ãƒ¼ãƒ‰éŸ³å£°</font>
+  <font size="4" color="#000000" ;>ƒR[ƒh‰¹º</font>
   <br>
 
 </div>
@@ -979,9 +979,9 @@ var minimumCorrect ;
 var MaxQuestionNumber;
 var AnswerShown = false;
 var AnswerTypedFlag = false;
-var AnswerShown2 = false;//è‡ªå‹•å›ç­”è¡¨ç¤ºã®è§£é™¤ç”¨
-// var AnswerWaitingFlag = false;//è‡ªå‹•è§£ç­”è¡¨ç¤ºã‚’å¾…ã£ã¦ã„ã‚‹ã‹ã©ã†ã‹
-var sleepId = "";//sleepã®ã‚¿ã‚¤ãƒãƒ¼ã®ID
+var AnswerShown2 = false;//©“®‰ñ“š•\¦‚Ì‰ğœ—p
+// var AnswerWaitingFlag = false;//©“®‰ğ“š•\¦‚ğ‘Ò‚Á‚Ä‚¢‚é‚©‚Ç‚¤‚©
+var sleepId = "";//sleep‚Ìƒ^ƒCƒ}[‚ÌID
 var mp3PlayFlag = false;
 var imageHeight1;
 var imageWidth1;
@@ -991,22 +991,22 @@ var yesterdayIncorrect =false;
 
 
 
-for (let i = 1; i < 500; i++) {//Mp3é–‹å§‹åœ°ç‚¹ã‚»ãƒ¬ã‚¯ãƒˆè¦ç´ è¿½åŠ 
-    // selectã‚¿ã‚°ã‚’å–å¾—ã™ã‚‹
+for (let i = 1; i < 500; i++) {//Mp3ŠJn’n“_ƒZƒŒƒNƒg—v‘f’Ç‰Á
+    // selectƒ^ƒO‚ğæ“¾‚·‚é
   var select = document.getElementById("mp3StartPoint");
-  // optionã‚¿ã‚°ã‚’ä½œæˆã™ã‚‹
+  // optionƒ^ƒO‚ğì¬‚·‚é
   var option = document.createElement("option");
-  // optionã‚¿ã‚°ã®ãƒ†ã‚­ã‚¹ãƒˆã‚’4ã«è¨­å®šã™ã‚‹
+  // optionƒ^ƒO‚ÌƒeƒLƒXƒg‚ğ4‚Éİ’è‚·‚é
   option.text = i * 0.01 ;
-  // optionã‚¿ã‚°ã®valueã‚’4ã«è¨­å®šã™ã‚‹
+  // optionƒ^ƒO‚Ìvalue‚ğ4‚Éİ’è‚·‚é
   option.value = i * 0.01;
-  // selectã‚¿ã‚°ã®å­è¦ç´ ã«optionã‚¿ã‚°ã‚’è¿½åŠ ã™ã‚‹
+  // selectƒ^ƒO‚Ìq—v‘f‚Éoptionƒ^ƒO‚ğ’Ç‰Á‚·‚é
   select.appendChild(option);
 }
 
 
 function sendRequest(){
-  if ((document.getElementById("novelSelect").value) && !(document.getElementById("novelSelect").value == "ãªã—")){
+  if ((document.getElementById("novelSelect").value) && !(document.getElementById("novelSelect").value == "‚È‚µ")){
     novelRowNum = Number(novelRowNum) +1;
     getNovelSentence();
   }
@@ -1018,8 +1018,8 @@ function sendRequest(){
     stop();
     mp3PlayFlag=false;
   }
-  clearTimeout(sleepId);//è‡ªå‹•è§£ç­”è¡¨ç¤ºã®ã‚¿ã‚¤ãƒãƒ¼ã‚’ã‚¯ãƒªã‚¢
-  AnswerShown2 = false;//ç­”ãˆã¯ã¾ã è¡¨ç¤ºã•ã‚Œã¦ã„ãªã„
+  clearTimeout(sleepId);//©“®‰ğ“š•\¦‚Ìƒ^ƒCƒ}[‚ğƒNƒŠƒA
+  AnswerShown2 = false;//“š‚¦‚Í‚Ü‚¾•\¦‚³‚ê‚Ä‚¢‚È‚¢
   if (num < MaxQuestionNumber ) {
     num++;
   } else {
@@ -1056,7 +1056,7 @@ function sendRequest(){
     if (max==0) {
       max=1;
     }
-    /** é‡è¤‡ãƒã‚§ãƒƒã‚¯ã—ãªãŒã‚‰ä¹±æ•°ä½œæˆ */
+    /** d•¡ƒ`ƒFƒbƒN‚µ‚È‚ª‚ç—”ì¬ */
     for(i = min; i < questionnumbers.length; i++){
       while(true){
         // alert(i);
@@ -1082,7 +1082,7 @@ function sendRequest(){
   }
     var category1Value = new Array();
     var elemCategory1 = document.getElementById('ctg1');
-    var optsCategory1 = elemCategory1.options; // selectè¦ç´ ã®optionãƒ—ãƒ­ãƒ‘ãƒ†ã‚£
+    var optsCategory1 = elemCategory1.options; // select—v‘f‚ÌoptionƒvƒƒpƒeƒB
     for (var i = 0; i < optsCategory1.length; i++) {
       if (optsCategory1[i].selected) {
         category1Value[i] = optsCategory1[i].value;
@@ -1093,7 +1093,7 @@ function sendRequest(){
 
     var category2Value = new Array();
     var elemCategory2 = document.getElementById('ctg2');
-    var optsCategory2 = elemCategory2.options; // selectè¦ç´ ã®optionãƒ—ãƒ­ãƒ‘ãƒ†ã‚£
+    var optsCategory2 = elemCategory2.options; // select—v‘f‚ÌoptionƒvƒƒpƒeƒB
     for (var i = 0; i < optsCategory2.length; i++) {
       if (optsCategory2[i].selected) {
         category2Value[i] = optsCategory2[i].value;
@@ -1105,7 +1105,7 @@ function sendRequest(){
 
     var category3Value = new Array();
     var elemCategory3 = document.getElementById('ctg3');
-    var optsCategory3 = elemCategory3.options; // selectè¦ç´ ã®optionãƒ—ãƒ­ãƒ‘ãƒ†ã‚£
+    var optsCategory3 = elemCategory3.options; // select—v‘f‚ÌoptionƒvƒƒpƒeƒB
     for (var i = 0; i < optsCategory3.length; i++) {
       if (optsCategory3[i].selected) {
         category3Value[i] = optsCategory3[i].value;
@@ -1116,7 +1116,7 @@ function sendRequest(){
 
     var category4Value = new Array();
     var elemCategory4 = document.getElementById('ctg4');
-    var optsCategory4 = elemCategory4.options; // selectè¦ç´ ã®optionãƒ—ãƒ­ãƒ‘ãƒ†ã‚£
+    var optsCategory4 = elemCategory4.options; // select—v‘f‚ÌoptionƒvƒƒpƒeƒB
     for (var i = 0; i < optsCategory4.length; i++) {
       if (optsCategory4[i].selected) {
         category4Value[i] = optsCategory4[i].value;
@@ -1127,7 +1127,7 @@ function sendRequest(){
 
     var category5Value = new Array();
     var elemCategory5 = document.getElementById('ctg5');
-    var optsCategory5 = elemCategory5.options; // selectè¦ç´ ã®optionãƒ—ãƒ­ãƒ‘ãƒ†ã‚£
+    var optsCategory5 = elemCategory5.options; // select—v‘f‚ÌoptionƒvƒƒpƒeƒB
     for (var i = 0; i < optsCategory5.length; i++) {
       if (optsCategory5[i].selected) {
         category5Value[i] = optsCategory5[i].value;
@@ -1152,7 +1152,7 @@ function sendRequest(){
     var xmlhttp=createXmlHttpRequest();
     if(xmlhttp!=null) {
       if (flag1 == false){
-        xmlhttp.open("POST", "../getqestions20210803.php", false);//ä¹±æ•°ã‚’å–å¾—
+        xmlhttp.open("POST", "../getqestions20210803.php", false);//—”‚ğæ“¾
         xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
         var data="data="+moji;
         xmlhttp.send(data);
@@ -1162,7 +1162,7 @@ function sendRequest(){
         document.getElementById("totalQuestionNumber").innerHTML = questionnumbers.length;
       }
       if (oneByOneflag == true){
-        xmlhttp.open("POST", "../getqestionsOneByOne.php", false);//ä¹±æ•°ã‚’å–å¾—
+        xmlhttp.open("POST", "../getqestionsOneByOne.php", false);//—”‚ğæ“¾
         xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
         var data="data="+moji;
         xmlhttp.send(data);
@@ -1180,12 +1180,12 @@ function sendRequest(){
       }
 
 
-      document.getElementById("press-button").innerHTML = num+1  +"/"+ã€€Number(max);
+      document.getElementById("press-button").innerHTML = num+1  +"/"+@Number(max);
 
       if (flag1 == false){
         // alert(max);
           randoms = [];
-        /** é‡è¤‡ãƒã‚§ãƒƒã‚¯ã—ãªãŒã‚‰ä¹±æ•°ä½œæˆ */
+        /** d•¡ƒ`ƒFƒbƒN‚µ‚È‚ª‚ç—”ì¬ */
         for(i = min; i < questionnumbers.length; i++){
           while(true){
             // alert(i);
@@ -1217,7 +1217,7 @@ function sendRequest(){
 
 
 
-        // console.log('ãƒ©ãƒ³ãƒ€ãƒ ã«é¸ã°ã‚ŒãŸ questionnumbers is '+ questionnumbers);
+        // console.log('ƒ‰ƒ“ƒ_ƒ€‚É‘I‚Î‚ê‚½ questionnumbers is '+ questionnumbers);
 
         // var str01 = randoms + "///" + num +"///" + randoms[num] + "///" + questionnumbers[randoms[num]]
         // alert(str01);
@@ -1264,17 +1264,17 @@ function sendRequest(){
       document.getElementById("setting").insertAdjacentHTML('afterend',res);
       // document.write(res);
       MathJax.Hub.Typeset(mainform);
-      // mainform.insertAdjacentHTML('beforeend', '<input type="submit" value="å†èª­ã¿è¾¼ã¿" style="font-size: 25px;width: 20%; height: 70px">');
+      // mainform.insertAdjacentHTML('beforeend', '<input type="submit" value="Ä“Ç‚İ‚İ" style="font-size: 25px;width: 20%; height: 70px">');
 	    mainform.insertAdjacentHTML('beforeend', '<div id = "result" style="font-size: 25px;width: 20%; height: 70px">');
     } 
 
 
-    //è‹¦æ‰‹åº¦ã‚’å–å¾—
+    //‹êè“x‚ğæ“¾
     var moji=rand + "." + document.mainform.DB_name.value;
     moji = encodeURIComponent(moji);
     var xmlhttp=createXmlHttpRequest2();
     if(xmlhttp!=null){
-      xmlhttp.open("POST", "../getpoorat.php", false);//æ­£è§£ãƒœã‚¿ãƒ³ã‚’æŠ¼ã™
+      xmlhttp.open("POST", "../getpoorat.php", false);//³‰ğƒ{ƒ^ƒ“‚ğ‰Ÿ‚·
       xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
       var data="data="+moji;
       xmlhttp.send(data);
@@ -1303,7 +1303,7 @@ function sendRequest(){
     //     }
     //     main();
     // }
-    if ((document.getElementById("chordsOrNot").checked)&&((document.getElementById("ctg3").value ==="ã‚³ãƒ¼ãƒ‰")||(document.getElementById("ctg3").value ==="éŸ³ç¨‹"))) {
+    if ((document.getElementById("chordsOrNot").checked)&&((document.getElementById("ctg3").value ==="ƒR[ƒh")||(document.getElementById("ctg3").value ==="‰¹’ö"))) {
       playChords(document.getElementById("textareas").value);
     }
 
@@ -1349,7 +1349,7 @@ if (document.getElementById(noteId).innerHTML!=="") {
   var ary = str.trim().split('^').map(function(item){
   return item.trim().replace(/\s+/g,',').split(',');
   });
-  //ã€Œ, (ã‚«ãƒ³ãƒ)ã€ã§åŒºåˆ‡ã£ã¦åˆ†å‰²ã™ã‚‹
+  //u, (ƒJƒ“ƒ})v‚Å‹æØ‚Á‚Ä•ªŠ„‚·‚é
   var result = stringToArray(str);
   // for (let i = 0; i < result.length; i++) {
   play_music(ary);
@@ -1385,14 +1385,14 @@ function clickOKNG(OKNG){
 if(OKNG.value === "OK"){
 	showResult ();
 	// alert(correctNum);
-// if(window.confirm('æœ¬å½“ã«ã„ã„ã‚“ã§ã™ã­ï¼Ÿ')){
+// if(window.confirm('–{“–‚É‚¢‚¢‚ñ‚Å‚·‚ËH')){
   var rand =  OKNG.id.replace( "radioOK", "" );
   var DBname = document.getElementById("DB_name").value;
   var moji=rand + "^" + DBname + "^" + "good1" + "^" +"";
   moji = encodeURIComponent(moji);
   var xmlhttp=createXmlHttpRequest();
   if(xmlhttp!=null){
-    xmlhttp.open("POST", "../addcorrect.php", false);//ä¸æ­£è§£ãƒœã‚¿ãƒ³ã‚’æŠ¼ã™
+    xmlhttp.open("POST", "../addcorrect.php", false);//•s³‰ğƒ{ƒ^ƒ“‚ğ‰Ÿ‚·
     xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     var data="data="+moji;
     xmlhttp.send(data);
@@ -1408,14 +1408,14 @@ if(OKNG.value === "OK"){
 // }
 
 }else{
-// if(window.confirm('æœ¬å½“ã«ã„ã„ã‚“ã§ã™ã­ï¼Ÿ')){
+// if(window.confirm('–{“–‚É‚¢‚¢‚ñ‚Å‚·‚ËH')){
   var rand = OKNG.id.replace( "radioNG", "" );
   var DBname = document.getElementById("DB_name").value;
   var moji=rand + "^" + DBname + "^" + "poor4" + "^" + "";
   moji = encodeURIComponent(moji);
   var xmlhttp=createXmlHttpRequest();
   if(xmlhttp!=null){
-    xmlhttp.open("POST", "../addincorrect.php", false);//ä¸æ­£è§£ãƒœã‚¿ãƒ³ã‚’æŠ¼ã™
+    xmlhttp.open("POST", "../addincorrect.php", false);//•s³‰ğƒ{ƒ^ƒ“‚ğ‰Ÿ‚·
     xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     var data="data="+moji;
     xmlhttp.send(data);
@@ -1439,7 +1439,7 @@ function sendRequest2()
     randoms = [];
     AnswerShown = true;
     AnswerShown2 = true;
-    /** é‡è¤‡ãƒã‚§ãƒƒã‚¯ã—ãªãŒã‚‰ä¹±æ•°ä½œæˆ */
+    /** d•¡ƒ`ƒFƒbƒN‚µ‚È‚ª‚ç—”ì¬ */
     for(i = min; i < max+1; i++){
       while(true){
         // alert(i);
@@ -1468,7 +1468,7 @@ function sendRequest2()
     if(xmlhttp!=null)
     {
         // alert(phpfile2);
-        xmlhttp.open("POST", "../"ã€€+ phpfile2 , false);//ä¹±æ•°ã‚’ã‚‚ã¨ã«è§£ç­”ã‚’å–å¾—
+        xmlhttp.open("POST", "../"@+ phpfile2 , false);//—”‚ğ‚à‚Æ‚É‰ğ“š‚ğæ“¾
         xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
         var data="data="+moji;
         xmlhttp.send(data);
@@ -1496,8 +1496,8 @@ function sendRequest2()
                 height2 = image2.height;
                 imageSize2 = document.getElementById("imageSize2").value * width2 ;
                 if ((width2>height2)&& (width2>200)){
-                    document.getElementById("mypic2").style.width = imageSize2 + "px";  // æ¨ªå¹…ã‚’400pxã«ãƒªã‚µã‚¤ã‚º
-                    document.getElementById("mypic2").style.height = height2 * (imageSize2 / width2)+"px"; // é«˜ã•ã‚’æ¨ªå¹…ã®å¤‰åŒ–å‰²åˆã«åˆã‚ã›ã‚‹;
+                    document.getElementById("mypic2").style.width = imageSize2 + "px";  // ‰¡•‚ğ400px‚ÉƒŠƒTƒCƒY
+                    document.getElementById("mypic2").style.height = height2 * (imageSize2 / width2)+"px"; // ‚‚³‚ğ‰¡•‚Ì•Ï‰»Š„‡‚É‡‚í‚¹‚é;
                     // if (parseInt(document.getElementById("mypic1").style.height)>parseInt(document.getElementById("div1").clientHeight)) {
                     //   document.getElementById("mypic1").style.height = document.getElementById("div1").clientHeight +"px";
                     //   document.getElementById("mypic1").style.width = (document.getElementById("mypic1").height*width)/height + "px";
@@ -1516,7 +1516,7 @@ function sendRequest2()
             }
 
             image2.src = 'images/'+imagefolder+'/' + imageadress[0];
-        }else if (res.indexOf( "mp3" ) > 0){//ç­”ãˆãŒmp3ãªã‚‰
+        }else if (res.indexOf( "mp3" ) > 0){//“š‚¦‚ªmp3‚È‚ç
           music.preload = "auto";
           music.src = "./mp3/" + res;
           music.load();
@@ -1574,14 +1574,14 @@ function sendRequest3(goodPoor)
     var xmlhttp=createXmlHttpRequest2();
     if(xmlhttp!=null)
     {
-        xmlhttp.open("POST", "../addcorrect.php", false);//æ­£è§£ãƒœã‚¿ãƒ³ã‚’æŠ¼ã™
+        xmlhttp.open("POST", "../addcorrect.php", false);//³‰ğƒ{ƒ^ƒ“‚ğ‰Ÿ‚·
         xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
         var data="data="+moji;
         xmlhttp.send(data);
         var res=xmlhttp.responseText;
         // console.log('534 addcorrectres is '+res);
         document.getElementById( "textareas2" ).value = "";
-        // document.getElementById( "preQInfo" ).innerHTML = "å‰å•ã®çµæœ  " +res;
+        // document.getElementById( "preQInfo" ).innerHTML = "‘O–â‚ÌŒ‹‰Ê  " +res;
         document.getElementById("div2").style.display = "none";
         document.getElementById("textareas2").style.display = "block";
     }
@@ -1605,13 +1605,13 @@ function sendRequest4(goodPoor)
     var xmlhttp=createXmlHttpRequest2();
     if(xmlhttp!=null)
     {
-        xmlhttp.open("POST", "../addincorrect.php", false);//ä¸æ­£è§£ãƒœã‚¿ãƒ³ã‚’æŠ¼ã™
+        xmlhttp.open("POST", "../addincorrect.php", false);//•s³‰ğƒ{ƒ^ƒ“‚ğ‰Ÿ‚·
         xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
         var data="data="+moji;
         xmlhttp.send(data);
         var res=xmlhttp.responseText;
         document.getElementById( "textareas2" ).value = "";
-        // document.getElementById( "preQInfo" ).innerHTML = "å‰å•ã®çµæœ  " +res;
+        // document.getElementById( "preQInfo" ).innerHTML = "‘O–â‚ÌŒ‹‰Ê  " +res;
         document.getElementById("div2").style.display = "none";
         document.getElementById("textareas2").style.display = "block";
     }
@@ -1628,7 +1628,7 @@ function correctMinus()
     var xmlhttp=createXmlHttpRequest2();
     if(xmlhttp!=null)
     {
-        xmlhttp.open("POST", "../correctMinus.php", false);//ä¸æ­£è§£ãƒœã‚¿ãƒ³ã‚’æŠ¼ã™
+        xmlhttp.open("POST", "../correctMinus.php", false);//•s³‰ğƒ{ƒ^ƒ“‚ğ‰Ÿ‚·
         xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
         var data="data="+moji;
         xmlhttp.send(data);
@@ -1649,7 +1649,7 @@ function incorrectMinus()
     var xmlhttp=createXmlHttpRequest2();
     if(xmlhttp!=null)
     {
-        xmlhttp.open("POST", "../incorrectMinus.php", false);//ä¸æ­£è§£ãƒœã‚¿ãƒ³ã‚’æŠ¼ã™
+        xmlhttp.open("POST", "../incorrectMinus.php", false);//•s³‰ğƒ{ƒ^ƒ“‚ğ‰Ÿ‚·
         xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
         var data="data="+moji;
         xmlhttp.send(data);
@@ -1677,8 +1677,8 @@ function sendRequest5()
     }
     moji = encodeURIComponent(moji);
     var xmlhttp=createXmlHttpRequest2();
-    if ((xmlhttp!=null)ã€€&& ((moji.indexOf('Your%20Answer')=== -1) && (moji.indexOf('ãƒ’ãƒ³ãƒˆ')=== -1))) {//ä¿®æ­£ã™ã‚‹å•é¡Œã¨ç­”ãˆã«è‡ªåˆ†ã®è§£ç­”ã‚„ãƒ’ãƒ³ãƒˆãŒãªã‘ã‚Œã°ä¿®æ­£ã™ã‚‹ã€‚
-        xmlhttp.open("POST", "../modifyquestionanswer.php", false);//ä¸æ­£è§£ãƒœã‚¿ãƒ³ã‚’æŠ¼ã™
+    if ((xmlhttp!=null)@&& ((moji.indexOf('Your%20Answer')=== -1) && (moji.indexOf('ƒqƒ“ƒg')=== -1))) {//C³‚·‚é–â‘è‚Æ“š‚¦‚É©•ª‚Ì‰ğ“š‚âƒqƒ“ƒg‚ª‚È‚¯‚ê‚ÎC³‚·‚éB
+        xmlhttp.open("POST", "../modifyquestionanswer.php", false);//•s³‰ğƒ{ƒ^ƒ“‚ğ‰Ÿ‚·
         xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
         var data="data="+moji;
         xmlhttp.send(data);
@@ -1693,13 +1693,13 @@ function deleteQ(){
   var xmlhttp=createXmlHttpRequest2();
   if(xmlhttp!=null)
   {
-      xmlhttp.open("POST", "../deleteQuestion.php", false);//ä¸æ­£è§£ãƒœã‚¿ãƒ³ã‚’æŠ¼ã™
+      xmlhttp.open("POST", "../deleteQuestion.php", false);//•s³‰ğƒ{ƒ^ƒ“‚ğ‰Ÿ‚·
       xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
       var data="data="+moji;
       xmlhttp.send(data);
       var res=xmlhttp.responseText;
       // console.log('delete is ' + res);
-      document.getElementById( "textareas" ).value = "å•é¡Œã‚’å‰Šé™¤ã—ã¾ã—ãŸã€‚";
+      document.getElementById( "textareas" ).value = "–â‘è‚ğíœ‚µ‚Ü‚µ‚½B";
       document.getElementById( "textareas2" ).value = "";
   }
 }
@@ -1731,7 +1731,7 @@ function createXmlHttpRequest2()
     return xmlhttp;
 }
 
-/** minä»¥ä¸Šmaxä»¥ä¸‹ã®æ•´æ•°å€¤ã®ä¹±æ•°ã‚’è¿”ã™ */
+/** minˆÈãmaxˆÈ‰º‚Ì®”’l‚Ì—”‚ğ•Ô‚· */
 function intRandom(min, max){
     return Math.floor( Math.random() * (max - min + 1)) + min;
 }
@@ -1747,7 +1747,7 @@ function listChange(categorySelect){
     
 
     var elem = document.getElementById('ctg1');
-    var opts = elem.options; // selectè¦ç´ ã®optionãƒ—ãƒ­ãƒ‘ãƒ†ã‚£
+    var opts = elem.options; // select—v‘f‚ÌoptionƒvƒƒpƒeƒB
     // console.log(opts);       // HTMLOptionsCollection(3)
     var selectedCategory1 = [];
     for (var i = 0; i < opts.length; i++) {          
@@ -1758,7 +1758,7 @@ function listChange(categorySelect){
     var selectedCategory1 = selectedCategory1.join("^");
     //sampleArea.insertAdjacentHTML("beforebegin","selectedCategory1"+selectedCategory1+"<br><br><br>");
     var elem = document.getElementById('ctg2');
-    var opts = elem.options; // selectè¦ç´ ã®optionãƒ—ãƒ­ãƒ‘ãƒ†ã‚£
+    var opts = elem.options; // select—v‘f‚ÌoptionƒvƒƒpƒeƒB
     // console.log(opts);       // HTMLOptionsCollection(3)
     var selectedCategory2 = [];
     for (var i = 0; i < opts.length; i++) {          
@@ -1769,7 +1769,7 @@ function listChange(categorySelect){
     var selectedCategory2 = selectedCategory2.join("^");
     //sampleArea.insertAdjacentHTML("beforebegin","selectedCategory2"+selectedCategory2+"<br><br><br>");
     var elem = document.getElementById('ctg3');
-    var opts = elem.options; // selectè¦ç´ ã®optionãƒ—ãƒ­ãƒ‘ãƒ†ã‚£
+    var opts = elem.options; // select—v‘f‚ÌoptionƒvƒƒpƒeƒB
     // console.log(opts);       // HTMLOptionsCollection(3)
     var selectedCategory3 = [];
     for (var i = 0; i < opts.length; i++) {          
@@ -1780,7 +1780,7 @@ function listChange(categorySelect){
     var selectedCategory3 = selectedCategory3.join("^");
     //sampleArea.insertAdjacentHTML("beforebegin","selectedCategory3"+selectedCategory3+"<br><br><br>");
     var elem = document.getElementById('ctg4');
-    var opts = elem.options; // selectè¦ç´ ã®optionãƒ—ãƒ­ãƒ‘ãƒ†ã‚£
+    var opts = elem.options; // select—v‘f‚ÌoptionƒvƒƒpƒeƒB
     // console.log(opts);       // HTMLOptionsCollection(3)
     var selectedCategory4 = [];
     for (var i = 0; i < opts.length; i++) {          
@@ -1791,7 +1791,7 @@ function listChange(categorySelect){
     var selectedCategory4 = selectedCategory4.join("^");
     //sampleArea.insertAdjacentHTML("beforebegin","selectedCategory4"+selectedCategory4+"<br><br><br>");
     var elem = document.getElementById('ctg5');
-    var opts = elem.options; // selectè¦ç´ ã®optionãƒ—ãƒ­ãƒ‘ãƒ†ã‚£
+    var opts = elem.options; // select—v‘f‚ÌoptionƒvƒƒpƒeƒB
     // console.log(opts);       // HTMLOptionsCollection(3)
     var selectedCategory5 = [];
     for (var i = 0; i < opts.length; i++) {          
@@ -2712,8 +2712,8 @@ function listChanged(){
     // alert(flag1);
 }
 function backQuestion(){
-    if ((document.getElementById("novelSelect").value) && !(document.getElementById("novelSelect").value == "ãªã—")){
-      //å°èª¬æˆ»ã™
+    if ((document.getElementById("novelSelect").value) && !(document.getElementById("novelSelect").value == "‚È‚µ")){
+      //¬à–ß‚·
       novelRowNum = Number(novelRowNum)-1
       getNovelSentence();
     }
@@ -2747,7 +2747,7 @@ function backQuestion(){
         var xmlhttp=createXmlHttpRequest();
         if(xmlhttp!=null)
         {
-            xmlhttp.open("POST", "../"+phpfile1, false);//ä¹±æ•°ã‚’ã‚‚ã¨ã«å•é¡Œã‚’å–å¾—
+            xmlhttp.open("POST", "../"+phpfile1, false);//—”‚ğ‚à‚Æ‚É–â‘è‚ğæ“¾
             xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
             var data="data="+moji;
             // console.log('396 data is '+data);
@@ -2759,7 +2759,7 @@ function backQuestion(){
             var correctNum = ""
             var question = ""
 
-            if (res[0].indexOf("æ­£è§£æ•°")<0) {
+            if (res[0].indexOf("³‰ğ”")<0) {
                 question = res[0];
                 correctNum = res[1];
             } else {
@@ -2784,13 +2784,13 @@ function backQuestion(){
                 document.getElementById( "textareas" ).value = question ;
                 document.getElementById( "textareas2" ).value = "";;
             }
-        }ã€€//è‹¦æ‰‹åº¦ã‚’å–å¾—
+        }@//‹êè“x‚ğæ“¾
         var moji=rand + "." + document.mainform.DB_name.value;
         moji = encodeURIComponent(moji);
         var xmlhttp=createXmlHttpRequest2();
         if(xmlhttp!=null)
         {
-            xmlhttp.open("POST", "../getpoorat.php", false);//æ­£è§£ãƒœã‚¿ãƒ³ã‚’æŠ¼ã™
+            xmlhttp.open("POST", "../getpoorat.php", false);//³‰ğƒ{ƒ^ƒ“‚ğ‰Ÿ‚·
             xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
             var data="data="+moji;
             xmlhttp.send(data);
@@ -2931,10 +2931,10 @@ var formatDate = function (date, format) {
 const uttr2 = new SpeechSynthesisUtterance()
 
 function readAnswer(){//
-  // ç™ºè¨€ã‚’ä½œæˆ
+  // ”­Œ¾‚ğì¬
   uttr2.text = answerText2.value;
 
-  var isJapanese = false;  //æ—¥æœ¬èªï¼ˆè‹±èªä»¥å¤–ï¼‰ã®å ´åˆã€Œtrueã€ã«è¨­å®š
+  var isJapanese = false;  //“ú–{Œêi‰pŒêˆÈŠOj‚Ìê‡utruev‚Éİ’è
   for(var i=0; i < uttr2.text.length; i++){
       if(uttr2.text.charCodeAt(i) >= 256) {
         isJapanese = true;
@@ -2956,15 +2956,15 @@ function readAnswer(){//
     }
   }
 
-  // è¨€èª (æ—¥æœ¬èª:ja-JP, ã‚¢ãƒ¡ãƒªã‚«è‹±èª:en-US, ã‚¤ã‚®ãƒªã‚¹è‹±èª:en-GB, ä¸­å›½èª:zh-CN, éŸ“å›½èª:ko-KR)
+  // Œ¾Œê (“ú–{Œê:ja-JP, ƒAƒƒŠƒJ‰pŒê:en-US, ƒCƒMƒŠƒX‰pŒê:en-GB, ’†‘Œê:zh-CN, ŠØ‘Œê:ko-KR)
   var slcLang = document.getElementById("autoReading").value
 
 
 
 
   uttr2.rate = 0.7
-  // é€Ÿåº¦ 0.1-10 åˆæœŸå€¤:1 (å€é€Ÿãªã‚‰2, åŠåˆ†ã®å€é€Ÿãªã‚‰0.5)
-  // é€Ÿåº¦ã‚’èª¿æ•´ã™ã‚‹ï¼ˆ0.1ã€œ10ï¼‰ï¼Šè¨€èªã«ã‚ˆã£ã¦ãƒ¬ãƒ³ã‚¸ã¯ç•°ãªã‚‹
+  // ‘¬“x 0.1-10 ‰Šú’l:1 (”{‘¬‚È‚ç2, ”¼•ª‚Ì”{‘¬‚È‚ç0.5)
+  // ‘¬“x‚ğ’²®‚·‚éi0.1?10j–Œ¾Œê‚É‚æ‚Á‚ÄƒŒƒ“ƒW‚ÍˆÙ‚È‚é
 //   if (slcLang == "ee") {
 //   	uttr2.rate = document.getElementById("engSpeed").value;
 //   } else if (slcLang == "je"){
@@ -2982,19 +2982,19 @@ function readAnswer(){//
     uttr2.rate = document.getElementById("engSpeed").value;
   }
 
-  // é«˜ã• 0-2 åˆæœŸå€¤:1
+  // ‚‚³ 0-2 ‰Šú’l:1
   uttr2.pitch = 1
 
-  // éŸ³é‡ 0-1 åˆæœŸå€¤:1
+  // ‰¹—Ê 0-1 ‰Šú’l:1
   uttr2.volume = 0.75
 
   
-  // // â‘¢ é¸æŠã•ã‚ŒãŸå£°ã‚’æŒ‡å®š
+  // // ‡B ‘I‘ğ‚³‚ê‚½º‚ğw’è
   // uttr2.voice = window.speechSynthesis.getVoices()[voice];
   // alert(readVoices);
   uttr2.voice = speechSynthesis
   .getVoices()
-  .filter(voice => voice.name == lang)[0]; //è¨€èªè¨­å®š
+  .filter(voice => voice.name == lang)[0]; //Œ¾Œêİ’è
   // alert(uttr2.rate);
   // alert();
   // let content ="";
@@ -3005,7 +3005,7 @@ function readAnswer(){//
   // uttr2.voice = speechSynthesis
   //   .getVoices()
   //   .filter(voice => voice.name === voiceSelect.value)[0]
-  // // ç™ºè¨€ã‚’å†ç”Ÿ (ç™ºè¨€ã‚­ãƒ¥ãƒ¼ç™ºè¨€ã«è¿½åŠ )
+  // // ”­Œ¾‚ğÄ¶ (”­Œ¾ƒLƒ…[”­Œ¾‚É’Ç‰Á)
   speechSynthesis.speak(uttr2)
   // alert(uttr2.voice.name);
 
@@ -3017,7 +3017,7 @@ const uttr = new SpeechSynthesisUtterance();
 function readQuestion(){
   // const uttr = new SpeechSynthesisUtterance(questionText2.value)
   uttr.text = questionText2.value;
-  var isJapanese = false;  //æ—¥æœ¬èªï¼ˆè‹±èªä»¥å¤–ï¼‰ã®å ´åˆã€Œtrueã€ã«è¨­å®š
+  var isJapanese = false;  //“ú–{Œêi‰pŒêˆÈŠOj‚Ìê‡utruev‚Éİ’è
   for(var i=0; i < uttr.text.length; i++){
       if(uttr.text.charCodeAt(i) >= 256) {
         isJapanese = true;
@@ -3039,13 +3039,13 @@ function readQuestion(){
     }
   }
 
-  // è¨€èª (æ—¥æœ¬èª:ja-JP, ã‚¢ãƒ¡ãƒªã‚«è‹±èª:en-US, ã‚¤ã‚®ãƒªã‚¹è‹±èª:en-GB, ä¸­å›½èª:zh-CN, éŸ“å›½èª:ko-KR)
+  // Œ¾Œê (“ú–{Œê:ja-JP, ƒAƒƒŠƒJ‰pŒê:en-US, ƒCƒMƒŠƒX‰pŒê:en-GB, ’†‘Œê:zh-CN, ŠØ‘Œê:ko-KR)
   var slcLang = document.getElementById("autoReading").value
   
 
   uttr.rate = 0.7
-  // é€Ÿåº¦ 0.1-10 åˆæœŸå€¤:1 (å€é€Ÿãªã‚‰2, åŠåˆ†ã®å€é€Ÿãªã‚‰0.5)
-  // é€Ÿåº¦ã‚’èª¿æ•´ã™ã‚‹ï¼ˆ0.1ã€œ10ï¼‰ï¼Šè¨€èªã«ã‚ˆã£ã¦ãƒ¬ãƒ³ã‚¸ã¯ç•°ãªã‚‹
+  // ‘¬“x 0.1-10 ‰Šú’l:1 (”{‘¬‚È‚ç2, ”¼•ª‚Ì”{‘¬‚È‚ç0.5)
+  // ‘¬“x‚ğ’²®‚·‚éi0.1?10j–Œ¾Œê‚É‚æ‚Á‚ÄƒŒƒ“ƒW‚ÍˆÙ‚È‚é
 //   if (slcLang == "ee") {
 //     uttr.rate = document.getElementById("engSpeed").value;
 //   } else if (slcLang == "je"){
@@ -3063,23 +3063,23 @@ function readQuestion(){
     uttr.rate = document.getElementById("engSpeed").value;
   }
 
-  // é«˜ã• 0-2 åˆæœŸå€¤:1
+  // ‚‚³ 0-2 ‰Šú’l:1
   uttr.pitch = 1
 
-  // éŸ³é‡ 0-1 åˆæœŸå€¤:1
+  // ‰¹—Ê 0-1 ‰Šú’l:1
   uttr.volume = 0.75
-  // â‘¢ é¸æŠã•ã‚ŒãŸå£°ã‚’æŒ‡å®š
+  // ‡B ‘I‘ğ‚³‚ê‚½º‚ğw’è
   // uttr.voice = window.speechSynthesis.getVoices()[voice];
 
   // alert (uttr.rate);
   uttr.voice = speechSynthesis
   .getVoices()
   .filter(voice => voice.name == lang)[0]; 
-  // .filter(voice => voice.name == readVoices[0])[0];      //è¨€èªè¨­å®š
+  // .filter(voice => voice.name == readVoices[0])[0];      //Œ¾Œêİ’è
   // uttr.voice = speechSynthesis
   //   .getVoices()
   //   .filter(voice => voice.name === voiceSelect.value)[0]
-  // ç™ºè¨€ã‚’å†ç”Ÿ (ç™ºè¨€ã‚­ãƒ¥ãƒ¼ç™ºè¨€ã«è¿½åŠ )
+  // ”­Œ¾‚ğÄ¶ (”­Œ¾ƒLƒ…[”­Œ¾‚É’Ç‰Á)
   speechSynthesis.speak(uttr)
 
 
@@ -3111,7 +3111,7 @@ function autoQuestion(){
                   finishReading = true;
                 }
                 while (finishReading == false){
-                  // i++;    // ã“ã®æ–‡ãŒç„¡ã„ã¨ç„¡é™ãƒ«ãƒ¼ãƒ—ã«ãªã£ã¦ã—ã¾ã†ã€‚
+                  // i++;    // ‚±‚Ì•¶‚ª–³‚¢‚Æ–³ŒÀƒ‹[ƒv‚É‚È‚Á‚Ä‚µ‚Ü‚¤B
                   // console.log(i);
                   await sleep(500);
                 }
@@ -3124,7 +3124,7 @@ function autoQuestion(){
                   finishReading2 = true;
                 }
                 while (finishReading2 == false){
-                  i++;    // ã“ã®æ–‡ãŒç„¡ã„ã¨ç„¡é™ãƒ«ãƒ¼ãƒ—ã«ãªã£ã¦ã—ã¾ã†ã€‚
+                  i++;    // ‚±‚Ì•¶‚ª–³‚¢‚Æ–³ŒÀƒ‹[ƒv‚É‚È‚Á‚Ä‚µ‚Ü‚¤B
                   // console.log(i);
                   await sleep(500);
                 }
@@ -3168,7 +3168,7 @@ var firstRemoveFlag =false;
 function removeCorrects(){
   var counts = {};
   minimumCorrect = Number(document.getElementById("NOC").value);
-  console.log('å‰Šé™¤å‰ã€€questionnumbers is ' + questionnumbers);
+  console.log('íœ‘O@questionnumbers is ' + questionnumbers);
   for(var i=0;i< correctQuestions.length;i++){
     var key = correctQuestions[i];
     counts[key] = (counts[key])? counts[key] + 1 : 1 ;
@@ -3193,7 +3193,7 @@ function removeCorrects(){
       }
     }
   }
-  // console.log('å‰Šé™¤å¾Œã€€questionnumbers is ' + questionnumbers);
+  // console.log('íœŒã@questionnumbers is ' + questionnumbers);
   MaxQuestionNumber = questionnumbers.length;
 }
 
@@ -3205,10 +3205,10 @@ function keydown() {
     console.log('event.keyCode is ' + event.keyCode);
     console.log('event.code is ' + event.code);
     console.log('event.shiftKey is ' + event.altKey);
-    // ç¾åœ¨ãƒ•ã‚©ãƒ¼ã‚«ã‚¹ãŒä¸ãˆã‚‰ã‚Œã¦ã„ã‚‹è¦ç´ ã‚’å–å¾—ã™ã‚‹
+    // Œ»İƒtƒH[ƒJƒX‚ª—^‚¦‚ç‚ê‚Ä‚¢‚é—v‘f‚ğæ“¾‚·‚é
     var active_element = document.activeElement;
 
-    // å‡ºåŠ›ãƒ†ã‚¹ãƒˆ
+    // o—ÍƒeƒXƒg
     console.log(active_element);
     if ((document.getElementById("keyControl").checked) && (AnswerShown)
     && (document.activeElement.id == "textareas2")
@@ -3507,7 +3507,7 @@ function settingSave(){
   var xmlhttp=createXmlHttpRequest();
     if(xmlhttp!=null)
     {
-        xmlhttp.open("POST", "../settingSave.php", false);//ä¸æ­£è§£ãƒœã‚¿ãƒ³ã‚’æŠ¼ã™
+        xmlhttp.open("POST", "../settingSave.php", false);//•s³‰ğƒ{ƒ^ƒ“‚ğ‰Ÿ‚·
         xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
         var data="data="+moji;
         xmlhttp.send(data);
@@ -3518,14 +3518,14 @@ function settingSave(){
 
 }
 function parseStrToBoolean(str) {
-    // æ–‡å­—åˆ—ã‚’åˆ¤å®š
+    // •¶š—ñ‚ğ”»’è
     return (str == 'true') ? true : false;
 
 }
 
 var selectElement = document.getElementById("novelSelect");
-var novels = "<?php echo $novelsArray; ?>";ã€€// å¤‰æ•°å—ã‘æ¸¡ã—ã€‚
-novels = novels.split(",", -1);ã€€// bb_csvã‚’split()ã§ã‚«ãƒ³ãƒåŒºåˆ‡ã‚Šé…åˆ—ã«å†ç·¨æˆã€‚
+var novels = "<?php echo $novelsArray; ?>";@// •Ï”ó‚¯“n‚µB
+novels = novels.split(",", -1);@// bb_csv‚ğsplit()‚ÅƒJƒ“ƒ}‹æØ‚è”z—ñ‚ÉÄ•Ò¬B
 for(var i = 1; i < novels.length; i ++){
   var option = document.createElement("option");
   option.value = novels[i];
@@ -3576,7 +3576,7 @@ changeFont();
 if (response[16]) {
 document.getElementById("novelSelect").value = response[16];}
 if (response[20]) {
-  if ((document.getElementById("novelSelect").value) && !(document.getElementById("novelSelect").value == "ãªã—")){
+  if ((document.getElementById("novelSelect").value) && !(document.getElementById("novelSelect").value == "‚È‚µ")){
     document.getElementById("novelSentenceNumber").value = response[20];
   }
 }
@@ -3584,7 +3584,7 @@ if (response[20]) {
 
 function AnswerSent(code)
 {
-    //ã‚¨ãƒ³ã‚¿ãƒ¼ã‚­ãƒ¼æŠ¼ä¸‹ãªã‚‰
+    //ƒGƒ“ƒ^[ƒL[‰Ÿ‰º‚È‚ç
     if((13 === code) && (AnswerShown === false) && (document.getElementById("autoAnswer").value === "0")
     && (document.getElementById("answerByMyself").checked))
     {
@@ -3618,19 +3618,19 @@ function getFirstDayFunc()
 
 var base = 60;
 
-var key =  ["C","C#","D","Eâ™­","E","F","F#","G","Aâ™­","A","Bâ™­","B"];
+var key =  ["C","C#","D","Eó","E","F","F#","G","Aó","A","Bó","B"];
 
-var chordname={"â–³":"100010010000",
+var chordname={"¢":"100010010000",
 "maj":"100010010000",
 "m":"100100010000",
 "dim":"100100100000",
 "aug":"100010001000",
-"â–³7":"100010010001",
+"¢7":"100010010001",
 "maj7":"100010010001",
 "m7":"100100010010",
 "7":"100010010010",
 "dim7":"100100100100",
-"m7â™­5":"100100100010",
+"m7ó5":"100100100010",
 "minmaj7":"100100010001",
 "6":"100010010100",
 "m6":"100100010100",
@@ -3678,7 +3678,7 @@ function getMIDI(chord){
   } else if (chord.substr(1,1) === "b"){
     _key=chord.substr(0,2);
     _chordname=chord.substr(2);
-  } else if (chord.substr(1,1) === "â™­"){
+  } else if (chord.substr(1,1) === "ó"){
     _key=chord.substr(0,2);
     _chordname=chord.substr(2);
   } else {
@@ -3686,12 +3686,12 @@ function getMIDI(chord){
     _chordname=chord.substr(1);
   }
   if (_chordname===""){_chordname="maj"};
-  if (_key==="Gâ™­"){_key==="F#"};
-  if (_key==="Dâ™­"){_key==="C#"};
-  if (_key==="A#"){_key==="Bâ™­"};
+  if (_key==="Gó"){_key==="F#"};
+  if (_key==="Dó"){_key==="C#"};
+  if (_key==="A#"){_key==="Bó"};
   if (_key==="Gb"){_key==="F#"};
   if (_key==="Db"){_key==="C#"};
-  if (_key==="As"){_key==="Bâ™­"};
+  if (_key==="As"){_key==="Bó"};
   if (_key==="Fs"){_key==="F#"};
   if (_key==="Cs"){_key==="C#"};
 
@@ -3729,7 +3729,7 @@ function playMIDI(midi){
 };
 
 function playChords(chords){
-    _chords=chords.split(/\r\n|\r|\n| |,/);//æ”¹è¡Œã‚³ãƒ¼ãƒ‰ã‚‚ã—ãã¯ç©ºç™½ã‚‚ã—ãã¯ã‚«ãƒ³ãƒ
+    _chords=chords.split(/\r\n|\r|\n| |,/);//‰üsƒR[ƒh‚à‚µ‚­‚Í‹ó”’‚à‚µ‚­‚ÍƒJƒ“ƒ}
     console.log(_chords);
     //_chords = chords.split(" ");
     _midi = []
@@ -3757,7 +3757,7 @@ function init(res) {
   // music.currentTime = Number(document.getElementById("mp3StartPoint").value);
   // music2.currentTime = Number(document.getElementById("mp3StartPoint").value);
   music.addEventListener('loadedmetadata',function(e) {
-      console.log(music.duration); // ç·æ™‚é–“ã®å–å¾—
+      console.log(music.duration); // ‘ŠÔ‚Ìæ“¾
       musicDuration = music.duration
 
   });
@@ -3826,7 +3826,7 @@ function stop() {
   music.pause();
   // music2.pause();
   // music.currentTime = Number(document.getElementById("mp3StartPoint").value);
-  // setTimeout() ãƒ¡ã‚½ãƒƒãƒ‰ã®å‹•ä½œã‚’ã‚­ãƒ£ãƒ³ã‚»ãƒ«ã™ã‚‹
+  // setTimeout() ƒƒ\ƒbƒh‚Ì“®ì‚ğƒLƒƒƒ“ƒZƒ‹‚·‚é
 clearTimeout(timeout_id);
 timeout_id = null;
 }
@@ -3834,15 +3834,15 @@ timeout_id = null;
 
 function imageSizeChange1(){
   imageSize = document.getElementById("imageSize1").value;
-  document.getElementById("mypic1").style.width = imageWidth1 * Number(imageSize) + "px";  // æ¨ªå¹…ã‚’400pxã«ãƒªã‚µã‚¤ã‚º
-  document.getElementById("mypic1").style.height = imageHeight1 * Number(imageSize) + "px";  // æ¨ªå¹…ã‚’400pxã«ãƒªã‚µã‚¤ã‚º
+  document.getElementById("mypic1").style.width = imageWidth1 * Number(imageSize) + "px";  // ‰¡•‚ğ400px‚ÉƒŠƒTƒCƒY
+  document.getElementById("mypic1").style.height = imageHeight1 * Number(imageSize) + "px";  // ‰¡•‚ğ400px‚ÉƒŠƒTƒCƒY
 }
 
 
 function imageSizeChange2(){
   imageSize = document.getElementById("imageSize2").value;
-  document.getElementById("mypic2").style.width = imageWidth2 * Number(imageSize) + "px";  // æ¨ªå¹…ã‚’400pxã«ãƒªã‚µã‚¤ã‚º
-  document.getElementById("mypic2").style.height = imageHeight2 * Number(imageSize) + "px";  // æ¨ªå¹…ã‚’400pxã«ãƒªã‚µã‚¤ã‚º
+  document.getElementById("mypic2").style.width = imageWidth2 * Number(imageSize) + "px";  // ‰¡•‚ğ400px‚ÉƒŠƒTƒCƒY
+  document.getElementById("mypic2").style.height = imageHeight2 * Number(imageSize) + "px";  // ‰¡•‚ğ400px‚ÉƒŠƒTƒCƒY
 }
 function informationChange(){
   var moji=  document.mainform.DB_name.value + "^" + document.mainform.information.value;
@@ -3851,7 +3851,7 @@ function informationChange(){
   var xmlhttp=createXmlHttpRequest2();
   if(xmlhttp!=null)
   {
-      xmlhttp.open("POST", "../informationChange.php", false);//ä¸æ­£è§£ãƒœã‚¿ãƒ³ã‚’æŠ¼ã™
+      xmlhttp.open("POST", "../informationChange.php", false);//•s³‰ğƒ{ƒ^ƒ“‚ğ‰Ÿ‚·
       xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
       var data="data="+moji;
       xmlhttp.send(data);
@@ -3865,7 +3865,7 @@ function changeBG(wIMG) {
   document.body.style.backgroundImage = "url(./bg/" + wIMG + ")";///////////////////
 }
 
-functionã€€changeFont(){
+function@changeFont(){
   var elements = document.getElementsByClassName('textlines');
   for(i=0;i<elements.length;i++){
     elements[i].style.fontFamily = document.getElementById("fontSelect").value;;
@@ -3875,7 +3875,7 @@ functionã€€changeFont(){
 function newOnesFunc(){
 
 }
-//éŸ³å£°èª­ã¿ä¸Šã’
+//‰¹º“Ç‚İã‚°
 const answerText2        = document.querySelector('#textareas2')
 const questionText2        = document.querySelector('#textareas')
 const voiceSelect = document.querySelector('#voice-select')
@@ -3884,13 +3884,13 @@ var readVoices = new Array();
 var readVoiceJp ="";
 var readVoiceEng ="";
 
-// selectã‚¿ã‚°ã®ä¸­èº«ã‚’å£°ã®åå‰ãŒå…¥ã£ãŸoptionã‚¿ã‚°ã§åŸ‹ã‚ã‚‹
+// selectƒ^ƒO‚Ì’†g‚ğº‚Ì–¼‘O‚ª“ü‚Á‚½optionƒ^ƒO‚Å–„‚ß‚é
 function appendVoices() {
-  // â‘ ã€€ä½¿ãˆã‚‹å£°ã®é…åˆ—ã‚’å–å¾—
-  // é…åˆ—ã®ä¸­èº«ã¯ SpeechSynthesisVoice ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
+  // ‡@@g‚¦‚éº‚Ì”z—ñ‚ğæ“¾
+  // ”z—ñ‚Ì’†g‚Í SpeechSynthesisVoice ƒIƒuƒWƒFƒNƒg
   const voices = speechSynthesis.getVoices()
-  voices.forEach(voice => { //ã€€ã‚¢ãƒ­ãƒ¼é–¢æ•° (ES6)
-    // æ—¥æœ¬èªã¨è‹±èªä»¥å¤–ã®å£°ã¯é¸æŠè‚¢ã«è¿½åŠ ã—ãªã„ã€‚
+  voices.forEach(voice => { //@ƒAƒ[ŠÖ” (ES6)
+    // “ú–{Œê‚Æ‰pŒêˆÈŠO‚Ìº‚Í‘I‘ğˆ‚É’Ç‰Á‚µ‚È‚¢B
     if(!voice.lang.match('ja|en-US')) return
     readVoices.push(voice.name);
   });
@@ -3910,8 +3910,8 @@ function appendVoices() {
 
 appendVoices()
 
-// // â‘¡ ä½¿ãˆã‚‹å£°ãŒè¿½åŠ ã•ã‚ŒãŸã¨ãã«ç€ç«ã™ã‚‹ã‚¤ãƒ™ãƒ³ãƒˆãƒãƒ³ãƒ‰ãƒ©ã€‚
-// // Chrome ã¯éåŒæœŸã«(ä¸€å€‹ãšã¤)å£°ã‚’èª­ã¿è¾¼ã‚€ãŸã‚å¿…è¦ã€‚
+// // ‡A g‚¦‚éº‚ª’Ç‰Á‚³‚ê‚½‚Æ‚«‚É’…‰Î‚·‚éƒCƒxƒ“ƒgƒnƒ“ƒhƒ‰B
+// // Chrome ‚Í”ñ“¯Šú‚É(ˆêŒÂ‚¸‚Â)º‚ğ“Ç‚İ‚Ş‚½‚ß•K—vB
 speechSynthesis.onvoiceschanged = e => {
   appendVoices();
 }
@@ -3939,7 +3939,7 @@ function getNovelSentence(){
   var xmlhttp=createXmlHttpRequest2();
   if(xmlhttp!=null)
   {
-    xmlhttp.open("POST", "../getNovelSentence.php", false);//æ­£è§£ãƒœã‚¿ãƒ³ã‚’æŠ¼ã™
+    xmlhttp.open("POST", "../getNovelSentence.php", false);//³‰ğƒ{ƒ^ƒ“‚ğ‰Ÿ‚·
     xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     var data="data="+moji;
     xmlhttp.send(data);

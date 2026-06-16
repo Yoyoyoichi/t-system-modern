@@ -1,4 +1,4 @@
-ï»¿<!DOCTYPE html>
+?<!DOCTYPE html>
 <html lang="ja">
 <script src="https://bossanova.uk/jspreadsheet/v3/jexcel.js"></script>
 <script src="https://jsuites.net/v4/jsuites.js"></script>
@@ -6,7 +6,7 @@
 <link rel="stylesheet" href="https://jsuites.net/v4/jsuites.css" type="text/css" />
 <script type="text/javascript" src="jquery-3.4.1.min.js"></script>
 <style>
-  /* è¡¨å…¨ä½“ */
+  /* •\‘S‘Ì */
   #spreadsheet{
       font-size:12px;
   }
@@ -22,13 +22,13 @@
 require_once 'db_wrapper.php';
       placeholder = "id"
       style='width: 40%; height :5vh; font-size: 24px;'/>
-    <input type="submit" value="é€ä¿¡" class="textlines" style='background-color:#99FFFF;font-size: 22px;width: 20%; height: 70px'>
+    <input type="submit" value="‘—M" class="textlines" style='background-color:#99FFFF;font-size: 22px;width: 20%; height: 70px'>
     <a id="previous" href="sample020.php">
-      <font size="6" color="#FF0000" style=''>å­¦ç¿’ç”»é¢</font>
+      <font size="6" color="#FF0000" style=''>ŠwK‰æ–Ê</font>
     </a>
     <br>
     <pre style='height:1vh;'>
-    å•é¡Œæ¤œç´¢
+    –â‘èŒŸõ
     </pre>
 
 <?php
@@ -37,7 +37,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
   if (!empty($_POST["DB_name"])) {
     $mysqli = new db_wrapper('localhost', 'terashimayo', 'Yoyoyo444', 'terashimayo');
     if( $mysqli->connect_errno){
-        echo 'Access Failed';//æ¥ç¶šå¤±æ•—
+        echo 'Access Failed';//Ú‘±¸”s
         exit;
     }
 
@@ -47,12 +47,12 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $db_column = "category1";
 
 
-    //ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆæ–‡å­—ã‚»ãƒƒãƒˆã‚’è¨­å®š
+    //ƒfƒtƒHƒ‹ƒg•¶šƒZƒbƒg‚ğİ’è
     $mysqli->set_charset("utf8");
     $row = "";
 
 
-    //ãƒ‡ãƒ¼ã‚¿ãƒ™ãƒ¼ã‚¹ã‹ã‚‰ã‚«ãƒ†ã‚´ãƒªãƒ¼1ã‚’å–å¾—
+    //ƒf[ƒ^ƒx[ƒX‚©‚çƒJƒeƒSƒŠ[1‚ğæ“¾
     $str_sql = "select $db_column from $db_name where question != 'settings'";
     // echo $str_sql.",\n"."\n";//
     $result = $mysqli->query($str_sql);
@@ -81,7 +81,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     echo "{$sampleSelectBox}";
 
-    //ãƒ‡ãƒ¼ã‚¿ãƒ™ãƒ¼ã‚¹ã‹ã‚‰ã‚«ãƒ†ã‚´ãƒªãƒ¼2ã‚’å–å¾—
+    //ƒf[ƒ^ƒx[ƒX‚©‚çƒJƒeƒSƒŠ[2‚ğæ“¾
     $str_sql = "select category2 from $db_name where question != 'settings'";
     $result = $mysqli->query($str_sql);
 
@@ -97,7 +97,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $row_cnt = count($response);
 
     $sampleSelectBox = "<select name=\"category2\" id='ctg2' onChange='listChange(this);listChanged()' multiple style='width:19%;height:20vh; font-size: 15px;margin:1px'>\n";
-    // $sampleSelectBox .= "\t<option value='' disabled selected style='display:none;' >ä¸­ã‚«ãƒ†ã‚´ãƒªãƒ¼</option>\n";
+    // $sampleSelectBox .= "\t<option value='' disabled selected style='display:none;' >’†ƒJƒeƒSƒŠ[</option>\n";
 
     // $sampleSelectBox .="\t<option value=""></option>\n";
     for ( $i = 1; $i < $row_cnt; $i++ ) {
@@ -107,7 +107,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     echo "{$sampleSelectBox}";
 
 
-    //ãƒ‡ãƒ¼ã‚¿ãƒ™ãƒ¼ã‚¹ã‹ã‚‰ã‚«ãƒ†ã‚´ãƒªãƒ¼3ã‚’å–å¾—
+    //ƒf[ƒ^ƒx[ƒX‚©‚çƒJƒeƒSƒŠ[3‚ğæ“¾
     $str_sql = "select category3 from $db_name where question != 'settings'";
     $result = $mysqli->query($str_sql);
 
@@ -130,7 +130,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $sampleSelectBox .= "</select>\n";//
     echo "{$sampleSelectBox}";
 
-    //ãƒ‡ãƒ¼ã‚¿ãƒ™ãƒ¼ã‚¹ã‹ã‚‰ã‚«ãƒ†ã‚´ãƒªãƒ¼4ã‚’å–å¾—
+    //ƒf[ƒ^ƒx[ƒX‚©‚çƒJƒeƒSƒŠ[4‚ğæ“¾
     $str_sql = "select category4 from $db_name where question != 'settings'";
     $result = $mysqli->query($str_sql);
 
@@ -143,7 +143,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     $response = array_values(array_unique($response));
 
-    // ini_set('xdebug.var_display_max_children', -1);//var_dumpå…¨ã¦æ›¸ãå‡ºã•ã›ã‚‹
+    // ini_set('xdebug.var_display_max_children', -1);//var_dump‘S‚Ä‘‚«o‚³‚¹‚é
     // ini_set('xdebug.var_display_max_data', -1);
     // ini_set('xdebug.var_display_max_depth', -1);
     // // var_dump($response);
@@ -157,7 +157,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $sampleSelectBox .= "</select>\n";//
     echo "{$sampleSelectBox}";
 
-    //ãƒ‡ãƒ¼ã‚¿ãƒ™ãƒ¼ã‚¹ã‹ã‚‰ã‚«ãƒ†ã‚´ãƒªãƒ¼5ã‚’å–å¾—
+    //ƒf[ƒ^ƒx[ƒX‚©‚çƒJƒeƒSƒŠ[5‚ğæ“¾
     $str_sql = "select category5 from $db_name where question != 'settings'";
     $result = $mysqli->query($str_sql);
 
@@ -181,7 +181,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $sampleSelectBox .= "</select>\n";//
     echo "{$sampleSelectBox}";
 
-    //ãƒ‡ãƒ¼ã‚¿ãƒ™ãƒ¼ã‚¹ã‹ã‚‰questionã‚’å–å¾—
+    //ƒf[ƒ^ƒx[ƒX‚©‚çquestion‚ğæ“¾
 
     
 
@@ -203,19 +203,19 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     
 
   } else {
-    $err = "å…¥åŠ›ã•ã‚Œã¦ã„ãªã„é …ç›®ãŒã‚ã‚Šã¾ã™ã€‚";
+    $err = "“ü—Í‚³‚ê‚Ä‚¢‚È‚¢€–Ú‚ª‚ ‚è‚Ü‚·B";
   }
 }
 
 ?>
-<input type="text" name="wordsearch" id="wordsearch"  placeholder = "æ¤œç´¢"
+<input type="text" name="wordsearch" id="wordsearch"  placeholder = "ŒŸõ"
 style='width: 30%; font-size: 38px;box-sizing:border-box;vertical-align:top; '>
 <br>
-<input type="button" id="showButton" value="è¡¨ç¤º" onclick='sendRequest()' style='font-size: 20px;width: 20%; height: 50px;margin:5px'>
+<input type="button" id="showButton" value="•\¦" onclick='sendRequest()' style='font-size: 20px;width: 20%; height: 50px;margin:5px'>
 <br>
 <div id="spreadsheet" ></div>
 <br>
-<input type="button" id="showButton" value="è¿½åŠ " onclick='insertrow0()' style='font-size: 20px;width: 20%; height: 50px;margin:5px'>
+<input type="button" id="showButton" value="’Ç‰Á" onclick='insertrow0()' style='font-size: 20px;width: 20%; height: 50px;margin:5px'>
 <br>
  
 <script type="text/javascript">
@@ -232,7 +232,7 @@ var table1;
 function sendRequest(){
   var category1Value = new Array();
   var elemCategory1 = document.getElementById('ctg1');
-  var optsCategory1 = elemCategory1.options; // selectè¦ç´ ã®optionãƒ—ãƒ­ãƒ‘ãƒ†ã‚£
+  var optsCategory1 = elemCategory1.options; // select—v‘f‚ÌoptionƒvƒƒpƒeƒB
   for (var i = 0; i < optsCategory1.length; i++) {
     if (optsCategory1[i].selected) {
       category1Value[i] = optsCategory1[i].value;
@@ -243,7 +243,7 @@ function sendRequest(){
 
   var category2Value = new Array();
   var elemCategory2 = document.getElementById('ctg2');
-  var optsCategory2 = elemCategory2.options; // selectè¦ç´ ã®optionãƒ—ãƒ­ãƒ‘ãƒ†ã‚£
+  var optsCategory2 = elemCategory2.options; // select—v‘f‚ÌoptionƒvƒƒpƒeƒB
   for (var i = 0; i < optsCategory2.length; i++) {
     if (optsCategory2[i].selected) {
       category2Value[i] = optsCategory2[i].value;
@@ -255,7 +255,7 @@ function sendRequest(){
 
   var category3Value = new Array();
   var elemCategory3 = document.getElementById('ctg3');
-  var optsCategory3 = elemCategory3.options; // selectè¦ç´ ã®optionãƒ—ãƒ­ãƒ‘ãƒ†ã‚£
+  var optsCategory3 = elemCategory3.options; // select—v‘f‚ÌoptionƒvƒƒpƒeƒB
   for (var i = 0; i < optsCategory3.length; i++) {
     if (optsCategory3[i].selected) {
       category3Value[i] = optsCategory3[i].value;
@@ -267,7 +267,7 @@ function sendRequest(){
 
   var category4Value = new Array();
   var elemCategory4 = document.getElementById('ctg4');
-  var optsCategory4 = elemCategory4.options; // selectè¦ç´ ã®optionãƒ—ãƒ­ãƒ‘ãƒ†ã‚£
+  var optsCategory4 = elemCategory4.options; // select—v‘f‚ÌoptionƒvƒƒpƒeƒB
   for (var i = 0; i < optsCategory4.length; i++) {
     if (optsCategory4[i].selected) {
       category4Value[i] = optsCategory4[i].value;
@@ -278,7 +278,7 @@ function sendRequest(){
 
   var category5Value = new Array();
   var elemCategory5 = document.getElementById('ctg5');
-  var optsCategory5 = elemCategory5.options; // selectè¦ç´ ã®optionãƒ—ãƒ­ãƒ‘ãƒ†ã‚£
+  var optsCategory5 = elemCategory5.options; // select—v‘f‚ÌoptionƒvƒƒpƒeƒB
   for (var i = 0; i < optsCategory5.length; i++) {
     if (optsCategory5[i].selected) {
       category5Value[i] = optsCategory5[i].value;
@@ -304,7 +304,7 @@ function sendRequest(){
 
   var xmlhttp=createXmlHttpRequest();
   if(xmlhttp!=null)  {
-    xmlhttp.open("POST", "../getSheetData.php", false);//ä¹±æ•°ã‚’å–å¾—
+    xmlhttp.open("POST", "../getSheetData.php", false);//—”‚ğæ“¾
     xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     var data="data="+moji;
     xmlhttp.send(data);
@@ -313,8 +313,8 @@ function sendRequest(){
 
     var givenData  = [];
     for (let i = 1; i < res.length; i++) {
-      //é…åˆ—ã®è¦ç´ æ•°ã‚’æŒ‡å®šã™ã‚‹
-ã€€ã€€ã€€givenData[i-1] = [];
+      //”z—ñ‚Ì—v‘f”‚ğw’è‚·‚é
+@@@givenData[i-1] = [];
       res2 = res[i].split(',');
       for (let j = 0; j < res2.length; j++) {
         givenData[i-1][j] =  res2[j];
@@ -394,7 +394,7 @@ function sendRequest(){
     var xmlhttp=createXmlHttpRequest();
     if(xmlhttp!=null)
     {
-        xmlhttp.open("POST", "../fromSheetUpdateDatabase.php", false);//ä¸æ­£è§£ãƒœã‚¿ãƒ³ã‚’æŠ¼ã™
+        xmlhttp.open("POST", "../fromSheetUpdateDatabase.php", false);//•s³‰ğƒ{ƒ^ƒ“‚ğ‰Ÿ‚·
         xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
         var data="data="+moji;
         xmlhttp.send(data);
@@ -428,7 +428,7 @@ function sendRequest(){
     var xmlhttp=createXmlHttpRequest();
     if(xmlhttp!=null)
     {
-        xmlhttp.open("POST", "../fromSheetUpdateDatabase.php", false);//ä¸æ­£è§£ãƒœã‚¿ãƒ³ã‚’æŠ¼ã™
+        xmlhttp.open("POST", "../fromSheetUpdateDatabase.php", false);//•s³‰ğƒ{ƒ^ƒ“‚ğ‰Ÿ‚·
         xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
         var data="data="+moji;
         xmlhttp.send(data);
@@ -457,7 +457,7 @@ function sendRequest(){
     var xmlhttp=createXmlHttpRequest();
     if(xmlhttp!=null)
     {
-        xmlhttp.open("POST", "../fromSheetUpdateDatabase.php", false);//ä¸æ­£è§£ãƒœã‚¿ãƒ³ã‚’æŠ¼ã™
+        xmlhttp.open("POST", "../fromSheetUpdateDatabase.php", false);//•s³‰ğƒ{ƒ^ƒ“‚ğ‰Ÿ‚·
         xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
         var data="data="+moji;
         xmlhttp.send(data);
@@ -476,7 +476,7 @@ function listChange(categorySelect){
   
 
   var elem = document.getElementById('ctg1');
-  var opts = elem.options; // selectè¦ç´ ã®optionãƒ—ãƒ­ãƒ‘ãƒ†ã‚£
+  var opts = elem.options; // select—v‘f‚ÌoptionƒvƒƒpƒeƒB
   // console.log(opts);       // HTMLOptionsCollection(3)
   var selectedCategory1 = [];
   for (var i = 0; i < opts.length; i++) {          
@@ -487,7 +487,7 @@ function listChange(categorySelect){
   var selectedCategory1 = selectedCategory1.join("^");
   //sampleArea.insertAdjacentHTML("beforebegin","selectedCategory1"+selectedCategory1+"<br><br><br>");
   var elem = document.getElementById('ctg2');
-  var opts = elem.options; // selectè¦ç´ ã®optionãƒ—ãƒ­ãƒ‘ãƒ†ã‚£
+  var opts = elem.options; // select—v‘f‚ÌoptionƒvƒƒpƒeƒB
   // console.log(opts);       // HTMLOptionsCollection(3)
   var selectedCategory2 = [];
   for (var i = 0; i < opts.length; i++) {          
@@ -498,7 +498,7 @@ function listChange(categorySelect){
   var selectedCategory2 = selectedCategory2.join("^");
   //sampleArea.insertAdjacentHTML("beforebegin","selectedCategory2"+selectedCategory2+"<br><br><br>");
   var elem = document.getElementById('ctg3');
-  var opts = elem.options; // selectè¦ç´ ã®optionãƒ—ãƒ­ãƒ‘ãƒ†ã‚£
+  var opts = elem.options; // select—v‘f‚ÌoptionƒvƒƒpƒeƒB
   // console.log(opts);       // HTMLOptionsCollection(3)
   var selectedCategory3 = [];
   for (var i = 0; i < opts.length; i++) {          
@@ -509,7 +509,7 @@ function listChange(categorySelect){
   var selectedCategory3 = selectedCategory3.join("^");
   //sampleArea.insertAdjacentHTML("beforebegin","selectedCategory3"+selectedCategory3+"<br><br><br>");
   var elem = document.getElementById('ctg4');
-  var opts = elem.options; // selectè¦ç´ ã®optionãƒ—ãƒ­ãƒ‘ãƒ†ã‚£
+  var opts = elem.options; // select—v‘f‚ÌoptionƒvƒƒpƒeƒB
   // console.log(opts);       // HTMLOptionsCollection(3)
   var selectedCategory4 = [];
   for (var i = 0; i < opts.length; i++) {          
@@ -520,7 +520,7 @@ function listChange(categorySelect){
   var selectedCategory4 = selectedCategory4.join("^");
   //sampleArea.insertAdjacentHTML("beforebegin","selectedCategory4"+selectedCategory4+"<br><br><br>");
   var elem = document.getElementById('ctg5');
-  var opts = elem.options; // selectè¦ç´ ã®optionãƒ—ãƒ­ãƒ‘ãƒ†ã‚£
+  var opts = elem.options; // select—v‘f‚ÌoptionƒvƒƒpƒeƒB
   // console.log(opts);       // HTMLOptionsCollection(3)
   var selectedCategory5 = [];
   for (var i = 0; i < opts.length; i++) {          
@@ -787,9 +787,9 @@ function createXmlHttpRequest()
 
 
 
-//20221221ã€€
-//question, answer1, category1 ãªã©ã€€ã‚«ãƒ©ãƒ ã”ã¨ã«mysqlã‹ã‚‰æƒ…å ±ã‚’å–å¾—ã™ã‚‹ã‚ˆã†ã«ã—ãŸã€‚
-//æƒ…å ±å–å¾—ã¨æ”¹å¤‰ãŒã§ãã‚‹ã‚ˆã†ã«ãªã£ãŸãŒã€è¿½åŠ ã¯ã¾ã ã§ããªã„ã€‚
+//20221221@
+//question, answer1, category1 ‚È‚Ç@ƒJƒ‰ƒ€‚²‚Æ‚Émysql‚©‚çî•ñ‚ğæ“¾‚·‚é‚æ‚¤‚É‚µ‚½B
+//î•ñæ“¾‚Æ‰ü•Ï‚ª‚Å‚«‚é‚æ‚¤‚É‚È‚Á‚½‚ªA’Ç‰Á‚Í‚Ü‚¾‚Å‚«‚È‚¢B
 
 
 </script>
