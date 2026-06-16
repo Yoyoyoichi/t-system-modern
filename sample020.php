@@ -1088,6 +1088,20 @@ word-wrap:break-word;'></pre>
 
 
 <script type="text/javascript">
+async function myFetch(url, dataStr) {
+    try {
+        let response = await fetch(url, {
+            method: 'POST',
+            headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+            body: dataStr
+        });
+        return await response.text();
+    } catch (e) {
+        console.error("Fetch error:", e);
+        return "";
+    }
+}
+
 
 var sendbackDBName = location.search.substring(1);
 // console.log('sendbackDBName is '+sendbackDBName);
@@ -1167,7 +1181,7 @@ for (let i = 1; i < 500; i++) {//Mp3開始地点セレクト要素追加
 
 
 
-function sendRequest(){
+async function sendRequest\(){
     let parent = document.getElementById("answerMath");
     while(parent.lastChild){
       parent.removeChild(parent.lastChild);
@@ -1321,41 +1335,29 @@ function sendRequest(){
     {
 
       if (flag1 == false){
-        xmlhttp.open("POST", "../getqestions.php", false);//乱数を取得
-        xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-        var data="data="+moji;
-        xmlhttp.send(data);
-        var res=xmlhttp.responseText.split('^^^');
+        var raw_res = await myFetch("../getqestions.php", "data=" + moji);
+        var res=raw_res.split("^^^");
         console.log('0817 res is '+res);
         questionnumbers = res[1].split(',');
         document.getElementById("totalQuestionNumber").innerHTML = questionnumbers.length;
       }
       if (oneByOneflag == true){
-        xmlhttp.open("POST", "../getqestionsOneByOne.php", false);//乱数を取得
-        xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-        var data="data="+moji;
-        xmlhttp.send(data);
-        var res=xmlhttp.responseText.split('^^^');
+        var raw_res = await myFetch("../getqestionsOneByOne.php", "data=" + moji);
+        var res=raw_res.split("^^^");
         console.log('0817 res is '+res);
         questionnumbers = res[1].split(',');
         document.getElementById("totalQuestionNumber").innerHTML = questionnumbers.length;
       }
       if (twoByTwoflag == true){
-        xmlhttp.open("POST", "../getqestionsTwoByTwo.php", false);//乱数を取得
-        xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-        var data="data="+moji;
-        xmlhttp.send(data);
-        var res=xmlhttp.responseText.split('^^^');
+        var raw_res = await myFetch("../getqestionsTwoByTwo.php", "data=" + moji);
+        var res=raw_res.split("^^^");
         console.log('0817 res is '+res);
         questionnumbers = res[1].split(',');
         document.getElementById("totalQuestionNumber").innerHTML = questionnumbers.length;
       }
       if (threeByThreeflag == true){
-        xmlhttp.open("POST", "../getqestionsThreeByThree.php", false);//乱数を取得
-        xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-        var data="data="+moji;
-        xmlhttp.send(data);
-        var res=xmlhttp.responseText.split('^^^');
+        var raw_res = await myFetch("../getqestionsThreeByThree.php", "data=" + moji);
+        var res=raw_res.split("^^^");
         console.log('0817 res is '+res);
         questionnumbers = res[1].split(',');
         document.getElementById("totalQuestionNumber").innerHTML = questionnumbers.length;
@@ -1425,168 +1427,7 @@ function sendRequest(){
 
 
 
-    var xmlhttp=createXmlHttpRequest();
-
-    if(xmlhttp!=null)
-    {
-
-        xmlhttp.open("POST", "../"+phpfile1, false);//乱数をもとに問題を取得
-        xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-        var data="data="+moji;
-
-        // console.log('396 data is '+data);
-
-        xmlhttp.send(data);
-        //xmlhttp.send(dataa);
-
-        //var datata="data="+mojiji;
-        //xmlhttp.send(datata);
-
-        var res=xmlhttp.responseText;
-
-        // console.log('558 res is '+res);
-        var res = res.split('^^^');
-        imagefolder = res[2];
-
-        var doc0= document.getElementById("questionInfo");
-
-        var correctNum = ""
-        var question = ""
-        if (res[0].indexOf("正解数")<0) {
-            question = res[0];
-            correctNum = res[1];
-        } else {
-            question = res[1];
-            correctNum = res[0];
-        }
-
-        doc0.innerHTML= correctNum;
-        questiontext = question;
-
-
-        if ((question.indexOf( "jpg" ) > -1)||(question.indexOf( "png" ) > -1)||(question.indexOf( "gif" ) > -1)||(question.indexOf( "jpeg" ) > -1)) {
-          document.getElementById("textareas").style.display = "none";
-          document.getElementById("mypic1").style.display = "block";
-          document.getElementById("div1").style.display = "block";          
-          document.getElementById("questionMath").innerText ="";
-          
-          // var imageadress =  res.split('\n');
-          // console.log('question is ' + question);
-          question = question.split('\n\n');
-          if (question.length > 1) {
-            if (question[1].indexOf( "ttp" ) > 0){
-              document.getElementById("mypic1").src=question[1];
-            } else {
-              document.getElementById("mypic1").src='images/'+imagefolder+'/' + question[1];
-            }
-          } else {
-            if (question[0].indexOf( "ttp" ) > 0){
-              document.getElementById("mypic1").src=question[0];
-            } else {
-              document.getElementById("mypic1").src='images/'+imagefolder+'/' + question[0];
-            }
-          }
-
-
-          var image1 = new Image();
-          var width;
-          var height;
-
-          image1.onload = function(){
-              width = image1.width;
-              height = image1.height;
-              imageSize = document.getElementById("imageSize1").value * image1.width ;
-              if ((imageSize>1000)){
-               imageSize = 1000;
-              }
-              if ((width>height)){
-                  document.getElementById("mypic1").style.width = imageSize + "px";  // 横幅を400pxにリサイズ
-                  document.getElementById("mypic1").style.height = height * (imageSize / width)+"px"; // 高さを横幅の変化割合に合わせる;
-                  if (parseInt(document.getElementById("mypic1").style.height)>parseInt(document.getElementById("div1").clientHeight)) {
-                    document.getElementById("mypic1").style.height = document.getElementById("div1").clientHeight +"px";
-                    document.getElementById("mypic1").style.width = (document.getElementById("mypic1").height*width)/height + "px";
-                  } else {
-                  }
-              } else {
-                document.getElementById("mypic1").style.width = image1.width * 1 * document.getElementById("imageSize1").value + "px";
-                document.getElementById("mypic1").style.height = height * (image1.width * 1 * document.getElementById("imageSize1").value/ width)+"px";
-                // document.getElementById("mypic1").style.height = document.getElementById("div1").clientHeight +"px";
-                // document.getElementById("mypic1").style.width = (document.getElementById("mypic1").height*width)/height + "px";
-              }
-
-              imageWidth1 = Number(document.getElementById("mypic1").style.width.substr(0,document.getElementById("mypic1").style.width.length -2));
-              imageHeight1 = Number(document.getElementById("mypic1").style.height.substr(0,document.getElementById("mypic1").style.height.length -2));
-
-          }
-          // if (question.length > 1) {
-          //   image1.src ='images/'+imagefolder+'/' + question[1];
-          // } else {
-          //   image1.src ='images/'+imagefolder+'/' + question[0];
-          // }
-          // image1.src = 'images/'+imagefolder+'/' + question;
-          if (question.length > 1) {
-            if (question[1].indexOf( "ttp" ) > 0){
-              image1.src=question[1];
-            } else {
-              image1.src='images/'+imagefolder+'/' + question[1];
-            }
-          } else {
-            if (question[0].indexOf( "ttp" ) > 0){
-              image1.src=question[0];
-            } else {
-              image1.src='images/'+imagefolder+'/' + question[0];
-            }
-          }
-
-       
-
-        } else if ((question.indexOf( slashKakko ) > -1)){
-          document.getElementById("textareas").style.display = "none";
-          document.getElementById("div1").style.display = "block";
-          document.getElementById("mypic1").style.display = "none";
-          document.getElementById("questionMath").innerText = question;
-          if (!(document.getElementById("mypic1")=== null)) {
-            if (document.getElementById("mypic1").src){
-              document.getElementById("mypic1").src= "";
-            }      
-          }else{
-            var img_element = document.createElement('img');
-            img_element.id= 'mypic1';
-            // 指定した要素にimg要素を挿入
-            var content_area = document.getElementById("div1");
-            content_area.appendChild(img_element);
-          }
-          
-          MathJax.Hub.Typeset(document.getElementById("div1"));//数式再読み込み
-        
-        } else if (isHTML(question)){
-          document.getElementById("textareas").style.display = "none";
-          document.getElementById("div1").style.display = "block";
-          document.getElementById("mypic1").style.display = "none";
-          document.getElementById("questionMath").innerHTML = question;
-        } else {
-          document.getElementById("div1").style.display = "none";
-          document.getElementById("textareas").style.display = "block";
-          document.getElementById( "textareas" ).value = "";
-          document.getElementById( "textareas" ).value = question ;////////
-          document.getElementById( "textareas2" ).value = "";
-          AnswerShown = false;
-        }
-
-
-
-    }　//苦手度を取得
-
-    var moji=rand + "." + document.mainform.DB_name.value;
-    moji = encodeURIComponent(moji);
-    var xmlhttp=createXmlHttpRequest2();
-    if(xmlhttp!=null)
-    {
-        xmlhttp.open("POST", "../getpoorat.php", false);//正解ボタンを押す
-        xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-        var data="data="+moji;
-        xmlhttp.send(data);
-        var res=xmlhttp.responseText;
+    var res = await myFetch( "../"+phpfile1, "data=" + moji);
         // console.log('534 getpoorat res is '+res);
         document.getElementById( "poorat" ).value = res;
 
@@ -1698,11 +1539,7 @@ function sendRequest2(){
   var xmlhttp=createXmlHttpRequest();
   if(xmlhttp!=null){
     // alert(phpfile2);
-    xmlhttp.open("POST", "../"　+ phpfile2 , false);//乱数をもとに解答を取得
-    xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    var data="data="+moji;
-    xmlhttp.send(data);
-    var res=xmlhttp.responseText;
+    var res = await myFetch("../" + phpfile2, "data=" + moji);
     // console.log('502 res is '+ res);
     var AnswerTyped = document.getElementById( "textareas2" ).value;
     document.getElementById( "textareas2" ).value = "";
@@ -1905,14 +1742,7 @@ function sendRequest3(goodPoor)
   moji = encodeURIComponent(moji);
   // console.log('656 poorat is '+ document.mainform.poorat.value);
   // console.log('657 getpastTime is '+ getpastTime);
-  var xmlhttp=createXmlHttpRequest2();
-  if(xmlhttp!=null)
-  {
-    xmlhttp.open("POST", "../addcorrect.php", false);//正解ボタンを押す
-    xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    var data="data="+moji;
-    xmlhttp.send(data);
-    var res=xmlhttp.responseText;
+  var res = await myFetch( "../addcorrect.php", "data=" + moji);
     // console.log('534 addcorrectres is '+res);
     document.getElementById( "textareas2" ).value = "";
     // document.getElementById( "preQInfo" ).innerHTML = "前問の結果  " +res;
@@ -1945,13 +1775,7 @@ function sendRequest4(goodPoor){
   moji = encodeURIComponent(moji);
   // console.log('678 poorat is '+ document.mainform.poorat.value);
   // console.log('679 getpastTime is '+ getpastTime);
-  var xmlhttp=createXmlHttpRequest2();
-  if(xmlhttp!=null){
-    xmlhttp.open("POST", "../addincorrect.php", false);//不正解ボタンを押す
-    xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    var data="data="+moji;
-    xmlhttp.send(data);
-    var res=xmlhttp.responseText;
+  var res = await myFetch( "../addincorrect.php", "data=" + moji);
     document.getElementById( "textareas2" ).value = "";
     // document.getElementById( "preQInfo" ).innerHTML = "前問の結果  " +res;
     document.getElementById("div2").style.display = "none";
@@ -1961,19 +1785,12 @@ function sendRequest4(goodPoor){
   sendRequest();
 }
 
-function correctMinus(){
+async function correctMinus\(){
   var moji=rand + "^" + document.mainform.DB_name.value;
   moji = encodeURIComponent(moji);
   // console.log('678 poorat is '+ document.mainform.poorat.value);
   // console.log('679 getpastTime is '+ getpastTime);
-  var xmlhttp=createXmlHttpRequest2();
-  if(xmlhttp!=null)
-  {
-    xmlhttp.open("POST", "../correctMinus.php", false);//不正解ボタンを押す
-    xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    var data="data="+moji;
-    xmlhttp.send(data);
-    var res=xmlhttp.responseText;
+  var res = await myFetch( "../correctMinus.php", "data=" + moji);
     document.getElementById( "textareas2" ).value = "";
     document.getElementById( "textareas2" ).value = res;
     document.getElementById("div2").style.display = "none";
@@ -1981,19 +1798,12 @@ function correctMinus(){
   }
 }
 
-function incorrectMinus(){
+async function incorrectMinus\(){
   var moji=rand + "^" + document.mainform.DB_name.value;
   moji = encodeURIComponent(moji);
   // console.log('678 poorat is '+ document.mainform.poorat.value);
   // console.log('679 getpastTime is '+ getpastTime);
-  var xmlhttp=createXmlHttpRequest2();
-  if(xmlhttp!=null)
-  {
-    xmlhttp.open("POST", "../incorrectMinus.php", false);//不正解ボタンを押す
-    xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    var data="data="+moji;
-    xmlhttp.send(data);
-    var res=xmlhttp.responseText;
+  var res = await myFetch( "../incorrectMinus.php", "data=" + moji);
     document.getElementById( "textareas2" ).value = "";
     document.getElementById( "textareas2" ).value = res;
     document.getElementById("div2").style.display = "none";
@@ -2025,11 +1835,7 @@ function sendRequest5(){
   moji = encodeURIComponent(moji);
   var xmlhttp=createXmlHttpRequest2();
   if ((xmlhttp!=null)　&& ((moji.indexOf('Your%20Answer')=== -1) && (moji.indexOf('...............')=== -1))) {//修正する問題と答えに自分の解答やヒントがなければ修正する。
-    xmlhttp.open("POST", "../modifyquestionanswer.php", false);//不正解ボタンを押す
-    xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    var data="data="+moji;
-    xmlhttp.send(data);
-    var res=xmlhttp.responseText;
+    var res = await myFetch("../modifyquestionanswer.php", "data=" + moji);
     // console.log('721 res is '+res);
   }
 }
@@ -2037,13 +1843,7 @@ function sendRequest5(){
 function deleteQ(){
   var moji=rand + "^" + document.mainform.DB_name.value;
   moji = encodeURIComponent(moji);
-  var xmlhttp=createXmlHttpRequest2();
-  if(xmlhttp!=null){
-    xmlhttp.open("POST", "../deleteQuestion.php", false);//不正解ボタンを押す
-    xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    var data="data="+moji;
-    xmlhttp.send(data);
-    var res=xmlhttp.responseText;
+  var res = await myFetch( "../deleteQuestion.php", "data=" + moji);
     // console.log('delete is ' + res);
     document.getElementById( "textareas" ).value = "問題を削除しました。";
     document.getElementById( "textareas2" ).value = "";
@@ -2158,12 +1958,8 @@ function listChange(categorySelect){
       if(xmlhttp!=null)
       {
           // console.log("2");
-          xmlhttp.open("POST", "../ctgchange.php", false);//
-          xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-          var data="data=" + moji;
-          // console.log("2.1");
-          xmlhttp.send(data);
-          var res=xmlhttp.responseText.split('^^^');
+          var raw_res = await myFetch("../ctgchange.php", "data=" + moji);
+        var res=raw_res.split("^^^");
           // console.log("2.2"+" "+res);
           // console.log("2.2"+res);
           res=res[1].replace(',,,,,,', '');
@@ -2210,12 +2006,8 @@ function listChange(categorySelect){
       if(xmlhttp!=null)
       {
         // console.log("3");
-        xmlhttp.open("POST", "../ctgchange.php", false);//
-        xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-        var data="data=" + moji;
-        // console.log("2.1");
-        xmlhttp.send(data);
-        var res=xmlhttp.responseText.split('^^^');
+        var raw_res = await myFetch("../ctgchange.php", "data=" + moji);
+        var res=raw_res.split("^^^");
         // console.log("2.2"+" "+res);
         // console.log("627 "+ res);
         //res=res.replace(',,,,,,', '');
@@ -2262,12 +2054,8 @@ function listChange(categorySelect){
       if(xmlhttp!=null)
       {
         // console.log("3");
-        xmlhttp.open("POST", "../ctgchange.php", false);//
-        xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-        var data="data=" + moji;
-        // console.log("2.1");
-        xmlhttp.send(data);
-        var res=xmlhttp.responseText.split('^^^');
+        var raw_res = await myFetch("../ctgchange.php", "data=" + moji);
+        var res=raw_res.split("^^^");
         // console.log("2.2"+" "+res);
         // console.log("627 "+ res);
         res=res[1].replace(',,,,,,', '');
@@ -2312,12 +2100,8 @@ function listChange(categorySelect){
       if(xmlhttp!=null)
       {
         // console.log("3");
-        xmlhttp.open("POST", "../ctgchange.php", false);//
-        xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-        var data="data=" + moji;
-        // console.log("2.1");
-        xmlhttp.send(data);
-        var res=xmlhttp.responseText.split('^^^');
+        var raw_res = await myFetch("../ctgchange.php", "data=" + moji);
+        var res=raw_res.split("^^^");
         // console.log("2.2"+" "+res);
         // console.log("627 "+ res);
         res=res[1].replace(',,,,,,', '');
@@ -2359,7 +2143,7 @@ function listChanged(){
   // alert(flag1);
 }
 
-function backQuestion(){
+async function backQuestion\(){
   if ((document.getElementById("novelSelect").value) && !(document.getElementById("novelSelect").value == "なし")){
     //小説戻す
     novelRowNum = Number(novelRowNum)-1
@@ -2391,56 +2175,7 @@ function backQuestion(){
     rand = questionnumbers[num];
     var moji=rand + "." + document.mainform.DB_name.value;
     moji = encodeURIComponent(moji);
-    var xmlhttp=createXmlHttpRequest();
-    if(xmlhttp!=null){
-      xmlhttp.open("POST", "../"+phpfile1, false);//乱数をもとに問題を取得
-      xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-      var data="data="+moji;
-      // console.log('396 data is '+data);
-      xmlhttp.send(data);
-      var res=xmlhttp.responseText;
-      // console.log('1120 res is '+res);
-      var res = res.split('^^^');
-      var doc0= document.getElementById("questionInfo");
-      var correctNum = ""
-      var question = ""
-
-      if (res[0].indexOf("正解数")<0) {
-        question = res[0];
-        correctNum = res[1];
-      } else {
-        question = res[1];
-        correctNum = res[0];
-      }
-
-      doc0.innerHTML= correctNum;
-
-      if ((question.indexOf( "jpg" ) > -1)||(question.indexOf( "png" ) > -1)||(question.indexOf( "gif" ) > -1)||(question.indexOf( "jpeg" ) > -1)) {
-        document.getElementById("textareas").style.display = "none";
-        document.getElementById("div1").style.display = "block";
-        // var imageadress =  res.split('\n');
-        // console.log('question is ' + question);
-        // console.log('imagefolder is ' + res[2]);
-        document.getElementById("mypic1").src='images/'+res[2]+'/' + question;
-        // document.getElementById("mypic1").style.width = "700px";
-      } else {
-        document.getElementById("div1").style.display = "none";
-        document.getElementById("textareas").style.display = "block";
-        document.getElementById( "textareas" ).value = "";
-        document.getElementById( "textareas" ).value = question ;
-        document.getElementById( "textareas2" ).value = "";;
-      }
-    }　//苦手度を取得
-    var moji=rand + "." + document.mainform.DB_name.value;
-    moji = encodeURIComponent(moji);
-    var xmlhttp=createXmlHttpRequest2();
-    if(xmlhttp!=null)
-    {
-      xmlhttp.open("POST", "../getpoorat.php", false);//正解ボタンを押す
-      xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-      var data="data="+moji;
-      xmlhttp.send(data);
-      var res=xmlhttp.responseText;
+    var res = await myFetch( "../"+phpfile1, "data=" + moji);
       // console.log('534 getpoorat res is '+res);
       document.getElementById( "poorat" ).value = res;
     }
@@ -3390,7 +3125,7 @@ function whichKey2(){
   }
 }
 
-function settingSave(){
+async function settingSave\(){
   // console.log('document.getElementById("fontresize").value is '+document.getElementById("fontresize").value);
   moji = document.mainform.DB_name.value + "^^" + 
   document.getElementById("MaxQuestionNumber").value + "^^" +
@@ -3413,14 +3148,7 @@ function settingSave(){
   document.getElementById("flexButton").checked + "^^" + 
   document.getElementById("blackCheck").checked;
   novelRowNum = Number(document.getElementById("novelSentenceNumber").value);
-  var xmlhttp=createXmlHttpRequest();
-  if(xmlhttp!=null)
-  {
-    xmlhttp.open("POST", "../settingSave.php", false);//不正解ボタンを押す
-    xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    var data="data="+moji;
-    xmlhttp.send(data);
-    var res=xmlhttp.responseText;
+  var res = await myFetch( "../settingSave.php", "data=" + moji);
     // console.log('settingSave res is '+res);
   }
 
@@ -3800,18 +3528,11 @@ function imageSizeChange2(){
   document.getElementById("mypic2").style.width = imageWidth2 * Number(imageSize) + "px";  // 横幅を400pxにリサイズ
   document.getElementById("mypic2").style.height = imageHeight2 * Number(imageSize) + "px";  // 横幅を400pxにリサイズ
 }
-function informationChange(){
+async function informationChange\(){
   var moji=  document.mainform.DB_name.value + "^" + document.mainform.information.value;
   moji = encodeURIComponent(moji);
 
-  var xmlhttp=createXmlHttpRequest2();
-  if(xmlhttp!=null)
-  {
-      xmlhttp.open("POST", "../informationChange.php", false);//不正解ボタンを押す
-      xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-      var data="data="+moji;
-      xmlhttp.send(data);
-      var res=xmlhttp.responseText;
+  var res = await myFetch( "../informationChange.php", "data=" + moji);
 
   }
 }
@@ -3888,18 +3609,11 @@ if (document.getElementById("novelSentenceNumber").value) {
 }
     
 
-function getNovelSentence(){
+async function getNovelSentence\(){
   var moji=document.mainform.DB_name.value + "." + Number(novelRowNum) + "." + 
   document.mainform.novelSelect.value;
   moji = encodeURIComponent(moji);
-  var xmlhttp=createXmlHttpRequest2();
-  if(xmlhttp!=null)
-  {
-      xmlhttp.open("POST", "../getNovelSentence.php", false);//正解ボタンを押す
-      xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-      var data="data="+moji;
-      xmlhttp.send(data);
-      var res=xmlhttp.responseText;
+  var res = await myFetch( "../getNovelSentence.php", "data=" + moji);
       document.getElementById("novel").innerHTML = res;
       document.getElementById("novelSentenceNumber").value = Number(novelRowNum);
 
