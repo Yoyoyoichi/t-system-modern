@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <title>Supabase 直接通信テスト</title>
-    <!-- Supabase JS Library -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 <body>
@@ -12,28 +11,23 @@
 
     <div>
         <label>Supabase URL:</label><br>
-        <input type="text" id="supabaseUrl" style="width: 400px;" placeholder="https://xxxx.supabase.co"><br><br>
+        <input type="text" id="supabaseUrl" style="width: 400px;" value="https://eqtxzxqvkprnmkiyczvv.supabase.co" readonly><br><br>
         
-        <label>Supabase anon key:</label><br>
-        <input type="password" id="supabaseKey" style="width: 400px;" placeholder="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."><br><br>
+        <label>Supabase Publishable key (元 anon key):</label><br>
+        <input type="text" id="supabaseKey" style="width: 500px;" value="sb_publishable_L9iiPiRICnSt60jLa_xT9A_dgTphJ2e" readonly><br><br>
         
-        <button onclick="testConnection()">通信テスト開始！</button>
+        <button onclick="testConnection()" style="padding: 10px 20px; font-size: 16px; cursor: pointer;">通信テスト開始！</button>
     </div>
 
     <hr>
     <h3>結果：</h3>
-    <pre id="result" style="background: #f4f4f4; padding: 10px; border: 1px solid #ccc;"></pre>
+    <pre id="result" style="background: #f4f4f4; padding: 10px; border: 1px solid #ccc; white-space: pre-wrap; word-wrap: break-word;"></pre>
 
     <script>
         async function testConnection() {
             const url = document.getElementById('supabaseUrl').value.trim();
             const key = document.getElementById('supabaseKey').value.trim();
             const resultDiv = document.getElementById('result');
-
-            if (!url || !key) {
-                resultDiv.innerText = "エラー: URLとanon keyを入力してください。";
-                return;
-            }
 
             resultDiv.innerText = "接続中...";
 
@@ -51,7 +45,7 @@
                     throw error;
                 }
 
-                resultDiv.innerText = "✅ 接続大成功！爆速でデータが取れました！\n\n取得データ:\n" + JSON.stringify(data, null, 2);
+                resultDiv.innerText = "✅ 接続大成功！ブラウザから直接爆速でデータが取れました！\n\n取得データ:\n" + JSON.stringify(data, null, 2);
                 
             } catch (error) {
                 resultDiv.innerText = "❌ 接続失敗:\n" + error.message;
