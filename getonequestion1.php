@@ -58,16 +58,16 @@ else {
 
 echo $reply[1]["question"]."^^^";
 echo $reply[1]["category1"];
-if (!empty($reply[1]["category2"]) && $reply[1]["category2"] !== "NULL"){ {
+if (!empty($reply[1]["category2"]) && $reply[1]["category2"] !== "NULL") {
   echo " - ".$reply[1]["category2"];
 }
-if (!empty($reply[1]["category3"]) && $reply[1]["category3"] !== "NULL"){
+if (!empty($reply[1]["category3"]) && $reply[1]["category3"] !== "NULL") {
   echo " - ".$reply[1]["category3"];
 }
-if (!empty($reply[1]["category4"]) && $reply[1]["category4"] !== "NULL"){
+if (!empty($reply[1]["category4"]) && $reply[1]["category4"] !== "NULL") {
   echo " - ".$reply[1]["category4"];
 }
-if (!empty($reply[1]["category5"]) && $reply[1]["category5"] !== "NULL"){
+if (!empty($reply[1]["category5"]) && $reply[1]["category5"] !== "NULL") {
   echo " - ".$reply[1]["category5"];
 }
 // echo '<br>';
