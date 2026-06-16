@@ -1,1093 +1,906 @@
-<?php error_reporting(0); ?>
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-	<link rel="icon" href="./favicon.ico">
-	<link rel="apple-touch-icon" href="./apple-touch-icon.png" sizes="180x180">
-  <script type="text/javascript"
-    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-  </script>
-  
-<title>T-System</title>
-<style type="text/css">
-  /* #site-box { width : 900px ; } */
-  body {
-    background: url(RRice-colorful-wall.jpg);
-    line-height: 1vh;
-  }
-  span{
 
-  }
-  select{
-    vertical-align:middle !important;          
-    scrollbar-color: black;
-  }
-  textarea{
-    font-size:30px; background-color:#ffccff; 
-    
-  }
-  input {
-    border-color:grey;
-  }
-  img {
-    /* max-width: 100%; */
-    /* max-height: 100%; */
-    width: auto;
-    height: auto;
-    overflow:auto;
-    top: 50%;
-  }
-  input[type=checkbox] {
-      width: 40px;
-      height: 40px;
-  }
-  input[type=radio] {
-      width: 40px;
-      height: 40px;
-  }
-  .img-container--precedo {
-    overflow:auto;
-    resize: both;
-    position: relative;
-    height:20vh;
-    width:97%;
-    text-align: center;
-    border: 2px solid darkgray;
-    border-radius: 0.67em;   /* 角丸 */
 
-    &:before {
-    content: '';
-    /* display: inline-block; */
-    vertical-align: middle;
-    /* height: 100%; */
-    width: 0;
-    margin-left: -0.3em;
 
-    }
 
-  }
-  .textlines {
-    font-family: "SimHei";
-    border: 2px solid #0a0;  /* 枠線 */
-    border-radius: 0.67em;   /* 角丸 */
-    background-color: #ffccff;  /* 背景色 */
-    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.25);
-    padding:0px;
-    margin:0px 0px 0px 10px
 
-  }
-  .info02{
 
-  }
-  div.questionbuttonbox {
-      width:97%; height:50px;
-      margin:1vh; padding:0px;
-  }
-  .modifyanswerbox{
-      display: flex;
-  }
-  div.answerbuttonbox {
-      width:550px; height:5px;
-      margin:1vh; padding:0px;
-  }
-  div.modifybuttonbox {
-      width:550px; height:5px;
-      margin:1vh; padding:0px;
-  }
-  div.undermarginbox {
-      width:550px; height:5px;
-      margin:1vh; padding:0px;
-  }
-  #information{
-    font-family: "ＭＳ Ｐゴシック";
-    border: 2px solid #0a0;  /* 枠線 */
-    border-radius: 0.67em;   /* 角丸 */
-    /* padding: 0.5em;          内側の余白量 */
-    background-color: #ffccff;  /* 背景色 */
-      box-shadow: 0 3px 6px rgba(0, 0, 0, 0.25);
-    /*width: 20em;             /* 横幅 */*/
-    /*height: 120px;           /* 高さ */*/
-    /*font-size: 1em;          /* 文字サイズ */*/
-    line-height: 1.2;        /* 行の高さ */
-  }
-  div.bottomButtonBox{
 
-    height:300px
-  }
-  div.setting {
 
-    /* top:2200px; */
-    padding: 0.5em 1em;
-    margin: 1%;
-    color: #00BCD4;
-    background: #e4fcff;/*背景色*/
-    border-top: solid 6px #1dc1d6;
-    box-shadow: 0 3px 4px rgba(0, 0, 0, 0.32);/*影*/
-  }
-  table {
-    border-collapse: collapse;
-    width: 100%;
-  }
-  td {
-    border: 1px solid black;
-    padding: 8px;
-    text-align: left;
-    white-space: pre-wrap; /* 改行を維持する */
-    word-wrap: break-word; /* 長い単語を折り返す */
-    white-space: normal; /* デフォルトの空白処理 */
-    line-height: 1.5; /* 行間を設定する */
-    font-size: 10px; /* フォントサイズを設定する */
-  }
-
-
-</style>
-<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script> -->
-<script type="text/javascript" src="jquery-3.4.1.min.js"></script>
-
-<script src="midiChord.js"></script>
-<!-- shims -->
-<script src="./Basic.files/Base64.js" type="text/javascript"></script>
-<script src="./Basic.files/Base64binary.js" type="text/javascript"></script>
-<script src="./Basic.files/WebAudioAPI.js" type="text/javascript"></script>
-<!-- midi.js -->
-<script src="./Basic.files/audioDetect.js" type="text/javascript"></script>
-<script src="./Basic.files/gm.js" type="text/javascript"></script>
-<script src="./Basic.files/loader.js" type="text/javascript"></script>
-<script src="./Basic.files/plugin.audiotag.js" type="text/javascript"></script>
-<script src="./Basic.files/plugin.webaudio.js" type="text/javascript"></script>
-<script src="./Basic.files/plugin.webmidi.js" type="text/javascript"></script>
-<!-- utils -->
-<script src="./Basic.files/dom_request_xhr.js" type="text/javascript"></script>
-<script src="./Basic.files/dom_request_script.js" type="text/javascript"></script>
-<body>
-
-<form name ="mainform" id ="mainform"　action="" method="post">
-<p>
-    <input
-        type="text" id="DB_name"  name="DB_name"  class='textlines'
-        value="<?php
-            if (isset($_POST["DB_name"])) {echo $_POST["DB_name"];
-        }?>"
-        style='width: 50%; font-size: 40px;height:50px;'
-    >
-
-
-
-</p>
- <div id ="grandParent1">
-    <input class ="button" type="submit" value="送信" style='font-size: 25px;width: 20%; height: 120px'>
-    &nbsp;&nbsp;&nbsp;
-    <br>
-    <br>
-    <a id ="UpdateSql" href="UpdateSql2.php">
-        <font size="4" color="#FF6633">問題追加1</font>
-    </a>
-    &nbsp;&nbsp;
-    <a id="TerashimaSheets" href="TerashimaSheets.php" >
-        <font size="4" color="#38a3ea">問題追加2</font>
-    </a>
-    &nbsp;&nbsp;
-    <a id="resultgraph" href="testJSCharts.php">
-        <font size="4" color="#38a3ea">結果グラフ</font>
-    </a>
-    &nbsp;&nbsp;
-    <a id="ranking" href="ranking.php">
-        <font size="4" color="#38a3ea">ランキング</font>
-    </a>
-    &nbsp;&nbsp;
-    <a id="reminder" href="reminder.php">
-        <font size="4" color="#38a3ea">復習</font>
-    </a>
-    &nbsp;&nbsp;
-    <a id="review2" href="reviewT-System.php " >
-        <font size="4" color="#38a3ea">一覧</font>
-    </a>
-    
-    <br>
-    <br>
-    <br>
-    
-
-  </div>
-
-<?php
-// error_reporting(0);
-
-if ($_SERVER["REQUEST_METHOD"] === "POST") {
-
-  if (!empty($_POST["DB_name"])) {
-    require_once __DIR__ . '/db_wrapper.php';
-    $mysqli = new db_wrapper('localhost', 'terashimayo', 'Yoyoyo444', 'terashimayo');
-    if( $mysqli->connect_errno){
-        echo 'Access Failed';//接続失敗
-        exit;
-    }
-
-    $result0 = $mysqli->query("set names utf8");
-    $db_name = $_POST["DB_name"];//$_GET["DB_name"];///////
-
-    $db_column = "category1";
-
-
-    //デフォルト文字セットを設定
-    $mysqli->set_charset("utf8");
-    $row = "";
-    //データベースから正解不正解の合計を取得
-    $str_sql = "SELECT sum(correct) FROM  $db_name";
-    $result = $mysqli->query($str_sql);
-    $test  = $result->fetch_assoc();
-    $test2 = $test ? $test['sum(correct)'] : 0;
-
-    $str_sql = "SELECT sum(incorrect) FROM  $db_name";
-    $result = $mysqli->query($str_sql);
-    $test  = $result->fetch_assoc();
-    $test3 = $test ? $test['sum(incorrect)'] : 0;//
-
-    $str_sql = "SELECT max(qdate) FROM  $db_name";
-    $result = $mysqli->query($str_sql);
-    $test  = $result->fetch_assoc();
-    $test4 = $test ? $test['max(qdate)'] : '';
-    $seitoritu = ((int)$test2 + (int)$test3) > 0 ? round((int)$test2/((int)$test2+(int)$test3),4)*100 : 0;
-
-    $str_sql = "SELECT count(*) FROM $db_name WHERE qdate != '2001-01-01'";////
-    $result = $mysqli->query($str_sql);
-    $test  = $result->fetch_assoc();
-    $testo = $test ? $test['count(*)'] : 0;
-    
-    $today = date("Y-m-d");
-    $str_sql = "SELECT correct + incorrect FROM `A01tsystemrecord01` WHERE id = '$db_name' AND qdate = CURDATE()";////
-    // echo $str_sql;
-    $result = $mysqli->query($str_sql);
-    $test  = $result->fetch_assoc();
-    // var_dump ($result);
-    $todayQuestonDone = $test ? $test['correct + incorrect'] : 0;
-
-    $str_sql = "SELECT min(questionnumber) FROM $db_name";
-    $result = $mysqli->query($str_sql);
-    $test  = $result->fetch_assoc();
-    $minimum = $test ? $test['min(questionnumber)'] : 1;
-
-    $str_sql = "SELECT information FROM $db_name where questionnumber = $minimum";
-    $result = $mysqli->query($str_sql);
-    $test  = $result->fetch_assoc();
-    $information = $test ? $test['information'] : '';
-    echo"<div  id = 'massages' style='display:inline-flex;width:100vw'> ";
-    echo "<p style='font-size:20px;color:#FF0000;width:60vw;padding : 0px 0px 0px 0px;'> やった問題数の合計は$testo です。<br><br>
-    今日やった合計は $todayQuestonDone です。<br><br>
-    正解の合計は $test2 です。<br><br>
-    不正解の合計は $test3 です。 <br><br>
-    正答率は $seitoritu ％です。<br><br>
-    前回は $test4 でした。 <br><br>
-    </p>"."\n"."\n";////<font size="5" color="#000000">問目</fsont>
-    // if (!($db_name==="AOI0501")) {
-      echo "
-      <div style='height:10vh;width:30vw;'>
-        <TEXTAREA id = 'information' ;
-        class ='textlines'
-        style ='font-size:25px;height:100%;width:30vw;'        
-        onchange = informationChange()
-        >$information</textarea>
-      </div>
-      ";
-    
-    // }
-    echo "</div><br>";
-
-
-
-    $today = date("Y/m/d");
-    $target_day = $test4;
-    if(strtotime($today) - strtotime($target_day) > 604800){
-      // echo "<p　style='font-size:40px;'> さぼってんじゃねえ！ </p>"."\n";/////aaaa
-    }
-
-    //データベースからカテゴリー1を取得
-    $str_sql = "select $db_column from $db_name where question != 'settings'";
-        // echo $str_sql.",\n"."\n";//
-    $result = $mysqli->query($str_sql);
-    if (is_array($result)) {
-    $row_cnt =count($result);
-    }
-
-//     echo $row_cnt.",\n"."\n";
-    $response[0] ="";
-    if (!$result) {error_log($mysqli->error);exit;}
-    // $response[] = array();
-    while($dat = $result->fetch_assoc()){
-        $response[] = $dat['category1'];
-        
-    }
-
-    $response = array_values(array_unique($response));
-//    var_dump($response);
-    $row_cnt = count($response);
-
-    $sampleSelectBox = "<select class='selectBox' name=\"category1\" id='ctg1' onChange='category1Change();listChange(this);listChanged()' multiple style='width:19%;height:22vh; font-size: 15px;margin:1px'>\n";
-    for ( $i = 1; $i < $row_cnt; $i++ ) {
-        $sampleSelectBox .= "\t<option value=\"{$response[$i]}\">{$response[$i]}</option>\n";
-    }
-    $sampleSelectBox .= "</select>\n";
-
-    echo "{$sampleSelectBox}";
-
-    //データベースからカテゴリー2を取得
-    $str_sql = "select category2 from $db_name where question != 'settings'";
-    $result = $mysqli->query($str_sql);
-
-    if (!$result) {error_log($mysqli->error);exit;}
-    unset($response);
-    $response[0] ="";
-    while($dat = $result->fetch_assoc()){
-        $response[] = $dat['category2'];
-    }
-
-    $response = array_values(array_unique($response));
-    // var_dump($response);
-    $row_cnt = count($response);
-
-    $sampleSelectBox = "<select class='selectBox' name=\"category2\" id='ctg2' onChange='listChange(this);listChanged()' multiple style='width:19%;height:22vh; font-size: 15px;margin:1px'>\n";
-
-    for ( $i = 1; $i < $row_cnt; $i++ ) {
-        $sampleSelectBox .= "\t<option value=\"{$response[$i]}\">{$response[$i]}</option>\n";
-    }//
-    $sampleSelectBox .= "</select>\n";
-    echo "{$sampleSelectBox}";
-
-
-    //データベースからカテゴリー3を取得
-    $str_sql = "select category3 from $db_name where question != 'settings'";
-    $result = $mysqli->query($str_sql);
-
-    if (!$result) {error_log($mysqli->error);exit;}
-    unset($response);
-    $response[0] ="";
-    while($dat = $result->fetch_assoc()){
-        $response[] = $dat['category3'];
-    }
-
-    $response = array_values(array_unique($response));
-    // var_dump($response);
-    $row_cnt = count($response);
-
-    $sampleSelectBox = "<select class='selectBox' name=\"category3\" id='ctg3' onChange='listChange(this);listChanged()' multiple style='width:19%;height:22vh; font-size: 15px;margin:1px'>\n";
-
-    for ( $i = 1; $i < $row_cnt; $i++ ) {
-        $sampleSelectBox .= "\t<option value=\"{$response[$i]}\">{$response[$i]}</option>\n";
-    }
-    $sampleSelectBox .= "</select>\n";//
-    echo "{$sampleSelectBox}";
-
-    //データベースからカテゴリー4を取得
-    $str_sql = "select category4 from $db_name where question != 'settings'";
-    $result = $mysqli->query($str_sql);
-
-    if (!$result) {error_log($mysqli->error);exit;}
-    unset($response);
-    $response[0] ="";
-    while($dat = $result->fetch_assoc()){
-        $response[] = $dat['category4'];
-    }
-
-    $response = array_values(array_unique($response));
-    // var_dump($response);
-    $row_cnt = count($response);
-
-    $sampleSelectBox = "<select class='selectBox' name=\"categoryFour\" id='ctg4' onChange='listChange(this);listChanged()' multiple style='width:19%;height:22vh; font-size: 15px;margin:1px'>\n";
-
-    for ( $i = 1; $i < $row_cnt; $i++ ) {
-        $sampleSelectBox .= "\t<option value=\"{$response[$i]}\">{$response[$i]}</option>\n";
-    }
-    $sampleSelectBox .= "</select>\n";//
-    echo "{$sampleSelectBox}";
-
-    //データベースからカテゴリー5を取得
-    $str_sql = "select category5 from $db_name where question != 'settings'";
-    $result = $mysqli->query($str_sql);
-
-    if (!$result) {error_log($mysqli->error);exit;}
-    unset($response);
-    $response[0] ="";
-    while($dat = $result->fetch_assoc()){
-        $response[] = $dat['category5'];
-    }
-    
-
-    $response = array_values(array_unique($response));
-    // var_dump($response);
-    $row_cnt = count($response);
-
-    $sampleSelectBox = "<select class='selectBox' name=\"categoryFive\" id='ctg5' onChange='listChange(this);listChanged()' multiple style='width:19%;height:22vh; font-size: 15px;margin:1px'>\n";
-
-    for ( $i = 1; $i < $row_cnt; $i++ ) {
-        $sampleSelectBox .= "\t<option value=\"{$response[$i]}\">{$response[$i]}</option>\n";
-    }
-    $sampleSelectBox .= "</select>\n";//
-    echo "{$sampleSelectBox}";
-
-    mysqli_close($mysqli);
-
-  } else {
-    $err = "入力されていない項目があります。";
-  }
-}
-global $testnumber;
-$testnumber = 0;
-?>
-</div>
-  <input class ="button" type="button" name="Lv0" id="Lv0" onClick="levelZero()" value="レベルゼロ"
-  style=" width:15vw;height:150px; font-size: 20px">
-  <input class ="button" type="button" name="Lv1" id="Lv1" onClick="levelOne()" value="レベル1"
-  style=" width:15vw;height:150px; font-size: 20px">
-  <input class ="button" type="button" name="Lv2" id="Lv2" onClick="levelTwo()" value="レベル2"
-  style=" width:15vw;height:150px; font-size: 20px">
-  <input class ="button" type="button" name="Lv3" id="Lv3" onClick="levelThree()" value="レベル3"
-  style=" width:15vw;height:150px; font-size: 20px">
-  <input class ="button" type="button" name="Lv3" id="Lv4" onClick="levelFour()" value="レベル4"
-  style=" width:15vw;height:150px; font-size: 20px"><br>
-  <input class ="button" type="button" name="atLeastOne" id="atLeastOne" onClick="atLeastOneFunc()" value="回答済み"
-  style=" width:15vw;height:150px; font-size: 20px">
-  <input class ="button" type="button" name="NotYet" id="NotYet" onClick="NotYetQuestion()" value="未回答"
-  style=" width:15vw;height:150px; font-size: 20px">
-  <input class ="button" type="button" name="yesterday" id="yesterday" onClick="yesterdayQuestion()" value="昨日"
-  style=" width:15vw;height:150px; font-size: 20px">
-  <input class ="button" type="button" name="noToday" id="noToday" onClick="noTodayQuestion()" value="今日やってない"
-    style=" width:15vw;height:150px; font-size: 20px;margin:5px 0px 0px 0px">
-  <input class ="button"  type="button" name="U50" id="U50" onClick="UnderFifty()" value="50％以下"
-  style=" width:15vw;height:150px; font-size: 20px;margin:5px 0px 0px 0px">
-  <div style="display:flex">
-<!--       <div style="padding:5px 5px 5px 0px;  " >
-      <input type="button" class = "button" name="oneByOne" id="oneByOne" onClick="oneByOneFunc()" value="新しいの1つずつ"
-      style=" width:15vw;height:50px; font-size: 15px"><br>
-      <input type="button" class = "button" name="oneByOne" id="twoByTwo" onClick="twoByTwoFunc()" value="新しいの2つずつ"
-      style=" width:15vw;height:50px; font-size: 15px"><br>
-      <input type="button" class = "button" name="oneByOne" id="threeByThree" onClick="threeByThreeFunc()" value="新しいの3つずつ"
-      style=" width:15vw;height:50px; font-size: 15px">
-    </div> -->
-    
-    <input class ="button" type="button" name="errToday" id="errToday" onClick="errTodayQuestion()" value="今日間違えた"
-    style=" width:15vw;height:150px; font-size: 20px;margin:5px 5px 0px 0px">
-    <input class ="button" type="button" name="errLast" id="errLast" onClick="errLastQuestion()" value="最後不正解"
-    style=" width:15vw;height:150px; font-size: 20px;margin:5px 5px 0px 0px">
-    <input class ="button" type="button" name="threeDaysAgo" id="threeDaysAgo" onClick="threeDaysAgoQuestion()" value="3日前"
-  	style=" width:15vw;height:150px; font-size: 20px;margin:5px 5px 0px 0px">
-    <input class ="button" type="button" name="aWeekAgo" id="aWeekAgo" onClick="aWeekAgoQuestion()" value="1週間前"
-    style=" width:15vw;height:150px; font-size: 20px;margin:5px 5px 0px 0px">
-    <input class ="button" type="button" name="aMonthAgo" id="aMonthAgo" onClick="aMonthAgoQuestion()" value="1ヵ月前"
-    style=" width:15vw;height:150px; font-size: 20px;margin:5px 5px 0px 0px">
-    
-  </div>
-</div>
-
-<select class="selectBox" name='MaxQuestionNumber' id='MaxQuestionNumber' onchange = "settingSave()"
-  style='width: 12%; font-size: 25px;height: 5vh;line-height: 1vh;vertical-align:top;margin:5px 5px 5px 0px'>
-    <option value=20 >問題数</option>
-    <option value="all">all</option>
-    <option value=3>3</option>
-    <option value=4>4</option>
-    <option value=5>5</option>
-    <option value=6>6</option>
-    <option value=7>7</option>
-    <option value=8>8</option>
-    <option value=9>9</option>
-    <option value=10>10</option>
-    <option value=15>15</option>
-    <option value=20>20</option>
-    <option value=25>25</option>
-    <option value=30>30</option>
-    <option value=35>35</option>
-    <option value=40>40</option>
-    <option value=45>45</option>
-    <option value=50>50</option>
-    <option value=100>100</option>
-  </select>
-  <br>
-<br>
-<div class ="criterias" style="width: 99%;line-height: 6vh;">
-<select class="selectBox" name='category4' id='category4' onChange='listChanged()' style="width: 32%; font-size: 40px;">
-  <option value='nul'> </option>
-  <option value='incorrect'>不正解数</option>
-  <option value='correct'>正解数</option>
-  <option value='pca'>正答率</option>
-  <option value='qdate'>日付</option>
-  <option value='pasttime'>経過時間</option>
-  <option value='questionnumber'>問題番号</option>
-</select>
-<select class="selectBox" name='operator1' id='operator1'  onChange='listChanged()' style='width: 32%; font-size: 40px;'>
-  <option value='nul'> </option>
-  <option value='='>=</option>
-  <option value='>'>></option>
-  <option value='<'><</option>
-</select>
-<input class ="button" type="text" name="criteria1" id="criteria1" onChange='listChanged()' value = "" style='width: 30%; font-size: 40px;box-sizing:border-box;vertical-align:middle; '>
-<input class ="button" type="button" name="getTodayNumber" id="getTodayNumber" onClick="getTodayNumberFunc()" value="今">
-<br>
-<select class="selectBox" name='category5' id='category5' onChange='listChanged()' style='width: 32%; font-size: 40px;'>
-  <option value='nul'> </option>
-  <option value='incorrect'>不正解数</option>
-  <option value='correct'>正解数</option>
-  <option value='pca'>正答率</option>
-  <option value='qdate'>日付</option>
-  <option value='pasttime'>経過時間</option>
-  <option value='questionnumber'>問題番号</option>
-</select>
-<select class="selectBox" name='operator2' id='operator2' onChange='listChanged()' style='width: 32%; font-size: 40px;'>
-  <option value='nul'> </option>
-  <option value='='>=</option>
-  <option value='>'>></option>
-  <option value='<'><</option>
-</select>
-<input class ="button" type="text" name="criteria2" id="criteria2" onChange='listChanged()' value = "" style='width: 30%; font-size: 40px;box-sizing:border-box;vertical-align:middle; '>
-<input class ="button" type="button" name="getfirstDayNumber" id="getfirstDayNumber" onClick="getFirstDayFunc()" value="未">
-<br>
-<select class="selectBox" name='category6' id='category6' onChange='listChanged()' style='width: 32%; font-size: 40px;'>
-  <option value='nul'> </option>
-  <option value='incorrect'>不正解数</option>
-  <option value='correct'>正解数</option>
-  <option value='pca'>正答率</option>
-  <option value='qdate'>日付</option>
-  <option value='pasttime'>経過時間</option>
-  <option value='questionnumber'>問題番号</option>
-</select>
-<select class="selectBox" name='operator3' id='operator3' onChange='listChanged()' style='width: 32%; font-size: 40px;'>
-  <option value='nul'> </option>
-  <option value='='>=</option>
-  <option value='>'>></option>
-  <option value='<'><</option>
-</select>
-<input class ="button" type="text" name="criteria3" id="criteria3" onChange='listChanged()' value = "" style='width: 30%; font-size: 40px;box-sizing:border-box;vertical-align:middle; '>
-<br>
-
-<select class="selectBox" name='poorat2' id='poorat2' onChange='listChanged()'　 style='width: 32%; font-size: 40px;'>
-  <option value='' disabled selected style='display:none;' >達成度選択</option>
-  <option value='good4'>☆☆☆☆</option>
-  <option value='good3'>☆☆☆</option>
-  <option value='good2'>☆☆</option>
-  <option value='good1'>☆</option>
-  <option value=''> </option>
-  <option value='poor1'>×</option>
-  <option value='poor2'>××</option>
-  <option value='poor3'>×××</option>
-  <option value='poor4'>××××</option>
-</select>
-<select class="selectBox" name='qlevel' id='qlevel' onChange='listChanged()'　 style='width: 32%; font-size: 40px;'>
-  <option value='' disabled selected style='display:none;' >レベル選択</option>
-  <option value='8'>8</option>
-  <option value='7'>7</option>
-  <option value='6'>6</option>
-  <option value='5'>5</option>
-  <option value='4'>4</option>
-  <option value='3'>3</option>
-  <option value='2'>2</option>
-  <option value='1'>1</option>
-  <option value='0'>0</option>
-  <option value=''></option>
-</select>
-
-<input class ="button" type="text" name="wordSearch" id="wordSearch" onChange='listChanged()' placeholder = "検索"
-style='width: 30%; font-size: 38px;box-sizing:border-box;vertical-align:middle; '>
-<br>
-
-</div>
-
-<div class="questionbuttonbox" style='line-height: 2vh;vertical-align:bottom;margin:2px' >
-
-　<div style="float: left; width:35%;margin:15px 0px 0px 0px">
-    <span class = 'info02' style='font-size: 30px;vertical-align:middle' id="press-button">0</span>
-    <font size="6" class = 'info02' color="#000000" style=";vertical-align:bottom">問目</font>&ensp; &ensp;
-    <font size="6" class = 'info02' color="#000000" style=";vertical-align:middle">全</font>
-    <span style="font-size: 30px;vertical-align:middle"class = 'info02' id="totalQuestionNumber"></span>
-    <font size="6" class = 'info02' color="#000000" style=";vertical-align:middle">問</font>
-  </div>
-<!--   <select class="selectBox" name='MaxQuestionNumber' id='MaxQuestionNumber' onchange = "settingSave()"
-  style='width: 12%; font-size: 25px;height: 5vh;line-height: 1vh;vertical-align:top;float: left;margin:0px 5px 5px 0px'>
-    <option value=20 >問題数</option>
-    <option value="all">all</option>
-    <option value=3>3</option>
-    <option value=4>4</option>
-    <option value=5>5</option>
-    <option value=6>6</option>
-    <option value=7>7</option>
-    <option value=8>8</option>
-    <option value=9>9</option>
-    <option value=10>10</option>
-    <option value=15>15</option>
-    <option value=20>20</option>
-    <option value=25>25</option>
-    <option value=30>30</option>
-    <option value=35>35</option>
-    <option value=40>40</option>
-    <option value=45>45</option>
-    <option value=50>50</option>
-    <option value=100>100</option>
-  </select> -->
-  <input class ="button" type="button" name="botan" id="autoQuestionButton" onClick="autoQuestion();" value="Auto"
-  style="float: left; left: 75;width:23%;height: 5vh; font-size: 40px;line-height: 1vh;margin:0px 5px 5px 0px">
-  <input class ="button" type="button" name="botan" id="buttonmodifyquestion" onClick="sendRequest5();" value="修正"
-  style="float: left; left: 52%;width:23%;height :5vh; font-size: 40px;line-height: 1vh;vertical-align:top">
   
 
-</div>
-
-</div>
-
-
-<pre id="questionInfo" style=' font-size: 20px;width:100%;overflow-y: scroll; line-height:100%;height:15vh; white-space: pre-wrap;white-space:-moz-pre-wrap;
-  white-space:-o-pre-wrap;
-  white-space:-pre-wrap;
-  word-wrap:break-word;margin:0px'>
-</pre>
-
-<div id ='QandAwindow' >
-
-  <TEXTAREA id="textareas" style="width:97%;height: 20vh;"  wrap="soft" class='textlines' style="visibility:hidden ; font-size:20px;"></TEXTAREA>
-
-  <div id ="div1" class="img-container--precedo" >
-    <div id ="questionMath" style = "margin: 10px"></div>
-    <img id="mypic1" src="" style="height: 27.5vh;">    
-  </div>
-  <br>
-
-<div class="questionbuttonbox" id="questionbuttonbox" style='line-height: 2vh;vertical-align:bottom' >
-
-<select class="selectBox" name='poorat' id='poorat' onChange='listChanged()' style='width: 5%; font-size: 25px;height: 5vh;line-height: 1vh;vertical-align:top;'>
-    <option value='' disabled selected style='display:none;'>達成度</option>
-    <option value='good4'>☆☆☆☆</option>
-    <option value='good3'>☆☆☆</option>
-    <option value='good2'>☆☆</option>
-    <option value='good1'>☆</option>
-    <option value=''> </option>
-    <option value='poor1'>×</option>
-    <option value='poor2'>××</option>
-    <option value='poor3'>×××</option>
-    <option value='poor4'>××××</option>
-</select>
-<select class="selectBox" name='fontresize' id='fontresize' onChange="textareafontresize();settingSave()"
-  style='width: 10%; font-size: 20px;height: 5vh;line-height: 1vh;vertical-align:top;'>
-  <option value='' >文字サイズ</option>
-  <option value='5px'>5</option>
-  <option value='6px'>6</option>
-  <option value='7px'>7</option>
-  <option value='8px'>8</option>
-  <option value='9px'>9</option>
-  <option value='10px'>10</option>
-  <option value='11px'>11</option>
-  <option value='12px'>12</option>
-  <option value='13px'>13</option>
-  <option value='14px'>14</option>
-  <option value='15px'>15</option>
-  <option value='15px'>16</option>
-  <option value='15px'>17</option>
-  <option value='15px'>18</option>
-  <option value='15px'>19</option>
-  <option value='20px'>20</option>
-  <option value='21px'>21</option>
-  <option value='22px'>22</option>
-  <option value='23px'>23</option>
-  <option value='24px'>24</option>
-  <option value='25px'>25</option>
-  <option value='30px'>30</option>
-  <option value='35px'>35</option>
-  <option value='40px'>40</option>
-  <option value='45px'>45</option>
-  <option value='50px'>50</option>
-  <option value='55px'>55</option>
-  <option value='60px'>60</option>
-  <option value='65px'>65</option>
-</select>
-<select class="selectBox" name='mp3Speed' id='mp3Speed' onChange="textareafontresize()"
-  style='width: 5%; font-size: 20px;height: 5vh;line-height: 1vh;vertical-align:top;'>
-  <option value=1>mp3</option>
-  <option value=0.2>0.2</option>
-  <option value=0.3>0.3</option>
-  <option value=0.4>0.4</option>
-  <option value=0.5>0.5</option>
-  <option value=0.6>0.6</option>
-  <option value=0.7>0.7</option>
-  <option value=0.8>0.8</option>
-  <option value=0.9>0.9</option>
-  <option value=1>1.0</option>
-</select>
-<select class="selectBox"  name="mp3StartPoint" id = "mp3StartPoint" style="width:3%;font-size: 25px;height: 5vh;">
-    <option value=0>0</option>
-</select>
-
-<select class="selectBox" name="imageSize1" id = "imageSize1" value="1" min="-10" max="10" step="0.1" onChange="imageSizeChange1()"
-style="width:7%;font-size: 20px;height: 5vh;">
-  <option value=1>画像①</option>
-  <option value=0.1>0.1</option>
-  <option value=0.2>0.2</option>
-  <option value=0.3>0.3</option>
-  <option value=0.4>0.4</option>
-  <option value=0.5>0.5</option>
-  <option value=0.6>0.6</option>
-  <option value=0.7>0.7</option>
-  <option value=0.8>0.8</option>
-  <option value=0.9>0.9</option>
-  <option value=1>1.0</option>
-  <option value=1.1>1.1</option>
-  <option value=1.2>1.2</option>
-  <option value=1.3>1.3</option>
-  <option value=1.4>1.4</option>
-  <option value=1.5>1.5</option>
-  <option value=1.6>1.6</option>
-  <option value=1.7>1.7</option>
-  <option value=1.8>1.8</option>
-  <option value=1.9>1.9</option>
-  <option value=2>2</option>
-  <option value=3>3</option>
-  <option value=4>4</option>
-  <option value=5>5</option>
-  <option value=6>6</option>
-  <option value=7>7</option>
-  <option value=8>8</option>
-  <option value=9>9</option>
-  <option value=10>10</option>
-</select>
-<select class="selectBox"  name="imageSize2" id = "imageSize2" value="1" min="-10" max="10" step="0.1" onChange="imageSizeChange2()"style="width:7%;font-size: 20px;height: 5vh;">
-  <option value=1>画像②</option>
-  <option value=0.1>0.1</option>
-  <option value=0.2>0.2</option>
-  <option value=0.3>0.3</option>
-  <option value=0.4>0.4</option>
-  <option value=0.5>0.5</option>
-  <option value=0.6>0.6</option>
-  <option value=0.7>0.7</option>
-  <option value=0.8>0.8</option>
-  <option value=0.9>0.9</option>
-  <option value=1>1.0</option>
-  <option value=1.1>1.1</option>
-  <option value=1.2>1.2</option>
-  <option value=1.3>1.3</option>
-  <option value=1.4>1.4</option>
-  <option value=1.5>1.5</option>
-  <option value=1.6>1.6</option>
-  <option value=1.7>1.7</option>
-  <option value=1.8>1.8</option>
-  <option value=1.9>1.9</option>
-  <option value=2>2</option>
-  <option value=3>3</option>
-  <option value=4>4</option>
-  <option value=5>5</option>
-  <option value=6>6</option>
-  <option value=7>7</option>
-  <option value=8>8</option>
-  <option value=9>9</option>
-  <option value=10>10</option>
-</select>
-
-<input class ="button" type="button" name="botan" id="buttonreadtxt" onClick="readAnswer();" value="読み上げ"
-style="float: right; left: 75%;width:26%;height: 5vh; font-size: 40px;line-height: 1vh;vertical-align:top">
-<input class ="button" type="button" name="botan" id="buttonreadtxt" onClick="readQuestion();" value="読み上げ"
-style="float: right; left: 75;width:26%;height: 5vh; font-size: 40px;vertical-align:top;margin:0px 0px 0px 5px">
-
-</div>
-<br>
-
-<pre id="novel" hidden style=' font-size: 30px;width:90%;height:5%;margin:10px; line-height:100%; white-space: pre-wrap;white-space:-moz-pre-wrap;
-white-space:-o-pre-wrap;
-white-space:-pre-wrap;
-word-wrap:break-word;'></pre>
-<div id="preQInfo" style=' font-size: 15px;width:97%;line-height: 5vh;'></div>
-
-
-  <TEXTAREA id="textareas2" style="width:97%;height: 20vh;" wrap="soft" class='textlines' style="font-size:40px;" onkeydown="AnswerSent(event.keyCode);"></TEXTAREA>
-  <br>
-
-  <div id ="div2" class="img-container--precedo">
-    <div id ="answerMath" style = "margin: 10px;line-height:30px;text-align: left;white-space: pre-wrap;"></div>
-    <img id="mypic2" src=""　style="height: 27.5vh;">
-    <div id ="answerHint" style = "margin: 10px;line-height:30px;text-align: left"></div>
-  </div>
-  </div>
-
-
-<br>
-<div id = "bottomButtonBox" class="bottomButtonBox">
-  <input class ="button" type="button" name="botan01" id="button01" onClick="sendRequest()"value="次の問題"
-  style="width:49%;height :7vh;font-size: 40px;margin:0px 0px 10px 0px ">
-  <input class ="button" type="button" name="botan02" id="button02" onClick="sendRequest2();" value="解答"
-  style="width:49%;height :7vh;font-size: 40px;margin:0px 0px 10px 0px ">
-  <input class ="button" type="button" name="botan03" id="button03" onClick="sendRequest3('good4');" value="☆☆☆☆"
-  style="width:24.2%;height:10vh; font-size: 30px">
-  <input class ="button" type="button" name="botan03" id="button03" onClick="sendRequest3('good3');" value="☆☆☆"
-  style="width:24.2%;height:10vh; font-size: 30px">
-  <input class ="button" type="button" name="botan03" id="button03" onClick="sendRequest3('good2');" value="☆☆"
-  style="width:24.2%;height:10vh; font-size: 30px">
-  <input class ="button" type="button" name="botan03" id="button03" onClick="sendRequest3('good1');" value="☆"
-  style="width:24.2%;height:10vh; font-size: 30px"><br><br>
-    <input class ="button" type="button" name="botan04" id="button04" onClick="sendRequest4('poor4');" value="✖✖✖✖"
-  style="width:24.2%;height:10vh; font-size: 30px">
-  <input class ="button" type="button" name="botan04" id="button04" onClick="sendRequest4('poor3');" value="✖✖✖"
-  style="width:24.2%;height:10vh; font-size: 30px">
-  <input class ="button" type="button" name="botan04" id="button04" onClick="sendRequest4('poor2');" value="✖✖"
-  style="width:24.2%;height:10vh; font-size: 30px">
-  <input class ="button" type="button" name="botan04" id="button04" onClick="sendRequest4('poor1');" value="✖"
-  style="width:24.2%;height:10vh; font-size: 30px"><br><br>
-  <input class ="button" type="button" name="botan05" id="button05" onClick="backQuestion();"value="前の問題"
-  style="width:24.2%;height:5vh;font-size: 40px">
-  <input class ="button" type="button" name="botan05" id="button05" onClick="removeQuestion();sendRequest()"value="スキップ"
-  style="width:24.2%;height:5vh;font-size: 40px">
-  <input class ="button" type="button"  name="botan06" id="button06" onClick="correctMinus();"value="正解-"
-  style="position: absolute;left:50%;width:23.8%;height:5vh;font-size: 20px">
-  <input class ="button" type="button" name="botan07" id="button07" onClick="incorrectMinus();"value="不正解-"
-  style="position: absolute;left:74.5%;width:23.8%;height:5vh;font-size: 20px">
-
-</div>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<div id ="setting" class="setting" style=" width:93%" >
-  <pre style='font-size: 25px'>設定</pre>
-
-  <select class="selectBox" name='autoSpeed' id='autoSpeed' onchange = "settingSave()" style='width: 23%; font-size: 20px;'>
-    <option value=3 style='width: 23%' placeholder="Auto速さ">Auto速さ</option>
-    <option value=1>1</option>
-    <option value=2>2</option>
-    <option value=3>3</option>
-    <option value=4>4</option>
-    <option value=5>5</option>
-    <option value=6>6</option>
-    <option value=7>7</option>
-    <option value=8>8</option>
-    <option value=9>9</option>
-    <option value=10>10</option>
-  </select>
-  <select class="selectBox" name='autoReading' id='autoReading' onchange = "settingSave()" style='width: 23%; font-size: 20px;'>
-    <option value='je' style='width: 23%' placeholder="読上音声">読上音声</option>
-    <option value='je'>問題-日本語/解答‐英語</option>
-    <option value='ej'>問題-英語/解答‐日本語</option>
-    <option value='jj'>問題-日本語/解答‐日本語</option>
-    <option value='ee'>問題-英語/解答‐英語</option>
-    <option value='j*'>問題だけ-日本語</option>
-    <option value='e*'>問題だけ-英語</option>
-    <option value='*j'>解答だけ‐日本語</option>
-    <option value='*e'>解答だけ‐英語</option>
-  </select>
-
-  <select class="selectBox" name='jpSpeed' id='jpSpeed' onchange = "settingSave()" style='width: 23%; font-size: 20px;'>
-    <option value=1.2 style='width: 23%' placeholder="日本語読み上げ速さ">日本語読み上げ速さ</option>
-    <option value=0.3>0.3</option>
-    <option value=0.4>0.4</option>
-    <option value=0.5>0.5</option>
-    <option value=0.6>0.6</option>
-    <option value=0.7>0.7</option>
-    <option value=0.8>0.8</option>
-    <option value=0.9>0.9</option>
-    <option value=1.0>1.0</option>
-    <option value=1.1>1.1</option>
-    <option value=1.2>1.2</option>
-    <option value=1.3>1.3</option>
-    <option value=1.4>1.4</option>
-    <option value=1.5>1.5</option>
-    <option value=1.6>1.6</option>
-    <option value=1.7>1.7</option>
 
 
 
-  </select>
-  <select class="selectBox" name='engSpeed' id='engSpeed' onchange = "settingSave()" style='width: 23%; font-size: 20px;'>
-    <option value=0.7 style='width: 23%' placeholder="英語読み上げ速さ">英語読み上げ速さ</option>
-    <option value=0.4>0.4</option>
-    <option value=0.5>0.5</option>
-    <option value=0.6>0.6</option>
-    <option value=0.7>0.7</option>
-    <option value=0.8>0.8</option>
-    <option value=0.9>0.9</option>
-    <option value=1.0>1.0</option>
-    <option value=1.1>1.1</option>
-    <option value=1.2>1.2</option>
-    <option value=1.3>1.3</option>
-    <option value=1.4>1.4</option>
-    <option value=1.5>1.5</option>
-  </select>
-  <br>
-  <select class="selectBox" name='NOC' id='NOC' onchange = "settingSave()" style='width: 23%; font-size: 20px;margin:30px 0px 0px 0px' >
-    <option value=3 style='width: 23%' placeholder="最低正解数">最低正解数</option>
-    <option value=0>0</option>
-    <option value=1>1</option>
-    <option value=2>2</option>
-    <option value=3>3</option>
-    <option value=4>4</option>
-    <option value=5>5</option>
-    <option value=6>6</option>
-    <option value=7>7</option>
-    <option value=8>8</option>
-    <option value=9>9</option>
-    <option value=10>10</option>
-  </select>
-
-  <select class="selectBox" name='autoAnswer' id='autoAnswer' onchange = "settingSave()" style='width: 23%; font-size: 20px;margin:30px 0px 0px 0px'>
-    <option value=0 style='width: 23%' placeholder="自動解答秒数">自動解答秒数</option>
-    <option value=0>なし</option>
-    <option value=0.5>0.5</option>
-    <option value=0.6>0.6</option>
-    <option value=0.7>0.7</option>
-    <option value=0.8>0.8</option>
-    <option value=0.9>0.9</option>
-    <option value=1>1</option>
-    <option value=1.2>1.2</option>
-    <option value=1.3>1.3</option>
-    <option value=1.5>1.5</option>
-    <option value=1.7>1.7</option>
-    <option value=1.8>1.8</option>
-    <option value=2>2</option>
-    <option value=2.5>2.5</option>
-    <option value=3>3</option>
-    <option value=3.5>3.5</option>
-    <option value=4>4</option>
-    <option value=5>5</option>
-    <option value=6>6</option>
-    <option value=7>7</option>
-    <option value=8>8</option>
-    <option value=9>9</option>
-    <option value=10>10</option>
-    <option value=15>15</option>
-    <option value=20>20</option>
-    <option value=30>30</option>
-    <option value=60>60</option>
-    <option value=120>120</option>
-    <option value=180>180</option>
-    <option value=240>240</option>
-    <option value=300>300</option>
-  </select>
-  <select class="selectBox" name='backGround' id='backGround' style='width: 23%; font-size: 20px;margin:30px 0px 0px 0px' onchange = 'changeBG();settingSave()'>
-    <option value="RRice-colorful-wall.jpg" style='width: 23%' placeholder="背景画像">背景画像</option>
-    <option value="colored-pencil-pattern1144.png">①</option>
-    <option value="fancy-floral-pattern-384.jpg">②</option>
-    <option value="mint-green-chevron-stripes-2361.png">③</option>
-    <option value="RRice-colorful-wall.jpg">④</option>
-    <option value="p_da0686_m_da06860.jpg">⑤</option>
-    <option value="b065.gif">⑥</option>
-    <option value="p_da0671_m_da06710.jpg">⑦</option>
-    <option value="p_da0725_m_da07250.jpg">⑧</option>
-    <option value="p_da0689_m_da06892.jpg">⑨</option>
-    <option value="p_da0667_m_da06670.jpg">⑩</option>
-    <option value="p_da0669_m_da06693.jpg">⑪</option>
-    <option value="p_da0491_m_da04913.jpg">⑫</option>
-    <option value="p_da0451_m_da04510.jpg">⑬</option>
-    <option value="p_da0438_m_da04380.jpg">⑭</option>
-    <option value="0341_mosaictile_s.jpg">⑮</option>
-    <option value="0108_brick_s.jpg">⑯</option>
-    <option value="p_da0694_l_da06940.jpg">⑰</option>
-    <option value="49502.jpg">⑱</option>
-    <option value="stylish-floral-pattern.png">⑲</option>
-    <option value="painted-wood-planks-large-background.jpg">⑳</option>
-    <option value="seamless-bamboo-pattern-842.png">㉑</option>
-    <option value="dandelion-seeds-pattern.png">㉒</option>
-    <option value="music-pattern-with-trumpet-1929.png">㉓</option>
-    <option value="canadian-dollar.png">㉔</option>
-    <option value="pixel-heart.png">㉕</option>
-    <option value="christmas-colour.png">㉖</option>
-    <option value="food.png">㉗</option>
-    <option value="donuts.png">㉘</option>
-    <option value="dinos.png">㉙</option>
-    <option value="panda-madness.gif">㉚</option>
-    <option value="pattern8-pattern-44a.png">㉛</option>
-    <option value="patternhead64a-thumb.png">㉜</option>
-    <option value="repeated-square.png">㉝</option>
-    <option value="1702.png">㉞</option>
-    <option value="yellow-5456111_1920.jpg">㉟</option>
-
-    
-  </select>
-    <select class="selectBox" name='fontSelect' id='fontSelect' style='width: 23%; font-size: 20px;margin:30px 0px 0px 0px' onchange = 'settingSave()'>
-    <option value="SimHei" style='width: 23%' placeholder="フォント">フォント</option>
-    <option value="ＭＳ 明朝">ＭＳ 明朝</option>
-    <option value="SimHei">SimHei</option>
-    <option value="Times">Times</option>
-    <option value="Arial">Arial</option>
-    <option value="sans-serif">sans-serif</option>
-    <option value="arial black">arial black</option>
-    <option value="arial narrow">arial narrow</option>
-    <option value="arial unicode ms">arial unicode ms</option>
-    <option value="Century Gothic">Century Gothic</option>
-    <option value="Franklin Gothic Medium">Franklin Gothic Medium</option>
-    <option value="Gulim">Gulim</option>
-    <option value="Dotum">Dotum</option>
-    <option value="Haettenschweiler">Haettenschweiler</option>
-    <option value="Impact">Impact</option>
-    <option value="Ludica Sans Unicode">Ludica Sans Unicode</option>
-    <option value="Microsoft Sans Serif">Microsoft Sans Serif</option>
-    <option value="MS Sans Serif">MS Sans Serif</option>
-    <option value="MV Boil">MV Boil</option>
-    <option value="New Gulim">New Gulim</option>
-    <option value="Tahoma">Tahoma</option>
-    <option value="Trebuchet">Trebuchet</option>
-
-  </select>
-  </select>
-    <select class="selectBox" name='novelSelect' id='novelSelect' style='display:none;width: 23%; font-size: 20px;margin:30px 0px 0px 0px' onchange = 'settingSave()'>
-    <option value="なし" style='width: 23%' placeholder="フォント">小説</option>
-    <option value="なし">なし</option>
-  </select>
-  <input class ="button" type="text" name="novelSentenceNumber" id="novelSentenceNumber" onChange='settingSave()' value = "" 
-  style='display:none;width: 8%; font-size: 16px;box-sizing:border-box;vertical-align:middle;margin:30px 0px 0px 0px '>
-
-  <br>
-  <input class ="button" type="checkbox" id = "qachange" onchange = "settingSave()" style="font-size: 20px;margin:2vh 0px 0px 0px">
-  <font size="4" color="#000000" class="checkText" ;>問題/解答</font>
-  <input class ="button" type="checkbox" id = "autoread" onchange = "settingSave()" style="font-size: 20px;margin:2vh 0px 0px 2vh">
-  <font size="4" color="#000000" class="checkText";>自動読み上げ</font>
-  <input class ="button" type="checkbox" id = "keyControl" onchange = "settingSave()" style="font-size: 20px;margin:2vh 0px 0px 2vh">
-  <font size="4" color="#000000" class="checkText";>キー操作</font>
-  <br>
-  <input class ="button" type="checkbox" id = "answerByMyself" onchange = "settingSave()" style="font-size: 20px;margin:2vh 0px 0px 0px">
-  <font size="4" color="#000000" class="checkText";>解答入力</font>
-  <input class ="button" type="checkbox" id = "randomOrNot" onchange = "settingSave()" style="font-size: 20px;margin:2vh 0px 0px 2vh">
-  <font size="4" color="#000000" class="checkText";>ランダム</font>
-  <input class ="button" type="checkbox" id = "chordsOrNot" onchange = "settingSave()" style="font-size: 20px;margin:2vh 0px 0px 2vh">
-  <font size="4" color="#000000" class="checkText";>コード音声</font>
-  <input class ="button" type="checkbox" id="flexButton" value="横並び" onchange='QnAareaFlex();settingSave()' style="font-size: 20px;margin:2vh 0px 0px 2vh">
-  <font size="4" color="#000000" class="checkText";>横並び</font>
-  <input class ="button" type="checkbox" id="blackCheck" value="真っ黒" onchange='blackOrWhite();settingSave()' style="font-size: 20px;margin:2vh 0px 0px 2vh">
-  <font size="4" color="#000000" class="checkText";>真っ黒</font>
-  <br>
-
-</div>
-<div class="undermarginbox" >
-</div>
-
-<?php
-  if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    require_once __DIR__ . '/db_wrapper.php';
-    $mysqli = new db_wrapper('localhost', 'terashimayo', 'Yoyoyo444', 'terashimayo');
-    if( $mysqli->connect_errno){
-        echo 'Access Failed';//接続失敗
-        exit;
-    }
-    $result0 = $mysqli->query("set names utf8");
-    //データベース取得
-    $db_name = $_POST["DB_name"];
-    $str_sql = "select * from $db_name where question = 'settings'";
-    $result = $mysqli->query($str_sql);
-    if (!$result) {error_log($mysqli->error);exit;}
-    unset($response);
-    while($dat = $result->fetch_assoc()){
-        $response = $dat;
-    }
-    $response = implode("^", $response);
-    mysqli_close($mysqli);
-  }
-?>
 
 
 
-<script type="text/javascript">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 var sendbackDBName = location.search.substring(1);
 // console.log('sendbackDBName is '+sendbackDBName);
@@ -3433,7 +3246,9 @@ function parseStrToBoolean(str) {
 }
 
 var selectElement = document.getElementById("novelSelect");
-var novels = "<?php echo isset($novelsArray) ? $novelsArray : ''; ?>";　// 変数受け渡し。
+var novels = "<br />
+<b>Warning</b>:  Undefined variable $novelsArray in <b>/var/www/html/sample020.php</b> on line <b>3435</b><br />
+";　// 変数受け渡し。
 novels = novels.split(",", -1);　// bb_csvをsplit()でカンマ区切り配列に再編成。
 for(var i = 1; i < novels.length; i ++){
   var option = document.createElement("option");
@@ -3444,7 +3259,9 @@ for(var i = 1; i < novels.length; i ++){
 
 
 
-var response = '<?php echo isset($response) ? $response : ''; ?>';
+var response = '<br />
+<b>Warning</b>:  Undefined variable $response in <b>/var/www/html/sample020.php</b> on line <b>3446</b><br />
+';
 response = response.split('^');
 // console.log('response is '+response);
 if (response[0]) {
@@ -4132,7 +3949,9 @@ document.addEventListener('keydown', function(event) {
     }
 });
 
-</script>
 
-</body>
-</html>
+
+
+
+
+

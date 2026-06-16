@@ -1,11 +1,10 @@
-<?php error_reporting(0); ?>
 <!DOCTYPE html>
 <html lang="ja">
 <head>
 	<link rel="icon" href="./favicon.ico">
 	<link rel="apple-touch-icon" href="./apple-touch-icon.png" sizes="180x180">
   <script type="text/javascript"
-    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+    src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
   </script>
   
 <title>T-System</title>
@@ -165,9 +164,7 @@
 <p>
     <input
         type="text" id="DB_name"  name="DB_name"  class='textlines'
-        value="<?php
-            if (isset($_POST["DB_name"])) {echo $_POST["DB_name"];
-        }?>"
+        value=""
         style='width: 50%; font-size: 40px;height:50px;'
     >
 
@@ -210,229 +207,6 @@
 
   </div>
 
-<?php
-// error_reporting(0);
-
-if ($_SERVER["REQUEST_METHOD"] === "POST") {
-
-  if (!empty($_POST["DB_name"])) {
-    require_once __DIR__ . '/db_wrapper.php';
-    $mysqli = new db_wrapper('localhost', 'terashimayo', 'Yoyoyo444', 'terashimayo');
-    if( $mysqli->connect_errno){
-        echo 'Access Failed';//接続失敗
-        exit;
-    }
-
-    $result0 = $mysqli->query("set names utf8");
-    $db_name = $_POST["DB_name"];//$_GET["DB_name"];///////
-
-    $db_column = "category1";
-
-
-    //デフォルト文字セットを設定
-    $mysqli->set_charset("utf8");
-    $row = "";
-    //データベースから正解不正解の合計を取得
-    $str_sql = "SELECT sum(correct) FROM  $db_name";
-    $result = $mysqli->query($str_sql);
-    $test  = $result->fetch_assoc();
-    $test2 = $test ? $test['sum(correct)'] : 0;
-
-    $str_sql = "SELECT sum(incorrect) FROM  $db_name";
-    $result = $mysqli->query($str_sql);
-    $test  = $result->fetch_assoc();
-    $test3 = $test ? $test['sum(incorrect)'] : 0;//
-
-    $str_sql = "SELECT max(qdate) FROM  $db_name";
-    $result = $mysqli->query($str_sql);
-    $test  = $result->fetch_assoc();
-    $test4 = $test ? $test['max(qdate)'] : '';
-    $seitoritu = ((int)$test2 + (int)$test3) > 0 ? round((int)$test2/((int)$test2+(int)$test3),4)*100 : 0;
-
-    $str_sql = "SELECT count(*) FROM $db_name WHERE qdate != '2001-01-01'";////
-    $result = $mysqli->query($str_sql);
-    $test  = $result->fetch_assoc();
-    $testo = $test ? $test['count(*)'] : 0;
-    
-    $today = date("Y-m-d");
-    $str_sql = "SELECT correct + incorrect FROM `A01tsystemrecord01` WHERE id = '$db_name' AND qdate = CURDATE()";////
-    // echo $str_sql;
-    $result = $mysqli->query($str_sql);
-    $test  = $result->fetch_assoc();
-    // var_dump ($result);
-    $todayQuestonDone = $test ? $test['correct + incorrect'] : 0;
-
-    $str_sql = "SELECT min(questionnumber) FROM $db_name";
-    $result = $mysqli->query($str_sql);
-    $test  = $result->fetch_assoc();
-    $minimum = $test ? $test['min(questionnumber)'] : 1;
-
-    $str_sql = "SELECT information FROM $db_name where questionnumber = $minimum";
-    $result = $mysqli->query($str_sql);
-    $test  = $result->fetch_assoc();
-    $information = $test ? $test['information'] : '';
-    echo"<div  id = 'massages' style='display:inline-flex;width:100vw'> ";
-    echo "<p style='font-size:20px;color:#FF0000;width:60vw;padding : 0px 0px 0px 0px;'> やった問題数の合計は$testo です。<br><br>
-    今日やった合計は $todayQuestonDone です。<br><br>
-    正解の合計は $test2 です。<br><br>
-    不正解の合計は $test3 です。 <br><br>
-    正答率は $seitoritu ％です。<br><br>
-    前回は $test4 でした。 <br><br>
-    </p>"."\n"."\n";////<font size="5" color="#000000">問目</fsont>
-    // if (!($db_name==="AOI0501")) {
-      echo "
-      <div style='height:10vh;width:30vw;'>
-        <TEXTAREA id = 'information' ;
-        class ='textlines'
-        style ='font-size:25px;height:100%;width:30vw;'        
-        onchange = informationChange()
-        >$information</textarea>
-      </div>
-      ";
-    
-    // }
-    echo "</div><br>";
-
-
-
-    $today = date("Y/m/d");
-    $target_day = $test4;
-    if(strtotime($today) - strtotime($target_day) > 604800){
-      // echo "<p　style='font-size:40px;'> さぼってんじゃねえ！ </p>"."\n";/////aaaa
-    }
-
-    //データベースからカテゴリー1を取得
-    $str_sql = "select $db_column from $db_name where question != 'settings'";
-        // echo $str_sql.",\n"."\n";//
-    $result = $mysqli->query($str_sql);
-    if (is_array($result)) {
-    $row_cnt =count($result);
-    }
-
-//     echo $row_cnt.",\n"."\n";
-    $response[0] ="";
-    if (!$result) {error_log($mysqli->error);exit;}
-    // $response[] = array();
-    while($dat = $result->fetch_assoc()){
-        $response[] = $dat['category1'];
-        
-    }
-
-    $response = array_values(array_unique($response));
-//    var_dump($response);
-    $row_cnt = count($response);
-
-    $sampleSelectBox = "<select class='selectBox' name=\"category1\" id='ctg1' onChange='category1Change();listChange(this);listChanged()' multiple style='width:19%;height:22vh; font-size: 15px;margin:1px'>\n";
-    for ( $i = 1; $i < $row_cnt; $i++ ) {
-        $sampleSelectBox .= "\t<option value=\"{$response[$i]}\">{$response[$i]}</option>\n";
-    }
-    $sampleSelectBox .= "</select>\n";
-
-    echo "{$sampleSelectBox}";
-
-    //データベースからカテゴリー2を取得
-    $str_sql = "select category2 from $db_name where question != 'settings'";
-    $result = $mysqli->query($str_sql);
-
-    if (!$result) {error_log($mysqli->error);exit;}
-    unset($response);
-    $response[0] ="";
-    while($dat = $result->fetch_assoc()){
-        $response[] = $dat['category2'];
-    }
-
-    $response = array_values(array_unique($response));
-    // var_dump($response);
-    $row_cnt = count($response);
-
-    $sampleSelectBox = "<select class='selectBox' name=\"category2\" id='ctg2' onChange='listChange(this);listChanged()' multiple style='width:19%;height:22vh; font-size: 15px;margin:1px'>\n";
-
-    for ( $i = 1; $i < $row_cnt; $i++ ) {
-        $sampleSelectBox .= "\t<option value=\"{$response[$i]}\">{$response[$i]}</option>\n";
-    }//
-    $sampleSelectBox .= "</select>\n";
-    echo "{$sampleSelectBox}";
-
-
-    //データベースからカテゴリー3を取得
-    $str_sql = "select category3 from $db_name where question != 'settings'";
-    $result = $mysqli->query($str_sql);
-
-    if (!$result) {error_log($mysqli->error);exit;}
-    unset($response);
-    $response[0] ="";
-    while($dat = $result->fetch_assoc()){
-        $response[] = $dat['category3'];
-    }
-
-    $response = array_values(array_unique($response));
-    // var_dump($response);
-    $row_cnt = count($response);
-
-    $sampleSelectBox = "<select class='selectBox' name=\"category3\" id='ctg3' onChange='listChange(this);listChanged()' multiple style='width:19%;height:22vh; font-size: 15px;margin:1px'>\n";
-
-    for ( $i = 1; $i < $row_cnt; $i++ ) {
-        $sampleSelectBox .= "\t<option value=\"{$response[$i]}\">{$response[$i]}</option>\n";
-    }
-    $sampleSelectBox .= "</select>\n";//
-    echo "{$sampleSelectBox}";
-
-    //データベースからカテゴリー4を取得
-    $str_sql = "select category4 from $db_name where question != 'settings'";
-    $result = $mysqli->query($str_sql);
-
-    if (!$result) {error_log($mysqli->error);exit;}
-    unset($response);
-    $response[0] ="";
-    while($dat = $result->fetch_assoc()){
-        $response[] = $dat['category4'];
-    }
-
-    $response = array_values(array_unique($response));
-    // var_dump($response);
-    $row_cnt = count($response);
-
-    $sampleSelectBox = "<select class='selectBox' name=\"categoryFour\" id='ctg4' onChange='listChange(this);listChanged()' multiple style='width:19%;height:22vh; font-size: 15px;margin:1px'>\n";
-
-    for ( $i = 1; $i < $row_cnt; $i++ ) {
-        $sampleSelectBox .= "\t<option value=\"{$response[$i]}\">{$response[$i]}</option>\n";
-    }
-    $sampleSelectBox .= "</select>\n";//
-    echo "{$sampleSelectBox}";
-
-    //データベースからカテゴリー5を取得
-    $str_sql = "select category5 from $db_name where question != 'settings'";
-    $result = $mysqli->query($str_sql);
-
-    if (!$result) {error_log($mysqli->error);exit;}
-    unset($response);
-    $response[0] ="";
-    while($dat = $result->fetch_assoc()){
-        $response[] = $dat['category5'];
-    }
-    
-
-    $response = array_values(array_unique($response));
-    // var_dump($response);
-    $row_cnt = count($response);
-
-    $sampleSelectBox = "<select class='selectBox' name=\"categoryFive\" id='ctg5' onChange='listChange(this);listChanged()' multiple style='width:19%;height:22vh; font-size: 15px;margin:1px'>\n";
-
-    for ( $i = 1; $i < $row_cnt; $i++ ) {
-        $sampleSelectBox .= "\t<option value=\"{$response[$i]}\">{$response[$i]}</option>\n";
-    }
-    $sampleSelectBox .= "</select>\n";//
-    echo "{$sampleSelectBox}";
-
-    mysqli_close($mysqli);
-
-  } else {
-    $err = "入力されていない項目があります。";
-  }
-}
-global $testnumber;
-$testnumber = 0;
-?>
 </div>
   <input class ="button" type="button" name="Lv0" id="Lv0" onClick="levelZero()" value="レベルゼロ"
   style=" width:15vw;height:150px; font-size: 20px">
@@ -659,7 +433,7 @@ style='width: 30%; font-size: 38px;box-sizing:border-box;vertical-align:middle; 
     <option value='poor1'>×</option>
     <option value='poor2'>××</option>
     <option value='poor3'>×××</option>
-    <option value='poor4'>××××</option>
+    <option value='poor4'>×��××</option>
 </select>
 <select class="selectBox" name='fontresize' id='fontresize' onChange="textareafontresize();settingSave()"
   style='width: 10%; font-size: 20px;height: 5vh;line-height: 1vh;vertical-align:top;'>
@@ -1062,28 +836,6 @@ word-wrap:break-word;'></pre>
 <div class="undermarginbox" >
 </div>
 
-<?php
-  if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    require_once __DIR__ . '/db_wrapper.php';
-    $mysqli = new db_wrapper('localhost', 'terashimayo', 'Yoyoyo444', 'terashimayo');
-    if( $mysqli->connect_errno){
-        echo 'Access Failed';//接続失敗
-        exit;
-    }
-    $result0 = $mysqli->query("set names utf8");
-    //データベース取得
-    $db_name = $_POST["DB_name"];
-    $str_sql = "select * from $db_name where question = 'settings'";
-    $result = $mysqli->query($str_sql);
-    if (!$result) {error_log($mysqli->error);exit;}
-    unset($response);
-    while($dat = $result->fetch_assoc()){
-        $response = $dat;
-    }
-    $response = implode("^", $response);
-    mysqli_close($mysqli);
-  }
-?>
 
 
 
@@ -3433,7 +3185,9 @@ function parseStrToBoolean(str) {
 }
 
 var selectElement = document.getElementById("novelSelect");
-var novels = "<?php echo isset($novelsArray) ? $novelsArray : ''; ?>";　// 変数受け渡し。
+var novels = "<br />
+<b>Warning</b>:  Undefined variable $novelsArray in <b>/var/www/html/sample020.php</b> on line <b>3435</b><br />
+";　// 変数受け渡し。
 novels = novels.split(",", -1);　// bb_csvをsplit()でカンマ区切り配列に再編成。
 for(var i = 1; i < novels.length; i ++){
   var option = document.createElement("option");
@@ -3444,7 +3198,9 @@ for(var i = 1; i < novels.length; i ++){
 
 
 
-var response = '<?php echo isset($response) ? $response : ''; ?>';
+var response = '<br />
+<b>Warning</b>:  Undefined variable $response in <b>/var/www/html/sample020.php</b> on line <b>3446</b><br />
+';
 response = response.split('^');
 // console.log('response is '+response);
 if (response[0]) {

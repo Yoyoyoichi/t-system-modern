@@ -1,12 +1,12 @@
 <?php
-error_reporting(0);
+// error_reporting(0);
 mb_language("ja");
 mb_internal_encoding('UTF-8');
 
 // echo "19bb"."\n"."\n";
 $pieces = explode(".", $_POST["data"]);
-var_dump($pieces);
-echo "\n"."\n";
+// var_dump($pieces);
+//echo "\n"."\n";
 
 
 // echo $DB."\n"."\n";
@@ -53,6 +53,10 @@ $operator1 = $pieces[7];
 $operator2 = $pieces[8];
 $operator3 = $pieces[9];
 $criteria1 = $pieces[10];
+if ($category1==="pre_qdate") {
+  $operator1 = "like";
+  $criteria1 = "\"%".substr($criteria1, 0, 4)."-".substr($criteria1, 3, 2)."-".substr($criteria1, 7, 2)."%\"";
+}
 $criteria2 = $pieces[11];
 $criteria3 = $pieces[12];
 $db_name = $pieces[13];
@@ -60,25 +64,6 @@ $poorat2 = $pieces[14];
 $wordsearch = $pieces[15];
 $qlevel = $pieces[16];
 $yesterday = $pieces[20];
-echo $category4."\n"."\n";
-echo $$operator1."\n"."\n";
-echo $criteria1."\n"."\n";
-if ($category4==="qdate") {
-  if ($operator1==="="){
-    $category4 = "pre_qdate";
-    $operator1 = "like";
-    $criteria1 = "\"%".substr($criteria1, 0, 4)."-".substr($criteria1, 4, 2)."-".substr($criteria1, 6, 2)."%\"";
-  }
-}
-if ($category5==="qdate") {
-  if ($operator2==="="){
-    $category5 = "pre_qdate";
-    $operator2 = "like";
-    $criteria2 = "\"%".substr($criteria2, 0, 4)."-".substr($criteria2, 4, 2)."-".substr($criteria2, 6, 2)."%\"";
-  }
-}
-
-
 // var_dump($pieces);
 // echo "category1 is ".$category1."\n"."\n";
 
@@ -309,14 +294,25 @@ switch ($qlevel == "") {
 
 
 
+// echo $yesterday;
+// // echo ($yesterdayIncorrect==true);
+// if ($yesterday == true) {  
+//     echo "true";
+// } else {
+//     echo "false";
+    
+// }
+
+// echo $yesterday;
+// echo ($yesterdayIncorrect=="true");
 if ($yesterday == "true") {  
-    echo "a";
+    // echo "a";
     if ($categoryFlag) {
       $str_sql = $str_sql." And left(q_record,1) = '×'";//
       $categoryFlag = true;
     } else {
-      $str_sql = $str_sql." Where left(q_record,1) = '×'";//
-      $categoryFlag = true;
+        $str_sql = $str_sql." Where left(q_record,1) = '×'";//
+        $categoryFlag = true;
     }
 } else {
     // echo "b";
@@ -330,7 +326,7 @@ if ($category4 == "qdate" and $category5 == "qdate" and $category6 == "qdate" an
   OR (REPLACE(pre_qdate,'-','') like '%$pieces[11]') or (REPLACE(pre_qdate,'-','') like '%$pieces[12]')
   OR (REPLACE(pre_qdate,'-','') = '%$halfanyearago')" ;//最初にやった日が忘却曲線の問題
 
-  require_once __DIR__ . '/db_wrapper.php';
+  $mysqli = new mysqli('localhost', 'terashimayo', 'Yoyoyo444', 'terashimayo');
   if ($mysqli->connect_error) {error_log($mysqli->connect_error);exit;}
 
   //デフォルト文字セットを設定
@@ -433,8 +429,7 @@ if ($category4 == "qdate" and $category5 == "qdate" and $category6 == "qdate" an
 }else{
   // echo "elseにきた"."\n";
   echo $str_sql;
-  echo "\n"."\n";
-  require_once __DIR__ . '/db_wrapper.php';
+  $mysqli = new mysqli('localhost', 'terashimayo', 'Yoyoyo444', 'terashimayo');
   if ($mysqli->connect_error) {error_log($mysqli->connect_error);exit;}
 
   //デフォルト文字セットを設定

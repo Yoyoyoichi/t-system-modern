@@ -1,5 +1,5 @@
 <?php
-error_reporting(0);
+// error_reporting(0);
 mb_language("ja");
 mb_internal_encoding('UTF-8');
 
@@ -330,7 +330,7 @@ if ($category4 == "qdate" and $category5 == "qdate" and $category6 == "qdate" an
   OR (REPLACE(pre_qdate,'-','') like '%$pieces[11]') or (REPLACE(pre_qdate,'-','') like '%$pieces[12]')
   OR (REPLACE(pre_qdate,'-','') = '%$halfanyearago')" ;//最初にやった日が忘却曲線の問題
 
-  require_once __DIR__ . '/db_wrapper.php';
+  $mysqli = new mysqli('localhost', 'terashimayo', 'Yoyoyo444', 'terashimayo');
   if ($mysqli->connect_error) {error_log($mysqli->connect_error);exit;}
 
   //デフォルト文字セットを設定
@@ -434,7 +434,7 @@ if ($category4 == "qdate" and $category5 == "qdate" and $category6 == "qdate" an
   // echo "elseにきた"."\n";
   echo $str_sql;
   echo "\n"."\n";
-  require_once __DIR__ . '/db_wrapper.php';
+  $mysqli = new mysqli('localhost', 'terashimayo', 'Yoyoyo444', 'terashimayo');
   if ($mysqli->connect_error) {error_log($mysqli->connect_error);exit;}
 
   //デフォルト文字セットを設定
