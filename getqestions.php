@@ -399,6 +399,7 @@ if ($category4 == "qdate" and $category5 == "qdate" and $category6 == "qdate" an
       }
     }
 
+    echo "^^^";
     if (count($reply2) == 1) {
       echo $reply4[0];
     } else {
@@ -414,10 +415,11 @@ if ($category4 == "qdate" and $category5 == "qdate" and $category6 == "qdate" an
       if ($i == 0) {
         $reply4= $reply[$i];
       } else {
-        $reply4 = $reply.",".$reply[$i];
+        $reply4 = $reply4.",".$reply[$i];
       }
     }
 
+    echo "^^^";
     if (count($reply) == 1) {
       echo $reply4[0];
     } else {
