@@ -85,14 +85,26 @@ class db_result_wrapper {
         $this->stmt = $stmt;
         $this->num_rows = $stmt->rowCount();
     }
+    private function convert_to_utf8($data) {
+        if (is_array($data)) {
+            foreach ($data as $k => $v) {
+                if (is_string($v)) {
+                    $data[$k] = mb_convert_encoding($v, 'UTF-8', 'SJIS-win, UTF-8');
+                }
+            }
+        } elseif (is_string($data)) {
+            $data = mb_convert_encoding($data, 'UTF-8', 'SJIS-win, UTF-8');
+        }
+        return $data;
+    }
     public function fetch_assoc() {
-        return $this->stmt->fetch(PDO::FETCH_ASSOC);
+        return $this->convert_to_utf8($this->stmt->fetch(PDO::FETCH_ASSOC));
     }
     public function fetch_array() {
-        return $this->stmt->fetch(PDO::FETCH_BOTH);
+        return $this->convert_to_utf8($this->stmt->fetch(PDO::FETCH_BOTH));
     }
     public function fetch_row() {
-        return $this->stmt->fetch(PDO::FETCH_NUM);
+        return $this->convert_to_utf8($this->stmt->fetch(PDO::FETCH_NUM));
     }
 }
 
