@@ -1,0 +1,1 @@
+<?php error_reporting(E_ALL); ini_set('display_errors', 1); require_once __DIR__ . '/db_wrapper.php';  = 'select questionnumber from Terashima01 limit 1';  = ->query(); if (!) { echo 'Error: ' . ->error; } else { echo 'Success'; } ?>
