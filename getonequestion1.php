@@ -22,9 +22,10 @@ $db_name =  $pieces[1];
 $mysqli = new db_wrapper('localhost', 'terashimayo', 'Yoyoyo444', 'terashimayo');
 if ($mysqli->connect_error) {error_log($mysqli->connect_error);exit;}
 $mysqli->set_charset("utf8");
-$str = "UPDATE $db_name SET imagefolder = $pieces[2] WHERE question = 'settings'";
-// echo "str_sql is ".$str."\n"."\n";/////
-$result = $mysqli->query($str);
+if (!empty($pieces[2])) {
+    $str = "UPDATE $db_name SET imagefolder = '" . $pieces[2] . "' WHERE question = 'settings'";
+    $result = $mysqli->query($str);
+}
 
 
 $str_sql = "select * from $db_name where questionnumber = $questionnumber";
