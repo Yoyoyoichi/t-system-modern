@@ -215,7 +215,8 @@
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
   if (!empty($_POST["DB_name"])) {
-    $mysqli = new mysqli('localhost', 'terashimayo', 'Yoyoyo444', 'terashimayo');
+    require_once __DIR__ . '/db_wrapper.php';
+    $mysqli = new db_wrapper('localhost', 'terashimayo', 'Yoyoyo444', 'terashimayo');
     if( $mysqli->connect_errno){
         echo 'Access Failed';//接続失敗
         exit;
@@ -1062,7 +1063,8 @@ word-wrap:break-word;'></pre>
 
 <?php
   if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    $mysqli = new mysqli('localhost', 'terashimayo', 'Yoyoyo444', 'terashimayo');
+    require_once __DIR__ . '/db_wrapper.php';
+    $mysqli = new db_wrapper('localhost', 'terashimayo', 'Yoyoyo444', 'terashimayo');
     if( $mysqli->connect_errno){
         echo 'Access Failed';//接続失敗
         exit;
