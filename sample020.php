@@ -235,23 +235,23 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $str_sql = "SELECT sum(correct) FROM  $db_name";
     $result = $mysqli->query($str_sql);
     $test  = $result->fetch_assoc();
-    $test2 = $test['sum(correct)'];
+    $test2 = $test ? $test['sum(correct)'] : 0;
 
     $str_sql = "SELECT sum(incorrect) FROM  $db_name";
     $result = $mysqli->query($str_sql);
     $test  = $result->fetch_assoc();
-    $test3 = $test['sum(incorrect)'];//
+    $test3 = $test ? $test['sum(incorrect)'] : 0;//
 
     $str_sql = "SELECT max(qdate) FROM  $db_name";
     $result = $mysqli->query($str_sql);
     $test  = $result->fetch_assoc();
-    $test4 = $test['max(qdate)'];
-    $seitoritu = round((int)$test2/((int)$test2+(int)$test3),4)*100;
+    $test4 = $test ? $test['max(qdate)'] : '';
+    $seitoritu = ((int)$test2 + (int)$test3) > 0 ? round((int)$test2/((int)$test2+(int)$test3),4)*100 : 0;
 
     $str_sql = "SELECT count(*) FROM $db_name WHERE qdate != '2001-01-01'";////
     $result = $mysqli->query($str_sql);
     $test  = $result->fetch_assoc();
-    $testo = $test['count(*)'];
+    $testo = $test ? $test['count(*)'] : 0;
     
     $today = date("Y-m-d");
     $str_sql = "SELECT correct + incorrect FROM `A01tsystemrecord01` WHERE id = '$db_name' AND qdate = CURDATE()";////
@@ -259,17 +259,17 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $result = $mysqli->query($str_sql);
     $test  = $result->fetch_assoc();
     // var_dump ($result);
-    $todayQuestonDone = $test['correct + incorrect'];
+    $todayQuestonDone = $test ? $test['correct + incorrect'] : 0;
 
     $str_sql = "SELECT min(questionnumber) FROM $db_name";
     $result = $mysqli->query($str_sql);
     $test  = $result->fetch_assoc();
-    $minimum = $test['min(questionnumber)'];
+    $minimum = $test ? $test['min(questionnumber)'] : 1;
 
     $str_sql = "SELECT information FROM $db_name where questionnumber = $minimum";
     $result = $mysqli->query($str_sql);
     $test  = $result->fetch_assoc();
-    $information = $test['information'];
+    $information = $test ? $test['information'] : '';
     echo"<div  id = 'massages' style='display:inline-flex;width:100vw'> ";
     echo "<p style='font-size:20px;color:#FF0000;width:60vw;padding : 0px 0px 0px 0px;'> やった問題数の合計は$testo です。<br><br>
     今日やった合計は $todayQuestonDone です。<br><br>
