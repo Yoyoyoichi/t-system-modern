@@ -1,8 +1,6 @@
-<?php header('Content-Type: text/html; charset=UTF-8'); ?>
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-    <meta charset="utf-8">
 	<link rel="icon" href="./favicon.ico">
 	<link rel="apple-touch-icon" href="./apple-touch-icon.png" sizes="180x180">
   <script type="text/javascript"
@@ -69,7 +67,7 @@
   }
   .textlines {
     font-family: "SimHei";
-    border: 2px solid #0a0;  /* 枠緁E*/
+    border: 2px solid #0a0;  /* 枠線 */
     border-radius: 0.67em;   /* 角丸 */
     background-color: #ffccff;  /* 背景色 */
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.25);
@@ -100,16 +98,16 @@
       margin:1vh; padding:0px;
   }
   #information{
-    font-family: "�E��E� �E�ゴシチE��";
-    border: 2px solid #0a0;  /* 枠緁E*/
+    font-family: "ＭＳ Ｐゴシック";
+    border: 2px solid #0a0;  /* 枠線 */
     border-radius: 0.67em;   /* 角丸 */
-    /* padding: 0.5em;          冁E�Eの余白釁E*/
+    /* padding: 0.5em;          内側の余白量 */
     background-color: #ffccff;  /* 背景色 */
       box-shadow: 0 3px 6px rgba(0, 0, 0, 0.25);
-    /*width: 20em;             /* 横幁E*/*/
+    /*width: 20em;             /* 横幅 */*/
     /*height: 120px;           /* 高さ */*/
-    /*font-size: 1em;          /* 斁E��サイズ */*/
-    line-height: 1.2;        /* 行�E高さ */
+    /*font-size: 1em;          /* 文字サイズ */*/
+    line-height: 1.2;        /* 行の高さ */
   }
   div.bottomButtonBox{
 
@@ -133,11 +131,11 @@
     border: 1px solid black;
     padding: 8px;
     text-align: left;
-    white-space: pre-wrap; /* 改行を維持すめE*/
-    word-wrap: break-word; /* 長ぁE��語を折り返す */
-    white-space: normal; /* チE��ォルト�E空白処琁E*/
-    line-height: 1.5; /* 行間を設定すめE*/
-    font-size: 10px; /* フォントサイズを設定すめE*/
+    white-space: pre-wrap; /* 改行を維持する */
+    word-wrap: break-word; /* 長い単語を折り返す */
+    white-space: normal; /* デフォルトの空白処理 */
+    line-height: 1.5; /* 行間を設定する */
+    font-size: 10px; /* フォントサイズを設定する */
   }
 
 
@@ -167,7 +165,6 @@
     <input
         type="text" id="DB_name"  name="DB_name"  class='textlines'
         value="<?php
-require_once 'db_wrapper.php';
             if (isset($_POST["DB_name"])) {echo $_POST["DB_name"];
         }?>"
         style='width: 50%; font-size: 40px;height:50px;'
@@ -218,9 +215,9 @@ require_once 'db_wrapper.php';
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
   if (!empty($_POST["DB_name"])) {
-    $mysqli = new db_wrapper('localhost', 'terashimayo', 'Yoyoyo444', 'terashimayo');
+    $mysqli = new mysqli('localhost', 'terashimayo', 'Yoyoyo444', 'terashimayo');
     if( $mysqli->connect_errno){
-        echo 'Access Failed';//接続失敁E
+        echo 'Access Failed';//接続失敗
         exit;
     }
 
@@ -230,10 +227,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $db_column = "category1";
 
 
-    //チE��ォルト文字セチE��を設宁E
+    //デフォルト文字セットを設定
     $mysqli->set_charset("utf8");
     $row = "";
-    //チE�Eタベ�Eスから正解不正解の合計を取征E
+    //データベースから正解不正解の合計を取得
     $str_sql = "SELECT sum(correct) FROM  $db_name";
     $result = $mysqli->query($str_sql);
     $test  = $result->fetch_assoc();
@@ -259,9 +256,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $str_sql = "SELECT correct + incorrect FROM `A01tsystemrecord01` WHERE id = '$db_name' AND qdate = CURDATE()";////
     // echo $str_sql;
     $result = $mysqli->query($str_sql);
-    $test  = $result ? $result->fetch_assoc() : false;
+    $test  = $result->fetch_assoc();
     // var_dump ($result);
-    $todayQuestonDone = $test ? $test['correct + incorrect'] : 0;
+    $todayQuestonDone = $test['correct + incorrect'];
 
     $str_sql = "SELECT min(questionnumber) FROM $db_name";
     $result = $mysqli->query($str_sql);
@@ -273,12 +270,12 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $test  = $result->fetch_assoc();
     $information = $test['information'];
     echo"<div  id = 'massages' style='display:inline-flex;width:100vw'> ";
-    echo "<p style='font-size:20px;color:#FF0000;width:60vw;padding : 0px 0px 0px 0px;'> めE��た問題数の合計�E$testo です。br><br>
-    今日めE��た合計�E $todayQuestonDone です。br><br>
-    正解の合計�E $test2 です。br><br>
-    不正解の合計�E $test3 です。<br><br>
-    正答率は $seitoritu �E�E��す、Ebr><br>
-    前回は $test4 でした。<br><br>
+    echo "<p style='font-size:20px;color:#FF0000;width:60vw;padding : 0px 0px 0px 0px;'> やった問題数の合計は$testo です。<br><br>
+    今日やった合計は $todayQuestonDone です。<br><br>
+    正解の合計は $test2 です。<br><br>
+    不正解の合計は $test3 です。 <br><br>
+    正答率は $seitoritu ％です。<br><br>
+    前回は $test4 でした。 <br><br>
     </p>"."\n"."\n";////<font size="5" color="#000000">問目</fsont>
     // if (!($db_name==="AOI0501")) {
       echo "
@@ -299,10 +296,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $today = date("Y/m/d");
     $target_day = $test4;
     if(strtotime($today) - strtotime($target_day) > 604800){
-      // echo "<p　style='font-size:40px;'> さぼってんじめE�Eえ！E</p>"."\n";/////aaaa
+      // echo "<p　style='font-size:40px;'> さぼってんじゃねえ！ </p>"."\n";/////aaaa
     }
 
-    //チE�Eタベ�EスからカチE��リー1を取征E
+    //データベースからカテゴリー1を取得
     $str_sql = "select $db_column from $db_name where question != 'settings'";
         // echo $str_sql.",\n"."\n";//
     $result = $mysqli->query($str_sql);
@@ -331,7 +328,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     echo "{$sampleSelectBox}";
 
-    //チE�Eタベ�EスからカチE��リー2を取征E
+    //データベースからカテゴリー2を取得
     $str_sql = "select category2 from $db_name where question != 'settings'";
     $result = $mysqli->query($str_sql);
 
@@ -355,7 +352,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     echo "{$sampleSelectBox}";
 
 
-    //チE�Eタベ�EスからカチE��リー3を取征E
+    //データベースからカテゴリー3を取得
     $str_sql = "select category3 from $db_name where question != 'settings'";
     $result = $mysqli->query($str_sql);
 
@@ -378,7 +375,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $sampleSelectBox .= "</select>\n";//
     echo "{$sampleSelectBox}";
 
-    //チE�Eタベ�EスからカチE��リー4を取征E
+    //データベースからカテゴリー4を取得
     $str_sql = "select category4 from $db_name where question != 'settings'";
     $result = $mysqli->query($str_sql);
 
@@ -401,7 +398,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $sampleSelectBox .= "</select>\n";//
     echo "{$sampleSelectBox}";
 
-    //チE�Eタベ�EスからカチE��リー5を取征E
+    //データベースからカテゴリー5を取得
     $str_sql = "select category5 from $db_name where question != 'settings'";
     $result = $mysqli->query($str_sql);
 
@@ -428,7 +425,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     mysqli_close($mysqli);
 
   } else {
-    $err = "error";
+    $err = "入力されていない項目があります。";
   }
 }
 global $testnumber;
@@ -447,13 +444,13 @@ $testnumber = 0;
   style=" width:15vw;height:150px; font-size: 20px"><br>
   <input class ="button" type="button" name="atLeastOne" id="atLeastOne" onClick="atLeastOneFunc()" value="回答済み"
   style=" width:15vw;height:150px; font-size: 20px">
-  <input class ="button" type="button" name="NotYet" id="NotYet" onClick="NotYetQuestion()" value="未回筁E
+  <input class ="button" type="button" name="NotYet" id="NotYet" onClick="NotYetQuestion()" value="未回答"
   style=" width:15vw;height:150px; font-size: 20px">
   <input class ="button" type="button" name="yesterday" id="yesterday" onClick="yesterdayQuestion()" value="昨日"
   style=" width:15vw;height:150px; font-size: 20px">
-  <input class ="button" type="button" name="noToday" id="noToday" onClick="noTodayQuestion()" value="今日めE��てなぁE
+  <input class ="button" type="button" name="noToday" id="noToday" onClick="noTodayQuestion()" value="今日やってない"
     style=" width:15vw;height:150px; font-size: 20px;margin:5px 0px 0px 0px">
-  <input class ="button"  type="button" name="U50" id="U50" onClick="UnderFifty()" value="50�E�E��丁E
+  <input class ="button"  type="button" name="U50" id="U50" onClick="UnderFifty()" value="50％以下"
   style=" width:15vw;height:150px; font-size: 20px;margin:5px 0px 0px 0px">
   <div style="display:flex">
 <!--       <div style="padding:5px 5px 5px 0px;  " >
@@ -469,7 +466,7 @@ $testnumber = 0;
     style=" width:15vw;height:150px; font-size: 20px;margin:5px 5px 0px 0px">
     <input class ="button" type="button" name="errLast" id="errLast" onClick="errLastQuestion()" value="最後不正解"
     style=" width:15vw;height:150px; font-size: 20px;margin:5px 5px 0px 0px">
-    <input class ="button" type="button" name="threeDaysAgo" id="threeDaysAgo" onClick="threeDaysAgoQuestion()" value="3日剁E
+    <input class ="button" type="button" name="threeDaysAgo" id="threeDaysAgo" onClick="threeDaysAgoQuestion()" value="3日前"
   	style=" width:15vw;height:150px; font-size: 20px;margin:5px 5px 0px 0px">
     <input class ="button" type="button" name="aWeekAgo" id="aWeekAgo" onClick="aWeekAgoQuestion()" value="1週間前"
     style=" width:15vw;height:150px; font-size: 20px;margin:5px 5px 0px 0px">
@@ -509,7 +506,7 @@ $testnumber = 0;
   <option value='incorrect'>不正解数</option>
   <option value='correct'>正解数</option>
   <option value='pca'>正答率</option>
-  <option value='qdate'>日仁E/option>
+  <option value='qdate'>日付</option>
   <option value='pasttime'>経過時間</option>
   <option value='questionnumber'>問題番号</option>
 </select>
@@ -520,14 +517,14 @@ $testnumber = 0;
   <option value='<'><</option>
 </select>
 <input class ="button" type="text" name="criteria1" id="criteria1" onChange='listChanged()' value = "" style='width: 30%; font-size: 40px;box-sizing:border-box;vertical-align:middle; '>
-<input class ="button" type="button" name="getTodayNumber" id="getTodayNumber" onClick="getTodayNumberFunc()" value="仁E>
+<input class ="button" type="button" name="getTodayNumber" id="getTodayNumber" onClick="getTodayNumberFunc()" value="今">
 <br>
 <select class="selectBox" name='category5' id='category5' onChange='listChanged()' style='width: 32%; font-size: 40px;'>
   <option value='nul'> </option>
   <option value='incorrect'>不正解数</option>
   <option value='correct'>正解数</option>
   <option value='pca'>正答率</option>
-  <option value='qdate'>日仁E/option>
+  <option value='qdate'>日付</option>
   <option value='pasttime'>経過時間</option>
   <option value='questionnumber'>問題番号</option>
 </select>
@@ -545,7 +542,7 @@ $testnumber = 0;
   <option value='incorrect'>不正解数</option>
   <option value='correct'>正解数</option>
   <option value='pca'>正答率</option>
-  <option value='qdate'>日仁E/option>
+  <option value='qdate'>日付</option>
   <option value='pasttime'>経過時間</option>
   <option value='questionnumber'>問題番号</option>
 </select>
@@ -559,19 +556,19 @@ $testnumber = 0;
 <br>
 
 <select class="selectBox" name='poorat2' id='poorat2' onChange='listChanged()'　 style='width: 32%; font-size: 40px;'>
-  <option value='' disabled selected style='display:none;' >達�E度選抁E/option>
-  <option value='good4'>☁E�E☁E�E</option>
-  <option value='good3'>☁E�E☁E/option>
-  <option value='good2'>☁E�E</option>
-  <option value='good1'>☁E/option>
+  <option value='' disabled selected style='display:none;' >達成度選択</option>
+  <option value='good4'>☆☆☆☆</option>
+  <option value='good3'>☆☆☆</option>
+  <option value='good2'>☆☆</option>
+  <option value='good1'>☆</option>
   <option value=''> </option>
-  <option value='poor1'>ÁE/option>
-  <option value='poor2'>×ÁE/option>
-  <option value='poor3'>××ÁE/option>
-  <option value='poor4'>×××ÁE/option>
+  <option value='poor1'>×</option>
+  <option value='poor2'>××</option>
+  <option value='poor3'>×××</option>
+  <option value='poor4'>××××</option>
 </select>
 <select class="selectBox" name='qlevel' id='qlevel' onChange='listChanged()'　 style='width: 32%; font-size: 40px;'>
-  <option value='' disabled selected style='display:none;' >レベル選抁E/option>
+  <option value='' disabled selected style='display:none;' >レベル選択</option>
   <option value='8'>8</option>
   <option value='7'>7</option>
   <option value='6'>6</option>
@@ -651,20 +648,20 @@ style='width: 30%; font-size: 38px;box-sizing:border-box;vertical-align:middle; 
 <div class="questionbuttonbox" id="questionbuttonbox" style='line-height: 2vh;vertical-align:bottom' >
 
 <select class="selectBox" name='poorat' id='poorat' onChange='listChanged()' style='width: 5%; font-size: 25px;height: 5vh;line-height: 1vh;vertical-align:top;'>
-    <option value='' disabled selected style='display:none;'>達�E度</option>
-    <option value='good4'>☁E�E☁E�E</option>
-    <option value='good3'>☁E�E☁E/option>
-    <option value='good2'>☁E�E</option>
-    <option value='good1'>☁E/option>
+    <option value='' disabled selected style='display:none;'>達成度</option>
+    <option value='good4'>☆☆☆☆</option>
+    <option value='good3'>☆☆☆</option>
+    <option value='good2'>☆☆</option>
+    <option value='good1'>☆</option>
     <option value=''> </option>
-    <option value='poor1'>ÁE/option>
-    <option value='poor2'>×ÁE/option>
-    <option value='poor3'>××ÁE/option>
-    <option value='poor4'>×××ÁE/option>
+    <option value='poor1'>×</option>
+    <option value='poor2'>××</option>
+    <option value='poor3'>×××</option>
+    <option value='poor4'>××××</option>
 </select>
 <select class="selectBox" name='fontresize' id='fontresize' onChange="textareafontresize();settingSave()"
   style='width: 10%; font-size: 20px;height: 5vh;line-height: 1vh;vertical-align:top;'>
-  <option value='' >斁E��サイズ</option>
+  <option value='' >文字サイズ</option>
   <option value='5px'>5</option>
   <option value='6px'>6</option>
   <option value='7px'>7</option>
@@ -804,29 +801,29 @@ word-wrap:break-word;'></pre>
 
 <br>
 <div id = "bottomButtonBox" class="bottomButtonBox">
-  <input class ="button" type="button" name="botan01" id="button01" onClick="sendRequest()"value="次の問顁E
+  <input class ="button" type="button" name="botan01" id="button01" onClick="sendRequest()"value="次の問題"
   style="width:49%;height :7vh;font-size: 40px;margin:0px 0px 10px 0px ">
-  <input class ="button" type="button" name="botan02" id="button02" onClick="sendRequest2();" value="解筁E
+  <input class ="button" type="button" name="botan02" id="button02" onClick="sendRequest2();" value="解答"
   style="width:49%;height :7vh;font-size: 40px;margin:0px 0px 10px 0px ">
-  <input class ="button" type="button" name="botan03" id="button03" onClick="sendRequest3('good4');" value="☁E�E☁E�E"
+  <input class ="button" type="button" name="botan03" id="button03" onClick="sendRequest3('good4');" value="☆☆☆☆"
   style="width:24.2%;height:10vh; font-size: 30px">
-  <input class ="button" type="button" name="botan03" id="button03" onClick="sendRequest3('good3');" value="☁E�E☁E
+  <input class ="button" type="button" name="botan03" id="button03" onClick="sendRequest3('good3');" value="☆☆☆"
   style="width:24.2%;height:10vh; font-size: 30px">
-  <input class ="button" type="button" name="botan03" id="button03" onClick="sendRequest3('good2');" value="☁E�E"
+  <input class ="button" type="button" name="botan03" id="button03" onClick="sendRequest3('good2');" value="☆☆"
   style="width:24.2%;height:10vh; font-size: 30px">
-  <input class ="button" type="button" name="botan03" id="button03" onClick="sendRequest3('good1');" value="☁E
+  <input class ="button" type="button" name="botan03" id="button03" onClick="sendRequest3('good1');" value="☆"
   style="width:24.2%;height:10vh; font-size: 30px"><br><br>
     <input class ="button" type="button" name="botan04" id="button04" onClick="sendRequest4('poor4');" value="✖✖✖✖"
   style="width:24.2%;height:10vh; font-size: 30px">
-  <input class ="button" type="button" name="botan04" id="button04" onClick="sendRequest4('poor3');" value="✖✖✁E
+  <input class ="button" type="button" name="botan04" id="button04" onClick="sendRequest4('poor3');" value="✖✖✖"
   style="width:24.2%;height:10vh; font-size: 30px">
   <input class ="button" type="button" name="botan04" id="button04" onClick="sendRequest4('poor2');" value="✖✖"
   style="width:24.2%;height:10vh; font-size: 30px">
-  <input class ="button" type="button" name="botan04" id="button04" onClick="sendRequest4('poor1');" value="✁E
+  <input class ="button" type="button" name="botan04" id="button04" onClick="sendRequest4('poor1');" value="✖"
   style="width:24.2%;height:10vh; font-size: 30px"><br><br>
-  <input class ="button" type="button" name="botan05" id="button05" onClick="backQuestion();"value="前�E問顁E
+  <input class ="button" type="button" name="botan05" id="button05" onClick="backQuestion();"value="前の問題"
   style="width:24.2%;height:5vh;font-size: 40px">
-  <input class ="button" type="button" name="botan05" id="button05" onClick="removeQuestion();sendRequest()"value="スキチE�E"
+  <input class ="button" type="button" name="botan05" id="button05" onClick="removeQuestion();sendRequest()"value="スキップ"
   style="width:24.2%;height:5vh;font-size: 40px">
   <input class ="button" type="button"  name="botan06" id="button06" onClick="correctMinus();"value="正解-"
   style="position: absolute;left:50%;width:23.8%;height:5vh;font-size: 20px">
@@ -870,14 +867,14 @@ word-wrap:break-word;'></pre>
   </select>
   <select class="selectBox" name='autoReading' id='autoReading' onchange = "settingSave()" style='width: 23%; font-size: 20px;'>
     <option value='je' style='width: 23%' placeholder="読上音声">読上音声</option>
-    <option value='je'>問顁E日本誁E解答‐英誁E/option>
-    <option value='ej'>問顁E英誁E解答‐日本誁E/option>
-    <option value='jj'>問顁E日本誁E解答‐日本誁E/option>
-    <option value='ee'>問顁E英誁E解答‐英誁E/option>
-    <option value='j*'>問題だぁE日本誁E/option>
-    <option value='e*'>問題だぁE英誁E/option>
-    <option value='*j'>解答だけ‐日本誁E/option>
-    <option value='*e'>解答だけ‐英誁E/option>
+    <option value='je'>問題-日本語/解答‐英語</option>
+    <option value='ej'>問題-英語/解答‐日本語</option>
+    <option value='jj'>問題-日本語/解答‐日本語</option>
+    <option value='ee'>問題-英語/解答‐英語</option>
+    <option value='j*'>問題だけ-日本語</option>
+    <option value='e*'>問題だけ-英語</option>
+    <option value='*j'>解答だけ‐日本語</option>
+    <option value='*e'>解答だけ‐英語</option>
   </select>
 
   <select class="selectBox" name='jpSpeed' id='jpSpeed' onchange = "settingSave()" style='width: 23%; font-size: 20px;'>
@@ -934,7 +931,7 @@ word-wrap:break-word;'></pre>
 
   <select class="selectBox" name='autoAnswer' id='autoAnswer' onchange = "settingSave()" style='width: 23%; font-size: 20px;margin:30px 0px 0px 0px'>
     <option value=0 style='width: 23%' placeholder="自動解答秒数">自動解答秒数</option>
-    <option value=0>なぁE/option>
+    <option value=0>なし</option>
     <option value=0.5>0.5</option>
     <option value=0.6>0.6</option>
     <option value=0.7>0.7</option>
@@ -967,7 +964,7 @@ word-wrap:break-word;'></pre>
     <option value=300>300</option>
   </select>
   <select class="selectBox" name='backGround' id='backGround' style='width: 23%; font-size: 20px;margin:30px 0px 0px 0px' onchange = 'changeBG();settingSave()'>
-    <option value="RRice-colorful-wall.jpg" style='width: 23%' placeholder="背景画僁E>背景画僁E/option>
+    <option value="RRice-colorful-wall.jpg" style='width: 23%' placeholder="背景画像">背景画像</option>
     <option value="colored-pencil-pattern1144.png">①</option>
     <option value="fancy-floral-pattern-384.jpg">②</option>
     <option value="mint-green-chevron-stripes-2361.png">③</option>
@@ -988,27 +985,27 @@ word-wrap:break-word;'></pre>
     <option value="49502.jpg">⑱</option>
     <option value="stylish-floral-pattern.png">⑲</option>
     <option value="painted-wood-planks-large-background.jpg">⑳</option>
-    <option value="seamless-bamboo-pattern-842.png">㉁E/option>
-    <option value="dandelion-seeds-pattern.png">㉁E/option>
-    <option value="music-pattern-with-trumpet-1929.png">㉁E/option>
-    <option value="canadian-dollar.png">㉁E/option>
-    <option value="pixel-heart.png">㉁E/option>
-    <option value="christmas-colour.png">㉁E/option>
-    <option value="food.png">㉁E/option>
-    <option value="donuts.png">㉁E/option>
-    <option value="dinos.png">㉁E/option>
-    <option value="panda-madness.gif">㉁E/option>
-    <option value="pattern8-pattern-44a.png">㉁E/option>
-    <option value="patternhead64a-thumb.png">㉁E/option>
-    <option value="repeated-square.png">㉁E/option>
-    <option value="1702.png">㉁E/option>
-    <option value="yellow-5456111_1920.jpg">㉁E/option>
+    <option value="seamless-bamboo-pattern-842.png">㉑</option>
+    <option value="dandelion-seeds-pattern.png">㉒</option>
+    <option value="music-pattern-with-trumpet-1929.png">㉓</option>
+    <option value="canadian-dollar.png">㉔</option>
+    <option value="pixel-heart.png">㉕</option>
+    <option value="christmas-colour.png">㉖</option>
+    <option value="food.png">㉗</option>
+    <option value="donuts.png">㉘</option>
+    <option value="dinos.png">㉙</option>
+    <option value="panda-madness.gif">㉚</option>
+    <option value="pattern8-pattern-44a.png">㉛</option>
+    <option value="patternhead64a-thumb.png">㉜</option>
+    <option value="repeated-square.png">㉝</option>
+    <option value="1702.png">㉞</option>
+    <option value="yellow-5456111_1920.jpg">㉟</option>
 
     
   </select>
     <select class="selectBox" name='fontSelect' id='fontSelect' style='width: 23%; font-size: 20px;margin:30px 0px 0px 0px' onchange = 'settingSave()'>
-    <option value="SimHei" style='width: 23%' placeholder="フォンチE>フォンチE/option>
-    <option value="�E��E� 明朝">�E��E� 明朝</option>
+    <option value="SimHei" style='width: 23%' placeholder="フォント">フォント</option>
+    <option value="ＭＳ 明朝">ＭＳ 明朝</option>
     <option value="SimHei">SimHei</option>
     <option value="Times">Times</option>
     <option value="Arial">Arial</option>
@@ -1033,29 +1030,29 @@ word-wrap:break-word;'></pre>
   </select>
   </select>
     <select class="selectBox" name='novelSelect' id='novelSelect' style='display:none;width: 23%; font-size: 20px;margin:30px 0px 0px 0px' onchange = 'settingSave()'>
-    <option value="なぁE style='width: 23%' placeholder="フォンチE>小説</option>
-    <option value="なぁE>なぁE/option>
+    <option value="なし" style='width: 23%' placeholder="フォント">小説</option>
+    <option value="なし">なし</option>
   </select>
   <input class ="button" type="text" name="novelSentenceNumber" id="novelSentenceNumber" onChange='settingSave()' value = "" 
   style='display:none;width: 8%; font-size: 16px;box-sizing:border-box;vertical-align:middle;margin:30px 0px 0px 0px '>
 
   <br>
   <input class ="button" type="checkbox" id = "qachange" onchange = "settingSave()" style="font-size: 20px;margin:2vh 0px 0px 0px">
-  <font size="4" color="#000000" class="checkText" ;>問題解説</font>
+  <font size="4" color="#000000" class="checkText" ;>問題/解答</font>
   <input class ="button" type="checkbox" id = "autoread" onchange = "settingSave()" style="font-size: 20px;margin:2vh 0px 0px 2vh">
   <font size="4" color="#000000" class="checkText";>自動読み上げ</font>
   <input class ="button" type="checkbox" id = "keyControl" onchange = "settingSave()" style="font-size: 20px;margin:2vh 0px 0px 2vh">
   <font size="4" color="#000000" class="checkText";>キー操作</font>
   <br>
   <input class ="button" type="checkbox" id = "answerByMyself" onchange = "settingSave()" style="font-size: 20px;margin:2vh 0px 0px 0px">
-  <font size="4" color="#000000" class="checkText";>解答�E劁E/font>
+  <font size="4" color="#000000" class="checkText";>解答入力</font>
   <input class ="button" type="checkbox" id = "randomOrNot" onchange = "settingSave()" style="font-size: 20px;margin:2vh 0px 0px 2vh">
   <font size="4" color="#000000" class="checkText";>ランダム</font>
   <input class ="button" type="checkbox" id = "chordsOrNot" onchange = "settingSave()" style="font-size: 20px;margin:2vh 0px 0px 2vh">
   <font size="4" color="#000000" class="checkText";>コード音声</font>
   <input class ="button" type="checkbox" id="flexButton" value="横並び" onchange='QnAareaFlex();settingSave()' style="font-size: 20px;margin:2vh 0px 0px 2vh">
   <font size="4" color="#000000" class="checkText";>横並び</font>
-  <input class ="button" type="checkbox" id="blackCheck" value="真っ黁E onchange='blackOrWhite();settingSave()' style="font-size: 20px;margin:2vh 0px 0px 2vh">
+  <input class ="button" type="checkbox" id="blackCheck" value="真っ黒" onchange='blackOrWhite();settingSave()' style="font-size: 20px;margin:2vh 0px 0px 2vh">
   <font size="4" color="#000000" class="checkText";>真っ黒</font>
   <br>
 
@@ -1065,13 +1062,13 @@ word-wrap:break-word;'></pre>
 
 <?php
   if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    $mysqli = new db_wrapper('localhost', 'terashimayo', 'Yoyoyo444', 'terashimayo');
+    $mysqli = new mysqli('localhost', 'terashimayo', 'Yoyoyo444', 'terashimayo');
     if( $mysqli->connect_errno){
-        echo 'Access Failed';//接続失敁E
+        echo 'Access Failed';//接続失敗
         exit;
     }
     $result0 = $mysqli->query("set names utf8");
-    //チE�Eタベ�Eス取征E
+    //データベース取得
     $db_name = $_POST["DB_name"];
     $str_sql = "select * from $db_name where question = 'settings'";
     $result = $mysqli->query($str_sql);
@@ -1136,8 +1133,8 @@ var MaxQuestionNumber;
 var AnswerShown = false;
 var AnswerTypedFlag = false;
 var AnswerShown2 = false;//自動回答表示の解除用
-// var AnswerWaitingFlag = false;//自動解答表示を征E��てぁE��かどぁE��
-var sleepId = "";//sleepのタイマ�EのID
+// var AnswerWaitingFlag = false;//自動解答表示を待っているかどうか
+var sleepId = "";//sleepのタイマーのID
 var mp3PlayFlag = false;
 var imageHeight1;
 var imageWidth1;
@@ -1153,13 +1150,13 @@ const text1 = document.getElementById('textareas');
 
 
 for (let i = 1; i < 500; i++) {//Mp3開始地点セレクト要素追加
-    // selectタグを取得すめE
+    // selectタグを取得する
   var select = document.getElementById("mp3StartPoint");
-  // optionタグを作�Eする
+  // optionタグを作成する
   var option = document.createElement("option");
-  // optionタグのチE��ストを4に設定すめE
+  // optionタグのテキストを4に設定する
   option.text = i * 0.01 ;
-  // optionタグのvalueめEに設定すめE
+  // optionタグのvalueを4に設定する
   option.value = i * 0.01;
   // selectタグの子要素にoptionタグを追加する
   select.appendChild(option);
@@ -1172,7 +1169,7 @@ function sendRequest(){
     while(parent.lastChild){
       parent.removeChild(parent.lastChild);
     }
-    if ((document.getElementById("novelSelect").value) && !(document.getElementById("novelSelect").value == "なぁE)){
+    if ((document.getElementById("novelSelect").value) && !(document.getElementById("novelSelect").value == "なし")){
       novelRowNum = Number(novelRowNum) +1;
       getNovelSentence();
     }
@@ -1183,8 +1180,8 @@ function sendRequest(){
       }      
     }
     
-    clearTimeout(sleepId);//自動解答表示のタイマ�Eをクリア
-    AnswerShown2 = false;//答えはまだ表示されてぁE��ぁE
+    clearTimeout(sleepId);//自動解答表示のタイマーをクリア
+    AnswerShown2 = false;//答えはまだ表示されていない
     if (num < MaxQuestionNumber ) {
       num++;
     } else {
@@ -1221,7 +1218,7 @@ function sendRequest(){
         if (max==0) {
           max=1;
         }
-      /** 重褁E��ェチE��しながら乱数作�E */
+      /** 重複チェックしながら乱数作成 */
       for(i = min; i < questionnumbers.length; i++){
         while(true){
           // alert(i);
@@ -1304,15 +1301,15 @@ function sendRequest(){
 
 
 
-    var moji=rand + "^" + category1Value + "^" + category2Value + "^" + category3Value  + "^" + 
-        document.mainform.category4.value + "^" + document.mainform.category5.value + "^" + 
-        document.mainform.category6.value + "^" + document.mainform.operator1.value + "^" + 
-        document.mainform.operator2.value + "^" + document.mainform.operator3.value + "^" + 
-        document.mainform.criteria1.value + "^" + document.mainform.criteria2.value + "^" + 
-        document.mainform.criteria3.value + "^" + document.mainform.DB_name.value + "^" + 
-        document.mainform.poorat2.value + "^" + document.mainform.wordSearch.value + "^" + 
-        document.mainform.qlevel.value + "^" + category4Value + "^" + category5Value + "^" + 
-        document.mainform.novelSentenceNumber.value + "^" + yesterdayIncorrect;
+    var moji=rand + "." + category1Value + "." + category2Value + "." + category3Value  + "." + 
+        document.mainform.category4.value + "." + document.mainform.category5.value + "." + 
+        document.mainform.category6.value + "." + document.mainform.operator1.value + "." + 
+        document.mainform.operator2.value + "." + document.mainform.operator3.value + "." + 
+        document.mainform.criteria1.value + "." + document.mainform.criteria2.value + "." + 
+        document.mainform.criteria3.value + "." + document.mainform.DB_name.value + "." + 
+        document.mainform.poorat2.value + "." + document.mainform.wordSearch.value + "." + 
+        document.mainform.qlevel.value + "." + category4Value + "." + category5Value + "." + 
+        document.mainform.novelSentenceNumber.value + "." + yesterdayIncorrect;
     moji = encodeURIComponent(moji);
     yesterdayIncorrect = false;
 
@@ -1321,7 +1318,7 @@ function sendRequest(){
     {
 
       if (flag1 == false){
-        xmlhttp.open("POST", "../getqestions.php", false);//乱数を取征E
+        xmlhttp.open("POST", "../getqestions.php", false);//乱数を取得
         xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
         var data="data="+moji;
         xmlhttp.send(data);
@@ -1331,7 +1328,7 @@ function sendRequest(){
         document.getElementById("totalQuestionNumber").innerHTML = questionnumbers.length;
       }
       if (oneByOneflag == true){
-        xmlhttp.open("POST", "../getqestionsOneByOne.php", false);//乱数を取征E
+        xmlhttp.open("POST", "../getqestionsOneByOne.php", false);//乱数を取得
         xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
         var data="data="+moji;
         xmlhttp.send(data);
@@ -1341,7 +1338,7 @@ function sendRequest(){
         document.getElementById("totalQuestionNumber").innerHTML = questionnumbers.length;
       }
       if (twoByTwoflag == true){
-        xmlhttp.open("POST", "../getqestionsTwoByTwo.php", false);//乱数を取征E
+        xmlhttp.open("POST", "../getqestionsTwoByTwo.php", false);//乱数を取得
         xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
         var data="data="+moji;
         xmlhttp.send(data);
@@ -1351,7 +1348,7 @@ function sendRequest(){
         document.getElementById("totalQuestionNumber").innerHTML = questionnumbers.length;
       }
       if (threeByThreeflag == true){
-        xmlhttp.open("POST", "../getqestionsThreeByThree.php", false);//乱数を取征E
+        xmlhttp.open("POST", "../getqestionsThreeByThree.php", false);//乱数を取得
         xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
         var data="data="+moji;
         xmlhttp.send(data);
@@ -1373,7 +1370,7 @@ function sendRequest(){
       if (flag1 == false){
         // alert(max);
           randoms = [];
-        /** 重褁E��ェチE��しながら乱数作�E */
+        /** 重複チェックしながら乱数作成 */
         for(i = min; i < questionnumbers.length; i++){
           while(true){
             // alert(i);
@@ -1419,7 +1416,7 @@ function sendRequest(){
     // alert(questionnumbers[1]);
 
 
-    var moji=rand + "^" + document.mainform.DB_name.value + "^" + 
+    var moji=rand + "." + document.mainform.DB_name.value + "." + 
     document.mainform.novelSentenceNumber.value;
     moji = encodeURIComponent(moji);
 
@@ -1430,7 +1427,7 @@ function sendRequest(){
     if(xmlhttp!=null)
     {
 
-        xmlhttp.open("POST", "../"+phpfile1, false);//乱数をもとに問題を取征E
+        xmlhttp.open("POST", "../"+phpfile1, false);//乱数をもとに問題を取得
         xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
         var data="data="+moji;
 
@@ -1500,8 +1497,8 @@ function sendRequest(){
                imageSize = 1000;
               }
               if ((width>height)){
-                  document.getElementById("mypic1").style.width = imageSize + "px";  // 横幁E��400pxにリサイズ
-                  document.getElementById("mypic1").style.height = height * (imageSize / width)+"px"; // 高さを横幁E�E変化割合に合わせる;
+                  document.getElementById("mypic1").style.width = imageSize + "px";  // 横幅を400pxにリサイズ
+                  document.getElementById("mypic1").style.height = height * (imageSize / width)+"px"; // 高さを横幅の変化割合に合わせる;
                   if (parseInt(document.getElementById("mypic1").style.height)>parseInt(document.getElementById("div1").clientHeight)) {
                     document.getElementById("mypic1").style.height = document.getElementById("div1").clientHeight +"px";
                     document.getElementById("mypic1").style.width = (document.getElementById("mypic1").height*width)/height + "px";
@@ -1552,12 +1549,12 @@ function sendRequest(){
           }else{
             var img_element = document.createElement('img');
             img_element.id= 'mypic1';
-            // 持E��した要素にimg要素を挿入
+            // 指定した要素にimg要素を挿入
             var content_area = document.getElementById("div1");
             content_area.appendChild(img_element);
           }
           
-          MathJax.Hub.Typeset(document.getElementById("div1"));//数式�E読み込み
+          MathJax.Hub.Typeset(document.getElementById("div1"));//数式再読み込み
         
         } else if (isHTML(question)){
           document.getElementById("textareas").style.display = "none";
@@ -1575,14 +1572,14 @@ function sendRequest(){
 
 
 
-    }　//苦手度を取征E
+    }　//苦手度を取得
 
-    var moji=rand + "^" + document.mainform.DB_name.value;
+    var moji=rand + "." + document.mainform.DB_name.value;
     moji = encodeURIComponent(moji);
     var xmlhttp=createXmlHttpRequest2();
     if(xmlhttp!=null)
     {
-        xmlhttp.open("POST", "../getpoorat.php", false);//正解ボタンを押ぁE
+        xmlhttp.open("POST", "../getpoorat.php", false);//正解ボタンを押す
         xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
         var data="data="+moji;
         xmlhttp.send(data);
@@ -1599,7 +1596,7 @@ function sendRequest(){
 
     var ifautoAnswer = document.getElementById("autoAnswer");
 
-    if ((ifautoAnswer.value > 0)) { //最初だけ�E自動で音楽を流さなぁE
+    if ((ifautoAnswer.value > 0)) { //最初だけは自動で音楽を流さない
       async function main(){
       var sec = Number(ifautoAnswer.value);
       await sleep(sec*1000);
@@ -1611,7 +1608,7 @@ function sendRequest(){
     }else {
       
     }
-    if ((document.getElementById("chordsOrNot").checked)&&((document.getElementById("ctg3").value ==="コーチE)||(document.getElementById("ctg3").value ==="音稁E))) {
+    if ((document.getElementById("chordsOrNot").checked)&&((document.getElementById("ctg3").value ==="コード")||(document.getElementById("ctg3").value ==="音程"))) {
       playChords(document.getElementById("textareas").value);
     }
 
@@ -1626,7 +1623,7 @@ function sendRequest(){
 }
 
 function isHTML(str) {
-    // 正規表現を使用してHTMLタグをチェチE��
+    // 正規表現を使用してHTMLタグをチェック
     const pattern = /<\/?[a-z][\s\S]*>/i;
     return pattern.test(str);
 }
@@ -1668,7 +1665,7 @@ function sendRequest2(){
   AnswerShown = true;
   AnswerShown2 = true;
   
-  /** 重褁E��ェチE��しながら乱数作�E */
+  /** 重複チェックしながら乱数作成 */
   for(i = min; i < max+1; i++){
     while(true){
       // alert(i);
@@ -1693,12 +1690,12 @@ function sendRequest2(){
       var phpfile1 = "getonequestion1.php";
       var phpfile2 = "getanswer1.php";
   }
-  var moji=rand + "^" + document.mainform.DB_name.value;
+  var moji=rand + "." + document.mainform.DB_name.value;
   moji = encodeURIComponent(moji);
   var xmlhttp=createXmlHttpRequest();
   if(xmlhttp!=null){
     // alert(phpfile2);
-    xmlhttp.open("POST", "../"　+ phpfile2 , false);//乱数をもとに解答を取征E
+    xmlhttp.open("POST", "../"　+ phpfile2 , false);//乱数をもとに解答を取得
     xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     var data="data="+moji;
     xmlhttp.send(data);
@@ -1744,9 +1741,9 @@ function sendRequest2(){
 
 
       image2.onload = function(){
-        width2 = image2.width;//画像�E幁E
-        height2 = image2.height;//画像�E高さ
-        modifiedWidth2 = document.getElementById("imageSize2").value * width2 ;//画像幁E��持E��値をかけたも�E
+        width2 = image2.width;//画像の幅
+        height2 = image2.height;//画像の高さ
+        modifiedWidth2 = document.getElementById("imageSize2").value * width2 ;//画像幅に指定値をかけたもの
         modifiedHeight2  = document.getElementById("imageSize2").value * height2 ;
         if ((imageSize2>1000)){
           imageSize2 = 1000;
@@ -1757,9 +1754,9 @@ function sendRequest2(){
         console.log('result is ' + result);
         if ((width2>height2)){
           document.getElementById("mypic2").style.width = modifiedWidth2 + "px";  // 
-          document.getElementById("mypic2").style.height = modifiedHeight2　+"px"; // 高さを横幁E�E変化割合に合わせる;
+          document.getElementById("mypic2").style.height = modifiedHeight2　+"px"; // 高さを横幅の変化割合に合わせる;
           // document.getElementById("mypic2").style.width = $('#div1').width() + "px";  // 
-          // document.getElementById("mypic2").style.height = $('#div1').height()　+"px"; // 高さを横幁E�E変化割合に合わせる;
+          // document.getElementById("mypic2").style.height = $('#div1').height()　+"px"; // 高さを横幅の変化割合に合わせる;
           if (parseInt(document.getElementById("mypic2").style.width) > $('#div2').width()) {
             var pic2w = parseInt(document.getElementById("mypic2").style.width);
             var pic2h = parseInt(document.getElementById("mypic2").style.height);
@@ -1800,7 +1797,7 @@ function sendRequest2(){
         } else {
           image2.src='images/'+imagefolder+'/' + imageadress[0];
         }
-    }else if (res.indexOf( "mp3" ) > 0||music.paused===false){//答えがmp3なめE
+    }else if (res.indexOf( "mp3" ) > 0||music.paused===false){//答えがmp3なら
       if (musicStartFlug === false){
         musicStartFlug = true;
       }else{
@@ -1815,7 +1812,7 @@ function sendRequest2(){
           stop();
           mp3PlayFlag=false;
         }
-        if (res === "問題がありません、E){
+        if (res === "問題がありません。"){
           stop();
           mp3PlayFlag=false;
         }
@@ -1825,7 +1822,7 @@ function sendRequest2(){
       document.getElementById("div2").style.display = "block";
       document.getElementById("mypic2").style.display = "none";
       // document.getElementById("answerMath").innerText = res;
-      if (res.indexOf("span") > -1){ //Html形式�E解答なめE
+      if (res.indexOf("span") > -1){ //Html形式の解答なら
         let parent = document.getElementById("answerMath");
         while(parent.lastChild){
           parent.removeChild(parent.lastChild);
@@ -1842,12 +1839,12 @@ function sendRequest2(){
       }else{
         var img_element = document.createElement('img');
         img_element.id= 'mypic2';
-        // 持E��した要素にimg要素を挿入
+        // 指定した要素にimg要素を挿入
         var content_area = document.getElementById("div2");
         content_area.appendChild(img_element);
       }
 
-      MathJax.Hub.Typeset(document.getElementById("div2"));//数式�E読み込み
+      MathJax.Hub.Typeset(document.getElementById("div2"));//数式再読み込み
     } else if (isHTML(res)){
           document.getElementById("textareas2").style.display = "none";
           document.getElementById("div2").style.display = "block";
@@ -1908,7 +1905,7 @@ function sendRequest3(goodPoor)
   var xmlhttp=createXmlHttpRequest2();
   if(xmlhttp!=null)
   {
-    xmlhttp.open("POST", "../addcorrect.php", false);//正解ボタンを押ぁE
+    xmlhttp.open("POST", "../addcorrect.php", false);//正解ボタンを押す
     xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     var data="data="+moji;
     xmlhttp.send(data);
@@ -1934,7 +1931,7 @@ function sendRequest4(goodPoor){
   getQendTime = now.getTime();
   getpastTime = Math.round((getQendTime-getQstartTime)/100)/10;
   incorrectQuestions.push(rand);
-  let arr = incorrectQuestions.filter(element => element == rand)//何回同じ問題を間違えてぁE��のぁE
+  let arr = incorrectQuestions.filter(element => element == rand)//何回同じ問題を間違えているのか
   if (arr.length >20){return};
   incorrectNumber = incorrectNumber + 1
   if (incorrectNumber >100){
@@ -1947,7 +1944,7 @@ function sendRequest4(goodPoor){
   // console.log('679 getpastTime is '+ getpastTime);
   var xmlhttp=createXmlHttpRequest2();
   if(xmlhttp!=null){
-    xmlhttp.open("POST", "../addincorrect.php", false);//不正解ボタンを押ぁE
+    xmlhttp.open("POST", "../addincorrect.php", false);//不正解ボタンを押す
     xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     var data="data="+moji;
     xmlhttp.send(data);
@@ -1969,7 +1966,7 @@ function correctMinus(){
   var xmlhttp=createXmlHttpRequest2();
   if(xmlhttp!=null)
   {
-    xmlhttp.open("POST", "../correctMinus.php", false);//不正解ボタンを押ぁE
+    xmlhttp.open("POST", "../correctMinus.php", false);//不正解ボタンを押す
     xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     var data="data="+moji;
     xmlhttp.send(data);
@@ -1989,7 +1986,7 @@ function incorrectMinus(){
   var xmlhttp=createXmlHttpRequest2();
   if(xmlhttp!=null)
   {
-    xmlhttp.open("POST", "../incorrectMinus.php", false);//不正解ボタンを押ぁE
+    xmlhttp.open("POST", "../incorrectMinus.php", false);//不正解ボタンを押す
     xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     var data="data="+moji;
     xmlhttp.send(data);
@@ -2024,8 +2021,8 @@ function sendRequest5(){
   }
   moji = encodeURIComponent(moji);
   var xmlhttp=createXmlHttpRequest2();
-  if ((xmlhttp!=null)　&& ((moji.indexOf('Your%20Answer')=== -1) && (moji.indexOf('...............')=== -1))) {//修正する問題と答えに自刁E�E解答やヒントがなければ修正する、E
-    xmlhttp.open("POST", "../modifyquestionanswer.php", false);//不正解ボタンを押ぁE
+  if ((xmlhttp!=null)　&& ((moji.indexOf('Your%20Answer')=== -1) && (moji.indexOf('...............')=== -1))) {//修正する問題と答えに自分の解答やヒントがなければ修正する。
+    xmlhttp.open("POST", "../modifyquestionanswer.php", false);//不正解ボタンを押す
     xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     var data="data="+moji;
     xmlhttp.send(data);
@@ -2039,13 +2036,13 @@ function deleteQ(){
   moji = encodeURIComponent(moji);
   var xmlhttp=createXmlHttpRequest2();
   if(xmlhttp!=null){
-    xmlhttp.open("POST", "../deleteQuestion.php", false);//不正解ボタンを押ぁE
+    xmlhttp.open("POST", "../deleteQuestion.php", false);//不正解ボタンを押す
     xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     var data="data="+moji;
     xmlhttp.send(data);
     var res=xmlhttp.responseText;
     // console.log('delete is ' + res);
-    document.getElementById( "textareas" ).value = "問題を削除しました、E;
+    document.getElementById( "textareas" ).value = "問題を削除しました。";
     document.getElementById( "textareas2" ).value = "";
   }
 }
@@ -2070,7 +2067,7 @@ function createXmlHttpRequest2(){
   return xmlhttp;
 }
 
-/** min以上max以下�E整数値の乱数を返す */
+/** min以上max以下の整数値の乱数を返す */
 function intRandom(min, max){
     return Math.floor( Math.random() * (max - min + 1)) + min;
 }
@@ -2360,8 +2357,8 @@ function listChanged(){
 }
 
 function backQuestion(){
-  if ((document.getElementById("novelSelect").value) && !(document.getElementById("novelSelect").value == "なぁE)){
-    //小説戻ぁE
+  if ((document.getElementById("novelSelect").value) && !(document.getElementById("novelSelect").value == "なし")){
+    //小説戻す
     novelRowNum = Number(novelRowNum)-1
     getNovelSentence();
   }
@@ -2389,11 +2386,11 @@ function backQuestion(){
     // console.log('num is '+num);
     document.getElementById("press-button").innerHTML = num+1   +"/"+Number(max);
     rand = questionnumbers[num];
-    var moji=rand + "^" + document.mainform.DB_name.value;
+    var moji=rand + "." + document.mainform.DB_name.value;
     moji = encodeURIComponent(moji);
     var xmlhttp=createXmlHttpRequest();
     if(xmlhttp!=null){
-      xmlhttp.open("POST", "../"+phpfile1, false);//乱数をもとに問題を取征E
+      xmlhttp.open("POST", "../"+phpfile1, false);//乱数をもとに問題を取得
       xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
       var data="data="+moji;
       // console.log('396 data is '+data);
@@ -2430,13 +2427,13 @@ function backQuestion(){
         document.getElementById( "textareas" ).value = question ;
         document.getElementById( "textareas2" ).value = "";;
       }
-    }　//苦手度を取征E
-    var moji=rand + "^" + document.mainform.DB_name.value;
+    }　//苦手度を取得
+    var moji=rand + "." + document.mainform.DB_name.value;
     moji = encodeURIComponent(moji);
     var xmlhttp=createXmlHttpRequest2();
     if(xmlhttp!=null)
     {
-      xmlhttp.open("POST", "../getpoorat.php", false);//正解ボタンを押ぁE
+      xmlhttp.open("POST", "../getpoorat.php", false);//正解ボタンを押す
       xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
       var data="data="+moji;
       xmlhttp.send(data);
@@ -2722,10 +2719,10 @@ var formatDate = function (date, format) {
 const uttr2 = new SpeechSynthesisUtterance()
 
 function readAnswer(){//
-  // 発言を作�E
+  // 発言を作成
   uttr2.text = answerText2.value;
 
-  var isJapanese = false;  //日本語（英語以外）�E場合「true」に設宁E
+  var isJapanese = false;  //日本語（英語以外）の場合「true」に設定
   for(var i=0; i < uttr2.text.length; i++){
       if(uttr2.text.charCodeAt(i) >= 256) {
         isJapanese = true;
@@ -2747,7 +2744,7 @@ function readAnswer(){//
     }
   }
 
-  // 言誁E(日本誁Eja-JP, アメリカ英誁Een-US, イギリス英誁Een-GB, 中国誁Ezh-CN, 韓国誁Eko-KR)
+  // 言語 (日本語:ja-JP, アメリカ英語:en-US, イギリス英語:en-GB, 中国語:zh-CN, 韓国語:ko-KR)
   var slcLang = document.getElementById("autoReading").value
 
 
@@ -2764,16 +2761,16 @@ function readAnswer(){//
   // 高さ 0-2 初期値:1
   uttr2.pitch = 1
 
-  // 音釁E0-1 初期値:1
+  // 音量 0-1 初期値:1
   uttr2.volume = 0.75
 
   
-  // // ③ 選択された声を指宁E
+  // // ③ 選択された声を指定
   // uttr2.voice = window.speechSynthesis.getVoices()[voice];
   // alert(readVoices);
   uttr2.voice = speechSynthesis
   .getVoices()
-  .filter(voice => voice.name == lang)[0]; //言語設宁E
+  .filter(voice => voice.name == lang)[0]; //言語設定
 
   speechSynthesis.speak(uttr2)
   // alert(uttr2.voice.name);
@@ -2786,7 +2783,7 @@ const uttr = new SpeechSynthesisUtterance();
 function readQuestion(){
   // const uttr = new SpeechSynthesisUtterance(questionText2.value)
   uttr.text = questionText2.value;
-  var isJapanese = false;  //日本語（英語以外）�E場合「true」に設宁E
+  var isJapanese = false;  //日本語（英語以外）の場合「true」に設定
   for(var i=0; i < uttr.text.length; i++){
       if(uttr.text.charCodeAt(i) >= 256) {
         isJapanese = true;
@@ -2808,7 +2805,7 @@ function readQuestion(){
     }
   }
 
-  // 言誁E(日本誁Eja-JP, アメリカ英誁Een-US, イギリス英誁Een-GB, 中国誁Ezh-CN, 韓国誁Eko-KR)
+  // 言語 (日本語:ja-JP, アメリカ英語:en-US, イギリス英語:en-GB, 中国語:zh-CN, 韓国語:ko-KR)
   var slcLang = document.getElementById("autoReading").value
   
 
@@ -2823,20 +2820,20 @@ function readQuestion(){
   // 高さ 0-2 初期値:1
   uttr.pitch = 1
 
-  // 音釁E0-1 初期値:1
+  // 音量 0-1 初期値:1
   uttr.volume = 0.75
-  // ③ 選択された声を指宁E
+  // ③ 選択された声を指定
   // uttr.voice = window.speechSynthesis.getVoices()[voice];
 
   // alert (uttr.rate);
   uttr.voice = speechSynthesis
   .getVoices()
   .filter(voice => voice.name == lang)[0]; 
-  // .filter(voice => voice.name == readVoices[0])[0];      //言語設宁E
+  // .filter(voice => voice.name == readVoices[0])[0];      //言語設定
   // uttr.voice = speechSynthesis
   //   .getVoices()
   //   .filter(voice => voice.name === voiceSelect.value)[0]
-  // 発言を�E甁E(発言キュー発言に追加)
+  // 発言を再生 (発言キュー発言に追加)
   speechSynthesis.speak(uttr)
 
 
@@ -2868,7 +2865,7 @@ function autoQuestion(){
             finishReading = true;
           }
           while (finishReading == false){
-            // i++;    // こ�E斁E��無ぁE��無限ループになってしまぁE��E
+            // i++;    // この文が無いと無限ループになってしまう。
             // console.log(i);
             await sleep(500);
           }
@@ -2881,7 +2878,7 @@ function autoQuestion(){
                 finishReading2 = true;
               }
               while (finishReading2 == false){
-                i++;    // こ�E斁E��無ぁE��無限ループになってしまぁE��E
+                i++;    // この文が無いと無限ループになってしまう。
                 // console.log(i);
                 await sleep(500);
               }
@@ -2970,27 +2967,27 @@ function keydown() {
   console.log('event.keyCode is ' + event.keyCode);
   console.log('event.code is ' + event.code);
   console.log('event.shiftKey is ' + event.altKey);
-  // 現在フォーカスが与えられてぁE��要素を取得すめE
+  // 現在フォーカスが与えられている要素を取得する
   var active_element = document.activeElement;
 
-  // 出力テスチE
+  // 出力テスト
   console.log(active_element);
-  if ((document.getElementById("keyControl").checked) && (AnswerShown)//キー操作にチェチE��があめE
-  && (document.activeElement.id == "textareas2")//解答欁E��アクチE��ブであり
-  && (document.getElementById("answerByMyself").checked)) {//解答�E力にチェチE��があるとぁE
+  if ((document.getElementById("keyControl").checked) && (AnswerShown)//キー操作にチェックがあり
+  && (document.activeElement.id == "textareas2")//解答欄がアクティブであり
+  && (document.getElementById("answerByMyself").checked)) {//解答入力にチェックがあるとき
     // console.log('event.keyCode is ' + event.keyCode);
     // console.log('event.key is ' + event.key);
     whichKey1()
-  }else if((document.getElementById("keyControl").checked) //キー操作にチェチE��があめE
-  && (!document.getElementById("answerByMyself").checked)//解答�E力にチェチE��があめE
-  && (document.activeElement.id != "textareas2")//解答欁E��アクチE��ブでなぁE
-  && (document.activeElement.id != "textareas")//問題欁E��アクチE��ブでなぁE
-  && (document.activeElement.id != "criteria1")//基準欁E��アクチE��ブでなぁE
+  }else if((document.getElementById("keyControl").checked) //キー操作にチェックがあり
+  && (!document.getElementById("answerByMyself").checked)//解答入力にチェックがあり
+  && (document.activeElement.id != "textareas2")//解答欄がアクティブでなく
+  && (document.activeElement.id != "textareas")//問題欄がアクティブでなく
+  && (document.activeElement.id != "criteria1")//基準欄がアクティブでなく
   && (document.activeElement.id != "criteria2")
   && (document.activeElement.id != "criteria3")
-  && (document.activeElement.id != "wordSearch")//検索欁E��アクチE��ブでなぁE
-  && (document.activeElement.id != "information")//通信欁E��アクチE��ブでなぁE
-  && (document.activeElement.id != "DB_name")){//チE�Eタベ�Eス名欁E��アクチE��ブでなぁE��き　⇒つまり文字�E力しなぁE��キー操作�Eみで学習するとぁE
+  && (document.activeElement.id != "wordSearch")//検索欄がアクティブでなく
+  && (document.activeElement.id != "information")//通信欄がアクティブでなく
+  && (document.activeElement.id != "DB_name")){//データベース名欄がアクティブでないとき　⇒つまり文字入力しないでキー操作のみで学習するとき
 
     whichKey2()
   }
@@ -3416,7 +3413,7 @@ function settingSave(){
   var xmlhttp=createXmlHttpRequest();
   if(xmlhttp!=null)
   {
-    xmlhttp.open("POST", "../settingSave.php", false);//不正解ボタンを押ぁE
+    xmlhttp.open("POST", "../settingSave.php", false);//不正解ボタンを押す
     xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     var data="data="+moji;
     xmlhttp.send(data);
@@ -3427,14 +3424,14 @@ function settingSave(){
 
 }
 function parseStrToBoolean(str) {
-  // 斁E���Eを判宁E
+  // 文字列を判定
   return (str == 'true') ? true : false;
 
 }
 
 var selectElement = document.getElementById("novelSelect");
-var novels = "<?php echo $novelsArray; ?>";　// 変数受け渡し、E
-novels = novels.split(",", -1);　// bb_csvをsplit()でカンマ区刁E��配�Eに再編成、E
+var novels = "<?php echo $novelsArray; ?>";　// 変数受け渡し。
+novels = novels.split(",", -1);　// bb_csvをsplit()でカンマ区切り配列に再編成。
 for(var i = 1; i < novels.length; i ++){
   var option = document.createElement("option");
   option.value = novels[i];
@@ -3507,7 +3504,7 @@ if (response[18]==="true") {
   QnAareaFlex();
 }
 if (response[20]) {
-  if ((document.getElementById("novelSelect").value) && !(document.getElementById("novelSelect").value == "なぁE)){
+  if ((document.getElementById("novelSelect").value) && !(document.getElementById("novelSelect").value == "なし")){
     document.getElementById("novelSentenceNumber").value = response[20];
   }
 }
@@ -3515,7 +3512,7 @@ if (response[20]) {
 
 function AnswerSent(code)
 {
-    //エンターキー押下なめE
+    //エンターキー押下なら
     if((13 === code) && (AnswerShown === false) && (document.getElementById("autoAnswer").value === "0")
     && (document.getElementById("answerByMyself").checked))
     {
@@ -3709,7 +3706,7 @@ function playMIDI(midi){
 };
 
 function playChords(chords){
-    _chords=chords.split(/\r\n|\r|\n| |,/);//改行コードもしくは空白もしく�EカンチE
+    _chords=chords.split(/\r\n|\r|\n| |,/);//改行コードもしくは空白もしくはカンマ
     console.log(_chords);
     //_chords = chords.split(" ");
     _midi = []
@@ -3735,7 +3732,7 @@ function init(res) {
   music2.load();
 
   music.addEventListener('loadedmetadata',function(e) {
-      console.log(music.duration); // 総時間�E取征E
+      console.log(music.duration); // 総時間の取得
       musicDuration = music.duration
 
   });
@@ -3782,7 +3779,7 @@ function stop() {
   music.pause();
   // music2.pause();
   // music.currentTime = Number(document.getElementById("mp3StartPoint").value);
-  // setTimeout() メソチE��の動作をキャンセルする
+  // setTimeout() メソッドの動作をキャンセルする
 clearTimeout(timeout_id);
 timeout_id = null;
 }
@@ -3790,15 +3787,15 @@ timeout_id = null;
 
 function imageSizeChange1(){
   imageSize = document.getElementById("imageSize1").value;
-  document.getElementById("mypic1").style.width = imageWidth1 * Number(imageSize) + "px";  // 横幁E��400pxにリサイズ
-  document.getElementById("mypic1").style.height = imageHeight1 * Number(imageSize) + "px";  // 横幁E��400pxにリサイズ
+  document.getElementById("mypic1").style.width = imageWidth1 * Number(imageSize) + "px";  // 横幅を400pxにリサイズ
+  document.getElementById("mypic1").style.height = imageHeight1 * Number(imageSize) + "px";  // 横幅を400pxにリサイズ
 }
 
 
 function imageSizeChange2(){
   imageSize = document.getElementById("imageSize2").value;
-  document.getElementById("mypic2").style.width = imageWidth2 * Number(imageSize) + "px";  // 横幁E��400pxにリサイズ
-  document.getElementById("mypic2").style.height = imageHeight2 * Number(imageSize) + "px";  // 横幁E��400pxにリサイズ
+  document.getElementById("mypic2").style.width = imageWidth2 * Number(imageSize) + "px";  // 横幅を400pxにリサイズ
+  document.getElementById("mypic2").style.height = imageHeight2 * Number(imageSize) + "px";  // 横幅を400pxにリサイズ
 }
 function informationChange(){
   var moji=  document.mainform.DB_name.value + "^" + document.mainform.information.value;
@@ -3807,7 +3804,7 @@ function informationChange(){
   var xmlhttp=createXmlHttpRequest2();
   if(xmlhttp!=null)
   {
-      xmlhttp.open("POST", "../informationChange.php", false);//不正解ボタンを押ぁE
+      xmlhttp.open("POST", "../informationChange.php", false);//不正解ボタンを押す
       xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
       var data="data="+moji;
       xmlhttp.send(data);
@@ -3840,13 +3837,13 @@ var readVoices = new Array();
 var readVoiceJp ="";
 var readVoiceEng ="";
 
-// selectタグの中身を声の名前が�Eったoptionタグで埋めめE
+// selectタグの中身を声の名前が入ったoptionタグで埋める
 function appendVoices() {
-  // ①　使える声の配�Eを取征E
-  // 配�Eの中身は SpeechSynthesisVoice オブジェクチE
+  // ①　使える声の配列を取得
+  // 配列の中身は SpeechSynthesisVoice オブジェクト
   const voices = speechSynthesis.getVoices()
   voices.forEach(voice => { //　アロー関数 (ES6)
-    // 日本語と英語以外�E声は選択肢に追加しなぁE��E
+    // 日本語と英語以外の声は選択肢に追加しない。
     if(!voice.lang.match('ja|en-US')) return
     readVoices.push(voice.name);
   });
@@ -3866,8 +3863,8 @@ function appendVoices() {
 
 appendVoices()
 
-// // ② 使える声が追加されたときに着火するイベントハンドラ、E
-// // Chrome は非同期に(一個ずつ)声を読み込むため忁E��、E
+// // ② 使える声が追加されたときに着火するイベントハンドラ。
+// // Chrome は非同期に(一個ずつ)声を読み込むため必要。
 speechSynthesis.onvoiceschanged = e => {
   appendVoices();
 }
@@ -3889,13 +3886,13 @@ if (document.getElementById("novelSentenceNumber").value) {
     
 
 function getNovelSentence(){
-  var moji=document.mainform.DB_name.value + "^" + Number(novelRowNum) + "^" + 
+  var moji=document.mainform.DB_name.value + "." + Number(novelRowNum) + "." + 
   document.mainform.novelSelect.value;
   moji = encodeURIComponent(moji);
   var xmlhttp=createXmlHttpRequest2();
   if(xmlhttp!=null)
   {
-      xmlhttp.open("POST", "../getNovelSentence.php", false);//正解ボタンを押ぁE
+      xmlhttp.open("POST", "../getNovelSentence.php", false);//正解ボタンを押す
       xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
       var data="data="+moji;
       xmlhttp.send(data);
@@ -4070,7 +4067,7 @@ function removeQuestion(){
     }
   }
 }
-function escape_html (string) {//HTMLエスケープ�E琁E
+function escape_html (string) {//HTMLエスケープ処理
   if(typeof string !== 'string') {
     return string;
   }
@@ -4093,7 +4090,7 @@ function resizeTextareas(){
   observer.disconnect();
   observer2.disconnect();
 
-  if ( elementTextareas.style.width.match("%")) {//%が含まれてぁE��ぁE
+  if ( elementTextareas.style.width.match("%")) {//%が含まれているか
     // width=elementTextareas.style.width; 
     // height=elementTextareas.style.height; 
     width=Number(parseInt(elementTextareas.style.width))+Number(2); 
@@ -4125,10 +4122,10 @@ function resizeTextareas(){
   observer.observe(elementTextareas, options);
 }
 document.addEventListener('keydown', function(event) {
-    // Ctrlキーが押されてぁE��か、F12キーが押されてぁE��かを確誁E
+    // Ctrlキーが押されているか、F12キーが押されているかを確認
     if (event.ctrlKey && event.key === 'F12') {
         readQuestion();
-        event.preventDefault(); // チE��ォルト�E動作をキャンセル
+        event.preventDefault(); // デフォルトの動作をキャンセル
     }
 });
 
@@ -4136,4 +4133,3 @@ document.addEventListener('keydown', function(event) {
 
 </body>
 </html>
-
