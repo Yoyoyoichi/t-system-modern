@@ -32,11 +32,11 @@
             resultDiv.innerText = "接続中...";
 
             try {
-                // Supabaseクライアントの初期化
-                const supabase = supabase.createClient(url, key);
+                // Supabaseクライアントの初期化 (変数名修正)
+                const supabaseClient = supabase.createClient(url, key);
 
                 // テストとして、Terashima01テーブルから1件だけ取得してみる
-                const { data, error } = await supabase
+                const { data, error } = await supabaseClient
                     .from('Terashima01')
                     .select('question, answer')
                     .limit(1);
