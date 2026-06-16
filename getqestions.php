@@ -61,9 +61,7 @@ $poorat2 = $pieces[14];
 $wordsearch = $pieces[15];
 $qlevel = $pieces[16];
 $yesterday = $pieces[20];
-echo $category4."\n"."\n";
-echo $$operator1."\n"."\n";
-echo $criteria1."\n"."\n";
+
 if ($category4==="qdate") {
   if ($operator1==="="){
     $category4 = "pre_qdate";
