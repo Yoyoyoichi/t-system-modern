@@ -58,39 +58,35 @@ else {
 
 echo $reply[1]["question"]."^^^";
 echo $reply[1]["category1"];
-if ((!is_null($reply[1]["category2"])) AND (!empty($reply[1]["category2"]))) {
+if (!empty($reply[1]["category2"]) && $reply[1]["category2"] !== "NULL"){ {
   echo " - ".$reply[1]["category2"];
 }
-if ((!is_null($reply[1]["category3"])) AND (!empty($reply[1]["category3"]))){
+if (!empty($reply[1]["category3"]) && $reply[1]["category3"] !== "NULL"){
   echo " - ".$reply[1]["category3"];
 }
-if ((!is_null($reply[1]["category4"])) AND (!empty($reply[1]["category4"]))){
+if (!empty($reply[1]["category4"]) && $reply[1]["category4"] !== "NULL"){
   echo " - ".$reply[1]["category4"];
 }
-if ((!is_null($reply[1]["category5"])) AND (!empty($reply[1]["category5"]))){
+if (!empty($reply[1]["category5"]) && $reply[1]["category5"] !== "NULL"){
   echo " - ".$reply[1]["category5"];
 }
 // echo '<br>';
 echo '    ';
 echo '<br>';
-echo "Level�F".$reply[1]["q_level"].'   ';
-echo "���𐔁F".$reply[1]["correct2"]." �s���𐔁F".$reply[1]["incorrect2"];
+echo "Level：" . $reply[1]["q_level"] . '   ';
+echo "正解数：" . $reply[1]["correct2"] . " 不正解数：" . $reply[1]["incorrect2"];
 echo '   ';
-echo "�O��F".substr($reply[1]["pre_qdate"],0,33);
+echo "前回：" . substr($reply[1]["pre_qdate"],0,33);
 echo '<br>';
-echo "�L�^�F".$reply[1]["q_record"];
-if ((!is_null($reply[1]["qsentence"])) AND (!empty($reply[1]["qsentence"]))) {
-  echo '<br>';
-  echo $reply[1]["qsentence"];
-}else{
+echo "記録：" . $reply[1]["q_record"];
+if (!empty($reply[1]["qsentence"]) && $reply[1]["qsentence"] !== "NULL") {
+  echo '<br>' . $reply[1]["qsentence"];
 }
-if ((!is_null($reply[1]["tag"])) AND (!empty($reply[1]["tag"]))) {
-  echo '<br>';
-  echo $reply[1]["tag"];
-}else{
+if (!empty($reply[1]["tag"]) && $reply[1]["tag"] !== "NULL") {
+  echo '<br>' . $reply[1]["tag"];
 }
 echo '<br>';
-echo "���ԍ��F".$reply[1]["questionnumber"];
+echo "問題番号：" . $reply[1]["questionnumber"];
 echo "^^^";
 echo $reply[1]["imagefolder"];
 
