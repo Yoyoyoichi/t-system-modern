@@ -2,6 +2,7 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 	<link rel="icon" href="./favicon.ico">
 	<link rel="apple-touch-icon" href="./apple-touch-icon.png" sizes="180x180">
   <script type="text/javascript"
@@ -2033,262 +2034,78 @@ function intRandom(min, max){
     return Math.floor( Math.random() * (max - min + 1)) + min;
 }
 
-async function listChange(categorySelect){
-    // console.log("1");
+async function listChange(categorySelect) {
     console.log(categorySelect.id);
-    
-    firstRemoveFlag =false;
-    num=0;
-    // document.getElementById("press-button").innerHTML = num +"/"+ max;
+    firstRemoveFlag = false;
+    num = 0;
     flag1 = false;
-    var sampleArea = document.getElementById("textareas");
     
+    // DB_name is lowercased for postgres
+    let db_name = document.mainform.DB_name.value || 'terashima01';
+    db_name = db_name.toLowerCase();
 
-    var elem = document.getElementById('ctg1');
-    var opts = elem.options; // select要素のoptionプロパティ
-    // console.log(opts);       // HTMLOptionsCollection(3)
-    var selectedCategory1 = [];
-    for (var i = 0; i < opts.length; i++) {          
-      if (opts[i].selected) {
-        selectedCategory1.push(opts[i].value);
-      }
-    }
-    var selectedCategory1 = selectedCategory1.join("^");
-    //sampleArea.insertAdjacentHTML("beforebegin","selectedCategory1"+selectedCategory1+"<br><br><br>");
-    var elem = document.getElementById('ctg2');
-    var opts = elem.options; // select要素のoptionプロパティ
-    // console.log(opts);       // HTMLOptionsCollection(3)
-    var selectedCategory2 = [];
-    for (var i = 0; i < opts.length; i++) {          
-      if (opts[i].selected) {
-        selectedCategory2.push(opts[i].value);
-      }
-    }
-    var selectedCategory2 = selectedCategory2.join("^");
-    //sampleArea.insertAdjacentHTML("beforebegin","selectedCategory2"+selectedCategory2+"<br><br><br>");
-    var elem = document.getElementById('ctg3');
-    var opts = elem.options; // select要素のoptionプロパティ
-    // console.log(opts);       // HTMLOptionsCollection(3)
-    var selectedCategory3 = [];
-    for (var i = 0; i < opts.length; i++) {          
-      if (opts[i].selected) {
-        selectedCategory3.push(opts[i].value);
-      }
-    }
-    var selectedCategory3 = selectedCategory3.join("^");
-    //sampleArea.insertAdjacentHTML("beforebegin","selectedCategory3"+selectedCategory3+"<br><br><br>");
-    var elem = document.getElementById('ctg4');
-    var opts = elem.options; // select要素のoptionプロパティ
-    // console.log(opts);       // HTMLOptionsCollection(3)
-    var selectedCategory4 = [];
-    for (var i = 0; i < opts.length; i++) {          
-      if (opts[i].selected) {
-        selectedCategory4.push(opts[i].value);
-      }
-    }
-    var selectedCategory4 = selectedCategory4.join("^");
-    //sampleArea.insertAdjacentHTML("beforebegin","selectedCategory4"+selectedCategory4+"<br><br><br>");
-    var elem = document.getElementById('ctg5');
-    var opts = elem.options; // select要素のoptionプロパティ
-    // console.log(opts);       // HTMLOptionsCollection(3)
-    var selectedCategory5 = [];
-    for (var i = 0; i < opts.length; i++) {          
-      if (opts[i].selected) {
-        selectedCategory5.push(opts[i].value);
-      }
-    }
-    var selectedCategory5 = selectedCategory5.join("^");
-    //sampleArea.insertAdjacentHTML("beforebegin","selectedCategory5"+selectedCategory5+"<br><br><br>");
+    const getSelected = (id) => {
+        const elem = document.getElementById(id);
+        if(!elem) return [];
+        const opts = elem.options;
+        const selected = [];
+        for (let i = 0; i < opts.length; i++) {
+            if (opts[i].selected && opts[i].value !== "") {
+                selected.push(opts[i].value);
+            }
+        }
+        return selected;
+    };
 
-    if(categorySelect.id != "ctg2"){
-      var moji= document.mainform.DB_name.value 
-      + "." + selectedCategory1
-      + "." + selectedCategory2
-      + "." + selectedCategory3
-      + "." + selectedCategory4
-      + "." + selectedCategory5
-      + "." + "category2";
-      var sampleArea = document.getElementById("textareas");
-      //sampleArea.insertAdjacentHTML("beforebegin",moji+"<br><br><br>");
-      moji = encodeURIComponent(moji);
-      // console.log(moji);
-      var xmlhttp=createXmlHttpRequest();
-      if(xmlhttp!=null)
-      {
-          // console.log("2");
-          var raw_res = await myFetch("../ctgchange.php", "data=" + moji);
-          var res=raw_res.split("^^^");
-          // console.log("2.2"+" "+res);
-          // console.log("2.2"+res);
-          res=res[1].replace(',,,,,,', '');
-          var selectedcategory2 = res.split(',,,');
-          var sampleArea = document.getElementById("textareas");
-          //sampleArea.insertAdjacentHTML("beforebegin",selectedcategory2+"<br><br><br>");
-          // console.log(selectedcategory2);
-          // console.log(selectedcategory2[1]);
-          var ctg2selectedindex = document.getElementById('ctg2').value;
-          // console.log(ctg2selectedindex);
-          var sl = document.getElementById('ctg2');
-          while(sl.lastChild)
-          {
-              sl.removeChild(sl.lastChild);
-          }
+    const selectedCategory1 = getSelected('ctg1');
+    const selectedCategory2 = getSelected('ctg2');
+    const selectedCategory3 = getSelected('ctg3');
+    const selectedCategory4 = getSelected('ctg4');
+    const selectedCategory5 = getSelected('ctg5');
 
-          var selectElement = document.getElementById("ctg2");
+    const updateCategory = async (targetId, searchCategoryName) => {
+        if (categorySelect.id === targetId) return;
+        
+        let query = supabaseClient.from(db_name).select(searchCategoryName).neq('question', 'settings');
+        
+        if (selectedCategory1.length > 0) query = query.in('category1', selectedCategory1);
+        if (selectedCategory2.length > 0) query = query.in('category2', selectedCategory2);
+        if (selectedCategory3.length > 0) query = query.in('category3', selectedCategory3);
+        if (selectedCategory4.length > 0) query = query.in('category4', selectedCategory4);
+        if (selectedCategory5.length > 0) query = query.in('category5', selectedCategory5);
 
-          for(var i = 1; i < selectedcategory2.length; i ++){
-              var option = document.createElement("option");
-              option.value = selectedcategory2[i];
-              option.innerText = selectedcategory2[i];
-              selectElement.appendChild(option);
-          }
-          // console.log(ctg2selectedindex);
-          document.getElementById('ctg2').value = ctg2selectedindex;
-          // console.log(document.getElementById('ctg2').value);
-          $("#ctg2").val(ctg2selectedindex);
-      }
-    }
-
-
-    if(categorySelect.id != "ctg3"){
-      var moji= document.mainform.DB_name.value 
-      + "." + selectedCategory1
-      + "." + selectedCategory2
-      + "." + selectedCategory3
-      + "." + selectedCategory4
-      + "." + selectedCategory5
-      + "." + "category3";
-      moji = encodeURIComponent(moji);
-      // console.log(moji);
-      var xmlhttp=createXmlHttpRequest();
-      if(xmlhttp!=null)
-      {
-        // console.log("3");
-        var raw_res = await myFetch("../ctgchange.php", "data=" + moji);
-          var res=raw_res.split("^^^");
-        // console.log("2.2"+" "+res);
-        // console.log("627 "+ res);
-        //res=res.replace(',,,,,,', '');
-        var selectedcategory3 = res[1].split(',,,');
-        var sampleArea = document.getElementById("textareas");
-        //sampleArea.insertAdjacentHTML("beforebegin",selectedcategory3+"<br><br><br>");
-        // console.log("629 "+selectedcategory3);
-        // console.log(selectedcategory2[1]);
-        var ctg3selectedindex = document.getElementById('ctg3').value;
-        // console.log(ctg2selectedindex);
-        var sl = document.getElementById('ctg3');
-        while(sl.lastChild)
-        {
-            sl.removeChild(sl.lastChild);
+        const { data, error } = await query;
+        if (error) {
+            console.error(`Error fetching ${searchCategoryName}:`, error);
+            return;
         }
 
-        var selectElement = document.getElementById("ctg3");
+        let uniqueVals = [...new Set(data.map(item => item[searchCategoryName]))].filter(val => val && val.trim() !== "");
+        
+        const targetElement = document.getElementById(targetId);
+        if(!targetElement) return;
+        
+        const currentIndex = targetElement.value;
 
-        for(var i = 1; i < selectedcategory3.length; i ++){
-            var option = document.createElement("option");
-            option.value = selectedcategory3[i];
-            option.innerText = selectedcategory3[i];
-            selectElement.appendChild(option);
+        while (targetElement.lastChild) {
+            targetElement.removeChild(targetElement.lastChild);
         }
 
-        document.getElementById('ctg3').value = ctg3selectedindex;
-        // console.log(document.getElementById('ctg3').value);
-        // $("#ctg2").val(ctg2selectedindex);
+        uniqueVals.forEach(val => {
+            const option = document.createElement("option");
+            option.value = val;
+            option.innerText = val;
+            targetElement.appendChild(option);
+        });
 
-      }
-    }
+        targetElement.value = currentIndex;
+        $(`#${targetId}`).val(currentIndex);
+    };
 
-    if(categorySelect.id != "ctg4"){
-      var moji= document.mainform.DB_name.value 
-      + "." + selectedCategory1
-      + "." + selectedCategory2
-      + "." + selectedCategory3
-      + "." + selectedCategory4
-      + "." + selectedCategory5
-      + "." + "category4";
-      moji = encodeURIComponent(moji);
-      // console.log(moji);
-      var xmlhttp=createXmlHttpRequest();
-      if(xmlhttp!=null)
-      {
-        // console.log("3");
-        var raw_res = await myFetch("../ctgchange.php", "data=" + moji);
-          var res=raw_res.split("^^^");
-        // console.log("2.2"+" "+res);
-        // console.log("627 "+ res);
-        res=res[1].replace(',,,,,,', '');
-        var selectedcategory3 = res.split(',,,');
-        // console.log("629 "+selectedcategory3);
-        // console.log(selectedcategory2[1]);
-        var ctg3selectedindex = document.getElementById('ctg4').value;
-        // console.log(ctg2selectedindex);
-        var sl = document.getElementById('ctg4');
-        while(sl.lastChild)
-        {
-            sl.removeChild(sl.lastChild);
-        }
-
-        var selectElement = document.getElementById("ctg4");
-
-        for(var i = 1; i < selectedcategory3.length; i ++){
-            var option = document.createElement("option");
-            option.value = selectedcategory3[i];
-            option.innerText = selectedcategory3[i];
-            selectElement.appendChild(option);
-        }
-
-        document.getElementById('ctg4').value = ctg3selectedindex;
-        // console.log(document.getElementById('ctg3').value);
-        // $("#ctg2").val(ctg2selectedindex);
-
-      }
-    }
-
-    if(categorySelect.id != "ctg5"){
-      var moji= document.mainform.DB_name.value 
-      + "." + selectedCategory1
-      + "." + selectedCategory2
-      + "." + selectedCategory3
-      + "." + selectedCategory4
-      + "." + selectedCategory5
-      + "." + "category5";
-      moji = encodeURIComponent(moji);
-      // console.log(moji);
-      var xmlhttp=createXmlHttpRequest();
-      if(xmlhttp!=null)
-      {
-        // console.log("3");
-        var raw_res = await myFetch("../ctgchange.php", "data=" + moji);
-          var res=raw_res.split("^^^");
-        // console.log("2.2"+" "+res);
-        // console.log("627 "+ res);
-        res=res[1].replace(',,,,,,', '');
-        var selectedcategory3 = res.split(',,,');
-        // console.log("629 "+selectedcategory3);
-        // console.log(selectedcategory2[1]);
-        var ctg3selectedindex = document.getElementById('ctg5').value;
-        // console.log(ctg2selectedindex);
-        var sl = document.getElementById('ctg5');
-        while(sl.lastChild)
-        {
-            sl.removeChild(sl.lastChild);
-        }
-
-        var selectElement = document.getElementById("ctg5");
-
-        for(var i = 1; i < selectedcategory3.length; i ++){
-            var option = document.createElement("option");
-            option.value = selectedcategory3[i];
-            option.innerText = selectedcategory3[i];
-            selectElement.appendChild(option);
-        }
-
-        document.getElementById('ctg5').value = ctg3selectedindex;
-        // console.log(document.getElementById('ctg3').value);
-        // $("#ctg2").val(ctg2selectedindex);
-
-      }
-    }
+    await updateCategory('ctg2', 'category2');
+    await updateCategory('ctg3', 'category3');
+    await updateCategory('ctg4', 'category4');
+    await updateCategory('ctg5', 'category5');
 }
 
 
