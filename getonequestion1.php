@@ -8,6 +8,7 @@ mb_internal_encoding('UTF-8');
 // echo "20e"."\n"."\n";
 
 $pieces = explode("^", $_POST["data"]);
+if (count($pieces) <= 1) { $pieces = explode(".", $_POST["data"]); }
 
 // echo ("pieces is ")."\n";
 // var_dump ($pieces);
@@ -17,7 +18,7 @@ $questionnumber = $pieces[0];///
 $db_name =  $pieces[1];
 
 
-// //¬à”Ô†‹L˜^
+// //ï¿½ï¿½ï¿½ï¿½ï¿½Ôï¿½ï¿½Lï¿½^
 $mysqli = new db_wrapper('localhost', 'terashimayo', 'Yoyoyo444', 'terashimayo');
 if ($mysqli->connect_error) {error_log($mysqli->connect_error);exit;}
 $mysqli->set_charset("utf8");
@@ -29,10 +30,10 @@ $result = $mysqli->query($str);
 $str_sql = "select * from $db_name where questionnumber = $questionnumber";
 
 
-//ƒfƒtƒHƒ‹ƒg•¶šƒZƒbƒg‚ğİ’è
+//ï¿½fï¿½tï¿½Hï¿½ï¿½ï¿½gï¿½ï¿½ï¿½ï¿½ï¿½Zï¿½bï¿½gï¿½ï¿½İ’ï¿½
 // $mysqli->set_charset("utf8");
 $row = "";
-//ƒf[ƒ^ƒx[ƒXæ“¾
+//ï¿½fï¿½[ï¿½^ï¿½xï¿½[ï¿½Xï¿½æ“¾
 $result = $mysqli->query($str_sql);
 // //var_dump($result);
 $row_cnt = mysqli_num_rows($result);
@@ -49,7 +50,7 @@ if( $result = $mysqli->query($str_sql) ){
     }
 }
 else {
-    echo '–â‘è‚ª‚ ‚è‚Ü‚¹‚ñB';
+    echo 'ï¿½ï¿½è‚ªï¿½ï¿½ï¿½ï¿½Ü‚ï¿½ï¿½ï¿½B';
 }
 
 
@@ -71,12 +72,12 @@ if ((!is_null($reply[1]["category5"])) AND (!empty($reply[1]["category5"]))){
 // echo '<br>';
 echo '    ';
 echo '<br>';
-echo "LevelF".$reply[1]["q_level"].'   ';
-echo "³‰ğ”F".$reply[1]["correct2"]." •s³‰ğ”F".$reply[1]["incorrect2"];
+echo "Levelï¿½F".$reply[1]["q_level"].'   ';
+echo "ï¿½ï¿½ï¿½ğ”F".$reply[1]["correct2"]." ï¿½sï¿½ï¿½ï¿½ğ”F".$reply[1]["incorrect2"];
 echo '   ';
-echo "‘O‰ñF".substr($reply[1]["pre_qdate"],0,33);
+echo "ï¿½Oï¿½ï¿½F".substr($reply[1]["pre_qdate"],0,33);
 echo '<br>';
-echo "‹L˜^F".$reply[1]["q_record"];
+echo "ï¿½Lï¿½^ï¿½F".$reply[1]["q_record"];
 if ((!is_null($reply[1]["qsentence"])) AND (!empty($reply[1]["qsentence"]))) {
   echo '<br>';
   echo $reply[1]["qsentence"];
@@ -88,7 +89,7 @@ if ((!is_null($reply[1]["tag"])) AND (!empty($reply[1]["tag"]))) {
 }else{
 }
 echo '<br>';
-echo "–â‘è”Ô†F".$reply[1]["questionnumber"];
+echo "ï¿½ï¿½ï¿½Ôï¿½ï¿½F".$reply[1]["questionnumber"];
 echo "^^^";
 echo $reply[1]["imagefolder"];
 

@@ -5,6 +5,7 @@ mb_language("ja");
 mb_internal_encoding('UTF-8');
 
 $pieces = explode("^", $_POST["data"]);
+if (count($pieces) <= 1) { $pieces = explode(".", $_POST["data"]); }
 // var_dump ($pieces);
 $questionnumber = $pieces[0];///
 $DB_name =  $pieces[1];
@@ -13,12 +14,13 @@ $poorat = $pieces[2];
 $getPastTime = $pieces[3];
 
 $pieces = explode("^", $_POST["data"]);
+if (count($pieces) <= 1) { $pieces = explode(".", $_POST["data"]); }
 
 $mysqli = new db_wrapper('localhost', 'terashimayo', 'Yoyoyo444', 'terashimayo');
 
 
 if( $mysql->connect_errno){
-    echo 'Access Failed7';//Ú‘±Ž¸”s
+    echo 'Access Failed7';//ï¿½Ú‘ï¿½ï¿½ï¿½ï¿½s
     exit;
 }
 
@@ -27,7 +29,7 @@ $sql = "DELETE FROM $db_name WHERE questionnumber = $questionnumber";
 
 
 echo "sql is ".$sql."\n"."\n";
-// // SQLŽÀs
+// // SQLï¿½ï¿½ï¿½s
 $res = $mysqli->query($sql);
 
 

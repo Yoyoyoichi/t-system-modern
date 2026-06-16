@@ -5,17 +5,19 @@ mb_language("ja");
 mb_internal_encoding('UTF-8');
 
 $pieces = explode("^", $_POST["data"]);
+if (count($pieces) <= 1) { $pieces = explode(".", $_POST["data"]); }
 // var_dump ($pieces);
 $questionnumber = $pieces[0];///
 // $DB_name =  $pieces[1];
 $db_name =  $pieces[1];
 // $pieces = explode("^", $_POST["data"]);
+if (count($pieces) <= 1) { $pieces = explode(".", $_POST["data"]); }
 //print $_POST["data"];
 $mysqli = new db_wrapper('localhost', 'terashimayo', 'Yoyoyo444', 'terashimayo');
 
 // var_dump($pieces);
 if( $mysqli->connect_errno){
-    echo 'Access Failed5';//Ú‘±¸”s
+    echo 'Access Failed5';//ï¿½Ú‘ï¿½ï¿½ï¿½ï¿½s
     exit;
 }
 
@@ -29,8 +31,8 @@ $row_cnt = mysqli_num_rows($result);
 
 if( $result = $mysqli->query($query) ){
     while($row = $result->fetch_assoc() ){
-        //1ƒŒƒR[ƒh‚¸‚Â“Ç‚İ‚Ş
-        //name—ñ‚ğ•\¦‚·‚éê‡
+        //1ï¿½ï¿½ï¿½Rï¿½[ï¿½hï¿½ï¿½ï¿½Â“Ç‚İï¿½ï¿½ï¿½
+        //nameï¿½ï¿½ï¿½\ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ê‡
         $reply = $row["answer1"];
         for ($i = 2; $i <= 15; $i++) {
         	if(!$row['answer'.$i]==""){
@@ -45,14 +47,14 @@ if( $result = $mysqli->query($query) ){
     }
 }
 else {
-    echo '–â‘è‚ª‚ ‚è‚Ü‚¹‚ñB';
+    echo 'ï¿½ï¿½è‚ªï¿½ï¿½ï¿½ï¿½Ü‚ï¿½ï¿½ï¿½B';
 }
 //print  $url;
 
 print  $reply;
 
-//print  "—” ".$url;
-//print "reply ‚Í ";
+//print  "ï¿½ï¿½ï¿½ï¿½ ".$url;
+//print "reply ï¿½ï¿½ ";
 
 
 //print "data";

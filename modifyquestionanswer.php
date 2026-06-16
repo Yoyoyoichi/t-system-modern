@@ -28,14 +28,14 @@ print_r($pieces2);
 // echo(count($pieces2))."\n";
 // echo "1"."\n"."\n";
 
-    //•Ï”‚ðŠm”F
+    //ï¿½Ïï¿½ï¿½ï¿½ï¿½mï¿½F
 
 
 $mysqli = new db_wrapper('localhost', 'terashimayo', 'Yoyoyo444', 'terashimayo');
 
 
 if( $mysql->connect_errno){
-    echo 'Access Failed7';//Ú‘±Ž¸”s
+    echo 'Access Failed7';//ï¿½Ú‘ï¿½ï¿½ï¿½ï¿½s
     exit;
 }
 $sql ="SELECT qsentence FROM `$db_name` WHERE questionnumber = '$questionnumber'";
@@ -112,7 +112,7 @@ if(count($pieces2)>1){
 
 
 
-//ƒf[ƒ^XV
+//ï¿½fï¿½[ï¿½^ï¿½Xï¿½V
 // $sql = "UPDATE $db_name SET
 //     question = '$modifiedquestion',
 //     answer1 = '$modifiedanswer'
@@ -123,7 +123,7 @@ if(count($pieces2)>1){
 // echo "</pre>";
 echo "mdf98 sql is ".$sql."\n"."\n";
 
-// SQLŽÀs
+// SQLï¿½ï¿½ï¿½s
 $res = $mysqli->query($sql);
 
 

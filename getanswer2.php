@@ -7,6 +7,7 @@ mb_internal_encoding('UTF-8');
 // echo "20e"."\n"."\n";
 
 $pieces = explode("^", $_POST["data"]);
+if (count($pieces) <= 1) { $pieces = explode(".", $_POST["data"]); }
 // var_dump ($pieces);
 
 
@@ -21,10 +22,10 @@ $str_sql = "select * from $db_name where questionnumber = $questionnumber";
 $mysqli = new db_wrapper('localhost', 'terashimayo', 'Yoyoyo444', 'terashimayo');
 if ($mysqli->connect_error) {error_log($mysqli->connect_error);exit;}
 // mysql_query("set names utf8"); or $db_obj->Query("set names utf8");
-//ƒfƒtƒHƒ‹ƒg•¶šƒZƒbƒg‚ğİ’è
+//ï¿½fï¿½tï¿½Hï¿½ï¿½ï¿½gï¿½ï¿½ï¿½ï¿½ï¿½Zï¿½bï¿½gï¿½ï¿½İ’ï¿½
 $mysqli->set_charset("utf8");
 $row = "";
-//ƒf[ƒ^ƒx[ƒXæ“¾
+//ï¿½fï¿½[ï¿½^ï¿½xï¿½[ï¿½Xï¿½æ“¾
 $result = $mysqli->query($str_sql);
 // var_dump($result);
 $row_cnt = mysqli_num_rows($result);
@@ -41,7 +42,7 @@ if( $result = $mysqli->query($str_sql) ){
     }
 }
 else {
-    echo '–â‘è‚ª‚ ‚è‚Ü‚¹‚ñB';
+    echo 'ï¿½ï¿½è‚ªï¿½ï¿½ï¿½ï¿½Ü‚ï¿½ï¿½ï¿½B';
 }
 //echo ""."\n"."\n";
 // echo $reply[3];
@@ -61,8 +62,8 @@ if (!($reply[1]["qsentence"])=="") {
 
 echo $reply[1]["question"];
 
-// echo "\n"."‚±‚±ˆÈ~‚Í¡ŠJ”­’†"."\n"."ƒeƒXƒgƒiƒ“ƒo[ $testnumber";///aaaaaa‚ ‚ ‚ 
-// print  "–â‘è”‚Í ".$row_cnt."\n";///‚ ‚ ‚ 
+// echo "\n"."ï¿½ï¿½ï¿½ï¿½ï¿½È~ï¿½Íï¿½ï¿½Jï¿½ï¿½ï¿½ï¿½"."\n"."ï¿½eï¿½Xï¿½gï¿½iï¿½ï¿½ï¿½oï¿½[ $testnumber";///aaaaaaï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+// print  "ï¿½ï¿½è”ï¿½ï¿½ ".$row_cnt."\n";///ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
 
 

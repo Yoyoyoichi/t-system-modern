@@ -5,6 +5,7 @@ mb_language("ja");
 mb_internal_encoding('UTF-8');
 
 $pieces = explode("^", $_POST["data"]);
+if (count($pieces) <= 1) { $pieces = explode(".", $_POST["data"]); }
 $db_name =  $pieces[0];
 $information = $pieces[1];
 
@@ -13,7 +14,7 @@ $mysqli = new db_wrapper('localhost', 'terashimayo', 'Yoyoyo444', 'terashimayo')
 
 
 if( $mysql->connect_errno){
-    echo 'Access Failed7';//Ú‘±Ž¸”s
+    echo 'Access Failed7';//ï¿½Ú‘ï¿½ï¿½ï¿½ï¿½s
     exit;
 }
 
@@ -21,7 +22,7 @@ $str_sql = "SELECT min(questionnumber) FROM $db_name";
 $result = $mysqli->query($str_sql);
 $test  = $result->fetch_assoc();
 $minimum = $test['min(questionnumber)'];
-// //ƒf[ƒ^XV
+// //ï¿½fï¿½[ï¿½^ï¿½Xï¿½V
 $sql = "UPDATE $db_name SET
     information = '$information'
     WHERE questionnumber = $minimum";
@@ -29,7 +30,7 @@ $sql = "UPDATE $db_name SET
 $res = $mysqli->query($sql);
 
 echo "sql is ".$sql."\n"."\n";
-// // SQLŽÀs
+// // SQLï¿½ï¿½ï¿½s
 $res = $mysqli->query($sql);
 
 
