@@ -1186,7 +1186,121 @@ for (let i = 1; i < 500; i++) {//Mp3開始地点セレクト要素追加
 
 
 
+
+async function fetchQuestionsFromSupabase() {
+    let db_name = document.mainform.DB_name.value || 'terashima01';
+    db_name = db_name.toLowerCase();
+
+    const getSelected = (id) => {
+        const elem = document.getElementById(id);
+        if(!elem) return [];
+        const opts = elem.options;
+        const selected = [];
+        for (let i = 0; i < opts.length; i++) {
+            if (opts[i].selected && opts[i].value !== "") {
+                selected.push(opts[i].value);
+            }
+        }
+        return selected;
+    };
+
+    const category1 = getSelected('ctg1');
+    const category2 = getSelected('ctg2');
+    const category3 = getSelected('ctg3');
+    const category4List = getSelected('ctg4');
+    const category5List = getSelected('ctg5');
+
+    let query = supabaseClient.from(db_name).select('questionnumber, category1, category2, category3, category4, category5, qdate, poorat, q_level, pre_qdate, q_record, tag, question, answer1, hint');
+
+    if (category1.length > 0) query = query.in('category1', category1);
+    if (category2.length > 0) query = query.in('category2', category2);
+    if (category3.length > 0) query = query.in('category3', category3);
+    if (category4List.length > 0) query = query.in('category4', category4List);
+    if (category5List.length > 0) query = query.in('category5', category5List);
+
+    const cat4 = document.mainform.category4.value;
+    const cat5 = document.mainform.category5.value;
+    const cat6 = document.mainform.category6.value;
+    const op1 = document.mainform.operator1.value;
+    const op2 = document.mainform.operator2.value;
+    const op3 = document.mainform.operator3.value;
+    const crit1 = document.mainform.criteria1.value;
+    const crit2 = document.mainform.criteria2.value;
+    const crit3 = document.mainform.criteria3.value;
+
+    const applyCondition = (q, cat, op, crit) => {
+        if (!cat || !op || !crit) return q;
+        if (cat === "qdate" && op === "=") {
+            if(crit.length >= 8) {
+                let formattedDate = crit.substring(0,4) + "-" + crit.substring(4,6) + "-" + crit.substring(6,8);
+                return q.like('pre_qdate', `%${formattedDate}%`);
+            }
+        }
+        if (op === "=") return q.eq(cat, crit);
+        if (op === ">") return q.gt(cat, crit);
+        if (op === "<") return q.lt(cat, crit);
+        if (op === ">=") return q.gte(cat, crit);
+        if (op === "<=") return q.lte(cat, crit);
+        if (op === "like") return q.like(cat, `%${crit}%`);
+        if (op === "!=") return q.neq(cat, crit);
+        return q;
+    };
+
+    query = applyCondition(query, cat4, op1, crit1);
+    query = applyCondition(query, cat5, op2, crit2);
+    query = applyCondition(query, cat6, op3, crit3);
+
+    const poorat2 = document.mainform.poorat2.value;
+    if (poorat2) query = query.eq('poorat', poorat2);
+
+    const qlevel = document.mainform.qlevel.value;
+    if (qlevel) query = query.eq('q_level', qlevel);
+
+    if (yesterdayIncorrect) {
+        query = query.like('q_record', '×%');
+    }
+
+    const { data, error } = await query;
+    if (error) {
+        console.error("Supabase Error fetching questions:", error);
+        return [];
+    }
+
+    let filteredData = data || [];
+    const wordSearch = document.mainform.wordSearch.value;
+    if (wordSearch) {
+        const ws = wordSearch.toLowerCase();
+        filteredData = filteredData.filter(row => {
+            return ['question','answer1','hint','tag','category1','category2','category3','category4','category5','questionnumber']
+                .some(k => row[k] && String(row[k]).toLowerCase().includes(ws));
+        });
+    }
+
+    if (cat4 === "qdate" && cat5 === "qdate" && cat6 === "qdate" && op1 === "=" && op2 === "=" && op3 === "=") {
+        let halfYearAgo = new Date();
+        halfYearAgo.setMonth(halfYearAgo.getMonth() - 6);
+        const yyyymmdd = halfYearAgo.toISOString().split('T')[0].replace(/-/g, '');
+        
+        let resultNums = [];
+        for (let row of filteredData) {
+            let pq = (row.pre_qdate || "").replace(/-/g, '');
+            if (pq.includes(crit1) || pq.includes(crit2) || pq.includes(crit3) || pq === yyyymmdd) {
+                resultNums.push(row.questionnumber);
+            }
+        }
+        
+        const today = new Date().toISOString().split('T')[0];
+        const { data: todayData } = await supabaseClient.from(db_name).select('questionnumber').eq('qdate', today);
+        const todayNums = todayData ? todayData.map(d => d.questionnumber) : [];
+        
+        return resultNums.filter(num => !todayNums.includes(num));
+    }
+
+    return filteredData.map(row => row.questionnumber);
+}
+
 async function sendRequest(){
+
     let parent = document.getElementById("answerMath");
     while(parent.lastChild){
       parent.removeChild(parent.lastChild);
@@ -1264,109 +1378,18 @@ async function sendRequest(){
         questionnumbers = randQNum;
       }
     }
-    var category1Value = new Array();
-    var elemCategory1 = document.getElementById('ctg1');
-    var optsCategory1 = elemCategory1.options; // select要素のoptionプロパティ
-    for (var i = 0; i < optsCategory1.length; i++) {
-      if (optsCategory1[i].selected) {
-        category1Value[i] = optsCategory1[i].value;
-      }
-    }
-    category1Value = category1Value.filter(Boolean);
-    category1Value = category1Value.join('@');
-
-    var category2Value = new Array();
-    var elemCategory2 = document.getElementById('ctg2');
-    var optsCategory2 = elemCategory2.options; // select要素のoptionプロパティ
-    for (var i = 0; i < optsCategory2.length; i++) {
-      if (optsCategory2[i].selected) {
-        category2Value[i] = optsCategory2[i].value;
-        // console.log('category1Value[i] is ' + category2Value[i]);
-      }
-    }
-    category2Value = category2Value.filter(Boolean);
-    category2Value = category2Value.join('@');
-
-    var category3Value = new Array();
-    var elemCategory3 = document.getElementById('ctg3');
-    var optsCategory3 = elemCategory3.options; // select要素のoptionプロパティ
-    for (var i = 0; i < optsCategory3.length; i++) {
-      if (optsCategory3[i].selected) {
-        category3Value[i] = optsCategory3[i].value;
-      }
-    }
-    category3Value = category3Value.filter(Boolean);
-    category3Value = category3Value.join('@');
-
-    var category4Value = new Array();
-    var elemCategory4 = document.getElementById('ctg4');
-    var optsCategory4 = elemCategory4.options; // select要素のoptionプロパティ
-    for (var i = 0; i < optsCategory4.length; i++) {
-      if (optsCategory4[i].selected) {
-        category4Value[i] = optsCategory4[i].value;
-      }
-    }
-    category4Value = category4Value.filter(Boolean);
-    category4Value = category4Value.join('@');
-
-    var category5Value = new Array();
-    var elemCategory5 = document.getElementById('ctg5');
-    var optsCategory5 = elemCategory5.options; // select要素のoptionプロパティ
-    for (var i = 0; i < optsCategory5.length; i++) {
-      if (optsCategory5[i].selected) {
-        category5Value[i] = optsCategory5[i].value;
-      }
-    }
-    category5Value = category5Value.filter(Boolean);
-    category5Value = category5Value.join('@');
-
-
-
-
-    var moji=rand + "." + category1Value + "." + category2Value + "." + category3Value  + "." + 
-        document.mainform.category4.value + "." + document.mainform.category5.value + "." + 
-        document.mainform.category6.value + "." + document.mainform.operator1.value + "." + 
-        document.mainform.operator2.value + "." + document.mainform.operator3.value + "." + 
-        document.mainform.criteria1.value + "." + document.mainform.criteria2.value + "." + 
-        document.mainform.criteria3.value + "." + document.mainform.DB_name.value + "." + 
-        document.mainform.poorat2.value + "." + document.mainform.wordSearch.value + "." + 
-        document.mainform.qlevel.value + "." + category4Value + "." + category5Value + "." + 
-        document.mainform.novelSentenceNumber.value + "." + yesterdayIncorrect;
-    moji = encodeURIComponent(moji);
+    
+    // Fetch questions from Supabase directly in Javascript!
     yesterdayIncorrect = false;
-
-    var xmlhttp=createXmlHttpRequest();
-    if(xmlhttp!=null)
-    {
-
-      if (flag1 == false){
-        var raw_res = await myFetch( "../getqestions.php", "data=" + moji);
-          var res = raw_res.split('^^^');
-        console.log('0817 res is '+res);
-        questionnumbers = res[1].split(',');
+    questionnumbers = await fetchQuestionsFromSupabase();
+    
+    // Fallback if empty
+    if (!questionnumbers || questionnumbers.length === 0) {
+        // empty or error handling
+        document.getElementById("totalQuestionNumber").innerHTML = 0;
+    } else {
         document.getElementById("totalQuestionNumber").innerHTML = questionnumbers.length;
-      }
-      if (oneByOneflag == true){
-        var raw_res = await myFetch( "../getqestionsOneByOne.php", "data=" + moji);
-          var res = raw_res.split('^^^');
-        console.log('0817 res is '+res);
-        questionnumbers = res[1].split(',');
-        document.getElementById("totalQuestionNumber").innerHTML = questionnumbers.length;
-      }
-      if (twoByTwoflag == true){
-        var raw_res = await myFetch( "../getqestionsTwoByTwo.php", "data=" + moji);
-          var res = raw_res.split('^^^');
-        console.log('0817 res is '+res);
-        questionnumbers = res[1].split(',');
-        document.getElementById("totalQuestionNumber").innerHTML = questionnumbers.length;
-      }
-      if (threeByThreeflag == true){
-        var raw_res = await myFetch( "../getqestionsThreeByThree.php", "data=" + moji);
-          var res = raw_res.split('^^^');
-        console.log('0817 res is '+res);
-        questionnumbers = res[1].split(',');
-        document.getElementById("totalQuestionNumber").innerHTML = questionnumbers.length;
-      }
+    }
       if (MaxQuestionNumber <= questionnumbers.length) {
         max = Number(MaxQuestionNumber);
       } else {
