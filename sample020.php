@@ -1429,10 +1429,9 @@ async function sendRequest(){
           questionnumbers = randQNum;
         }
 
-        questionnumbers = questionnumbers.slice(0, MaxQuestionNumber);
+        questionnumbers = questionnumbers = questionnumbers.slice(0, MaxQuestionNumber);
       }
 
-    }
 
     if (max==1) {
     rand = questionnumbers[0];
