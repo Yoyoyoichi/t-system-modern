@@ -4459,6 +4459,7 @@ window.addEventListener('DOMContentLoaded', () => {
     topPanel.appendChild(headerRow);
 
     
+    
     // 2. Stats Row (Compact)
     const statsRow = document.createElement('div');
     statsRow.className = 'mtp-stats-row';
@@ -4470,24 +4471,27 @@ window.addEventListener('DOMContentLoaded', () => {
         const p = massages.querySelector('p');
         if(p) {
             const text = p.innerHTML;
-            // The text has <br><br> and raw strings. Let's just extract the numbers/values if possible
-            // Or simpler: replace all <br><br> with a clean separator, and make it a single line
-            const cleanText = text.replace(/<br>\s*<br>/g, '<span class="stat-sep"></span>').replace(/\n/g, '');
+            const cleanText = text.replace(/<br>\s*<br>/gi, '<span class="stat-sep"></span>').replace(/\n/g, '');
             p.innerHTML = cleanText;
             p.className = 'compact-stats-text';
         }
         statsRow.appendChild(massages); 
     }
 
-    // Hide or remove the old information textarea as requested by the user
+    // Completely remove the old information textarea AND its parent div to be 100% sure it's gone
     const infoTextarea = document.getElementById('information');
-    if(infoTextarea) { 
-        infoTextarea.style.display = 'none'; // Hide it so it doesn't take space
+    if(infoTextarea) {
+        const parent = infoTextarea.parentElement;
+        if(parent && parent.tagName === 'DIV') {
+            parent.style.display = 'none';
+            parent.remove(); // Nuke it from the DOM completely
+        }
+        infoTextarea.style.display = 'none';
+        infoTextarea.remove();
     }
-    const infoParent = document.querySelector('div[style*="height:10vh;width:30vw;"]');
-    if(infoParent) infoParent.style.display = 'none';
 
     topPanel.appendChild(statsRow);
+
 
 
     // 3. Categories Row
