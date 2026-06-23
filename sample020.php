@@ -1299,6 +1299,62 @@ async function fetchQuestionsFromSupabase() {
     return filteredData.map(row => row.questionnumber);
 }
 
+
+async function fetchQuestionFromSupabase(qnum, mode) {
+    let db_name = document.mainform.DB_name.value || 'terashima01';
+    db_name = db_name.toLowerCase();
+    const { data, error } = await supabaseClient.from(db_name).select('*').eq('questionnumber', qnum).single();
+    if (error || !data) return "Error fetching question^^^Error^^^";
+    
+    let questionText = mode === 2 ? data.answer1 : data.question;
+    
+    let info = "";
+    if (mode === 2) {
+        info += "Level：" + (data.q_level || "") + " <br>";
+        info += "正解数：" + (data.correct2 || 0) + " 不正解数：" + (data.incorrect2 || 0) + "<br>";
+        info += "前回：" + (data.pre_qdate ? data.pre_qdate.substring(0, 33) : "") + "<br>";
+        info += "記録：" + (data.q_record || "");
+    } else {
+        info += (data.category1 || "");
+        if (data.category2) info += " - " + data.category2;
+        if (data.category3) info += " - " + data.category3;
+        if (data.category4) info += " - " + data.category4;
+        if (data.category5) info += " - " + data.category5;
+        info += "    <br>Level：" + (data.q_level || "") + "   ";
+        info += "正解数：" + (data.correct2 || 0) + " 不正解数：" + (data.incorrect2 || 0) + "   ";
+        info += "前回：" + (data.pre_qdate ? data.pre_qdate.substring(0, 33) : "") + "<br>";
+        info += "記録：" + (data.q_record || "");
+        if (data.qsentence) info += "<br>" + data.qsentence;
+        if (data.tag) info += "<br>" + data.tag;
+        info += "<br>問題番号：" + (data.questionnumber || "");
+    }
+    
+    let imagefolder = data.imagefolder || "";
+    return questionText + "^^^" + info + "^^^" + imagefolder;
+}
+
+async function fetchAnswerFromSupabase(qnum, mode) {
+    let db_name = document.mainform.DB_name.value || 'terashima01';
+    db_name = db_name.toLowerCase();
+    const { data, error } = await supabaseClient.from(db_name).select('*').eq('questionnumber', qnum).single();
+    if (error || !data) return "Error fetching answer";
+
+    let reply = "";
+    if (mode === 2) {
+        reply = data.question || "";
+        if (data.hint) reply += "\n............................................................\n" + data.hint;
+    } else {
+        reply = data.answer1 || "";
+        for (let i = 2; i <= 15; i++) {
+            if (data['answer'+i]) {
+                reply += ",\n" + data['answer'+i];
+            }
+        }
+        if (data.hint) reply += "\n............................................................\n" + data.hint;
+    }
+    return reply;
+}
+
 async function sendRequest(){
 
     let parent = document.getElementById("answerMath");
@@ -1454,12 +1510,11 @@ async function sendRequest(){
 
 
 
-    var xmlhttp=createXmlHttpRequest();
-
-    if(xmlhttp!=null)
+    
+    let mode = phpfile1 === "getonequestion2.php" ? 2 : 1;
+    var res = await fetchQuestionFromSupabase(rand, mode);
     {
 
-        var res = await myFetch("../" + phpfile1, "data=" + moji);
 
         // console.log('558 res is '+res);
         var res = res.split('^^^');
@@ -1708,10 +1763,11 @@ async function sendRequest2(){
   }
   var moji=rand + "." + document.mainform.DB_name.value;
   moji = encodeURIComponent(moji);
-  var xmlhttp=createXmlHttpRequest();
-  if(xmlhttp!=null){
-    // alert(phpfile2);
-    var res = await myFetch( "../"　+ phpfile2 , "data=" + moji);
+  
+    let mode = phpfile2 === "getanswer2.php" ? 2 : 1;
+    var res = await fetchAnswerFromSupabase(rand, mode);
+    {
+
     // console.log('502 res is '+ res);
     var AnswerTyped = document.getElementById( "textareas2" ).value;
     document.getElementById( "textareas2" ).value = "";
@@ -2176,9 +2232,11 @@ async function backQuestion(){
     rand = questionnumbers[num];
     var moji=rand + "." + document.mainform.DB_name.value;
     moji = encodeURIComponent(moji);
-    var xmlhttp=createXmlHttpRequest();
-    if(xmlhttp!=null){
-      var res = await myFetch("../" + phpfile1, "data=" + moji);
+    
+    let mode = phpfile1 === "getonequestion2.php" ? 2 : 1;
+    var res = await fetchQuestionFromSupabase(rand, mode);
+    {
+
       // console.log('1120 res is '+res);
       var res = res.split('^^^');
       var doc0= document.getElementById("questionInfo");
