@@ -1720,9 +1720,10 @@ async function sendRequest(){
     var xmlhttp=createXmlHttpRequest2();
     if(xmlhttp!=null)
     {
-        var res = await myFetch( "../getpoorat.php", "data=" + moji);
-        // console.log('534 getpoorat res is '+res);
-        document.getElementById( "poorat" ).value = res;
+        
+      let row = window.allQuestionsData ? window.allQuestionsData.find(r => r.questionnumber == rand) : null;
+      document.getElementById("poorat").value = (row && row.poorat) ? row.poorat : "";
+
 
     }
     var slcLang = document.getElementById("autoReading").value;
@@ -2042,8 +2043,7 @@ async function sendRequest3(goodPoor)
     
     // Step 5: Instantly update Supabase in the background
     updateRecordSupabase(rand, true, getpastTime, document.mainform.poorat.value);
-    // Legacy PHP update (fire and forget, removed await to fix 4-second delay)
-    myFetch( "../addcorrect.php", "data=" + moji);
+    
 
     // console.log('534 addcorrectres is '+res);
     document.getElementById( "textareas2" ).value = "";
@@ -2082,8 +2082,7 @@ async function sendRequest4(goodPoor){
     
     // Step 5: Instantly update Supabase in the background
     updateRecordSupabase(rand, false, getpastTime, document.mainform.poorat.value);
-    // Legacy PHP update (fire and forget, removed await to fix 4-second delay)
-    myFetch( "../addincorrect.php", "data=" + moji);
+    
 
     document.getElementById( "textareas2" ).value = "";
     // document.getElementById( "preQInfo" ).innerHTML = "前問の結果  " +res;
@@ -2364,9 +2363,10 @@ async function backQuestion(){
     var xmlhttp=createXmlHttpRequest2();
     if(xmlhttp!=null)
     {
-      var res = await myFetch( "../getpoorat.php", "data=" + moji);
-      // console.log('534 getpoorat res is '+res);
-      document.getElementById( "poorat" ).value = res;
+      
+      let row = window.allQuestionsData ? window.allQuestionsData.find(r => r.questionnumber == rand) : null;
+      document.getElementById("poorat").value = (row && row.poorat) ? row.poorat : "";
+
     }
   }
 }
@@ -3315,37 +3315,21 @@ function whichKey2(){
 }
 
 async function settingSave(){
-  // console.log('document.getElementById("fontresize").value is '+document.getElementById("fontresize").value);
-  moji = document.mainform.DB_name.value + "^^" + 
-  document.getElementById("MaxQuestionNumber").value + "^^" +
-  document.getElementById("fontresize").value + "^^" +
-  document.getElementById("autoSpeed").value + "^^" +
-  document.getElementById("autoReading").value + "^^" +
-  document.getElementById("jpSpeed").value + "^^" +
-  document.getElementById("engSpeed").value + "^^" +
-  document.getElementById("NOC").value + "^^" +
-  document.getElementById("autoAnswer").value + "^^" +
-  document.getElementById("qachange").checked + "^^" +
-  document.getElementById("autoread").checked + "^^" +
-  document.getElementById("keyControl").checked + "^^" +
-  document.getElementById("answerByMyself").checked + "^^" +
-  document.getElementById("randomOrNot").checked + "^^" +
-  document.getElementById("backGround").value + "@@@@" +
-  document.getElementById("fontSelect").value + "^^" + 
-  document.getElementById("novelSelect").value + "^^" + 
-  document.getElementById("novelSentenceNumber").value + "^^" + 
-  document.getElementById("flexButton").checked + "^^" + 
-  document.getElementById("blackCheck").checked;
-  novelRowNum = Number(document.getElementById("novelSentenceNumber").value);
-  var xmlhttp=createXmlHttpRequest();
-  if(xmlhttp!=null)
-  {
-    var res = await myFetch( "../settingSave.php", "data=" + moji);
-    // console.log('settingSave res is '+res);
-  }
-
-
+    let settings = {
+        fontresize: document.getElementById("fontresize").value,
+        autoSpeed: document.getElementById("autoSpeed").value,
+        qachange: document.getElementById("qachange").checked,
+        autoread: document.getElementById("autoread").checked,
+        keyControl: document.getElementById("keyControl").checked,
+        answerByMyself: document.getElementById("answerByMyself").checked,
+        randomOrNot: document.getElementById("randomOrNot").checked,
+        backGround: document.getElementById("backGround").value,
+        flexButton: document.getElementById("flexButton").checked,
+        blackCheck: document.getElementById("blackCheck").checked
+    };
+    localStorage.setItem('t_system_settings', JSON.stringify(settings));
 }
+
 function parseStrToBoolean(str) {
   // 文字列を判定
   return (str == 'true') ? true : false;
@@ -3721,15 +3705,7 @@ function imageSizeChange2(){
   document.getElementById("mypic2").style.height = imageHeight2 * Number(imageSize) + "px";  // 横幅を400pxにリサイズ
 }
 async function informationChange(){
-  var moji=  document.mainform.DB_name.value + "^" + document.mainform.information.value;
-  moji = encodeURIComponent(moji);
-
-  var xmlhttp=createXmlHttpRequest2();
-  if(xmlhttp!=null)
-  {
-      var res = await myFetch( "../informationChange.php", "data=" + moji);
-
-  }
+    localStorage.setItem('t_system_info', document.mainform.information.value);
 }
 
 function changeBG(wIMG) {
@@ -3804,21 +3780,11 @@ if (document.getElementById("novelSentenceNumber").value) {
 }
     
 
-async function getNovelSentence(){
-  var moji=document.mainform.DB_name.value + "." + Number(novelRowNum) + "." + 
-  document.mainform.novelSelect.value;
-  moji = encodeURIComponent(moji);
-  var xmlhttp=createXmlHttpRequest2();
-  if(xmlhttp!=null)
-  {
-      var res = await myFetch( "../getNovelSentence.php", "data=" + moji);
-      document.getElementById("novel").innerHTML = res;
-      document.getElementById("novelSentenceNumber").value = Number(novelRowNum);
 
-  }
-    
-    
+async function getNovelSentence(){
+    console.log("getNovelSentence called but feature is disabled in serverless.");
 }
+
 function  category1Change(){
   // var elem = document.querySelectorAll('select[name="category2"] option');
   // for(var i=0; i<elem.length; i++) {
