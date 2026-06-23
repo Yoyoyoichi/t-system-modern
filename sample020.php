@@ -686,27 +686,16 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $result = $mysqli->query($str_sql);
     $test  = $result->fetch_assoc();
     $information = $test ? $test['information'] : '';
-    echo"<div  id = 'massages' style='display:inline-flex;width:100vw'> ";
-    echo "<p style='font-size:20px;color:#FF0000;width:60vw;padding : 0px 0px 0px 0px;'> やった問題数の合計は$testo です。<br><br>
-    今日やった合計は $todayQuestonDone です。<br><br>
-    正解の合計は $test2 です。<br><br>
-    不正解の合計は $test3 です。 <br><br>
-    正答率は $seitoritu ％です。<br><br>
-    前回は $test4 でした。 <br><br>
-    </p>"."\n"."\n";////<font size="5" color="#000000">問目</fsont>
-    // if (!($db_name==="AOI0501")) {
-      echo "
-      <div style='height:10vh;width:30vw;'>
-        <TEXTAREA id = 'information' ;
-        class ='textlines'
-        style ='font-size:25px;height:100%;width:30vw;'        
-        onchange = informationChange()
-        >$information</textarea>
-      </div>
-      ";
-    
-    // }
-    echo "</div><br>";
+    echo "<div id='massages' class='modern-stats' style='display:inline-flex;width:100vw;margin-bottom:16px;'>\n";
+    echo "<p class='compact-stats-text'>\n";
+    echo "<span class='stat-item'>やった問題数の合計は {$testo} です。</span> <span class='stat-sep'></span>\n";
+    echo "<span class='stat-item'>今日やった合計は {$todayQuestonDone} です。</span> <span class='stat-sep'></span>\n";
+    echo "<span class='stat-item'>正解の合計は {$test2} です。</span> <span class='stat-sep'></span>\n";
+    echo "<span class='stat-item'>不正解の合計は {$test3} です。</span> <span class='stat-sep'></span>\n";
+    echo "<span class='stat-item'>正答率は {$seitoritu} ％です。</span> <span class='stat-sep'></span>\n";
+    echo "<span class='stat-item'>前回は {$test4} でした。</span>\n";
+    echo "</p>\n";
+    echo "</div>\n<br>";
 
 
 
