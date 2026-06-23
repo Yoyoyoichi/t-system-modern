@@ -448,7 +448,7 @@ input[type="text"].button:hover {
 .msp-search:focus { border-bottom-color: #111; box-shadow: none; }
 .msp-btn { height: 44px !important; background: #111; color: #fff !important; border: none; border-radius: 6px; padding: 0 20px; font-size: 14px !important; font-weight: 500; cursor: pointer; transition: all 0.2s; white-space: nowrap; }
 .msp-btn:hover { background: #333; transform: translateY(-1px); }
-\n
+
 /* Unified 2-Column Layout */
 .unified-panel-container {
     display: flex;
@@ -480,7 +480,8 @@ input[type="text"].button:hover {
     flex: 1;
     justify-content: space-between;
 }
-\n</style>
+
+</style>
 <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script> -->
 <script type="text/javascript" src="jquery-3.4.1.min.js"></script>
 
@@ -4556,5 +4557,6 @@ window.addEventListener('DOMContentLoaded', () => {
     }
 });
 </script>
-\n</body>
+
+</body>
 </html>
