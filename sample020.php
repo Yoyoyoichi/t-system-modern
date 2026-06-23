@@ -4289,77 +4289,10 @@ document.addEventListener('keydown', function(event) {
 </script>
 
 
-<script>
-window.addEventListener('DOMContentLoaded', () => {
-    // Only run once
-    if(document.querySelector('.modern-top-panel')) return;
 
-    const topPanel = document.createElement('div');
-    topPanel.className = 'modern-top-panel';
 
-    // 1. Header Row (DB Name and Links)
-    const headerRow = document.createElement('div');
-    headerRow.className = 'mtp-header-row';
-    
-    const dbInput = document.getElementById('DB_name');
-    if(dbInput) {
-        dbInput.placeholder = "Enter DB Name...";
-        headerRow.appendChild(dbInput);
-    }
 
-    const gp1 = document.getElementById('grandParent1');
-    if(gp1) {
-        // Clean up the text nodes and BRs in gp1, keep only buttons/links
-        Array.from(gp1.childNodes).forEach(node => {
-            if(node.nodeName === 'BR' || (node.nodeName === '#text' && node.textContent.trim() === '')) {
-                node.remove();
-            }
-        });
-        headerRow.appendChild(gp1);
-    }
-    topPanel.appendChild(headerRow);
 
-    // 2. Stats & Info Row
-    const statsRow = document.createElement('div');
-    statsRow.className = 'mtp-stats-row';
-
-    const massages = document.getElementById('massages');
-    if(massages) {
-        // Strip the raw text and make it look like a sleek dashboard stat
-        massages.className = 'modern-stats';
-        statsRow.appendChild(massages);
-    }
-
-    const infoDiv = document.createElement('div');
-    infoDiv.className = 'mtp-info-container';
-    const infoTextarea = document.getElementById('information');
-    if(infoTextarea) {
-        infoDiv.appendChild(infoTextarea);
-        statsRow.appendChild(infoDiv);
-    }
-    topPanel.appendChild(statsRow);
-
-    // 3. Categories Row
-    const catRow = document.createElement('div');
-    catRow.className = 'mtp-category-row';
-    
-    for(let i=1; i<=5; i++) {
-        const ctg = document.getElementById('ctg'+i);
-        if(ctg) {
-            // Remove inline styles to allow CSS to take over
-            ctg.removeAttribute('style');
-            catRow.appendChild(ctg);
-        }
-    }
-    topPanel.appendChild(catRow);
-
-    // Insert the panel at the very top of the form
-    const form = document.getElementById('mainform');
-    if(form) {
-        form.insertBefore(topPanel, form.firstChild);
-    }
-});
-</script>
 
 
 
