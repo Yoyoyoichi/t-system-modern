@@ -2094,28 +2094,123 @@ async function sendRequest4(goodPoor){
   sendRequest();
 }
 
-
 async function correctMinus(){
-  let db_name = document.mainform.DB_name.value || 'terashima01';
-  db_name = db_name.toLowerCase();
-  
-  const { data: row } = await supabaseClient.from(db_name).select('*').eq('questionnumber', rand).single();
-  if (row) {
-      let updates = { correct: Math.max(0, (row.correct || 0) - 1) };
-      updates.PCA = updates.correct / (updates.correct + (row.incorrect || 0)) * 100;
-      
-      let q_record = row.q_record || "";
-      if (q_record.startsWith("〇")) {
-          updates.q_record = q_record.substring(1);
-      }
-      
-      let q_level = row.q_level || 0;
-      updates.q_level = Math.max(0, q_level - 1);
-      
-      await supabaseClient.from(db_name).update(updates).eq('questionnumber', rand);
-      document.getElementById("textareas2").value = "正解を取り消しました";
+  var moji=rand + "^" + document.mainform.DB_name.value;
+  moji = encodeURIComponent(moji);
+  // console.log('678 poorat is '+ document.mainform.poorat.value);
+  // console.log('679 getpastTime is '+ getpastTime);
+  var xmlhttp=createXmlHttpRequest2();
+  if(xmlhttp!=null)
+  {
+    var res = await myFetch( "../correctMinus.php", "data=" + moji);
+    document.getElementById( "textareas2" ).value = "";
+    document.getElementById( "textareas2" ).value = res;
+    document.getElementById("div2").style.display = "none";
+    document.getElementById("textareas2").style.display = "block";
   }
 }
+
+async function incorrectMinus(){
+  var moji=rand + "^" + document.mainform.DB_name.value;
+  moji = encodeURIComponent(moji);
+  // console.log('678 poorat is '+ document.mainform.poorat.value);
+  // console.log('679 getpastTime is '+ getpastTime);
+  var xmlhttp=createXmlHttpRequest2();
+  if(xmlhttp!=null)
+  {
+    var res = await myFetch( "../incorrectMinus.php", "data=" + moji);
+    document.getElementById( "textareas2" ).value = "";
+    document.getElementById( "textareas2" ).value = res;
+    document.getElementById("div2").style.display = "none";
+    document.getElementById("textareas2").style.display = "block";
+  }
+}
+
+async function sendRequest5(){
+  var QAChangeChecked = document.getElementById("qachange").checked;
+  if (QAChangeChecked) {      
+      var moji=rand + "^^^^^" +
+      document.mainform.DB_name.value + "^^^^^" +
+      document.getElementById( "textareas2" ).value + "^^^^^" +
+      document.getElementById( "textareas" ).value;      
+  } else {
+    if (document.getElementById( "textareas2" ).value.indexOf('...............')=== -1){
+      var moji=rand + "^^^^^" +
+      document.mainform.DB_name.value + "^^^^^" +
+      document.getElementById( "textareas" ).value + "^^^^^" +
+      document.getElementById( "textareas2" ).value;
+    }else{
+      var split =document.getElementById( "textareas2" ).value.split('\n............................................................\n');
+      var moji=rand + "^^^^^" +
+      document.mainform.DB_name.value + "^^^^^" +
+      document.getElementById( "textareas" ).value + "^^^^^" +
+      split[0]+ "^^^^^" +split[1];
+    }
+  }
+  moji = encodeURIComponent(moji);
+  var xmlhttp=createXmlHttpRequest2();
+  if ((xmlhttp!=null)　&& ((moji.indexOf('Your%20Answer')=== -1) && (moji.indexOf('...............')=== -1))) {//修正する問題と答えに自分の解答やヒントがなければ修正する。
+    var res = await myFetch( "../modifyquestionanswer.php", "data=" + moji);
+    // console.log('721 res is '+res);
+  }
+}
+
+async function deleteQ(){
+  var moji=rand + "^" + document.mainform.DB_name.value;
+  moji = encodeURIComponent(moji);
+  var xmlhttp=createXmlHttpRequest2();
+  if(xmlhttp!=null){
+    var res = await myFetch( "../deleteQuestion.php", "data=" + moji);
+    // console.log('delete is ' + res);
+    document.getElementById( "textareas" ).value = "問題を削除しました。";
+    document.getElementById( "textareas2" ).value = "";
+  }
+}
+
+function createXmlHttpRequest2(){
+  var xmlhttp=null;
+  if(window.ActiveXObject){
+    try{
+      xmlhttp=new ActiveXObject("Msxml2.XMLHTTP");
+    }
+    catch(e){
+      try{
+        xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+      }
+      catch (e2){
+      }
+    }
+  }
+  else if(window.XMLHttpRequest){
+    xmlhttp = new XMLHttpRequest();
+  }
+  return xmlhttp;
+}
+
+/** min以上max以下の整数値の乱数を返す */
+function intRandom(min, max){
+    return Math.floor( Math.random() * (max - min + 1)) + min;
+}
+
+async function listChange(categorySelect) {
+    console.log(categorySelect.id);
+    firstRemoveFlag = false;
+    num = 0;
+    flag1 = false;
+    
+    // DB_name is lowercased for postgres
+    let db_name = document.mainform.DB_name.value || 'terashima01';
+    db_name = db_name.toLowerCase();
+
+    const getSelected = (id) => {
+        const elem = document.getElementById(id);
+        if(!elem) return [];
+        const opts = elem.options;
+        const selected = [];
+        for (let i = 0; i < opts.length; i++) {
+            if (opts[i].selected && opts[i].value !== "") {
+                selected.push(opts[i].value);
+            }
         }
         return selected;
     };
