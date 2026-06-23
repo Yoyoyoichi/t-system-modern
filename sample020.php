@@ -207,6 +207,7 @@ input[type="text"].button:hover {
 
 
 
+
 /* Modern Top Panel CSS */
 .modern-top-panel {
     background: #ffffff;
@@ -354,10 +355,12 @@ input[type="text"].button:hover {
     padding: 20px;
     border-radius: 12px;
     border: 1px solid #e2e8f0;
+    flex-wrap: wrap;
 }
 
 .mtp-filter-group {
     flex: 1;
+    min-width: 300px;
 }
 
 .mtp-group-title {
@@ -385,11 +388,12 @@ input[type="text"].button:hover {
     border-radius: 6px;
     padding: 12px 8px;
     font-size: 13px !important;
-    color: #334155;
+    color: #334155 !important;
     cursor: pointer;
     transition: all 0.2s;
     font-weight: 500;
     box-shadow: 0 1px 2px rgba(0,0,0,0.02);
+    text-align: center;
 }
 
 .mtp-filter-btn:hover {
@@ -406,7 +410,7 @@ input[type="text"].button:hover {
 .mtp-level-btn {
     background: #e0f2fe;
     border-color: #bae6fd;
-    color: #0369a1;
+    color: #0369a1 !important;
 }
 .mtp-level-btn:hover {
     background: #bae6fd;
@@ -4356,6 +4360,9 @@ window.addEventListener('DOMContentLoaded', () => {
     }
 });
 </script>
+
+
+
 
 
 <script>
