@@ -2143,43 +2143,41 @@ async function incorrectMinus(){
 }
 
 async function sendRequest5(){
+  let db_name = document.mainform.DB_name.value || 'terashima01';
+  db_name = db_name.toLowerCase();
+  
+  let newQ = document.getElementById("textareas").value;
+  let newA = document.getElementById("textareas2").value;
+  let updates = { question: newQ, answer1: newA };
+  
   var QAChangeChecked = document.getElementById("qachange").checked;
   if (QAChangeChecked) {      
-      var moji=rand + "^^^^^" +
-      document.mainform.DB_name.value + "^^^^^" +
-      document.getElementById( "textareas2" ).value + "^^^^^" +
-      document.getElementById( "textareas" ).value;      
+      updates.question = newA;
+      updates.answer1 = newQ;
   } else {
-    if (document.getElementById( "textareas2" ).value.indexOf('...............')=== -1){
-      var moji=rand + "^^^^^" +
-      document.mainform.DB_name.value + "^^^^^" +
-      document.getElementById( "textareas" ).value + "^^^^^" +
-      document.getElementById( "textareas2" ).value;
-    }else{
-      var split =document.getElementById( "textareas2" ).value.split('\n............................................................\n');
-      var moji=rand + "^^^^^" +
-      document.mainform.DB_name.value + "^^^^^" +
-      document.getElementById( "textareas" ).value + "^^^^^" +
-      split[0]+ "^^^^^" +split[1];
-    }
+      if (newA.indexOf('...............') !== -1) {
+          let split = newA.split('\n............................................................\n');
+          updates.answer1 = split[0];
+          updates.hint = split[1];
+      }
   }
-  moji = encodeURIComponent(moji);
-  var xmlhttp=createXmlHttpRequest2();
-  if ((xmlhttp!=null)　&& ((moji.indexOf('Your%20Answer')=== -1) && (moji.indexOf('...............')=== -1))) {//修正する問題と答えに自分の解答やヒントがなければ修正する。
-    var res = await myFetch( "../modifyquestionanswer.php", "data=" + moji);
-    // console.log('721 res is '+res);
+
+  // 修正する問題と答えに自分の解答やヒントがなければ修正する。
+  if (newA.indexOf('Your Answer') === -1 && newA.indexOf('...............') === -1) {
+      const { error } = await supabaseClient.from(db_name).update(updates).eq('questionnumber', rand);
+      if (!error) {
+          console.log("Modified question " + rand);
+      }
   }
 }
 
 async function deleteQ(){
-  var moji=rand + "^" + document.mainform.DB_name.value;
-  moji = encodeURIComponent(moji);
-  var xmlhttp=createXmlHttpRequest2();
-  if(xmlhttp!=null){
-    var res = await myFetch( "../deleteQuestion.php", "data=" + moji);
-    // console.log('delete is ' + res);
-    document.getElementById( "textareas" ).value = "問題を削除しました。";
-    document.getElementById( "textareas2" ).value = "";
+  let db_name = document.mainform.DB_name.value || 'terashima01';
+  db_name = db_name.toLowerCase();
+  const { error } = await supabaseClient.from(db_name).delete().eq('questionnumber', rand);
+  if (!error) {
+      document.getElementById("textareas").value = "問題を削除しました。";
+      document.getElementById("textareas2").value = "";
   }
 }
 
