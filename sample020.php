@@ -1210,7 +1210,7 @@ async function fetchQuestionsFromSupabase() {
     const category4List = getSelected('ctg4');
     const category5List = getSelected('ctg5');
 
-    let query = supabaseClient.from(db_name).select('questionnumber, category1, category2, category3, category4, category5, qdate, poorat, q_level, pre_qdate, q_record, tag, question, answer1, hint');
+    let query = supabaseClient.from(db_name).select('*');
 
     if (category1.length > 0) query = query.in('category1', category1);
     if (category2.length > 0) query = query.in('category2', category2);
@@ -1267,6 +1267,7 @@ async function fetchQuestionsFromSupabase() {
     }
 
     let filteredData = data || [];
+    window.allQuestionsData = filteredData; // Save globally for instant prefetching!
     const wordSearch = document.mainform.wordSearch.value;
     if (wordSearch) {
         const ws = wordSearch.toLowerCase();
@@ -1364,8 +1365,10 @@ async function updateRecordSupabase(qnum, isCorrect, pastTime, pooratVal) {
 async function fetchQuestionFromSupabase(qnum, mode) {
     let db_name = document.mainform.DB_name.value || 'terashima01';
     db_name = db_name.toLowerCase();
-    const { data, error } = await supabaseClient.from(db_name).select('*').eq('questionnumber', qnum).single();
-    if (error || !data) return "Error fetching question^^^Error^^^";
+    
+    let data = window.allQuestionsData ? window.allQuestionsData.find(r => r.questionnumber == qnum) : null;
+    if (!data) return "Error fetching question^^^Error^^^";
+
     
     let questionText = mode === 2 ? data.answer1 : data.question;
     
@@ -1397,8 +1400,10 @@ async function fetchQuestionFromSupabase(qnum, mode) {
 async function fetchAnswerFromSupabase(qnum, mode) {
     let db_name = document.mainform.DB_name.value || 'terashima01';
     db_name = db_name.toLowerCase();
-    const { data, error } = await supabaseClient.from(db_name).select('*').eq('questionnumber', qnum).single();
-    if (error || !data) return "Error fetching answer";
+    
+    let data = window.allQuestionsData ? window.allQuestionsData.find(r => r.questionnumber == qnum) : null;
+    if (!data) return "Error fetching answer";
+
 
     let reply = "";
     if (mode === 2) {
