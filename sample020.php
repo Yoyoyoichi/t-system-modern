@@ -206,6 +206,7 @@ input[type="text"].button:hover {
 }
 
 
+
 /* Modern Top Panel CSS */
 .modern-top-panel {
     background: #ffffff;
@@ -321,6 +322,7 @@ input[type="text"].button:hover {
     display: flex;
     gap: 12px;
     height: 180px;
+    margin-bottom: 24px;
 }
 
 .mtp-category-row select {
@@ -342,6 +344,73 @@ input[type="text"].button:hover {
 .mtp-category-row select option {
     padding: 8px;
     border-bottom: 1px solid #f1f5f9;
+}
+
+/* New Filters Row CSS */
+.mtp-filters-container {
+    display: flex;
+    gap: 24px;
+    background: #f8fafc;
+    padding: 20px;
+    border-radius: 12px;
+    border: 1px solid #e2e8f0;
+}
+
+.mtp-filter-group {
+    flex: 1;
+}
+
+.mtp-group-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: #64748b;
+    margin-bottom: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.mtp-button-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 8px;
+}
+
+.mtp-time-grid {
+    grid-template-columns: repeat(4, 1fr);
+}
+
+.mtp-filter-btn {
+    background: #fff;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    padding: 12px 8px;
+    font-size: 13px !important;
+    color: #334155;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-weight: 500;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.02);
+}
+
+.mtp-filter-btn:hover {
+    background: #f1f5f9;
+    border-color: #94a3b8;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+}
+
+.mtp-filter-btn:active {
+    transform: translateY(0);
+}
+
+.mtp-level-btn {
+    background: #e0f2fe;
+    border-color: #bae6fd;
+    color: #0369a1;
+}
+.mtp-level-btn:hover {
+    background: #bae6fd;
+    border-color: #7dd3fc;
 }
 
 </style>
@@ -4285,6 +4354,88 @@ window.addEventListener('DOMContentLoaded', () => {
     if(form) {
         form.insertBefore(topPanel, form.firstChild);
     }
+});
+</script>
+
+
+<script>
+window.addEventListener('DOMContentLoaded', () => {
+    if(document.querySelector('.modern-top-panel')) return;
+
+    const topPanel = document.createElement('div');
+    topPanel.className = 'modern-top-panel';
+
+    // 1. Header Row
+    const headerRow = document.createElement('div');
+    headerRow.className = 'mtp-header-row';
+    const dbInput = document.getElementById('DB_name');
+    if(dbInput) { dbInput.placeholder = "Enter DB Name..."; headerRow.appendChild(dbInput); }
+
+    const gp1 = document.getElementById('grandParent1');
+    if(gp1) {
+        Array.from(gp1.childNodes).forEach(node => {
+            if(node.nodeName === 'BR' || (node.nodeName === '#text' && node.textContent.trim() === '')) node.remove();
+        });
+        headerRow.appendChild(gp1);
+    }
+    topPanel.appendChild(headerRow);
+
+    // 2. Stats & Info Row
+    const statsRow = document.createElement('div');
+    statsRow.className = 'mtp-stats-row';
+    const massages = document.getElementById('massages');
+    if(massages) { massages.className = 'modern-stats'; statsRow.appendChild(massages); }
+
+    const infoDiv = document.createElement('div');
+    infoDiv.className = 'mtp-info-container';
+    const infoTextarea = document.getElementById('information');
+    if(infoTextarea) { infoDiv.appendChild(infoTextarea); statsRow.appendChild(infoDiv); }
+    topPanel.appendChild(statsRow);
+
+    // 3. Categories Row
+    const catRow = document.createElement('div');
+    catRow.className = 'mtp-category-row';
+    for(let i=1; i<=5; i++) {
+        const ctg = document.getElementById('ctg'+i);
+        if(ctg) { ctg.removeAttribute('style'); catRow.appendChild(ctg); }
+    }
+    topPanel.appendChild(catRow);
+
+    // 4. Filters Row (Level 0 to One Month Ago)
+    const filtersContainer = document.createElement('div');
+    filtersContainer.className = 'mtp-filters-container';
+    
+    // Level Filters
+    const levelGroup = document.createElement('div');
+    levelGroup.className = 'mtp-filter-group';
+    levelGroup.innerHTML = '<div class="mtp-group-title">Level Filters</div>';
+    const levelButtons = document.createElement('div');
+    levelButtons.className = 'mtp-button-grid';
+    ['Lv0','Lv1','Lv2','Lv3','Lv4'].forEach(id => {
+        let el = document.getElementById(id);
+        if(el) { el.removeAttribute('style'); el.className = 'mtp-filter-btn mtp-level-btn'; levelButtons.appendChild(el); }
+    });
+    levelGroup.appendChild(levelButtons);
+    filtersContainer.appendChild(levelGroup);
+
+    // Time/Status Filters
+    const timeGroup = document.createElement('div');
+    timeGroup.className = 'mtp-filter-group';
+    timeGroup.innerHTML = '<div class="mtp-group-title">Condition Filters</div>';
+    const timeButtons = document.createElement('div');
+    timeButtons.className = 'mtp-button-grid mtp-time-grid';
+    ['atLeastOne','NotYet','yesterday','noToday','U50','errToday','errLast','threeDaysAgo','aWeekAgo','aMonthAgo'].forEach(id => {
+        let el = document.getElementById(id);
+        if(el) { el.removeAttribute('style'); el.className = 'mtp-filter-btn mtp-time-btn'; timeButtons.appendChild(el); }
+    });
+    timeGroup.appendChild(timeButtons);
+    filtersContainer.appendChild(timeGroup);
+
+    topPanel.appendChild(filtersContainer);
+
+    // Insert the panel at the very top of the form
+    const form = document.getElementById('mainform');
+    if(form) { form.insertBefore(topPanel, form.firstChild); }
 });
 </script>
 
