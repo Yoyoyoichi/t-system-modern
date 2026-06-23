@@ -2095,34 +2095,50 @@ async function sendRequest4(goodPoor){
 }
 
 async function correctMinus(){
-  var moji=rand + "^" + document.mainform.DB_name.value;
-  moji = encodeURIComponent(moji);
-  // console.log('678 poorat is '+ document.mainform.poorat.value);
-  // console.log('679 getpastTime is '+ getpastTime);
-  var xmlhttp=createXmlHttpRequest2();
-  if(xmlhttp!=null)
-  {
-    var res = await myFetch( "../correctMinus.php", "data=" + moji);
-    document.getElementById( "textareas2" ).value = "";
-    document.getElementById( "textareas2" ).value = res;
-    document.getElementById("div2").style.display = "none";
-    document.getElementById("textareas2").style.display = "block";
+  let db_name = document.mainform.DB_name.value || 'terashima01';
+  db_name = db_name.toLowerCase();
+  
+  const { data: row } = await supabaseClient.from(db_name).select('*').eq('questionnumber', rand).single();
+  if (row) {
+      let updates = { correct: Math.max(0, (row.correct || 0) - 1) };
+      updates.PCA = updates.correct / (updates.correct + (row.incorrect || 0)) * 100;
+      
+      let q_record = row.q_record || "";
+      if (q_record.startsWith("〇")) {
+          updates.q_record = q_record.substring(1);
+      }
+      
+      let q_level = row.q_level || 0;
+      updates.q_level = Math.max(0, q_level - 1);
+      
+      await supabaseClient.from(db_name).update(updates).eq('questionnumber', rand);
+      document.getElementById("textareas2").value = "正解を取り消しました";
+      document.getElementById("div2").style.display = "none";
+      document.getElementById("textareas2").style.display = "block";
   }
 }
 
 async function incorrectMinus(){
-  var moji=rand + "^" + document.mainform.DB_name.value;
-  moji = encodeURIComponent(moji);
-  // console.log('678 poorat is '+ document.mainform.poorat.value);
-  // console.log('679 getpastTime is '+ getpastTime);
-  var xmlhttp=createXmlHttpRequest2();
-  if(xmlhttp!=null)
-  {
-    var res = await myFetch( "../incorrectMinus.php", "data=" + moji);
-    document.getElementById( "textareas2" ).value = "";
-    document.getElementById( "textareas2" ).value = res;
-    document.getElementById("div2").style.display = "none";
-    document.getElementById("textareas2").style.display = "block";
+  let db_name = document.mainform.DB_name.value || 'terashima01';
+  db_name = db_name.toLowerCase();
+  
+  const { data: row } = await supabaseClient.from(db_name).select('*').eq('questionnumber', rand).single();
+  if (row) {
+      let updates = { incorrect: Math.max(0, (row.incorrect || 0) - 1) };
+      updates.PCA = (row.correct || 0) / ((row.correct || 0) + updates.incorrect) * 100;
+      
+      let q_record = row.q_record || "";
+      if (q_record.startsWith("×")) {
+          updates.q_record = q_record.substring(1);
+      }
+      
+      let q_level = row.q_level || 0;
+      updates.q_level = q_level + 1;
+      
+      await supabaseClient.from(db_name).update(updates).eq('questionnumber', rand);
+      document.getElementById("textareas2").value = "不正解を取り消しました";
+      document.getElementById("div2").style.display = "none";
+      document.getElementById("textareas2").style.display = "block";
   }
 }
 
