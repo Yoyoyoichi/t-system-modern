@@ -1300,6 +1300,67 @@ async function fetchQuestionsFromSupabase() {
 }
 
 
+
+async function updateRecordSupabase(qnum, isCorrect, pastTime, pooratVal) {
+    let db_name = document.mainform.DB_name.value || 'terashima01';
+    db_name = db_name.toLowerCase();
+    
+    const { data: row, error } = await supabaseClient.from(db_name).select('*').eq('questionnumber', qnum).single();
+    if (error || !row) {
+        console.error("Supabase update error:", error);
+        return;
+    }
+
+    let updates = {};
+    const todayStr = new Date().toISOString().split('T')[0];
+    const isToday = row.pre_qdate && String(row.pre_qdate).startsWith(todayStr);
+
+    if (isCorrect) {
+        updates.correct = (row.correct || 0) + 1;
+        updates.PCA = updates.correct / (updates.correct + (row.incorrect || 0)) * 100;
+    } else {
+        updates.incorrect = (row.incorrect || 0) + 1;
+        updates.PCA = (row.correct || 0) / ((row.correct || 0) + updates.incorrect) * 100;
+    }
+    updates.qdate = todayStr;
+    updates.pasttime = pastTime;
+
+    if (!isToday) {
+        let q_record = row.q_record || "";
+        let pre_qdate = row.pre_qdate || "";
+        let q_level = row.q_level || 0;
+
+        if (isCorrect) {
+            updates.q_record = "〇" + q_record;
+            updates.correct2 = (row.correct2 || 0) + 1;
+            updates.pca2 = updates.correct2 / (updates.correct2 + (row.incorrect2 || 0)) * 100;
+            updates.poorat = pooratVal;
+
+            const matchRecord = (str) => q_record === str || q_record.startsWith(str + "×");
+            if (!pre_qdate || q_record === "×" || matchRecord("〇") || matchRecord("〇〇") || matchRecord("〇〇〇") || matchRecord("〇〇〇〇") || matchRecord("〇〇〇〇〇") || matchRecord("〇〇〇〇〇〇")) {
+                updates.q_level = q_level + 1;
+            } else if (q_record.startsWith("〇〇〇〇〇〇〇〇〇〇")) {
+                updates.q_level = q_level + 1;
+            }
+        } else {
+            updates.q_record = "×" + q_record;
+            updates.incorrect2 = (row.incorrect2 || 0) + 1;
+            updates.pca2 = (row.correct2 || 0) / ((row.correct2 || 0) + updates.incorrect2) * 100;
+            updates.q_level = q_level > 0 ? q_level - 1 : 0;
+            updates.poorat = pooratVal;
+        }
+
+        let new_pre = todayStr + (pre_qdate ? "," + pre_qdate : "");
+        new_pre = new_pre.replace(/,+$/, '').replace(/\s+$/, '');
+        updates.pre_qdate = new_pre;
+    }
+
+    // Fire and forget, don't await to keep UI fast
+    supabaseClient.from(db_name).update(updates).eq('questionnumber', qnum).then(({error}) => {
+        if(error) console.error("Update fail:", error);
+    });
+}
+
 async function fetchQuestionFromSupabase(qnum, mode) {
     let db_name = document.mainform.DB_name.value || 'terashima01';
     db_name = db_name.toLowerCase();
@@ -1973,7 +2034,12 @@ async function sendRequest3(goodPoor)
   var xmlhttp=createXmlHttpRequest2();
   if(xmlhttp!=null)
   {
-    var res = await myFetch( "../addcorrect.php", "data=" + moji);
+    
+    // Step 5: Instantly update Supabase in the background
+    updateRecordSupabase(rand, true, getpastTime, document.mainform.poorat.value);
+    // Legacy PHP update (fire and forget, removed await to fix 4-second delay)
+    myFetch( "../addcorrect.php", "data=" + moji);
+
     // console.log('534 addcorrectres is '+res);
     document.getElementById( "textareas2" ).value = "";
     // document.getElementById( "preQInfo" ).innerHTML = "前問の結果  " +res;
@@ -2008,7 +2074,12 @@ async function sendRequest4(goodPoor){
   // console.log('679 getpastTime is '+ getpastTime);
   var xmlhttp=createXmlHttpRequest2();
   if(xmlhttp!=null){
-    var res = await myFetch( "../addincorrect.php", "data=" + moji);
+    
+    // Step 5: Instantly update Supabase in the background
+    updateRecordSupabase(rand, false, getpastTime, document.mainform.poorat.value);
+    // Legacy PHP update (fire and forget, removed await to fix 4-second delay)
+    myFetch( "../addincorrect.php", "data=" + moji);
+
     document.getElementById( "textareas2" ).value = "";
     // document.getElementById( "preQInfo" ).innerHTML = "前問の結果  " +res;
     document.getElementById("div2").style.display = "none";
