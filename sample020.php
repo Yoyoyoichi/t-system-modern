@@ -537,6 +537,24 @@ input[type="text"].button:hover {
     transform: translateY(0);
 }
 
+
+.compact-stats-text {
+    font-size: 14px !important;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    align-items: center;
+    color: #334155 !important;
+    font-weight: 500;
+}
+.stat-sep {
+    width: 4px;
+    height: 4px;
+    background: #cbd5e1;
+    border-radius: 50%;
+    display: inline-block;
+}
+
 </style>
 <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script> -->
 <script type="text/javascript" src="jquery-3.4.1.min.js"></script>
@@ -4440,17 +4458,37 @@ window.addEventListener('DOMContentLoaded', () => {
     }
     topPanel.appendChild(headerRow);
 
-    // 2. Stats & Info Row
+    
+    // 2. Stats Row (Compact)
     const statsRow = document.createElement('div');
     statsRow.className = 'mtp-stats-row';
     const massages = document.getElementById('massages');
-    if(massages) { massages.className = 'modern-stats'; statsRow.appendChild(massages); }
+    if(massages) { 
+        massages.className = 'modern-stats'; 
+        
+        // Parse the text to create a compact flex layout
+        const p = massages.querySelector('p');
+        if(p) {
+            const text = p.innerHTML;
+            // The text has <br><br> and raw strings. Let's just extract the numbers/values if possible
+            // Or simpler: replace all <br><br> with a clean separator, and make it a single line
+            const cleanText = text.replace(/<br>\s*<br>/g, '<span class="stat-sep"></span>').replace(/\n/g, '');
+            p.innerHTML = cleanText;
+            p.className = 'compact-stats-text';
+        }
+        statsRow.appendChild(massages); 
+    }
 
-    const infoDiv = document.createElement('div');
-    infoDiv.className = 'mtp-info-container';
+    // Hide or remove the old information textarea as requested by the user
     const infoTextarea = document.getElementById('information');
-    if(infoTextarea) { infoDiv.appendChild(infoTextarea); statsRow.appendChild(infoDiv); }
+    if(infoTextarea) { 
+        infoTextarea.style.display = 'none'; // Hide it so it doesn't take space
+    }
+    const infoParent = document.querySelector('div[style*="height:10vh;width:30vw;"]');
+    if(infoParent) infoParent.style.display = 'none';
+
     topPanel.appendChild(statsRow);
+
 
     // 3. Categories Row
     const catRow = document.createElement('div');
