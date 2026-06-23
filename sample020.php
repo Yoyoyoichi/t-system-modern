@@ -418,17 +418,16 @@ input[type="text"].button:hover {
 }
 
 
+
 /* Modern Search Panel CSS */
 .modern-search-panel {
     background: #ffffff;
     border-radius: 12px;
     padding: 24px;
-    margin: 16px;
     box-shadow: 0 10px 30px rgba(0,0,0,0.05);
     border: 1px solid #eaeaea;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
 }
-
 .msp-title {
     font-size: 16px;
     font-weight: 600;
@@ -437,125 +436,51 @@ input[type="text"].button:hover {
     padding-bottom: 12px;
     border-bottom: 1px solid #eaeaea;
 }
-
-.msp-general-row {
+.msp-general-row { display: flex; gap: 16px; margin-bottom: 24px; flex-wrap: wrap; }
+.msp-criteria-container { display: flex; flex-direction: column; gap: 12px; }
+.msp-criteria-row { display: flex; gap: 12px; align-items: center; background: #f8fafc; padding: 12px; border-radius: 8px; border: 1px solid #e2e8f0; }
+.msp-select { height: 44px !important; border: 1px solid #cbd5e1; border-radius: 6px; padding: 0 12px; font-size: 14px !important; background: #fff; color: #334155; outline: none; transition: all 0.2s; min-width: 140px; }
+.msp-select:focus { border-color: #94a3b8; box-shadow: 0 0 0 2px rgba(148, 163, 184, 0.2); }
+.msp-op { min-width: 60px; width: 60px; text-align: center; }
+.msp-input { height: 44px !important; border: 1px solid #cbd5e1; border-radius: 6px; padding: 0 12px; font-size: 15px !important; background: #fff; color: #334155 !important; outline: none; flex: 1; transition: all 0.2s; }
+.msp-input:focus { border-color: #94a3b8; box-shadow: 0 0 0 2px rgba(148, 163, 184, 0.2); }
+.msp-search { border: none; border-bottom: 2px solid #cbd5e1; border-radius: 0; background: transparent; padding-left: 0; font-size: 18px !important; flex: 1; min-width: 200px; }
+.msp-search:focus { border-bottom-color: #111; box-shadow: none; }
+.msp-btn { height: 44px !important; background: #111; color: #fff !important; border: none; border-radius: 6px; padding: 0 20px; font-size: 14px !important; font-weight: 500; cursor: pointer; transition: all 0.2s; white-space: nowrap; }
+.msp-btn:hover { background: #333; transform: translateY(-1px); }
+\n
+/* Unified 2-Column Layout */
+.unified-panel-container {
     display: flex;
-    gap: 16px;
-    margin-bottom: 24px;
-    flex-wrap: wrap;
+    gap: 32px;
+    margin-top: 24px;
+    padding-top: 24px;
+    border-top: 1px solid #eaeaea;
+    align-items: stretch;
 }
-
-.msp-criteria-container {
+.unified-left-col {
+    flex: 1;
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 24px;
 }
-
-.msp-criteria-row {
-    display: flex;
-    gap: 12px;
-    align-items: center;
-    background: #f8fafc;
-    padding: 12px;
-    border-radius: 8px;
-    border: 1px solid #e2e8f0;
-}
-
-.msp-select {
-    height: 44px !important;
-    border: 1px solid #cbd5e1;
-    border-radius: 6px;
-    padding: 0 12px;
-    font-size: 14px !important;
-    background: #fff;
-    color: #334155;
-    outline: none;
-    transition: all 0.2s;
-    min-width: 140px;
-}
-.msp-select:focus {
-    border-color: #94a3b8;
-    box-shadow: 0 0 0 2px rgba(148, 163, 184, 0.2);
-}
-
-.msp-op {
-    min-width: 60px;
-    width: 60px;
-    text-align: center;
-}
-
-.msp-input {
-    height: 44px !important;
-    border: 1px solid #cbd5e1;
-    border-radius: 6px;
-    padding: 0 12px;
-    font-size: 15px !important;
-    background: #fff;
-    color: #334155 !important;
-    outline: none;
+.unified-right-col {
     flex: 1;
-    transition: all 0.2s;
-}
-.msp-input:focus {
-    border-color: #94a3b8;
-    box-shadow: 0 0 0 2px rgba(148, 163, 184, 0.2);
-}
-
-.msp-search {
-    border: none;
-    border-bottom: 2px solid #cbd5e1;
-    border-radius: 0;
-    background: transparent;
-    padding-left: 0;
-    font-size: 18px !important;
-    flex: 1;
-    min-width: 200px;
-}
-.msp-search:focus {
-    border-bottom-color: #111;
-    box-shadow: none;
-}
-
-.msp-btn {
-    height: 44px !important;
-    background: #111;
-    color: #fff !important;
-    border: none;
-    border-radius: 6px;
-    padding: 0 20px;
-    font-size: 14px !important;
-    font-weight: 500;
-    cursor: pointer;
-    transition: all 0.2s;
-    white-space: nowrap;
-}
-.msp-btn:hover {
-    background: #333;
-    transform: translateY(-1px);
-}
-.msp-btn:active {
-    transform: translateY(0);
-}
-
-
-.compact-stats-text {
-    font-size: 14px !important;
     display: flex;
-    flex-wrap: wrap;
-    gap: 16px;
-    align-items: center;
-    color: #334155 !important;
-    font-weight: 500;
+    flex-direction: column;
 }
-.stat-sep {
-    width: 4px;
-    height: 4px;
-    background: #cbd5e1;
-    border-radius: 50%;
-    display: inline-block;
+.modern-search-panel.unified-right-content {
+    margin: 0;
+    height: 100%;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
 }
-
-</style>
+.msp-criteria-container {
+    flex: 1;
+    justify-content: space-between;
+}
+\n</style>
 <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script> -->
 <script type="text/javascript" src="jquery-3.4.1.min.js"></script>
 
@@ -4531,18 +4456,18 @@ window.addEventListener('DOMContentLoaded', () => {
 </script>
 
 
+
+
+
 <script>
 window.addEventListener('DOMContentLoaded', () => {
     // Prevent double execution
-    if(document.querySelector('.modern-search-panel')) return;
+    if(document.querySelector('.unified-panel-container')) return;
 
-    // We will place this new panel right after the top panel, or at the top of the form if top panel doesn't exist
+    // We will build the advanced search contents first
     const searchPanel = document.createElement('div');
-    searchPanel.className = 'modern-search-panel';
+    searchPanel.className = 'modern-search-panel unified-right-content';
     searchPanel.innerHTML = '<div class="msp-title">Advanced Search & Criteria</div>';
-
-    const criteriaGrid = document.createElement('div');
-    criteriaGrid.className = 'msp-grid';
 
     // Helper to move elements safely
     function moveEl(id, parent, customClass) {
@@ -4556,7 +4481,7 @@ window.addEventListener('DOMContentLoaded', () => {
         return null;
     }
 
-    // 1. General Settings Row (MaxQuestionNumber, poorat2, qlevel, wordSearch)
+    // 1. General Settings Row
     const generalRow = document.createElement('div');
     generalRow.className = 'msp-general-row';
     moveEl('MaxQuestionNumber', generalRow, 'msp-select');
@@ -4565,7 +4490,7 @@ window.addEventListener('DOMContentLoaded', () => {
     moveEl('wordSearch', generalRow, 'msp-input msp-search');
     searchPanel.appendChild(generalRow);
 
-    // 2. Criteria Rows (Category, Operator, Value, Action)
+    // 2. Criteria Rows
     const criteriaRowsContainer = document.createElement('div');
     criteriaRowsContainer.className = 'msp-criteria-container';
 
@@ -4582,7 +4507,6 @@ window.addEventListener('DOMContentLoaded', () => {
     buildCriteriaRow('category4', 'operator1', 'criteria1', 'getTodayNumber');
     buildCriteriaRow('category5', 'operator2', 'criteria2', 'getfirstDayNumber');
     buildCriteriaRow('category6', 'operator3', 'criteria3', null);
-
     searchPanel.appendChild(criteriaRowsContainer);
 
     // Clean up the old .criterias div if it's empty
@@ -4594,16 +4518,43 @@ window.addEventListener('DOMContentLoaded', () => {
         if(oldCriterias.childNodes.length === 0) oldCriterias.remove();
     }
 
-    // Insert the search panel below the top panel, or at the top of mainform
+    // NOW UNIFY THEM
+    const unifiedContainer = document.createElement('div');
+    unifiedContainer.className = 'unified-panel-container';
+
+    const unifiedLeft = document.createElement('div');
+    unifiedLeft.className = 'unified-left-col';
+
+    const unifiedRight = document.createElement('div');
+    unifiedRight.className = 'unified-right-col';
+
+    // Get the existing mtp-filters-container which holds Level and Condition filters
+    const oldFiltersContainer = document.querySelector('.mtp-filters-container');
+    if (oldFiltersContainer) {
+        // Move its children (Level group, Time group) into unifiedLeft
+        while(oldFiltersContainer.firstChild) {
+            unifiedLeft.appendChild(oldFiltersContainer.firstChild);
+        }
+        // Remove the old empty container
+        oldFiltersContainer.remove();
+    }
+
+    // Put advanced search in the right column
+    unifiedRight.appendChild(searchPanel);
+
+    unifiedContainer.appendChild(unifiedLeft);
+    unifiedContainer.appendChild(unifiedRight);
+
+    // Insert unified container into the top panel
     const topPanel = document.querySelector('.modern-top-panel');
     const form = document.getElementById('mainform');
     if(topPanel) {
-        topPanel.after(searchPanel);
+        // We append it inside the topPanel to keep it as one unified block
+        topPanel.appendChild(unifiedContainer);
     } else if(form) {
-        form.insertBefore(searchPanel, form.firstChild);
+        form.insertBefore(unifiedContainer, form.firstChild);
     }
 });
 </script>
-
-</body>
+\n</body>
 </html>
