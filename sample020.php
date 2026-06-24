@@ -2754,7 +2754,6 @@ async function listChange(categorySelect) {
     num = 0;
     flag1 = false;
     
-    // DB_name is lowercased for postgres
     let db_name = document.mainform.DB_name.value || 'terashima01';
     db_name = db_name.toLowerCase();
 
@@ -2772,6 +2771,21 @@ async function listChange(categorySelect) {
     };
 
     const updateDropdown = async (targetId, searchCategoryName, filterCriteria) => {
+        const targetElement = document.getElementById(targetId);
+        if(!targetElement) return;
+        
+        const currentSelections = getSelected(targetId);
+
+        // Show loading state
+        while (targetElement.lastChild) {
+            targetElement.removeChild(targetElement.lastChild);
+        }
+        const loadingOption = document.createElement("option");
+        loadingOption.value = "";
+        loadingOption.innerText = "読込中...";
+        targetElement.appendChild(loadingOption);
+        try { $(`#${targetId}`).trigger("chosen:updated"); } catch(e) {}
+
         let query = supabaseClient.from(db_name).select(searchCategoryName).neq('question', 'settings');
         
         if (filterCriteria.ctg1 && filterCriteria.ctg1.length > 0) query = query.in('category1', filterCriteria.ctg1);
@@ -2785,13 +2799,11 @@ async function listChange(categorySelect) {
             return;
         }
 
-        let uniqueVals = [...new Set(data.map(item => item[searchCategoryName]))].filter(val => val && val.trim() !== "");
+        let uniqueVals = [...new Set(data.map(item => item[searchCategoryName]))]
+            .filter(val => val !== null && val !== undefined && String(val).trim() !== "")
+            .map(val => String(val));
         
-        const targetElement = document.getElementById(targetId);
-        if(!targetElement) return;
-        
-        const currentSelections = getSelected(targetId);
-
+        // Remove loading state
         while (targetElement.lastChild) {
             targetElement.removeChild(targetElement.lastChild);
         }
