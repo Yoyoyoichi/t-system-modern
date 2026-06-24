@@ -819,7 +819,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     echo "<div id='massages' class='modern-stats' style='display:inline-flex;width:100vw;margin-bottom:16px;'>\n";
     echo "<p class='compact-stats-text'>\n";
     echo "<span class='stat-item'>やった問題数の合計は {$testo} です。</span> <span class='stat-sep'></span>\n";
-    echo "<span class='stat-item'>今日やった合計は {$todayQuestonDone} です。</span> <span class='stat-sep'></span>\n";
+    echo "<span id='todayTotalDone' class='stat-item'>今日やった合計は {$todayQuestonDone} です。</span> <span class='stat-sep'></span>\n";
     echo "<span class='stat-item'>正解の合計は {$test2} です。</span> <span class='stat-sep'></span>\n";
     echo "<span class='stat-item'>不正解の合計は {$test3} です。</span> <span class='stat-sep'></span>\n";
     echo "<span class='stat-item'>正答率は {$seitoritu} ％です。</span> <span class='stat-sep'></span>\n";
@@ -1835,7 +1835,43 @@ async function fetchQuestionsFromSupabase() {
 
 
 
+async function updateAndDisplayDailyTotal(isCorrect = null) {
+    try {
+        let db_name = document.mainform.DB_name.value || 'terashima01';
+        db_name = db_name.toLowerCase();
+        
+        // Ensure we format date as YYYY-MM-DD local
+        const today = new Date().toLocaleDateString('ja-JP').replace(/\//g, '-').split('-').map(n => n.padStart(2, '0')).join('-');
+        
+        const { data, error } = await supabaseClient.from('a01tsystemrecord01').select('*').eq('id', db_name).eq('qdate', today).single();
+        let correct = 0; let incorrect = 0;
+        if (data) {
+            correct = data.correct || 0;
+            incorrect = data.incorrect || 0;
+        }
+        
+        if (isCorrect === true) correct++;
+        if (isCorrect === false) incorrect++;
+        
+        if (isCorrect !== null) {
+            if (data) {
+                await supabaseClient.from('a01tsystemrecord01').update({ correct, incorrect }).eq('id', db_name).eq('qdate', today);
+            } else {
+                await supabaseClient.from('a01tsystemrecord01').insert({ id: db_name, qdate: today, correct, incorrect });
+            }
+        }
+        
+        const total = correct + incorrect;
+        const el = document.getElementById('todayTotalDone');
+        if (el) el.innerText = `今日やった合計は ${total} です。`;
+    } catch(e) {
+        console.error("Failed to update daily total:", e);
+    }
+}
+
 async function updateRecordSupabase(qnum, isCorrect, pastTime, pooratVal) {
+    updateAndDisplayDailyTotal(isCorrect); // Fire and forget
+
     let db_name = document.mainform.DB_name.value || 'terashima01';
     db_name = db_name.toLowerCase();
     
