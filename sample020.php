@@ -483,6 +483,7 @@ input[type="text"].button:hover {
 
 \n
 \n
+\n
 /* Modern Study Card CSS */
 .modern-study-card {
     background: #ffffff;
@@ -576,17 +577,22 @@ input[type="text"].button:hover {
     gap: 24px;
 }
 
-.msc-question-text {
-    font-size: 24px !important;
+.msc-metadata-box {
+    font-size: 15px !important;
     line-height: 1.6 !important;
-    color: #1e293b;
+    color: #64748b;
     white-space: pre-wrap;
     word-break: break-word;
     margin: 0;
-    background: transparent;
-    border: none;
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 16px;
+    height: 110px;
+    overflow-y: auto;
     font-family: inherit;
 }
+
 
 .msc-media-container {
     display: flex;
@@ -4759,6 +4765,8 @@ window.addEventListener('DOMContentLoaded', () => {
 
 
 \n
+
+\n
 <script>
 window.addEventListener('DOMContentLoaded', () => {
     if(document.querySelector('.modern-study-card')) return;
@@ -4824,7 +4832,8 @@ window.addEventListener('DOMContentLoaded', () => {
     const cardBody = document.createElement('div');
     cardBody.className = 'msc-body';
     
-    moveEl('questionInfo', cardBody, 'msc-question-text');
+    // questionInfo is actually the Metadata (Level, Correct count, etc.)
+    moveEl('questionInfo', cardBody, 'msc-metadata-box');
     
     // textareas is the MAIN Question Textarea! Move it to body!
     // Do NOT add msc-hidden, let PHP script toggle its display!
