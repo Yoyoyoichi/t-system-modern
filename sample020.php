@@ -2749,7 +2749,7 @@ function intRandom(min, max){
 }
 
 async function listChange(categorySelect) {
-    console.log(categorySelect.id);
+    console.log("Triggered by:", categorySelect.id);
     firstRemoveFlag = false;
     num = 0;
     flag1 = false;
@@ -2771,22 +2771,13 @@ async function listChange(categorySelect) {
         return selected;
     };
 
-    const selectedCategory1 = getSelected('ctg1');
-    const selectedCategory2 = getSelected('ctg2');
-    const selectedCategory3 = getSelected('ctg3');
-    const selectedCategory4 = getSelected('ctg4');
-    const selectedCategory5 = getSelected('ctg5');
-
-    const updateCategory = async (targetId, searchCategoryName) => {
-        if (categorySelect.id === targetId) return;
-        
+    const updateDropdown = async (targetId, searchCategoryName, filterCriteria) => {
         let query = supabaseClient.from(db_name).select(searchCategoryName).neq('question', 'settings');
         
-        if (selectedCategory1.length > 0) query = query.in('category1', selectedCategory1);
-        if (selectedCategory2.length > 0) query = query.in('category2', selectedCategory2);
-        if (selectedCategory3.length > 0) query = query.in('category3', selectedCategory3);
-        if (selectedCategory4.length > 0) query = query.in('category4', selectedCategory4);
-        if (selectedCategory5.length > 0) query = query.in('category5', selectedCategory5);
+        if (filterCriteria.ctg1 && filterCriteria.ctg1.length > 0) query = query.in('category1', filterCriteria.ctg1);
+        if (filterCriteria.ctg2 && filterCriteria.ctg2.length > 0) query = query.in('category2', filterCriteria.ctg2);
+        if (filterCriteria.ctg3 && filterCriteria.ctg3.length > 0) query = query.in('category3', filterCriteria.ctg3);
+        if (filterCriteria.ctg4 && filterCriteria.ctg4.length > 0) query = query.in('category4', filterCriteria.ctg4);
 
         const { data, error } = await query;
         if (error) {
@@ -2799,27 +2790,51 @@ async function listChange(categorySelect) {
         const targetElement = document.getElementById(targetId);
         if(!targetElement) return;
         
-        const currentIndex = targetElement.value;
+        const currentSelections = getSelected(targetId);
 
         while (targetElement.lastChild) {
             targetElement.removeChild(targetElement.lastChild);
         }
 
+        const emptyOption = document.createElement("option");
+        emptyOption.value = "";
+        emptyOption.innerText = "";
+        targetElement.appendChild(emptyOption);
+
         uniqueVals.forEach(val => {
             const option = document.createElement("option");
             option.value = val;
             option.innerText = val;
+            if (currentSelections.includes(val)) {
+                option.selected = true;
+            }
             targetElement.appendChild(option);
         });
 
-        targetElement.value = currentIndex;
-        $(`#${targetId}`).val(currentIndex);
+        try { $(`#${targetId}`).trigger("chosen:updated"); } catch(e) {}
     };
 
-    await updateCategory('ctg2', 'category2');
-    await updateCategory('ctg3', 'category3');
-    await updateCategory('ctg4', 'category4');
-    await updateCategory('ctg5', 'category5');
+    const triggerId = categorySelect.id;
+    let filters = { ctg1: getSelected('ctg1') };
+
+    if (triggerId === 'ctg1') {
+        await updateDropdown('ctg2', 'category2', filters);
+    }
+    
+    filters.ctg2 = getSelected('ctg2');
+    if (triggerId === 'ctg1' || triggerId === 'ctg2') {
+        await updateDropdown('ctg3', 'category3', filters);
+    }
+    
+    filters.ctg3 = getSelected('ctg3');
+    if (triggerId === 'ctg1' || triggerId === 'ctg2' || triggerId === 'ctg3') {
+        await updateDropdown('ctg4', 'category4', filters);
+    }
+    
+    filters.ctg4 = getSelected('ctg4');
+    if (triggerId === 'ctg1' || triggerId === 'ctg2' || triggerId === 'ctg3' || triggerId === 'ctg4') {
+        await updateDropdown('ctg5', 'category5', filters);
+    }
 }
 
 
