@@ -1837,35 +1837,72 @@ async function fetchQuestionsFromSupabase() {
 
 async function updateAndDisplayDailyTotal(isCorrect = null) {
     try {
-        let db_name = document.mainform.DB_name.value || 'terashima01';
+        let db_name = document.mainform?.DB_name?.value || 'terashima01';
         db_name = db_name.toLowerCase();
-        
-        // Ensure we format date as YYYY-MM-DD local
         const today = new Date().toLocaleDateString('ja-JP').replace(/\//g, '-').split('-').map(n => n.padStart(2, '0')).join('-');
         
-        const { data, error } = await supabaseClient.from('a01tsystemrecord01').select('*').eq('id', db_name).eq('qdate', today).single();
-        let correct = 0; let incorrect = 0;
-        if (data) {
-            correct = data.correct || 0;
-            incorrect = data.incorrect || 0;
+        // Use questionnumber = -100 for DAILY, -101 for ALL_TIME
+        // Fetch both
+        const { data: records } = await supabaseClient.from(db_name).select('*').in('questionnumber', [-100, -101]);
+        
+        let dailyRow = records?.find(r => r.questionnumber === -100);
+        let allRow = records?.find(r => r.questionnumber === -101);
+        
+        // 1. Initialize ALL_TIME if missing
+        if (!allRow) {
+            const fallbackTotalQ = document.getElementById('stat-total-q')?.getAttribute('data-val') || 0;
+            const fallbackCorr = parseInt(document.getElementById('stat-total-correct')?.getAttribute('data-val') || 0);
+            const fallbackIncorr = parseInt(document.getElementById('stat-total-incorrect')?.getAttribute('data-val') || 0);
+            
+            allRow = { questionnumber: -101, question: 'ALL_TIME_RECORD', correct: fallbackCorr, incorrect: fallbackIncorr, category1: fallbackTotalQ.toString() };
+            await supabaseClient.from(db_name).insert(allRow);
         }
         
-        if (isCorrect === true) correct++;
-        if (isCorrect === false) incorrect++;
+        // 2. Initialize DAILY if missing or stale
+        if (!dailyRow || dailyRow.qdate !== today) {
+            // Delete stale daily row just in case, though upsert would overwrite if pk matches
+            // Actually questionnumber -100 is the pk, so upsert overwrites!
+            dailyRow = { questionnumber: -100, question: 'DAILY_RECORD', qdate: today, correct: 0, incorrect: 0 };
+            await supabaseClient.from(db_name).upsert(dailyRow);
+        }
         
+        // 3. Increment if answering
         if (isCorrect !== null) {
-            if (data) {
-                await supabaseClient.from('a01tsystemrecord01').update({ correct, incorrect }).eq('id', db_name).eq('qdate', today);
+            if (isCorrect) {
+                dailyRow.correct = (dailyRow.correct || 0) + 1;
+                allRow.correct = (allRow.correct || 0) + 1;
             } else {
-                await supabaseClient.from('a01tsystemrecord01').insert({ id: db_name, qdate: today, correct, incorrect });
+                dailyRow.incorrect = (dailyRow.incorrect || 0) + 1;
+                allRow.incorrect = (allRow.incorrect || 0) + 1;
             }
+            // Update Supabase
+            await supabaseClient.from(db_name).upsert([dailyRow, allRow]);
         }
         
-        const total = correct + incorrect;
-        const el = document.getElementById('todayTotalDone');
-        if (el) el.innerText = `今日やった合計は ${total} です。`;
+        // 4. Update DOM
+        const dailyTotal = (dailyRow.correct || 0) + (dailyRow.incorrect || 0);
+        const allCorrect = allRow.correct || 0;
+        const allIncorrect = allRow.incorrect || 0;
+        const totalQ = allRow.category1 || document.getElementById('stat-total-q')?.getAttribute('data-val') || 0;
+        const rate = (allCorrect + allIncorrect) > 0 ? ((allCorrect / (allCorrect + allIncorrect)) * 100).toFixed(2) : 0;
+        
+        const elToday = document.getElementById('todayTotalDone');
+        if (elToday) elToday.innerText = `今日やった合計は ${dailyTotal} です。`;
+        
+        const elQ = document.getElementById('stat-total-q');
+        if (elQ) elQ.innerText = `やった問題数の合計は ${totalQ} です。`;
+        
+        const elC = document.getElementById('stat-total-correct');
+        if (elC) elC.innerText = `正解の合計は ${allCorrect} です。`;
+        
+        const elI = document.getElementById('stat-total-incorrect');
+        if (elI) elI.innerText = `不正解の合計は ${allIncorrect} です。`;
+        
+        const elR = document.getElementById('stat-correct-rate');
+        if (elR) elR.innerText = `正答率は ${rate} ％です。`;
+        
     } catch(e) {
-        console.error("Failed to update daily total:", e);
+        console.error("Failed to update stats:", e);
     }
 }
 
