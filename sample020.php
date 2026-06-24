@@ -2808,11 +2808,6 @@ async function listChange(categorySelect) {
             targetElement.removeChild(targetElement.lastChild);
         }
 
-        const emptyOption = document.createElement("option");
-        emptyOption.value = "";
-        emptyOption.innerText = "";
-        targetElement.appendChild(emptyOption);
-
         uniqueVals.forEach(val => {
             const option = document.createElement("option");
             option.value = val;
