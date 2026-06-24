@@ -482,6 +482,7 @@ input[type="text"].button:hover {
 }
 
 \n
+\n
 /* Modern Study Card CSS */
 .modern-study-card {
     background: #ffffff;
@@ -570,6 +571,9 @@ input[type="text"].button:hover {
 
 .msc-body {
     padding: 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
 }
 
 .msc-question-text {
@@ -578,7 +582,7 @@ input[type="text"].button:hover {
     color: #1e293b;
     white-space: pre-wrap;
     word-break: break-word;
-    margin: 0 0 24px 0;
+    margin: 0;
     background: transparent;
     border: none;
     font-family: inherit;
@@ -589,7 +593,6 @@ input[type="text"].button:hover {
     flex-direction: column;
     align-items: center;
     gap: 16px;
-    margin-bottom: 24px;
 }
 
 .msc-toolbox {
@@ -656,6 +659,15 @@ input[type="text"].button:hover {
     border-color: #3b82f6;
     outline: none;
     box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1);
+}
+
+.msc-question-textarea {
+    background: #f8fafc;
+    border-color: #cbd5e1;
+}
+
+.msc-answer-textarea {
+    border-color: #3b82f6;
 }
 
 .msc-hidden {
@@ -4745,6 +4757,8 @@ window.addEventListener('DOMContentLoaded', () => {
 </script>
 
 
+
+\n
 <script>
 window.addEventListener('DOMContentLoaded', () => {
     if(document.querySelector('.modern-study-card')) return;
@@ -4777,21 +4791,17 @@ window.addEventListener('DOMContentLoaded', () => {
             if (mscPress) mscPress.innerText = pressButton.innerText;
             if (mscTotal) mscTotal.innerText = totalQuestionNumber.innerText;
         };
-        // Initial sync
         updateCounter();
-        // Setup observer for changes
         const observer = new MutationObserver(updateCounter);
         observer.observe(pressButton, { childList: true, characterData: true, subtree: true });
         observer.observe(totalQuestionNumber, { childList: true, characterData: true, subtree: true });
         
-        // Hide the original container
         pressButton.parentElement.style.display = 'none';
     }
 
     const headerRight = document.createElement('div');
     headerRight.className = 'msc-header-right';
 
-    // Move Auto and Modify buttons
     function moveEl(id, parent, customClass) {
         const el = document.getElementById(id);
         if(el) {
@@ -4816,8 +4826,10 @@ window.addEventListener('DOMContentLoaded', () => {
     
     moveEl('questionInfo', cardBody, 'msc-question-text');
     
-    // QandAwindow holds the rest
-    const qAndAWindow = document.getElementById('QandAwindow');
+    // textareas is the MAIN Question Textarea! Move it to body!
+    // Do NOT add msc-hidden, let PHP script toggle its display!
+    moveEl('textareas', cardBody, 'msc-textarea msc-question-textarea');
+    
     const div1 = document.getElementById('div1');
     if (div1) {
         div1.removeAttribute('style');
@@ -4846,7 +4858,6 @@ window.addEventListener('DOMContentLoaded', () => {
     moveEl('imageSize1', toolboxItems, 'msc-select');
     moveEl('imageSize2', toolboxItems, 'msc-select');
     
-    // There are two "buttonreadtxt". Let's grab all inputs with name="botan" inside questionbuttonbox
     const readButtons = document.querySelectorAll('input[onClick*="read"]');
     readButtons.forEach(btn => {
         btn.removeAttribute('style');
@@ -4861,10 +4872,9 @@ window.addEventListener('DOMContentLoaded', () => {
     const cardAnswer = document.createElement('div');
     cardAnswer.className = 'msc-answer';
     
-    moveEl('textareas', cardAnswer, 'msc-textarea msc-hidden'); // Usually hidden initially
     moveEl('novel', cardAnswer, 'msc-hidden');
     moveEl('preQInfo', cardAnswer, 'msc-info-text');
-    moveEl('textareas2', cardAnswer, 'msc-textarea');
+    moveEl('textareas2', cardAnswer, 'msc-textarea msc-answer-textarea');
 
     studyCard.appendChild(cardAnswer);
 
@@ -4877,7 +4887,6 @@ window.addEventListener('DOMContentLoaded', () => {
         form.appendChild(studyCard);
     }
     
-    // Hide empty wrapper divs
     const qBoxes = document.querySelectorAll('.questionbuttonbox');
     qBoxes.forEach(b => b.style.display = 'none');
 });
