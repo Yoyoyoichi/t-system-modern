@@ -2004,25 +2004,34 @@ async function fetchQuestionFromSupabase(qnum, mode) {
 }
 
 async function fetchAnswerFromSupabase(qnum, mode) {
-    let db_name = document.mainform.DB_name.value || 'terashima01';
+    let db_name = document.mainform?.DB_name?.value || 'terashima01';
     db_name = db_name.toLowerCase();
     
     let data = window.allQuestionsData ? window.allQuestionsData.find(r => r.questionnumber == qnum) : null;
     if (!data) return "Error fetching answer";
 
-
     let reply = "";
     if (mode === 2) {
         reply = data.question || "";
-        if (data.hint) reply += "\n............................................................\n" + data.hint;
+        if (reply === "NULL") reply = "";
+        if (data.hint && data.hint !== "NULL") reply += "\n............................................................\n" + data.hint;
     } else {
         reply = data.answer1 || "";
+        if (reply === "NULL") reply = "";
+        
         for (let i = 2; i <= 15; i++) {
-            if (data['answer'+i]) {
-                reply += ",\n" + data['answer'+i];
+            let val = data['answer'+i];
+            if (val !== null && val !== undefined && val !== "NULL" && String(val).trim() !== "") {
+                if (reply !== "") {
+                    reply += ",\n" + val;
+                } else {
+                    reply = val;
+                }
             }
         }
-        if (data.hint) reply += "\n............................................................\n" + data.hint;
+        if (data.hint && data.hint !== "NULL") {
+            reply += "\n............................................................\n" + data.hint;
+        }
     }
     return reply;
 }
