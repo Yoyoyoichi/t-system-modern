@@ -2001,10 +2001,10 @@ async function updateRecordSupabase(qnum, isCorrect, pastTime, pooratVal) {
 
     if (isCorrect) {
         updates.correct = (row.correct || 0) + 1;
-        updates.PCA = updates.correct / (updates.correct + (row.incorrect || 0)) * 100;
+        updates.pca = updates.correct / (updates.correct + (row.incorrect || 0)) * 100;
     } else {
         updates.incorrect = (row.incorrect || 0) + 1;
-        updates.PCA = (row.correct || 0) / ((row.correct || 0) + updates.incorrect) * 100;
+        updates.pca = (row.correct || 0) / ((row.correct || 0) + updates.incorrect) * 100;
     }
     updates.qdate = todayStr;
     updates.pasttime = pastTime;
@@ -2804,7 +2804,7 @@ async function correctMinus(){
   const { data: row } = await supabaseClient.from(db_name).select('*').eq('questionnumber', rand).single();
   if (row) {
       let updates = { correct: Math.max(0, (row.correct || 0) - 1) };
-      updates.PCA = updates.correct / (updates.correct + (row.incorrect || 0)) * 100;
+      updates.pca = updates.correct / (updates.correct + (row.incorrect || 0)) * 100;
       
       let q_record = row.q_record || "";
       if (q_record.startsWith("〇")) {
@@ -2828,7 +2828,7 @@ async function incorrectMinus(){
   const { data: row } = await supabaseClient.from(db_name).select('*').eq('questionnumber', rand).single();
   if (row) {
       let updates = { incorrect: Math.max(0, (row.incorrect || 0) - 1) };
-      updates.PCA = (row.correct || 0) / ((row.correct || 0) + updates.incorrect) * 100;
+      updates.pca = (row.correct || 0) / ((row.correct || 0) + updates.incorrect) * 100;
       
       let q_record = row.q_record || "";
       if (q_record.startsWith("×")) {
