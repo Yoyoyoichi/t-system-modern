@@ -5328,6 +5328,9 @@ window.addEventListener('DOMContentLoaded', () => {
     
     const qBoxes = document.querySelectorAll('.questionbuttonbox');
     qBoxes.forEach(b => b.style.display = 'none');
+
+    const bottomBox = document.getElementById('bottomButtonBox');
+    if (bottomBox) bottomBox.style.display = 'none';
 });
 </script>
 \n</body>
