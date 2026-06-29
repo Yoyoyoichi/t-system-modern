@@ -1014,7 +1014,7 @@ $testnumber = 0;
 
 <select class="selectBox" name='MaxQuestionNumber' id='MaxQuestionNumber' onchange = "settingSave()"
   style='width: 12%; font-size: 25px;height: 5vh;line-height: 1vh;vertical-align:top;margin:5px 5px 5px 0px'>
-    <option value="" disabled>\u554f\u984c\u6570</option><option value="20" selected>20</option>
+    <option value="" disabled>&#21839;&#38988;&#25968;</option><option value="20" selected>20</option>
     <option value="all">all</option>
     
     <option value=4>4</option>
@@ -1389,7 +1389,7 @@ word-wrap:break-word;'></pre>
   <pre style='font-size: 25px'>設定</pre>
 
   <select class="selectBox" name='autoSpeed' id='autoSpeed' onchange = "settingSave()" style='width: 23%; font-size: 20px;'>
-    <option value="" disabled>\u6700\u4f4e\u6b63\u89e3\u6570</option><option value="3" selected>3</option>
+    <option value="" disabled>&#26368;&#20302;&#27491;&#35299;&#25968;</option><option value="3" selected>3</option>
     <option value=1>1</option>
     <option value=2>2</option>
     
