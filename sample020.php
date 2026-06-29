@@ -1449,27 +1449,10 @@ word-wrap:break-word;'></pre>
   style="position: absolute;left:74.5%;width:23.8%;height:5vh;font-size: 20px">
 
 </div>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
 
 <style>
 .msc-settings-panel {
+    margin-top: 48px;
     background: rgba(15, 23, 42, 0.7);
     backdrop-filter: blur(12px);
     border: 1px solid rgba(255, 255, 255, 0.1);
