@@ -788,8 +788,7 @@ input[type="text"].button:hover {
 <script src="./Basic.files/dom_request_script.js" type="text/javascript"></script>
 <body>
 
-<form name ="mainform" id ="mainform"　action="" method="post">
-<p>
+<form name ="mainform" id ="mainform" action="" method="post">
     <input
         type="text" id="DB_name"  name="DB_name"  class='textlines'
         value="<?php
@@ -800,7 +799,6 @@ input[type="text"].button:hover {
 
 
 
-</p>
  <div id ="grandParent1">
     <input class ="button" type="submit" value="送信" style='font-size: 25px;width: 20%; height: 120px'>
     &nbsp;&nbsp;&nbsp;
@@ -829,12 +827,6 @@ input[type="text"].button:hover {
     <a id="review2" href="reviewT-System.php " >
         <font size="4" color="#38a3ea">一覧</font>
     </a>
-    
-    <br>
-    <br>
-    <br>
-    
-
   </div>
 
 <?php
@@ -907,7 +899,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     echo "<span class='stat-item'>正答率は {$seitoritu} ％です。</span> <span class='stat-sep'></span>\n";
     echo "<span class='stat-item'>前回は {$test4} でした。</span>\n";
     echo "</p>\n";
-    echo "</div>\n<br>";
+    echo "</div>\n";
 
 
 
@@ -1059,7 +1051,7 @@ $testnumber = 0;
   <input class ="button" type="button" name="Lv3" id="Lv3" onClick="levelThree()" value="レベル3"
   style=" width:15vw;height:150px; font-size: 20px">
   <input class ="button" type="button" name="Lv3" id="Lv4" onClick="levelFour()" value="レベル4"
-  style=" width:15vw;height:150px; font-size: 20px"><br>
+  style=" width:15vw;height:150px; font-size: 20px">
   <input class ="button" type="button" name="atLeastOne" id="atLeastOne" onClick="atLeastOneFunc()" value="回答済み"
   style=" width:15vw;height:150px; font-size: 20px">
   <input class ="button" type="button" name="NotYet" id="NotYet" onClick="NotYetQuestion()" value="未回答"
