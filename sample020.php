@@ -1430,7 +1430,7 @@ word-wrap:break-word;'></pre>
   <input class ="button" type="button" name="botan03" id="button03" onClick="sendRequest3('good2');" value="☆☆"
   style="width:24.2%;height:10vh; font-size: 30px">
   <input class ="button" type="button" name="botan03" id="button03" onClick="sendRequest3('good1');" value="☆"
-  style="width:24.2%;height:10vh; font-size: 30px"><br><br>
+  style="width:24.2%;height:10vh; font-size: 30px">
     <input class ="button" type="button" name="botan04" id="button04" onClick="sendRequest4('poor4');" value="✖✖✖✖"
   style="width:24.2%;height:10vh; font-size: 30px">
   <input class ="button" type="button" name="botan04" id="button04" onClick="sendRequest4('poor3');" value="✖✖✖"
@@ -1438,7 +1438,7 @@ word-wrap:break-word;'></pre>
   <input class ="button" type="button" name="botan04" id="button04" onClick="sendRequest4('poor2');" value="✖✖"
   style="width:24.2%;height:10vh; font-size: 30px">
   <input class ="button" type="button" name="botan04" id="button04" onClick="sendRequest4('poor1');" value="✖"
-  style="width:24.2%;height:10vh; font-size: 30px"><br><br>
+  style="width:24.2%;height:10vh; font-size: 30px">
   <input class ="button" type="button" name="botan05" id="button05" onClick="backQuestion();"value="前の問題"
   style="width:24.2%;height:5vh;font-size: 40px">
   <input class ="button" type="button" name="botan05" id="button05" onClick="removeQuestion();sendRequest()"value="スキップ"
