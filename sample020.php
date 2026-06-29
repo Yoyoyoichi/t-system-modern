@@ -690,6 +690,13 @@ input[type="text"].button:hover {
     background: #f1f5f9;
     flex-wrap: wrap;
     justify-content: center;
+    border-radius: 0 !important;
+}
+.msc-utility-row {
+    padding: 16px 24px;
+    background: #f8fafc;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 .msc-btn-feedback {
     flex: 1 1 calc(10% - 16px);
@@ -5135,27 +5142,33 @@ window.addEventListener('DOMContentLoaded', () => {
         feedbackArea.appendChild(btn);
     });
 
+    studyCard.appendChild(feedbackArea);
+
+    // 8. Create Utility Buttons Area (Back / Skip / Minus)
+    const utilityArea = document.createElement('div');
+    utilityArea.className = 'msc-actions-row msc-utility-row';
+
     document.querySelectorAll('input[name="botan05"]').forEach(btn => {
         btn.removeAttribute('style');
         btn.className = 'msc-btn-feedback msc-btn-nav';
-        feedbackArea.appendChild(btn);
+        utilityArea.appendChild(btn);
     });
 
     const b06 = document.getElementById('button06');
     if (b06) {
         b06.removeAttribute('style');
         b06.className = 'msc-btn-feedback msc-btn-undo';
-        feedbackArea.appendChild(b06);
+        utilityArea.appendChild(b06);
     }
     
     const b07 = document.getElementById('button07');
     if (b07) {
         b07.removeAttribute('style');
         b07.className = 'msc-btn-feedback msc-btn-undo';
-        feedbackArea.appendChild(b07);
+        utilityArea.appendChild(b07);
     }
 
-    studyCard.appendChild(feedbackArea);
+    studyCard.appendChild(utilityArea);
 
     // Insert the Study Card below the unified filters
     const unifiedPanel = document.querySelector('.unified-panel-container');
