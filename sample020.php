@@ -2198,9 +2198,20 @@ async function sendRequest(){
         questionnumbers = await fetchQuestionsFromSupabase();
       
       // Fallback if empty
-      if (!questionnumbers || questionnumbers.length === 0) {
+            if (!questionnumbers || questionnumbers.length === 0) {
           // empty or error handling
-          document.getElementById("totalQuestionNumber").innerHTML = 0;
+          document.getElementById("totalQuestionNumber").innerHTML = "0";
+          document.getElementById("textareas").value = "該当する問題がありません";
+          const pressBtn = document.getElementById("press-button");
+          if (pressBtn) pressBtn.innerHTML = "0/0";
+          
+          // update modern UI counter too
+          const mscPress = document.getElementById('msc-press-button');
+          const mscTotal = document.getElementById('msc-total');
+          if (mscPress) mscPress.innerText = "0";
+          if (mscTotal) mscTotal.innerText = "0";
+          
+          return; // 該当問題がない場合はここで処理を打ち切る
       } else {
           document.getElementById("totalQuestionNumber").innerHTML = questionnumbers.length;
       }
