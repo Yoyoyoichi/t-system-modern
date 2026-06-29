@@ -1,7 +1,7 @@
 <?php error_reporting(0); ?>
 <!DOCTYPE html>
 <html lang="ja">
-<head>
+<head>\n<meta charset="UTF-8">
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 	<link rel="icon" href="./favicon.ico">
 	<link rel="apple-touch-icon" href="./apple-touch-icon.png" sizes="180x180">
@@ -1014,9 +1014,9 @@ $testnumber = 0;
 
 <select class="selectBox" name='MaxQuestionNumber' id='MaxQuestionNumber' onchange = "settingSave()"
   style='width: 12%; font-size: 25px;height: 5vh;line-height: 1vh;vertical-align:top;margin:5px 5px 5px 0px'>
-    <option value=20 >問題数</option>
+    <option value="" disabled>\u554f\u984c\u6570</option><option value="20" selected>20</option>
     <option value="all">all</option>
-    <option value=3>3</option>
+    
     <option value=4>4</option>
     <option value=5>5</option>
     <option value=6>6</option>
@@ -1025,7 +1025,7 @@ $testnumber = 0;
     <option value=9>9</option>
     <option value=10>10</option>
     <option value=15>15</option>
-    <option value=20>20</option>
+    
     <option value=25>25</option>
     <option value=30>30</option>
     <option value=35>35</option>
@@ -1136,7 +1136,7 @@ style='width: 30%; font-size: 38px;box-sizing:border-box;vertical-align:middle; 
   style='width: 12%; font-size: 25px;height: 5vh;line-height: 1vh;vertical-align:top;float: left;margin:0px 5px 5px 0px'>
     <option value=20 >問題数</option>
     <option value="all">all</option>
-    <option value=3>3</option>
+    
     <option value=4>4</option>
     <option value=5>5</option>
     <option value=6>6</option>
@@ -1145,7 +1145,7 @@ style='width: 30%; font-size: 38px;box-sizing:border-box;vertical-align:middle; 
     <option value=9>9</option>
     <option value=10>10</option>
     <option value=15>15</option>
-    <option value=20>20</option>
+    
     <option value=25>25</option>
     <option value=30>30</option>
     <option value=35>35</option>
@@ -1268,7 +1268,7 @@ style="width:7%;font-size: 20px;height: 5vh;">
   <option value=1.8>1.8</option>
   <option value=1.9>1.9</option>
   <option value=2>2</option>
-  <option value=3>3</option>
+  
   <option value=4>4</option>
   <option value=5>5</option>
   <option value=6>6</option>
@@ -1299,7 +1299,7 @@ style="width:7%;font-size: 20px;height: 5vh;">
   <option value=1.8>1.8</option>
   <option value=1.9>1.9</option>
   <option value=2>2</option>
-  <option value=3>3</option>
+  
   <option value=4>4</option>
   <option value=5>5</option>
   <option value=6>6</option>
@@ -1389,10 +1389,10 @@ word-wrap:break-word;'></pre>
   <pre style='font-size: 25px'>設定</pre>
 
   <select class="selectBox" name='autoSpeed' id='autoSpeed' onchange = "settingSave()" style='width: 23%; font-size: 20px;'>
-    <option value=3 style='width: 23%' placeholder="Auto速さ">Auto速さ</option>
+    <option value="" disabled>\u6700\u4f4e\u6b63\u89e3\u6570</option><option value="3" selected>3</option>
     <option value=1>1</option>
     <option value=2>2</option>
-    <option value=3>3</option>
+    
     <option value=4>4</option>
     <option value=5>5</option>
     <option value=6>6</option>
@@ -1451,11 +1451,11 @@ word-wrap:break-word;'></pre>
   </select>
   <br>
   <select class="selectBox" name='NOC' id='NOC' onchange = "settingSave()" style='width: 23%; font-size: 20px;margin:30px 0px 0px 0px' >
-    <option value=3 style='width: 23%' placeholder="最低正解数">最低正解数</option>
+    <option value="" disabled>最低正解数</option><option value="3" selected>3</option>
     <option value=0>0</option>
     <option value=1>1</option>
     <option value=2>2</option>
-    <option value=3>3</option>
+    
     <option value=4>4</option>
     <option value=5>5</option>
     <option value=6>6</option>
@@ -1481,7 +1481,7 @@ word-wrap:break-word;'></pre>
     <option value=1.8>1.8</option>
     <option value=2>2</option>
     <option value=2.5>2.5</option>
-    <option value=3>3</option>
+    
     <option value=3.5>3.5</option>
     <option value=4>4</option>
     <option value=5>5</option>
@@ -1491,7 +1491,7 @@ word-wrap:break-word;'></pre>
     <option value=9>9</option>
     <option value=10>10</option>
     <option value=15>15</option>
-    <option value=20>20</option>
+    
     <option value=30>30</option>
     <option value=60>60</option>
     <option value=120>120</option>
@@ -2151,16 +2151,8 @@ async function sendRequest(){
         // alert(max);
           randoms = [];
         /** 重複チェックしながら乱数作成 */
-        for(i = min; i < questionnumbers.length; i++){
-          while(true){
-            // alert(i);
-            var tmp = intRandom(min, questionnumbers.length-1);
-            if(!randoms.includes(tmp)){
-              randoms.push(tmp);
-              break;
-            }
-          }
-        }
+        for(i = min; i < questionnumbers.length; i++){ randoms.push(i); }
+        for(let j = randoms.length - 1; j > 0; j--) { const k = Math.floor(Math.random() * (j + 1)); [randoms[j], randoms[k]] = [randoms[k], randoms[j]]; }
         flag1 = true;
         var randQNum = new Array();
         for (let i = 0; i < questionnumbers.length; i++) {
@@ -2944,13 +2936,21 @@ async function listChange(categorySelect) {
 }
 
 
-function listChanged(){
-  firstRemoveFlag =false;
-  // alert(flag1);
-  num=-1;
-  // document.getElementById("press-button").innerHTML = num +"/"+ max;
+async function listChanged(){
+  firstRemoveFlag = false;
+  num = -1;
   flag1 = false;
-  // alert(flag1);
+  
+  const infoEl = document.getElementById("questionInfo");
+  if (infoEl) infoEl.innerHTML = "DB読み込み中... (Loading DB...)";
+  
+  questionnumbers = await fetchQuestionsFromSupabase();
+  
+  if (infoEl) infoEl.innerHTML = "DB読み込み完了。該当問題数: " + (questionnumbers ? questionnumbers.length : 0);
+  const totalQEl = document.getElementById("totalQuestionNumber");
+  if (totalQEl) totalQEl.innerHTML = (questionnumbers ? questionnumbers.length : 0);
+  
+  MaxQuestionNumber = questionnumbers ? questionnumbers.length : 0;
 }
 
 async function backQuestion(){
