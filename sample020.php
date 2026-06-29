@@ -713,6 +713,8 @@ input[type="text"].button:hover {
 .msc-btn-poor:hover { background: #dc2626 !important; transform: translateY(-1px); }
 .msc-btn-nav { background: #64748b !important; color: #fff !important; }
 .msc-btn-nav:hover { background: #475569 !important; transform: translateY(-1px); }
+.msc-btn-undo { background: #f59e0b !important; color: #fff !important; }
+.msc-btn-undo:hover { background: #d97706 !important; transform: translateY(-1px); }
 
 .msc-textarea {
     width: 100% !important;
@@ -5138,6 +5140,20 @@ window.addEventListener('DOMContentLoaded', () => {
         btn.className = 'msc-btn-feedback msc-btn-nav';
         feedbackArea.appendChild(btn);
     });
+
+    const b06 = document.getElementById('button06');
+    if (b06) {
+        b06.removeAttribute('style');
+        b06.className = 'msc-btn-feedback msc-btn-undo';
+        feedbackArea.appendChild(b06);
+    }
+    
+    const b07 = document.getElementById('button07');
+    if (b07) {
+        b07.removeAttribute('style');
+        b07.className = 'msc-btn-feedback msc-btn-undo';
+        feedbackArea.appendChild(b07);
+    }
 
     studyCard.appendChild(feedbackArea);
 
