@@ -5283,35 +5283,6 @@ window.addEventListener('DOMContentLoaded', () => {
     
     studyCard.appendChild(cardBody);
 
-    // 4. Create Toolbox (Settings dropdowns)
-    const cardToolbox = document.createElement('div');
-    cardToolbox.className = 'msc-toolbox';
-    
-    const toolboxLabel = document.createElement('div');
-    toolboxLabel.className = 'msc-toolbox-label';
-    toolboxLabel.innerText = 'Toolbox';
-    cardToolbox.appendChild(toolboxLabel);
-
-    const toolboxItems = document.createElement('div');
-    toolboxItems.className = 'msc-toolbox-items';
-    
-    moveEl('poorat', toolboxItems, 'msc-select');
-    moveEl('fontresize', toolboxItems, 'msc-select');
-    moveEl('mp3Speed', toolboxItems, 'msc-select');
-    moveEl('mp3StartPoint', toolboxItems, 'msc-select');
-    moveEl('imageSize1', toolboxItems, 'msc-select');
-    moveEl('imageSize2', toolboxItems, 'msc-select');
-    
-    const readButtons = document.querySelectorAll('input[onClick*="read"]');
-    readButtons.forEach(btn => {
-        btn.removeAttribute('style');
-        btn.className = 'msc-btn msc-btn-sm';
-        toolboxItems.appendChild(btn);
-    });
-
-    cardToolbox.appendChild(toolboxItems);
-    studyCard.appendChild(cardToolbox);
-
     // 5. Create Answer Area
     const cardAnswer = document.createElement('div');
     cardAnswer.className = 'msc-answer';
