@@ -2195,8 +2195,7 @@ async function sendRequest(){
     
     // Fetch questions from Supabase directly in Javascript! ONLY on first load!
     if (flag1 == false) {
-      yesterdayIncorrect = false;
-      questionnumbers = await fetchQuestionsFromSupabase();
+        questionnumbers = await fetchQuestionsFromSupabase();
       
       // Fallback if empty
       if (!questionnumbers || questionnumbers.length === 0) {
@@ -3017,6 +3016,7 @@ async function listChanged(){
   firstRemoveFlag = false;
   num = -1;
   flag1 = false;
+  yesterdayIncorrect = false;
   
   const infoEl = document.getElementById("questionInfo");
   if (infoEl) infoEl.innerHTML = "DB読み込み中... (Loading DB...)";
@@ -3164,72 +3164,66 @@ function UnderFifty(){
   getTodayNumberFunc()
   sendRequest()
 }
-function yesterdayQuestion(){
-  listChanged()
+async function yesterdayQuestion(){
+  flag1 = false;
   document.getElementById("category4").value = "qdate";
   document.getElementById("operator1").value = "<";
-  getTodayNumberFunc()
+  getTodayNumberFunc();
   document.getElementById("category5").value = "qdate";
   document.getElementById("operator2").value = "=";
   yesterdayIncorrect = true;
   getYesterdayNumberFunc();
-  sendRequest()
+  sendRequest();
 }
-function threeDaysAgoQuestion(){
-  listChanged()
+async function threeDaysAgoQuestion(){
+  flag1 = false;
   document.getElementById("category4").value = "qdate";
   document.getElementById("operator1").value = "<";
-  getTodayNumberFunc()
+  getTodayNumberFunc();
   document.getElementById("category5").value = "qdate";
   document.getElementById("operator2").value = "=";
-  getThreeDaysAgoNumberFunc()
-  sendRequest()
+  getThreeDaysAgoNumberFunc();
+  sendRequest();
 }
-function noTodayQuestion(){
-  listChanged()
+async function noTodayQuestion(){
+  flag1 = false;
   document.getElementById("category4").value = "qdate";
   document.getElementById("operator1").value = "<";
-  getTodayNumberFunc()
-  sendRequest()
+  getTodayNumberFunc();
+  sendRequest();
 }
-function errTodayQuestion(){
-  listChanged()
+async function errTodayQuestion(){
+  flag1 = false;
   document.getElementById("category4").value = "qdate";
   document.getElementById("operator1").value = "=";
-  getTodayNumberFunc()
+  getTodayNumberFunc();
   yesterdayIncorrect = true;
-  sendRequest()
+  sendRequest();
 }
-function errLastQuestion(){
+async function errLastQuestion(){
+  flag1 = false;
   yesterdayIncorrect = true;
-  sendRequest()
+  sendRequest();
 }
-function aWeekAgoQuestion(){
-  listChanged()
- 
+async function aWeekAgoQuestion(){
+  flag1 = false;
   document.getElementById("category4").value = "qdate";
   document.getElementById("operator1").value = "<";
-  getTodayNumberFunc()  
+  getTodayNumberFunc();
   document.getElementById("category5").value = "qdate";
   document.getElementById("operator2").value = "=";
   getAWeekAgoNumberFunc();
-  document.getElementById("category6").value = "qdate";
-  document.getElementById("operator3").value = ">";
-  document.getElementById("criteria3").value = "20190101";
-  sendRequest()
+  sendRequest();
 }
-function aMonthAgoQuestion(){
-  listChanged()
+async function aMonthAgoQuestion(){
+  flag1 = false;
   document.getElementById("category4").value = "qdate";
   document.getElementById("operator1").value = "<";
-  getTodayNumberFunc()  
+  getTodayNumberFunc();
   document.getElementById("category5").value = "qdate";
   document.getElementById("operator2").value = "=";
   getAMonthAgoNumberFunc();
-  document.getElementById("category6").value = "qdate";
-  document.getElementById("operator3").value = ">";
-  document.getElementById("criteria3").value = "20190101";
-  sendRequest()
+  sendRequest();
 }
 function levelZero(){
   listChanged()
