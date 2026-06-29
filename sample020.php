@@ -2950,7 +2950,13 @@ async function listChanged(){
   const totalQEl = document.getElementById("totalQuestionNumber");
   if (totalQEl) totalQEl.innerHTML = (questionnumbers ? questionnumbers.length : 0);
   
-  MaxQuestionNumber = questionnumbers ? questionnumbers.length : 0;
+  let ddl = document.getElementById('MaxQuestionNumber');
+  if (ddl && ddl.value && ddl.value !== 'all' && !isNaN(Number(ddl.value))) {
+    MaxQuestionNumber = Number(ddl.value);
+    max = MaxQuestionNumber;
+  } else {
+    MaxQuestionNumber = questionnumbers ? questionnumbers.length : 0;
+  }
 }
 
 async function backQuestion(){
