@@ -1,7 +1,12 @@
 <?php error_reporting(0); ?>
 <!DOCTYPE html>
 <html lang="ja">
-<head>\n<meta charset="UTF-8">
+<head>
+
+<meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate, max-age=0" />
+<meta http-equiv="Pragma" content="no-cache" />
+<meta http-equiv="Expires" content="0" />
+\n<meta charset="UTF-8">
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 	<link rel="icon" href="./favicon.ico">
 	<link rel="apple-touch-icon" href="./apple-touch-icon.png" sizes="180x180">
