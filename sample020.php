@@ -2000,11 +2000,11 @@ async function updateRecordSupabase(qnum, isCorrect, pastTime, pooratVal) {
     const isToday = row.pre_qdate && String(row.pre_qdate).startsWith(todayStr);
 
     if (isCorrect) {
-        updates.correct = (row.correct || 0) + 1;
-        updates.pca = updates.correct / (updates.correct + (row.incorrect || 0)) * 100;
+        updates.correct = parseInt(row.correct || 0, 10) + 1;
+        updates.pca = updates.correct / (updates.correct + parseInt(row.incorrect || 0, 10)) * 100;
     } else {
-        updates.incorrect = (row.incorrect || 0) + 1;
-        updates.pca = (row.correct || 0) / ((row.correct || 0) + updates.incorrect) * 100;
+        updates.incorrect = parseInt(row.incorrect || 0, 10) + 1;
+        updates.pca = parseInt(row.correct || 0, 10) / (parseInt(row.correct || 0, 10) + updates.incorrect) * 100;
     }
     updates.qdate = todayStr;
     updates.pasttime = pastTime;
@@ -2016,8 +2016,8 @@ async function updateRecordSupabase(qnum, isCorrect, pastTime, pooratVal) {
 
         if (isCorrect) {
             updates.q_record = "〇" + q_record;
-            updates.correct2 = (row.correct2 || 0) + 1;
-            updates.pca2 = updates.correct2 / (updates.correct2 + (row.incorrect2 || 0)) * 100;
+            updates.correct2 = parseInt(row.correct2 || 0, 10) + 1;
+            updates.pca2 = updates.correct2 / (updates.correct2 + parseInt(row.incorrect2 || 0, 10)) * 100;
             updates.poorat = pooratVal;
 
             const matchRecord = (str) => q_record === str || q_record.startsWith(str + "×");
@@ -2028,8 +2028,8 @@ async function updateRecordSupabase(qnum, isCorrect, pastTime, pooratVal) {
             }
         } else {
             updates.q_record = "×" + q_record;
-            updates.incorrect2 = (row.incorrect2 || 0) + 1;
-            updates.pca2 = (row.correct2 || 0) / ((row.correct2 || 0) + updates.incorrect2) * 100;
+            updates.incorrect2 = parseInt(row.incorrect2 || 0, 10) + 1;
+            updates.pca2 = parseInt(row.correct2 || 0, 10) / (parseInt(row.correct2 || 0, 10) + updates.incorrect2) * 100;
             updates.q_level = q_level > 0 ? q_level - 1 : 0;
             updates.poorat = pooratVal;
         }
@@ -2804,7 +2804,7 @@ async function correctMinus(){
   const { data: row } = await supabaseClient.from(db_name).select('*').eq('questionnumber', rand).single();
   if (row) {
       let updates = { correct: Math.max(0, (row.correct || 0) - 1) };
-      updates.pca = updates.correct / (updates.correct + (row.incorrect || 0)) * 100;
+      updates.pca = updates.correct / (updates.correct + parseInt(row.incorrect || 0, 10)) * 100;
       
       let q_record = row.q_record || "";
       if (q_record.startsWith("〇")) {
@@ -2828,7 +2828,7 @@ async function incorrectMinus(){
   const { data: row } = await supabaseClient.from(db_name).select('*').eq('questionnumber', rand).single();
   if (row) {
       let updates = { incorrect: Math.max(0, (row.incorrect || 0) - 1) };
-      updates.pca = (row.correct || 0) / ((row.correct || 0) + updates.incorrect) * 100;
+      updates.pca = parseInt(row.correct || 0, 10) / (parseInt(row.correct || 0, 10) + updates.incorrect) * 100;
       
       let q_record = row.q_record || "";
       if (q_record.startsWith("×")) {
