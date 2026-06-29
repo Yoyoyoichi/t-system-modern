@@ -1467,11 +1467,127 @@ word-wrap:break-word;'></pre>
 <br>
 <br>
 <br>
-<div id ="setting" class="setting" style=" width:93%" >
-  <pre style='font-size: 25px'>設定</pre>
 
-  <select class="selectBox" name='autoSpeed' id='autoSpeed' onchange = "settingSave()" style='width: 23%; font-size: 20px;'>
-    <option value="" disabled>&#26368;&#20302;&#27491;&#35299;&#25968;</option><option value="3" selected>3</option>
+<style>
+.msc-settings-panel {
+    background: rgba(15, 23, 42, 0.7);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    padding: 24px;
+    margin: 32px auto;
+    width: 95%;
+    max-width: 1200px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    font-family: 'Inter', sans-serif;
+    color: #f1f5f9;
+    box-sizing: border-box;
+}
+.msc-settings-header {
+    margin-bottom: 24px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 12px;
+}
+.msc-settings-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #e2e8f0;
+}
+.msc-settings-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+}
+.msc-setting-item {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+.msc-setting-label {
+    font-size: 0.85rem;
+    color: #94a3b8;
+    font-weight: 500;
+}
+.msc-select, .msc-input {
+    width: 100%;
+    height: 36px;
+    background: rgba(30, 41, 59, 0.8);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #fff;
+    border-radius: 8px;
+    padding: 0 12px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+.msc-select:hover, .msc-input:hover {
+    border-color: rgba(255, 255, 255, 0.4);
+}
+.msc-select option {
+    background: #1e293b;
+    color: #fff;
+}
+.msc-settings-divider {
+    height: 1px;
+    background: rgba(255, 255, 255, 0.1);
+    margin: 24px 0;
+}
+.msc-settings-checkboxes {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+.msc-checkbox-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+}
+.msc-checkbox {
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    background: rgba(30, 41, 59, 0.8);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 6px;
+    cursor: pointer;
+    position: relative;
+    transition: all 0.2s;
+}
+.msc-checkbox:checked {
+    background: #3b82f6;
+    border-color: #3b82f6;
+}
+.msc-checkbox:checked::after {
+    content: '';
+    position: absolute;
+    left: 6px;
+    top: 2px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+}
+.msc-checkbox-label {
+    font-size: 0.95rem;
+    color: #cbd5e1;
+    user-select: none;
+}
+</style>
+
+
+<div class="msc-settings-panel">
+    <div class="msc-settings-header">
+        <span class="msc-settings-title">⚙️ 詳細設定</span>
+    </div>
+    <div class="msc-settings-grid">
+
+        <div class="msc-setting-item">
+            <span class="msc-setting-label">🏆 最低正解数</span>
+            <div class="msc-setting-control">
+                <select class="selectBox" name='autoSpeed' id='autoSpeed' onchange = "settingSave()" style='width: 23%; font-size: 20px;'>
+    <option value="3" selected>3</option>
     <option value=1>1</option>
     <option value=2>2</option>
     
@@ -1483,8 +1599,13 @@ word-wrap:break-word;'></pre>
     <option value=9>9</option>
     <option value=10>10</option>
   </select>
-  <select class="selectBox" name='autoReading' id='autoReading' onchange = "settingSave()" style='width: 23%; font-size: 20px;'>
-    <option value='je' style='width: 23%' placeholder="読上音声">読上音声</option>
+            </div>
+        </div>
+        <div class="msc-setting-item">
+            <span class="msc-setting-label">🗣️ 読上音声</span>
+            <div class="msc-setting-control">
+                <select class="selectBox" name='autoReading' id='autoReading' onchange = "settingSave()" style='width: 23%; font-size: 20px;'>
+    
     <option value='je'>問題-日本語/解答‐英語</option>
     <option value='ej'>問題-英語/解答‐日本語</option>
     <option value='jj'>問題-日本語/解答‐日本語</option>
@@ -1494,9 +1615,13 @@ word-wrap:break-word;'></pre>
     <option value='*j'>解答だけ‐日本語</option>
     <option value='*e'>解答だけ‐英語</option>
   </select>
-
-  <select class="selectBox" name='jpSpeed' id='jpSpeed' onchange = "settingSave()" style='width: 23%; font-size: 20px;'>
-    <option value=1.2 style='width: 23%' placeholder="日本語読み上げ速さ">日本語読み上げ速さ</option>
+            </div>
+        </div>
+        <div class="msc-setting-item">
+            <span class="msc-setting-label">🇯🇵 日本語速さ</span>
+            <div class="msc-setting-control">
+                <select class="selectBox" name='jpSpeed' id='jpSpeed' onchange = "settingSave()" style='width: 23%; font-size: 20px;'>
+    
     <option value=0.3>0.3</option>
     <option value=0.4>0.4</option>
     <option value=0.5>0.5</option>
@@ -1516,8 +1641,13 @@ word-wrap:break-word;'></pre>
 
 
   </select>
-  <select class="selectBox" name='engSpeed' id='engSpeed' onchange = "settingSave()" style='width: 23%; font-size: 20px;'>
-    <option value=0.7 style='width: 23%' placeholder="英語読み上げ速さ">英語読み上げ速さ</option>
+            </div>
+        </div>
+        <div class="msc-setting-item">
+            <span class="msc-setting-label">🇺🇸 英語速さ</span>
+            <div class="msc-setting-control">
+                <select class="selectBox" name='engSpeed' id='engSpeed' onchange = "settingSave()" style='width: 23%; font-size: 20px;'>
+    
     <option value=0.4>0.4</option>
     <option value=0.5>0.5</option>
     <option value=0.6>0.6</option>
@@ -1531,9 +1661,13 @@ word-wrap:break-word;'></pre>
     <option value=1.4>1.4</option>
     <option value=1.5>1.5</option>
   </select>
-  <br>
-  <select class="selectBox" name='NOC' id='NOC' onchange = "settingSave()" style='width: 23%; font-size: 20px;margin:30px 0px 0px 0px' >
-    <option value="" disabled>最低正解数</option><option value="3" selected>3</option>
+            </div>
+        </div>
+        <div class="msc-setting-item">
+            <span class="msc-setting-label">✅ 最低正解数</span>
+            <div class="msc-setting-control">
+                <select class="selectBox" name='NOC' id='NOC' onchange = "settingSave()" style='width: 23%; font-size: 20px;margin:30px 0px 0px 0px' >
+    <option value="3" selected>3</option>
     <option value=0>0</option>
     <option value=1>1</option>
     <option value=2>2</option>
@@ -1546,9 +1680,13 @@ word-wrap:break-word;'></pre>
     <option value=9>9</option>
     <option value=10>10</option>
   </select>
-
-  <select class="selectBox" name='autoAnswer' id='autoAnswer' onchange = "settingSave()" style='width: 23%; font-size: 20px;margin:30px 0px 0px 0px'>
-    <option value=0 style='width: 23%' placeholder="自動解答秒数">自動解答秒数</option>
+            </div>
+        </div>
+        <div class="msc-setting-item">
+            <span class="msc-setting-label">⏳ 自動解答(秒)</span>
+            <div class="msc-setting-control">
+                <select class="selectBox" name='autoAnswer' id='autoAnswer' onchange = "settingSave()" style='width: 23%; font-size: 20px;margin:30px 0px 0px 0px'>
+    
     <option value=0>なし</option>
     <option value=0.5>0.5</option>
     <option value=0.6>0.6</option>
@@ -1581,8 +1719,13 @@ word-wrap:break-word;'></pre>
     <option value=240>240</option>
     <option value=300>300</option>
   </select>
-  <select class="selectBox" name='backGround' id='backGround' style='width: 23%; font-size: 20px;margin:30px 0px 0px 0px' onchange = 'changeBG();settingSave()'>
-    <option value="RRice-colorful-wall.jpg" style='width: 23%' placeholder="背景画像">背景画像</option>
+            </div>
+        </div>
+        <div class="msc-setting-item">
+            <span class="msc-setting-label">🎨 背景画像</span>
+            <div class="msc-setting-control">
+                <select class="selectBox" name='backGround' id='backGround' style='width: 23%; font-size: 20px;margin:30px 0px 0px 0px' onchange = 'changeBG();settingSave()'>
+    
     <option value="colored-pencil-pattern1144.png">①</option>
     <option value="fancy-floral-pattern-384.jpg">②</option>
     <option value="mint-green-chevron-stripes-2361.png">③</option>
@@ -1621,8 +1764,13 @@ word-wrap:break-word;'></pre>
 
     
   </select>
-    <select class="selectBox" name='fontSelect' id='fontSelect' style='width: 23%; font-size: 20px;margin:30px 0px 0px 0px' onchange = 'settingSave()'>
-    <option value="SimHei" style='width: 23%' placeholder="フォント">フォント</option>
+            </div>
+        </div>
+        <div class="msc-setting-item">
+            <span class="msc-setting-label">🔤 フォント</span>
+            <div class="msc-setting-control">
+                <select class="selectBox" name='fontSelect' id='fontSelect' style='width: 23%; font-size: 20px;margin:30px 0px 0px 0px' onchange = 'settingSave()'>
+    
     <option value="ＭＳ 明朝">ＭＳ 明朝</option>
     <option value="SimHei">SimHei</option>
     <option value="Times">Times</option>
@@ -1646,35 +1794,73 @@ word-wrap:break-word;'></pre>
     <option value="Trebuchet">Trebuchet</option>
 
   </select>
-  </select>
-    <select class="selectBox" name='novelSelect' id='novelSelect' style='display:none;width: 23%; font-size: 20px;margin:30px 0px 0px 0px' onchange = 'settingSave()'>
-    <option value="なし" style='width: 23%' placeholder="フォント">小説</option>
+            </div>
+        </div>
+        <div class="msc-setting-item" style="display:none;">
+            <span class="msc-setting-label">📖 小説</span>
+            <div class="msc-setting-control">
+                <select class="selectBox" name='novelSelect' id='novelSelect' style='display:none;width: 23%; font-size: 20px;margin:30px 0px 0px 0px' onchange = 'settingSave()'>
+    
     <option value="なし">なし</option>
   </select>
-  <input class ="button" type="text" name="novelSentenceNumber" id="novelSentenceNumber" onChange='settingSave()' value = "" 
+            </div>
+        </div>
+        <div class="msc-setting-item" style="display:none;">
+            <span class="msc-setting-label">🔢 文章番号</span>
+            <div class="msc-setting-control">
+                <input class ="button" type="text" name="novelSentenceNumber" id="novelSentenceNumber" onChange='settingSave()' value = "" 
   style='display:none;width: 8%; font-size: 16px;box-sizing:border-box;vertical-align:middle;margin:30px 0px 0px 0px '>
+            </div>
+        </div>
+    </div>
+    <div class="msc-settings-divider"></div>
+    <div class="msc-settings-checkboxes">
 
-  <br>
-  <input class ="button" type="checkbox" id = "qachange" onchange = "settingSave()" style="font-size: 20px;margin:2vh 0px 0px 0px">
-  <font size="4" color="#000000" class="checkText" ;>問題/解答</font>
-  <input class ="button" type="checkbox" id = "autoread" onchange = "settingSave()" style="font-size: 20px;margin:2vh 0px 0px 2vh">
-  <font size="4" color="#000000" class="checkText";>自動読み上げ</font>
-  <input class ="button" type="checkbox" id = "keyControl" onchange = "settingSave()" style="font-size: 20px;margin:2vh 0px 0px 2vh">
-  <font size="4" color="#000000" class="checkText";>キー操作</font>
-  <br>
-  <input class ="button" type="checkbox" id = "answerByMyself" onchange = "settingSave()" style="font-size: 20px;margin:2vh 0px 0px 0px">
-  <font size="4" color="#000000" class="checkText";>解答入力</font>
-  <input class ="button" type="checkbox" id = "randomOrNot" onchange = "settingSave()" style="font-size: 20px;margin:2vh 0px 0px 2vh">
-  <font size="4" color="#000000" class="checkText";>ランダム</font>
-  <input class ="button" type="checkbox" id = "chordsOrNot" onchange = "settingSave()" style="font-size: 20px;margin:2vh 0px 0px 2vh">
-  <font size="4" color="#000000" class="checkText";>コード音声</font>
-  <input class ="button" type="checkbox" id="flexButton" value="横並び" onchange='QnAareaFlex();settingSave()' style="font-size: 20px;margin:2vh 0px 0px 2vh">
-  <font size="4" color="#000000" class="checkText";>横並び</font>
-  <input class ="button" type="checkbox" id="blackCheck" value="真っ黒" onchange='blackOrWhite();settingSave()' style="font-size: 20px;margin:2vh 0px 0px 2vh">
-  <font size="4" color="#000000" class="checkText";>真っ黒</font>
-  <br>
-
+        <label class="msc-checkbox-wrapper">
+            <input class ="button" type="checkbox" class="msc-checkbox" id = "qachange" onchange = "settingSave()" style="font-size: 20px;margin:2vh 0px 0px 0px">
+            <span class="msc-checkbox-label">問題/解答</span>
+        </label>
+        <label class="msc-checkbox-wrapper">
+            <select class="selectBox" name='autoReading' id='autoReading' onchange = "settingSave()" style='width: 23%; font-size: 20px;'>
+    <option value='je' style='width: 23%' placeholder="読上音声">読上音声</option>
+    <option value='je'>問題-日本語/解答‐英語</option>
+    <option value='ej'>問題-英語/解答‐日本語</option>
+    <option value='jj'>問題-日本語/解答‐日本語</option>
+    <option value='ee'>問題-英語/解答‐英語</option>
+    <option value='j*'>問題だけ-日本語</option>
+    <option value='e*'>問題だけ-英語</option>
+    <option value='*j'>解答だけ‐日本語</option>
+    <option value='*e'>解答だけ‐英語</option>
+  </select>
+            <span class="msc-checkbox-label">自動読上</span>
+        </label>
+        <label class="msc-checkbox-wrapper">
+            <input class ="button" type="checkbox" class="msc-checkbox" id = "keyControl" onchange = "settingSave()" style="font-size: 20px;margin:2vh 0px 0px 2vh">
+            <span class="msc-checkbox-label">キー操作</span>
+        </label>
+        <label class="msc-checkbox-wrapper">
+            <input class ="button" type="checkbox" class="msc-checkbox" id = "answerByMyself" onchange = "settingSave()" style="font-size: 20px;margin:2vh 0px 0px 0px">
+            <span class="msc-checkbox-label">解答入力</span>
+        </label>
+        <label class="msc-checkbox-wrapper">
+            <input class ="button" type="checkbox" class="msc-checkbox" id = "randomOrNot" onchange = "settingSave()" style="font-size: 20px;margin:2vh 0px 0px 2vh">
+            <span class="msc-checkbox-label">ランダム</span>
+        </label>
+        <label class="msc-checkbox-wrapper">
+            <input class ="button" type="checkbox" class="msc-checkbox" id = "chordsOrNot" onchange = "settingSave()" style="font-size: 20px;margin:2vh 0px 0px 2vh">
+            <span class="msc-checkbox-label">コード音声</span>
+        </label>
+        <label class="msc-checkbox-wrapper">
+            <input class ="button" type="checkbox" class="msc-checkbox" id="flexButton" value="横並び" onchange='QnAareaFlex();settingSave()' style="font-size: 20px;margin:2vh 0px 0px 2vh">
+            <span class="msc-checkbox-label">横並び</span>
+        </label>
+        <label class="msc-checkbox-wrapper">
+            <input class ="button" type="checkbox" class="msc-checkbox" id="blackCheck" value="真っ黒" onchange='blackOrWhite();settingSave()' style="font-size: 20px;margin:2vh 0px 0px 2vh">
+            <span class="msc-checkbox-label">真っ黒</span>
+        </label>
+    </div>
 </div>
+
 <div class="undermarginbox" >
 </div>
 
