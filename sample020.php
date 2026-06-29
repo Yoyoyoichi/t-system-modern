@@ -1444,14 +1444,14 @@ word-wrap:break-word;'></pre>
 
 <style>
 .msc-settings-panel {
-    margin-top: 48px;
+    margin-top: 24px;
     background: rgba(15, 23, 42, 0.7);
     backdrop-filter: blur(12px);
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 16px;
     padding: 24px;
-    margin: 32px auto;
-    width: 95%;
+    margin: 24px auto 0 auto;
+    width: 100%;
     max-width: 1200px;
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
     font-family: 'Inter', sans-serif;
@@ -5156,6 +5156,9 @@ window.addEventListener('DOMContentLoaded', () => {
     if(topPanel) {
         // We append it inside the topPanel to keep it as one unified block
         topPanel.appendChild(unifiedContainer);
+        
+        const settingsPanel = document.querySelector('.msc-settings-panel');
+        if (settingsPanel) topPanel.appendChild(settingsPanel);
     } else if(form) {
         form.insertBefore(unifiedContainer, form.firstChild);
     }
