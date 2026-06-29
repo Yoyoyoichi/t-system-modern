@@ -3165,6 +3165,7 @@ function UnderFifty(){
   sendRequest()
 }
 async function yesterdayQuestion(){
+  num = -1;
   flag1 = false;
   document.getElementById("category4").value = "qdate";
   document.getElementById("operator1").value = "<";
@@ -3176,6 +3177,7 @@ async function yesterdayQuestion(){
   sendRequest();
 }
 async function threeDaysAgoQuestion(){
+  num = -1;
   flag1 = false;
   document.getElementById("category4").value = "qdate";
   document.getElementById("operator1").value = "<";
@@ -3186,6 +3188,7 @@ async function threeDaysAgoQuestion(){
   sendRequest();
 }
 async function noTodayQuestion(){
+  num = -1;
   flag1 = false;
   document.getElementById("category4").value = "qdate";
   document.getElementById("operator1").value = "<";
@@ -3193,6 +3196,7 @@ async function noTodayQuestion(){
   sendRequest();
 }
 async function errTodayQuestion(){
+  num = -1;
   flag1 = false;
   document.getElementById("category4").value = "qdate";
   document.getElementById("operator1").value = "=";
@@ -3201,11 +3205,13 @@ async function errTodayQuestion(){
   sendRequest();
 }
 async function errLastQuestion(){
+  num = -1;
   flag1 = false;
   yesterdayIncorrect = true;
   sendRequest();
 }
 async function aWeekAgoQuestion(){
+  num = -1;
   flag1 = false;
   document.getElementById("category4").value = "qdate";
   document.getElementById("operator1").value = "<";
@@ -3216,6 +3222,7 @@ async function aWeekAgoQuestion(){
   sendRequest();
 }
 async function aMonthAgoQuestion(){
+  num = -1;
   flag1 = false;
   document.getElementById("category4").value = "qdate";
   document.getElementById("operator1").value = "<";
