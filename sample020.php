@@ -195,7 +195,7 @@ input[name="botan04"]:hover {
 
 /* Text inputs (search, criteria, etc) */
 input[type="text"].button {
-    background-color: #fff;
+    background-color: #1e293b;
     color: #111 !important;
     border: 1px solid #ddd;
     box-shadow: inset 0 1px 2px rgba(0,0,0,0.05);
@@ -206,7 +206,7 @@ input[type="text"].button:focus {
     box-shadow: 0 0 0 1px #111;
 }
 input[type="text"].button:hover {
-    background-color: #fff;
+    background-color: #1e293b;
     color: #111 !important;
 }
 
@@ -344,7 +344,7 @@ input[type="text"].button:hover {
     outline: none;
 }
 .mtp-category-row select:focus {
-    border-color: #94a3b8;
+    border-color: #64748b;
     box-shadow: 0 0 0 2px rgba(148, 163, 184, 0.2);
 }
 .mtp-category-row select option {
@@ -403,7 +403,7 @@ input[type="text"].button:hover {
 
 .mtp-filter-btn:hover {
     background: #f1f5f9;
-    border-color: #94a3b8;
+    border-color: #64748b;
     transform: translateY(-1px);
     box-shadow: 0 4px 6px rgba(0,0,0,0.05);
 }
@@ -445,10 +445,10 @@ input[type="text"].button:hover {
 .msp-criteria-container { display: flex; flex-direction: column; gap: 12px; }
 .msp-criteria-row { display: flex; gap: 12px; align-items: center; background: #f8fafc; padding: 12px; border-radius: 8px; border: 1px solid #e2e8f0; }
 .msp-select { height: 44px !important; border: 1px solid #cbd5e1; border-radius: 6px; padding: 0 12px; font-size: 14px !important; background: #fff; color: #334155; outline: none; transition: all 0.2s; min-width: 140px; }
-.msp-select:focus { border-color: #94a3b8; box-shadow: 0 0 0 2px rgba(148, 163, 184, 0.2); }
+.msp-select:focus { border-color: #64748b; box-shadow: 0 0 0 2px rgba(148, 163, 184, 0.2); }
 .msp-op { min-width: 60px; width: 60px; text-align: center; }
 .msp-input { height: 44px !important; border: 1px solid #cbd5e1; border-radius: 6px; padding: 0 12px; font-size: 15px !important; background: #fff; color: #334155 !important; outline: none; flex: 1; transition: all 0.2s; }
-.msp-input:focus { border-color: #94a3b8; box-shadow: 0 0 0 2px rgba(148, 163, 184, 0.2); }
+.msp-input:focus { border-color: #64748b; box-shadow: 0 0 0 2px rgba(148, 163, 184, 0.2); }
 .msp-search { border: none; border-bottom: 2px solid #cbd5e1; border-radius: 0; background: transparent; padding-left: 0; font-size: 18px !important; flex: 1; min-width: 200px; }
 .msp-search:focus { border-bottom-color: #111; box-shadow: none; }
 .msp-btn { height: 44px !important; background: #111; color: #fff !important; border: none; border-radius: 6px; padding: 0 20px; font-size: 14px !important; font-weight: 500; cursor: pointer; transition: all 0.2s; white-space: nowrap; }
@@ -542,24 +542,25 @@ input[type="text"].button:hover {
 }
 
 .msc-btn-primary {
-    background: #0f172a !important;
-    color: #fff !important;
+    background: #111111;
+    color: #ffffff;
+    border-color: #111111;
 }
 
 .msc-btn-primary:hover {
-    background: #334155 !important;
-    transform: translateY(-1px);
+    background: #333333;
+    color: #ffffff;
+    border-color: #333333;
 }
 
 .msc-btn-secondary {
-    background: #fff !important;
-    color: #0f172a !important;
-    border: 1px solid #cbd5e1 !important;
+    background: #ffffff;
+    color: #111111;
+    border-color: #dddddd;
 }
 
 .msc-btn-secondary:hover {
-    background: #f8fafc !important;
-    border-color: #94a3b8 !important;
+    background: #f4f4f5;
 }
 
 .msc-btn-sm {
@@ -621,7 +622,7 @@ input[type="text"].button:hover {
     font-size: 12px;
     font-weight: 700;
     text-transform: uppercase;
-    color: #94a3b8;
+    color: #64748b;
     letter-spacing: 0.05em;
 }
 
@@ -644,7 +645,7 @@ input[type="text"].button:hover {
 }
 
 .msc-select:focus {
-    border-color: #94a3b8;
+    border-color: #64748b;
 }
 
 .msc-answer {
@@ -659,18 +660,15 @@ input[type="text"].button:hover {
     border-radius: 0 0 12px 12px;
 }
 .msc-btn-huge {
-    flex: 1;
-    height: 80px;
-    font-size: 28px !important;
-    font-weight: 700;
-    border-radius: 12px;
+    padding: 16px 32px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    border-radius: 8px;
+    border: 1px solid #dddddd;
+    background: #ffffff;
+    color: #111111;
     cursor: pointer;
-    border: none;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     transition: all 0.2s;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
 }
 .msc-btn-primary.msc-btn-huge {
     background: #0ea5e9 !important;
@@ -719,43 +717,58 @@ input[type="text"].button:hover {
     transition: all 0.2s;
     box-shadow: 0 1px 2px rgba(0,0,0,0.05);
 }
-.msc-btn-good { background: #10b981 !important; color: #fff !important; }
-.msc-btn-good:hover { background: #059669 !important; transform: translateY(-1px); }
-.msc-btn-poor { background: #ef4444 !important; color: #fff !important; }
-.msc-btn-poor:hover { background: #dc2626 !important; transform: translateY(-1px); }
+.msc-btn-good {
+    background: #ffffff;
+    color: #111111;
+    border-color: #dddddd;
+}
+.msc-btn-good:hover {
+    background: #111111;
+    color: #ffffff;
+    border-color: #111111;
+}
+.msc-btn-poor {
+    background: #ffffff;
+    color: #111111;
+    border-color: #dddddd;
+}
+.msc-btn-poor:hover {
+    background: #111111;
+    color: #ffffff;
+    border-color: #111111;
+}
 .msc-btn-nav { background: #64748b !important; color: #fff !important; }
 .msc-btn-nav:hover { background: #475569 !important; transform: translateY(-1px); }
 .msc-btn-undo { background: #f59e0b !important; color: #fff !important; }
 .msc-btn-undo:hover { background: #d97706 !important; transform: translateY(-1px); }
 
 .msc-textarea {
-    width: 100% !important;
-    height: 120px !important;
+    width: 100%;
+    min-height: 120px;
+    background: #ffffff;
+    border: 1px solid #eaeaea;
+    border-radius: 8px;
     padding: 16px;
-    border-radius: 12px;
-    border: 2px solid #e2e8f0;
-    font-size: 20px !important;
-    color: #0f172a;
-    background: #fff;
+    color: #111111;
+    font-size: 1rem;
+    line-height: 1.6;
     resize: vertical;
-    transition: all 0.2s;
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.02);
     box-sizing: border-box;
-    line-height: 1.5;
 }
 
 .msc-textarea:focus {
-    border-color: #3b82f6;
     outline: none;
-    box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1);
+    border-color: #111111;
 }
 
 .msc-question-textarea {
     background: #f8fafc;
-    border-color: #cbd5e1;
+    border-color: #334155;
 }
 
 .msc-answer-textarea {
-    border-color: #3b82f6;
+    border-color: #111111;
 }
 
 .msc-hidden {
@@ -1445,28 +1458,28 @@ word-wrap:break-word;'></pre>
 <style>
 .msc-settings-panel {
     margin-top: 24px;
-    background: rgba(15, 23, 42, 0.7);
-    backdrop-filter: blur(12px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: #f8fafc;
+    
+    border: 1px solid #e2e8f0;
     border-radius: 16px;
     padding: 24px;
     margin: 24px auto 0 auto;
     width: 100%;
     max-width: 1200px;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    box-shadow: none;
     font-family: 'Inter', sans-serif;
-    color: #f1f5f9;
+    color: #334155;
     box-sizing: border-box;
 }
 .msc-settings-header {
     margin-bottom: 24px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    border-bottom: 1px solid #e2e8f0;
     padding-bottom: 12px;
 }
 .msc-settings-title {
     font-size: 1.25rem;
     font-weight: 600;
-    color: #e2e8f0;
+    color: #0f172a;
 }
 .msc-settings-grid {
     display: grid;
@@ -1480,15 +1493,15 @@ word-wrap:break-word;'></pre>
 }
 .msc-setting-label {
     font-size: 0.85rem;
-    color: #94a3b8;
+    color: #64748b;
     font-weight: 500;
 }
 .msc-select, .msc-input {
     width: 100%;
     height: 36px;
-    background: rgba(30, 41, 59, 0.8);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    color: #fff;
+    background: #ffffff;
+    border: 1px solid #cbd5e1;
+    color: #1e293b;
     border-radius: 8px;
     padding: 0 12px;
     font-size: 0.9rem;
@@ -1496,11 +1509,11 @@ word-wrap:break-word;'></pre>
     transition: all 0.2s ease;
 }
 .msc-select:hover, .msc-input:hover {
-    border-color: rgba(255, 255, 255, 0.4);
+    border-color: #111111;
 }
 .msc-select option {
-    background: #1e293b;
-    color: #fff;
+    background: #ffffff;
+    color: #1e293b;
 }
 .msc-settings-divider {
     height: 1px;
@@ -1522,16 +1535,16 @@ word-wrap:break-word;'></pre>
     appearance: none;
     width: 20px;
     height: 20px;
-    background: rgba(30, 41, 59, 0.8);
-    border: 2px solid rgba(255, 255, 255, 0.3);
+    background: #ffffff;
+    border: 2px solid #cbd5e1;
     border-radius: 6px;
     cursor: pointer;
     position: relative;
     transition: all 0.2s;
 }
 .msc-checkbox:checked {
-    background: #3b82f6;
-    border-color: #3b82f6;
+    background: #111111;
+    border-color: #111111;
 }
 .msc-checkbox:checked::after {
     content: '';
@@ -1546,7 +1559,7 @@ word-wrap:break-word;'></pre>
 }
 .msc-checkbox-label {
     font-size: 0.95rem;
-    color: #cbd5e1;
+    color: #334155;
     user-select: none;
 }
 </style>
