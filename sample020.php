@@ -486,9 +486,9 @@ input[type="text"].button:hover {
     justify-content: space-between;
 }
 
-\n
-\n
-\n
+
+
+
 /* Modern Study Card CSS */
 .modern-study-card {
     background: #ffffff;
@@ -720,9 +720,9 @@ input[type="text"].button:hover {
     box-shadow: 0 1px 2px rgba(0,0,0,0.05);
 }
 .msc-btn-good { background: #ffffff !important; color: #111111 !important; border: 1px solid #dddddd !important; }
-.msc-btn-good:hover { background: #111111 !important; transform: translateY(-1px); }
+.msc-btn-good:hover { background: #f4f4f5 !important; border-color: #cccccc !important; transform: translateY(-1px); }
 .msc-btn-poor { background: #ffffff !important; color: #111111 !important; border: 1px solid #dddddd !important; }
-.msc-btn-poor:hover { background: #111111 !important; transform: translateY(-1px); }
+.msc-btn-poor:hover { background: #f4f4f5 !important; border-color: #cccccc !important; transform: translateY(-1px); }
 .msc-btn-nav { background: #ffffff !important; color: #111111 !important; border: 1px solid #dddddd !important; }
 .msc-btn-nav:hover { background: #111111 !important; color: #ffffff !important; transform: translateY(-1px); }
 .msc-btn-undo { background: #ffffff !important; color: #111111 !important; border: 1px solid #dddddd !important; }
@@ -5181,9 +5181,9 @@ window.addEventListener('DOMContentLoaded', () => {
 
 
 
-\n
 
-\n
+
+
 <script>
 window.addEventListener('DOMContentLoaded', () => {
     if(document.querySelector('.modern-study-card')) return;
@@ -5342,7 +5342,7 @@ window.addEventListener('DOMContentLoaded', () => {
     if (bottomBox) bottomBox.style.display = 'none';
 });
 </script>
-\n
+
 <script>
 window.addEventListener('DOMContentLoaded', () => {
     // Fetch and display the true Supabase daily/total stats to replace the stale PHP MySQL values on load
