@@ -3974,10 +3974,11 @@ function whichKey1(){
           event.returnValue = false;
           break;
         case 84: // T key
-          const aiBtn = document.getElementById('msc-ai-hint-btn');
-          if (aiBtn) aiBtn.click();
+          var aiBtn_node = document.getElementById('msc-ai-hint-btn');
+          if (aiBtn_node) aiBtn_node.click();
           event.keyCode = 0;
           event.returnValue = false;
+          if (event.preventDefault) event.preventDefault();
           break;
         case 87:
           sendRequest();
