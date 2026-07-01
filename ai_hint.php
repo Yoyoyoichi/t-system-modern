@@ -1,11 +1,11 @@
 <?php
 // ai_hint.php
-// OpenAI APIを利用して問題文からヒント・解説を生成するバックエンドエンドポイント
+// Gemini APIを利用して問題文からヒント・解説を生成するバックエンドエンドポイント
 
 // ==========================================
-// 【重要】ここにOpenAIのAPIキーを設定してください
+// 【重要】ここにGoogle GeminiのAPIキーを設定してください
 // ==========================================
-$api_key = "YOUR_OPENAI_API_KEY_HERE";
+$api_key = "AIzaSyBHvYkCZIPlH4EaHcUsHChqBPDLHTNnamw";
 
 header('Content-Type: application/json');
 
@@ -45,32 +45,43 @@ if ($is_answer_revealed) {
 }
 
 // ---------------------------------------------------------
-// OpenAI APIとの通信 (cURL)
+// Gemini APIとの通信 (cURL)
 // ---------------------------------------------------------
-if ($api_key === "YOUR_OPENAI_API_KEY_HERE") {
+if (empty($api_key) || $api_key === "YOUR_OPENAI_API_KEY_HERE") {
     echo json_encode([
-        'hint' => "【APIキーが設定されていません】\nai_hint.php の上部にある \$api_key に有効なOpenAIのAPIキーを設定すると、AIからの回答がここに表示されます！\n\n設定されるプロンプトの内容：\n" . $system_prompt . "\n\n送信データ：\n" . $user_message
+        'hint' => "【APIキーが正しく設定されていません】\nai_hint.php に有効なAPIキーを設定してください。"
     ]);
     exit;
 }
 
+$url = "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=" . $api_key;
+
 $ch = curl_init();
-curl_setopt($ch, CURLOPT_URL, "https://api.openai.com/v1/chat/completions");
+curl_setopt($ch, CURLOPT_URL, $url);
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 curl_setopt($ch, CURLOPT_POST, 1);
 curl_setopt($ch, CURLOPT_HTTPHEADER, [
-    "Content-Type: application/json",
-    "Authorization: Bearer " . $api_key
+    "Content-Type: application/json"
 ]);
 
 $payload = [
-    "model" => "gpt-4o-mini",
-    "messages" => [
-        ["role" => "system", "content" => $system_prompt],
-        ["role" => "user", "content" => $user_message]
+    "system_instruction" => [
+        "parts" => [
+            ["text" => $system_prompt]
+        ]
     ],
-    "max_tokens" => 800,
-    "temperature" => 0.7
+    "contents" => [
+        [
+            "role" => "user",
+            "parts" => [
+                ["text" => $user_message]
+            ]
+        ]
+    ],
+    "generationConfig" => [
+        "temperature" => 0.7,
+        "maxOutputTokens" => 800
+    ]
 ];
 
 curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($payload));
@@ -84,8 +95,8 @@ if ($http_status !== 200) {
 }
 
 $response_data = json_decode($result, true);
-if (isset($response_data['choices'][0]['message']['content'])) {
-    $hint = $response_data['choices'][0]['message']['content'];
+if (isset($response_data['candidates'][0]['content']['parts'][0]['text'])) {
+    $hint = $response_data['candidates'][0]['content']['parts'][0]['text'];
     echo json_encode(['hint' => $hint]);
 } else {
     echo json_encode(['error' => 'Unexpected API response format', 'details' => $result]);
