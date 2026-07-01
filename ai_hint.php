@@ -105,7 +105,12 @@ for ($attempt = 1; $attempt <= $max_retries; $attempt++) {
 curl_close($ch);
 
 if ($http_status !== 200) {
-    echo json_encode(['error' => 'API Error: ' . $http_status . ' (リトライ後)', 'details' => $result]);
+    if ($http_status == 429) {
+        $error_msg = "API制限に達しました（押しすぎ防止）。約15秒待ってからもう一度お試しください。";
+    } else {
+        $error_msg = 'API Error: ' . $http_status . ' (リトライ後)';
+    }
+    echo json_encode(['error' => $error_msg, 'details' => $result]);
     exit;
 }
 
