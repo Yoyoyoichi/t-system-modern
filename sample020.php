@@ -1641,7 +1641,7 @@ word-wrap:break-word;'></pre>
         <div class="msc-setting-item">
             <span class="msc-setting-label">✅ 最低正解数</span>
             <div class="msc-setting-control">
-                <select class="selectBox" name='NOC' id='NOC' onchange = "settingSave()" style='width: 23%; font-size: 20px;margin:30px 0px 0px 0px' >
+                <select class="selectBox" name='NOC' id='NOC' onchange = "settingSave()" style='width: 23%; font-size: 20px' >
     <option value="3" selected>3</option>
     <option value=0>0</option>
     <option value=1>1</option>
@@ -1660,7 +1660,7 @@ word-wrap:break-word;'></pre>
         <div class="msc-setting-item">
             <span class="msc-setting-label">⏳ 自動解答(秒)</span>
             <div class="msc-setting-control">
-                <select class="selectBox" name='autoAnswer' id='autoAnswer' onchange = "settingSave()" style='width: 23%; font-size: 20px;margin:30px 0px 0px 0px'>
+                <select class="selectBox" name='autoAnswer' id='autoAnswer' onchange = "settingSave()" style='width: 23%; font-size: 20px'>
     
     <option value=0>なし</option>
     <option value=0.5>0.5</option>
@@ -1699,7 +1699,7 @@ word-wrap:break-word;'></pre>
         <div class="msc-setting-item">
             <span class="msc-setting-label">🎨 背景画像</span>
             <div class="msc-setting-control">
-                <select class="selectBox" name='backGround' id='backGround' style='width: 23%; font-size: 20px;margin:30px 0px 0px 0px' onchange = 'changeBG();settingSave()'>
+                <select class="selectBox" name='backGround' id='backGround' style='width: 23%; font-size: 20px' onchange = 'changeBG();settingSave()'>
     
     <option value="colored-pencil-pattern1144.png">①</option>
     <option value="fancy-floral-pattern-384.jpg">②</option>
@@ -1744,7 +1744,7 @@ word-wrap:break-word;'></pre>
         <div class="msc-setting-item">
             <span class="msc-setting-label">🔤 フォント</span>
             <div class="msc-setting-control">
-                <select class="selectBox" name='fontSelect' id='fontSelect' style='width: 23%; font-size: 20px;margin:30px 0px 0px 0px' onchange = 'settingSave()'>
+                <select class="selectBox" name='fontSelect' id='fontSelect' style='width: 23%; font-size: 20px' onchange = 'settingSave()'>
     
     <option value="ＭＳ 明朝">ＭＳ 明朝</option>
     <option value="SimHei">SimHei</option>
@@ -1774,7 +1774,7 @@ word-wrap:break-word;'></pre>
         <div class="msc-setting-item" style="display:none;">
             <span class="msc-setting-label">📖 小説</span>
             <div class="msc-setting-control">
-                <select class="selectBox" name='novelSelect' id='novelSelect' style='display:none;width: 23%; font-size: 20px;margin:30px 0px 0px 0px' onchange = 'settingSave()'>
+                <select class="selectBox" name='novelSelect' id='novelSelect' style='display:none;width: 23%; font-size: 20px' onchange = 'settingSave()'>
     
     <option value="なし">なし</option>
   </select>
@@ -1784,7 +1784,7 @@ word-wrap:break-word;'></pre>
             <span class="msc-setting-label">🔢 文章番号</span>
             <div class="msc-setting-control">
                 <input class ="button" type="text" name="novelSentenceNumber" id="novelSentenceNumber" onChange='settingSave()' value = "" 
-  style='display:none;width: 8%; font-size: 16px;box-sizing:border-box;vertical-align:middle;margin:30px 0px 0px 0px '>
+  style='display:none;width: 8%; font-size: 16px;box-sizing:border-box;vertical-align:middle '>
             </div>
         </div>
     </div>
