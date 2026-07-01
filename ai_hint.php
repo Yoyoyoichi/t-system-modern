@@ -92,8 +92,8 @@ for ($attempt = 1; $attempt <= $max_retries; $attempt++) {
     $result = curl_exec($ch);
     $http_status = curl_getinfo($ch, CURLINFO_HTTP_CODE);
     
-    // If it's a 50x error (like 503), wait and retry
-    if ($http_status >= 500 && $http_status < 600 && $attempt < $max_retries) {
+    // If it's a 50x error (like 503) or 429 (Too Many Requests), wait and retry
+    if (($http_status == 429 || ($http_status >= 500 && $http_status < 600)) && $attempt < $max_retries) {
         sleep($retry_delay);
         $retry_delay *= 2; // Exponential backoff
         continue;
