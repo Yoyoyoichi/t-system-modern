@@ -1423,13 +1423,13 @@ word-wrap:break-word;'></pre>
   style="width:24.2%;height:10vh; font-size: 30px">
   <input class ="button" type="button" name="botan03" id="button03" onClick="sendRequest3('good1');" value="☆"
   style="width:24.2%;height:10vh; font-size: 30px">
-    <input class ="button" type="button" name="botan04" id="button04" onClick="sendRequest4('poor4');" value="✖✖✖✖"
+    <input class ="button" type="button" name="botan04" id="button04" onClick="sendRequest4('poor4');" value="××××"
   style="width:24.2%;height:10vh; font-size: 30px">
-  <input class ="button" type="button" name="botan04" id="button04" onClick="sendRequest4('poor3');" value="✖✖✖"
+  <input class ="button" type="button" name="botan04" id="button04" onClick="sendRequest4('poor3');" value="×××"
   style="width:24.2%;height:10vh; font-size: 30px">
-  <input class ="button" type="button" name="botan04" id="button04" onClick="sendRequest4('poor2');" value="✖✖"
+  <input class ="button" type="button" name="botan04" id="button04" onClick="sendRequest4('poor2');" value="××"
   style="width:24.2%;height:10vh; font-size: 30px">
-  <input class ="button" type="button" name="botan04" id="button04" onClick="sendRequest4('poor1');" value="✖"
+  <input class ="button" type="button" name="botan04" id="button04" onClick="sendRequest4('poor1');" value="×"
   style="width:24.2%;height:10vh; font-size: 30px">
   <input class ="button" type="button" name="botan05" id="button05" onClick="backQuestion();"value="前の問題"
   style="width:24.2%;height:5vh;font-size: 40px">
@@ -1554,12 +1554,12 @@ word-wrap:break-word;'></pre>
 
 <div class="msc-settings-panel">
     <div class="msc-settings-header">
-        <span class="msc-settings-title">⚙️ 詳細設定</span>
+        <span class="msc-settings-title">詳細設定</span>
     </div>
     <div class="msc-settings-grid">
 
         <div class="msc-setting-item">
-            <span class="msc-setting-label">🏆 最低正解数</span>
+            <span class="msc-setting-label">最低正解数</span>
             <div class="msc-setting-control">
                 <select class="selectBox" name='autoSpeed' id='autoSpeed' onchange = "settingSave()" style='width: 23%; font-size: 20px;'>
     <option value="3" selected>3</option>
@@ -1577,7 +1577,7 @@ word-wrap:break-word;'></pre>
             </div>
         </div>
         <div class="msc-setting-item">
-            <span class="msc-setting-label">🗣️ 読上音声</span>
+            <span class="msc-setting-label">読上音声</span>
             <div class="msc-setting-control">
                 <select class="selectBox" name='autoReading' id='autoReading' onchange = "settingSave()" style='width: 23%; font-size: 20px;'>
     
@@ -1639,7 +1639,7 @@ word-wrap:break-word;'></pre>
             </div>
         </div>
         <div class="msc-setting-item">
-            <span class="msc-setting-label">✅ 最低正解数</span>
+            <span class="msc-setting-label">最低正解数</span>
             <div class="msc-setting-control">
                 <select class="selectBox" name='NOC' id='NOC' onchange = "settingSave()" style='width: 23%; font-size: 20px' >
     <option value="3" selected>3</option>
@@ -1658,7 +1658,7 @@ word-wrap:break-word;'></pre>
             </div>
         </div>
         <div class="msc-setting-item">
-            <span class="msc-setting-label">⏳ 自動解答(秒)</span>
+            <span class="msc-setting-label">自動解答(秒)</span>
             <div class="msc-setting-control">
                 <select class="selectBox" name='autoAnswer' id='autoAnswer' onchange = "settingSave()" style='width: 23%; font-size: 20px'>
     
@@ -1697,7 +1697,7 @@ word-wrap:break-word;'></pre>
             </div>
         </div>
         <div class="msc-setting-item">
-            <span class="msc-setting-label">🎨 背景画像</span>
+            <span class="msc-setting-label">背景画像</span>
             <div class="msc-setting-control">
                 <select class="selectBox" name='backGround' id='backGround' style='width: 23%; font-size: 20px' onchange = 'changeBG();settingSave()'>
     
@@ -1742,7 +1742,7 @@ word-wrap:break-word;'></pre>
             </div>
         </div>
         <div class="msc-setting-item">
-            <span class="msc-setting-label">🔤 フォント</span>
+            <span class="msc-setting-label">フォント</span>
             <div class="msc-setting-control">
                 <select class="selectBox" name='fontSelect' id='fontSelect' style='width: 23%; font-size: 20px' onchange = 'settingSave()'>
     
@@ -1772,7 +1772,7 @@ word-wrap:break-word;'></pre>
             </div>
         </div>
         <div class="msc-setting-item" style="display:none;">
-            <span class="msc-setting-label">📖 小説</span>
+            <span class="msc-setting-label">小説</span>
             <div class="msc-setting-control">
                 <select class="selectBox" name='novelSelect' id='novelSelect' style='display:none;width: 23%; font-size: 20px' onchange = 'settingSave()'>
     
@@ -1781,7 +1781,7 @@ word-wrap:break-word;'></pre>
             </div>
         </div>
         <div class="msc-setting-item" style="display:none;">
-            <span class="msc-setting-label">🔢 文章番号</span>
+            <span class="msc-setting-label">文章番号</span>
             <div class="msc-setting-control">
                 <input class ="button" type="text" name="novelSentenceNumber" id="novelSentenceNumber" onChange='settingSave()' value = "" 
   style='display:none;width: 8%; font-size: 16px;box-sizing:border-box;vertical-align:middle '>
