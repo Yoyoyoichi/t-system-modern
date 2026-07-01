@@ -3973,14 +3973,6 @@ function whichKey1(){
           event.keyCode = 0;
           event.returnValue = false;
           break;
-        case 84: // T key
-          if (typeof window.triggerAIHint === 'function') {
-              window.triggerAIHint();
-          }
-          event.keyCode = 0;
-          event.returnValue = false;
-          if (event.preventDefault) event.preventDefault();
-          break;
         case 87:
           sendRequest();
           event.keyCode = 0;
@@ -4087,6 +4079,15 @@ function whichKey2(){
           event.keyCode = 0;
           return false;
           break;
+      case "KeyT":
+          if (typeof window.triggerAIHint === 'function') {
+              window.triggerAIHint();
+          }
+          event.returnValue = false;
+          event.keyCode = 0;
+          if (event.preventDefault) event.preventDefault();
+          return false;
+          break;
       case "KeyQ":
           sendRequest();
           event.returnValue = false;
@@ -4163,6 +4164,14 @@ function whichKey2(){
           sendRequest2();
           event.keyCode = 0;
           event.returnValue = false;
+          break;
+      case 84: // T key
+          if (typeof window.triggerAIHint === 'function') {
+              window.triggerAIHint();
+          }
+          event.keyCode = 0;
+          event.returnValue = false;
+          if (event.preventDefault) event.preventDefault();
           break;
       case 87:
           sendRequest();
