@@ -5343,5 +5343,14 @@ window.addEventListener('DOMContentLoaded', () => {
     if (bottomBox) bottomBox.style.display = 'none';
 });
 </script>
-\n</body>
+\n
+<script>
+window.addEventListener('DOMContentLoaded', () => {
+    // Fetch and display the true Supabase daily/total stats to replace the stale PHP MySQL values on load
+    if (typeof updateAndDisplayDailyTotal === 'function') {
+        updateAndDisplayDailyTotal(null);
+    }
+});
+</script>
+</body>
 </html>
