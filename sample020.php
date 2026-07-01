@@ -18,7 +18,7 @@
 <style type="text/css">
   /* #site-box { width : 900px ; } */
   body {
-    background: url(RRice-colorful-wall.jpg);
+    background: #f4f4f5;
     line-height: 1vh;
   }
   span{
@@ -29,7 +29,7 @@
     scrollbar-color: black;
   }
   textarea{
-    font-size:30px; background-color:#ffccff; 
+    font-size:30px; background-color: #ffffff; 
     
   }
   input {
@@ -74,9 +74,9 @@
   }
   .textlines {
     font-family: "SimHei";
-    border: 2px solid #0a0;  /* 枠線 */
+    border: 1px solid #ccc;  /* 枠線 */
     border-radius: 0.67em;   /* 角丸 */
-    background-color: #ffccff;  /* 背景色 */
+    background-color: #ffffff;  /* 背景色 */
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.25);
     padding:0px;
     margin:0px 0px 0px 10px
@@ -106,10 +106,10 @@
   }
   #information{
     font-family: "ＭＳ Ｐゴシック";
-    border: 2px solid #0a0;  /* 枠線 */
+    border: 1px solid #ccc;  /* 枠線 */
     border-radius: 0.67em;   /* 角丸 */
     /* padding: 0.5em;          内側の余白量 */
-    background-color: #ffccff;  /* 背景色 */
+    background-color: #ffffff;  /* 背景色 */
       box-shadow: 0 3px 6px rgba(0, 0, 0, 0.25);
     /*width: 20em;             /* 横幅 */*/
     /*height: 120px;           /* 高さ */*/
@@ -125,8 +125,8 @@
     /* top:2200px; */
     padding: 0.5em 1em;
     margin: 1%;
-    color: #00BCD4;
-    background: #e4fcff;/*背景色*/
+    color: #333333;
+    background: #f4f4f5;/*背景色*/
     border-top: solid 6px #1dc1d6;
     box-shadow: 0 3px 4px rgba(0, 0, 0, 0.32);/*影*/
   }
@@ -175,21 +175,21 @@
 
 /* Good/Correct buttons (botan03) - Subtle Green */
 input[name="botan03"] {
-    color: #0d8a4e !important;
-    border-color: #0d8a4e;
+    color: #111111 !important;
+    border-color: #111111;
 }
 input[name="botan03"]:hover {
-    background-color: #0d8a4e;
+    background-color: #f4f4f5;
     color: #fff !important;
 }
 
 /* Poor/Incorrect buttons (botan04) - Subtle Red */
 input[name="botan04"] {
-    color: #e53935 !important;
-    border-color: #e53935;
+    color: #111111 !important;
+    border-color: #111111;
 }
 input[name="botan04"]:hover {
-    background-color: #e53935;
+    background-color: #f4f4f5;
     color: #fff !important;
 }
 
@@ -247,7 +247,7 @@ input[type="text"].button:hover {
 }
 #DB_name:focus {
     outline: none;
-    border-bottom-color: #0d8a4e !important;
+    border-bottom-color: #111111 !important;
 }
 
 #grandParent1 {
@@ -413,13 +413,13 @@ input[type="text"].button:hover {
 }
 
 .mtp-level-btn {
-    background: #e0f2fe;
-    border-color: #bae6fd;
-    color: #0369a1 !important;
+    background: #ffffff;
+    border-color: #111111;
+    color: #111111 !important;
 }
 .mtp-level-btn:hover {
-    background: #bae6fd;
-    border-color: #7dd3fc;
+    background: #f1f5f9;
+    border-color: #334155;
 }
 
 
@@ -673,11 +673,11 @@ input[type="text"].button:hover {
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
 }
 .msc-btn-primary.msc-btn-huge {
-    background: #0ea5e9 !important;
+    background: #111111 !important;
     color: #fff !important;
 }
 .msc-btn-primary.msc-btn-huge:hover {
-    background: #0284c7 !important;
+    background: #333333 !important;
     transform: translateY(-2px);
 }
 .msc-btn-secondary.msc-btn-huge {
@@ -719,14 +719,14 @@ input[type="text"].button:hover {
     transition: all 0.2s;
     box-shadow: 0 1px 2px rgba(0,0,0,0.05);
 }
-.msc-btn-good { background: #10b981 !important; color: #fff !important; }
-.msc-btn-good:hover { background: #059669 !important; transform: translateY(-1px); }
-.msc-btn-poor { background: #ef4444 !important; color: #fff !important; }
-.msc-btn-poor:hover { background: #dc2626 !important; transform: translateY(-1px); }
-.msc-btn-nav { background: #64748b !important; color: #fff !important; }
-.msc-btn-nav:hover { background: #475569 !important; transform: translateY(-1px); }
-.msc-btn-undo { background: #f59e0b !important; color: #fff !important; }
-.msc-btn-undo:hover { background: #d97706 !important; transform: translateY(-1px); }
+.msc-btn-good { background: #ffffff !important; color: #111111 !important; border: 1px solid #dddddd !important; }
+.msc-btn-good:hover { background: #111111 !important; transform: translateY(-1px); }
+.msc-btn-poor { background: #ffffff !important; color: #111111 !important; border: 1px solid #dddddd !important; }
+.msc-btn-poor:hover { background: #111111 !important; transform: translateY(-1px); }
+.msc-btn-nav { background: #ffffff !important; color: #111111 !important; border: 1px solid #dddddd !important; }
+.msc-btn-nav:hover { background: #111111 !important; color: #ffffff !important; transform: translateY(-1px); }
+.msc-btn-undo { background: #ffffff !important; color: #111111 !important; border: 1px solid #dddddd !important; }
+.msc-btn-undo:hover { background: #111111 !important; color: #ffffff !important; transform: translateY(-1px); }
 
 .msc-textarea {
     width: 100% !important;
@@ -744,18 +744,18 @@ input[type="text"].button:hover {
 }
 
 .msc-textarea:focus {
-    border-color: #3b82f6;
+    border-color: #111111;
     outline: none;
-    box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1);
+    box-shadow: 0 0 0 4px rgba(17, 17, 17, 0.1);
 }
 
 .msc-question-textarea {
     background: #f8fafc;
-    border-color: #cbd5e1;
+    border-color: #334155;
 }
 
 .msc-answer-textarea {
-    border-color: #3b82f6;
+    border-color: #111111;
 }
 
 .msc-hidden {
@@ -1445,28 +1445,28 @@ word-wrap:break-word;'></pre>
 <style>
 .msc-settings-panel {
     margin-top: 24px;
-    background: rgba(15, 23, 42, 0.7);
-    backdrop-filter: blur(12px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: #ffffff;
+    
+    border: 1px solid #e2e8f0;
     border-radius: 16px;
     padding: 24px;
     margin: 24px auto 0 auto;
     width: 100%;
     max-width: 1200px;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
     font-family: 'Inter', sans-serif;
-    color: #f1f5f9;
+    color: #111111;
     box-sizing: border-box;
 }
 .msc-settings-header {
     margin-bottom: 24px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    border-bottom: 1px solid #e2e8f0;
     padding-bottom: 12px;
 }
 .msc-settings-title {
     font-size: 1.25rem;
     font-weight: 600;
-    color: #e2e8f0;
+    color: #111111;
 }
 .msc-settings-grid {
     display: grid;
@@ -1486,8 +1486,8 @@ word-wrap:break-word;'></pre>
 .msc-select, .msc-input {
     width: 100%;
     height: 36px;
-    background: rgba(30, 41, 59, 0.8);
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    background: #ffffff;
+    border: 1px solid #cbd5e1;
     color: #fff;
     border-radius: 8px;
     padding: 0 12px;
@@ -1496,7 +1496,7 @@ word-wrap:break-word;'></pre>
     transition: all 0.2s ease;
 }
 .msc-select:hover, .msc-input:hover {
-    border-color: rgba(255, 255, 255, 0.4);
+    border-color: #111111;
 }
 .msc-select option {
     background: #1e293b;
@@ -1504,7 +1504,7 @@ word-wrap:break-word;'></pre>
 }
 .msc-settings-divider {
     height: 1px;
-    background: rgba(255, 255, 255, 0.1);
+    background: #e2e8f0;
     margin: 24px 0;
 }
 .msc-settings-checkboxes {
@@ -1522,16 +1522,16 @@ word-wrap:break-word;'></pre>
     appearance: none;
     width: 20px;
     height: 20px;
-    background: rgba(30, 41, 59, 0.8);
-    border: 2px solid rgba(255, 255, 255, 0.3);
+    background: #ffffff;
+    border: 2px solid #cbd5e1;
     border-radius: 6px;
     cursor: pointer;
     position: relative;
     transition: all 0.2s;
 }
 .msc-checkbox:checked {
-    background: #3b82f6;
-    border-color: #3b82f6;
+    background: #111111;
+    border-color: #111111;
 }
 .msc-checkbox:checked::after {
     content: '';
@@ -1546,7 +1546,7 @@ word-wrap:break-word;'></pre>
 }
 .msc-checkbox-label {
     font-size: 0.95rem;
-    color: #cbd5e1;
+    color: #334155;
     user-select: none;
 }
 </style>
