@@ -2271,6 +2271,8 @@ async function fetchAnswerFromSupabase(qnum, mode) {
 
 async function sendRequest(){
 
+    if (typeof window.resetAIHint === 'function') window.resetAIHint();
+
     let parent = document.getElementById("answerMath");
     while(parent.lastChild){
       parent.removeChild(parent.lastChild);
@@ -2659,6 +2661,8 @@ function createXmlHttpRequest()
 
 async function sendRequest2(){
 
+  if (typeof window.resetAIHint === 'function') window.resetAIHint();
+
  randoms = [];
   AnswerShown = true;
   AnswerShown2 = true;
@@ -2886,6 +2890,8 @@ async function sendRequest2(){
 
 async function sendRequest3(goodPoor)
 {
+  if (typeof window.resetAIHint === 'function') window.resetAIHint();
+  
   now = new Date();
   getQendTime = now.getTime();
   getpastTime = Math.round((getQendTime-getQstartTime)/100)/10;
@@ -2922,6 +2928,8 @@ var incorrectNumber = 0;
 
 
 async function sendRequest4(goodPoor){
+  if (typeof window.resetAIHint === 'function') window.resetAIHint();
+  
   now = new Date();
   getQendTime = now.getTime();
   getpastTime = Math.round((getQendTime-getQstartTime)/100)/10;
@@ -5343,17 +5351,38 @@ window.addEventListener('DOMContentLoaded', () => {
 
     // AI Hint Box creation moved above to answer area
     
+    window.resetAIHint = () => {
+        window.aiHintDepth = 0;
+        const btnText = document.getElementById('msc-ai-btn-text');
+        if (btnText) btnText.innerText = 'AI サポート';
+        const aiBox = document.getElementById('msc-ai-hint-box');
+        if (aiBox) aiBox.style.display = 'none';
+        const aiBtn = document.getElementById('msc-ai-hint-btn');
+        if (aiBtn) aiBtn.disabled = false;
+    };
+
     window.triggerAIHint = async () => {
         if (aiHintBtn.disabled) return;
+        
+        if (typeof window.aiHintDepth === 'undefined') window.aiHintDepth = 0;
+        window.aiHintDepth++;
+        const currentDepth = window.aiHintDepth;
         
         aiHintBox.style.display = 'block';
         
         // Check if answer is revealed using the global variable AnswerShown2 or if textareas2 is visible
         const isRevealed = (typeof AnswerShown2 !== 'undefined' && AnswerShown2 === true);
         
-        aiHintBox.innerHTML = isRevealed 
-            ? '🤖 <strong>AIが解説を考えています...</strong>' 
-            : '🤖 <strong>AIがヒントを考えています...</strong>';
+        const loadingMsg = currentDepth > 1 
+            ? '🤖 <strong>AIがさらに深い情報を考えています...</strong>'
+            : (isRevealed ? '🤖 <strong>AIが解説を考えています...</strong>' : '🤖 <strong>AIがヒントを考えています...</strong>');
+            
+        if (currentDepth === 1) {
+            aiHintBox.innerHTML = loadingMsg;
+        } else {
+            aiHintBox.innerHTML += `<div id="ai-loading-${currentDepth}" style="margin-top:10px; padding-top:10px; border-top:1px dashed #ccc;">${loadingMsg}</div>`;
+        }
+        
         aiHintBtn.disabled = true;
         
         const qText = document.getElementById('textareas').value;
@@ -5366,18 +5395,43 @@ window.addEventListener('DOMContentLoaded', () => {
                 body: JSON.stringify({ 
                     question: qText, 
                     answer: aText,
-                    is_answer_revealed: isRevealed
+                    is_answer_revealed: isRevealed,
+                    depth: currentDepth
                 })
             });
             const data = await response.json();
             if (data.hint) {
-                const title = isRevealed ? '<strong>🤖 AI解説:</strong><br><br>' : '<strong>🤖 AIヒント:</strong><br><br>';
-                aiHintBox.innerHTML = title + data.hint.replace(/\n/g, '<br>');
+                const title = currentDepth > 1 
+                    ? `<strong>🤖 深掘り解説 (レベル${currentDepth}):</strong><br><br>`
+                    : (isRevealed ? '<strong>🤖 AI解説:</strong><br><br>' : '<strong>🤖 AIヒント:</strong><br><br>');
+                const formattedHint = title + data.hint.replace(/\n/g, '<br>');
+                
+                if (currentDepth === 1) {
+                    aiHintBox.innerHTML = formattedHint;
+                } else {
+                    const loadingDiv = document.getElementById(`ai-loading-${currentDepth}`);
+                    if (loadingDiv) {
+                        loadingDiv.outerHTML = `<div style="margin-top:10px; padding-top:10px; border-top:1px dashed #ccc;">${formattedHint}</div>`;
+                    }
+                }
+                
+                // Change button text to indicate deeper info available
+                document.getElementById('msc-ai-btn-text').innerText = `さらに深掘り (Lv.${currentDepth + 1})`;
             } else if (data.error) {
-                aiHintBox.innerText = 'エラーが発生しました: ' + data.error;
+                if (currentDepth === 1) {
+                    aiHintBox.innerText = 'エラーが発生しました: ' + data.error;
+                } else {
+                    const loadingDiv = document.getElementById(`ai-loading-${currentDepth}`);
+                    if (loadingDiv) loadingDiv.innerText = 'エラーが発生しました: ' + data.error;
+                }
             }
         } catch (e) {
-            aiHintBox.innerText = '通信エラーが発生しました。';
+            if (currentDepth === 1) {
+                aiHintBox.innerText = '通信エラーが発生しました。';
+            } else {
+                const loadingDiv = document.getElementById(`ai-loading-${currentDepth}`);
+                if (loadingDiv) loadingDiv.innerText = '通信エラーが発生しました。';
+            }
         }
         aiHintBtn.disabled = false;
     };
