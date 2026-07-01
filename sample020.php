@@ -3304,8 +3304,8 @@ function forgettingcurve(){
   sendRequest()
 }
 
-function NotYetQuestion(){
-  listChanged()
+async function NotYetQuestion() {
+  
   document.getElementById("category5").value = "qdate";
   document.getElementById("operator2").value = "<";
   document.getElementById("criteria2").value = "20190101";
@@ -3315,11 +3315,12 @@ function NotYetQuestion(){
   document.getElementById("category6").value = "";
   document.getElementById("operator3").value = "";
   document.getElementById("criteria3").value = "";
+  await listChanged();
   sendRequest()
 }
 
-function UnderFifty(){
-  listChanged()
+async function UnderFifty() {
+  
   document.getElementById("category6").value = "pca";
   document.getElementById("operator3").value = "<";
   document.getElementById("criteria3").value = "50";
@@ -3329,6 +3330,7 @@ function UnderFifty(){
   document.getElementById("category4").value = "qdate";
   document.getElementById("operator1").value = "<";
   getTodayNumberFunc()
+  await listChanged();
   sendRequest()
 }
 async function yesterdayQuestion(){
@@ -3343,7 +3345,7 @@ async function yesterdayQuestion(){
   getYesterdayNumberFunc();
   sendRequest();
 }
-async function threeDaysAgoQuestion(){
+async function threeDaysAgoQuestion() {
   num = -1;
   flag1 = false;
   document.getElementById("category4").value = "qdate";
@@ -3352,14 +3354,16 @@ async function threeDaysAgoQuestion(){
   document.getElementById("category5").value = "qdate";
   document.getElementById("operator2").value = "=";
   getThreeDaysAgoNumberFunc();
+  await listChanged();
   sendRequest();
 }
-async function noTodayQuestion(){
+async function noTodayQuestion() {
   num = -1;
   flag1 = false;
   document.getElementById("category4").value = "qdate";
   document.getElementById("operator1").value = "<";
   getTodayNumberFunc();
+  await listChanged();
   sendRequest();
 }
 async function errTodayQuestion(){
@@ -3377,7 +3381,7 @@ async function errLastQuestion(){
   yesterdayIncorrect = true;
   sendRequest();
 }
-async function aWeekAgoQuestion(){
+async function aWeekAgoQuestion() {
   num = -1;
   flag1 = false;
   document.getElementById("category4").value = "qdate";
@@ -3386,9 +3390,10 @@ async function aWeekAgoQuestion(){
   document.getElementById("category5").value = "qdate";
   document.getElementById("operator2").value = "=";
   getAWeekAgoNumberFunc();
+  await listChanged();
   sendRequest();
 }
-async function aMonthAgoQuestion(){
+async function aMonthAgoQuestion() {
   num = -1;
   flag1 = false;
   document.getElementById("category4").value = "qdate";
@@ -3397,10 +3402,11 @@ async function aMonthAgoQuestion(){
   document.getElementById("category5").value = "qdate";
   document.getElementById("operator2").value = "=";
   getAMonthAgoNumberFunc();
+  await listChanged();
   sendRequest();
 }
-function levelZero(){
-  listChanged()
+async function levelZero() {
+  
   document.getElementById("category4").value = "qdate";
   document.getElementById("operator1").value = "<";
   getTodayNumberFunc()
@@ -3411,10 +3417,11 @@ function levelZero(){
   document.getElementById("operator3").value = "";
   document.getElementById("criteria3").value = "";
   document.getElementById("qlevel").value = "0";
+  await listChanged();
   sendRequest()
 }
-function levelOne(){
-  listChanged()
+async function levelOne() {
+  
   document.getElementById("category4").value = "qdate";
   document.getElementById("operator1").value = "<";
   getTodayNumberFunc()
@@ -3425,10 +3432,11 @@ function levelOne(){
   document.getElementById("operator3").value = "";
   document.getElementById("criteria3").value = "";
   document.getElementById("qlevel").value = "1";
+  await listChanged();
   sendRequest()
 }
-function levelTwo(){
-  listChanged()
+async function levelTwo() {
+  
   document.getElementById("category4").value = "qdate";
   document.getElementById("operator1").value = "<";
   getTodayNumberFunc()
@@ -3439,10 +3447,11 @@ function levelTwo(){
   document.getElementById("operator3").value = "";
   document.getElementById("criteria3").value = "";
   document.getElementById("qlevel").value = "2";
+  await listChanged();
   sendRequest()
 }
-function levelThree(){
-  listChanged()
+async function levelThree() {
+  
   document.getElementById("category4").value = "qdate";
   document.getElementById("operator1").value = "<";
   getTodayNumberFunc()
@@ -3453,10 +3462,11 @@ function levelThree(){
   document.getElementById("operator3").value = "";
   document.getElementById("criteria3").value = "";
   document.getElementById("qlevel").value = "3";
+  await listChanged();
   sendRequest()
 }
-function levelFour(){
-  listChanged()
+async function levelFour() {
+  
   document.getElementById("category4").value = "qdate";
   document.getElementById("operator1").value = "<";
   getTodayNumberFunc()
@@ -3467,6 +3477,7 @@ function levelFour(){
   document.getElementById("operator3").value = "";
   document.getElementById("criteria3").value = "";
   document.getElementById("qlevel").value = "4";
+  await listChanged();
   sendRequest()
 }
 function ZeroPercent(){
@@ -3482,20 +3493,21 @@ function ZeroPercent(){
   getTodayNumberFunc()
   sendRequest()
 }
-function atLeastOneFunc(){
-  listChanged()
+async function atLeastOneFunc() {
+  
   document.getElementById("category5").value = "qdate";
   document.getElementById("operator2").value = ">";
   document.getElementById("criteria2").value = "20190101";
   document.getElementById("category4").value = "qdate";
   document.getElementById("operator1").value = "<";
   getTodayNumberFunc()
+  await listChanged();
   sendRequest()
 }
 
-function oneByOneFunc(){
+async function oneByOneFunc() {
   oneByOneflag = true;
-  listChanged()
+  
   document.getElementById("category4").value = "qdate";
   document.getElementById("operator1").value = "<";
   document.getElementById("criteria1").value = "20190101";
@@ -3505,13 +3517,14 @@ function oneByOneFunc(){
   document.getElementById("category6").value = "";
   document.getElementById("operator3").value = "";
   document.getElementById("criteria3").value = "";
+  await listChanged();
   sendRequest()
   oneByOneflag = false;
 }
 
-function twoByTwoFunc(){
+async function twoByTwoFunc() {
   twoByTwoflag = true;
-  listChanged()
+  
   document.getElementById("category4").value = "qdate";
   document.getElementById("operator1").value = "<";
   document.getElementById("criteria1").value = "20190101";
@@ -3521,13 +3534,14 @@ function twoByTwoFunc(){
   document.getElementById("category6").value = "";
   document.getElementById("operator3").value = "";
   document.getElementById("criteria3").value = "";
+  await listChanged();
   sendRequest()
   twoByTwoflag = false;
 }
 
-function threeByThreeFunc(){
+async function threeByThreeFunc() {
   threeByThreeflag = true;
-  listChanged()
+  
   document.getElementById("category4").value = "qdate";
   document.getElementById("operator1").value = "<";
   document.getElementById("criteria1").value = "20190101";
@@ -3537,6 +3551,7 @@ function threeByThreeFunc(){
   document.getElementById("category6").value = "";
   document.getElementById("operator3").value = "";
   document.getElementById("criteria3").value = "";
+  await listChanged();
   sendRequest()
   threeByThreeflag = false;
 }
