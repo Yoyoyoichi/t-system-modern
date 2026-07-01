@@ -149,18 +149,15 @@
 
 /* Apple/Vercel Minimalist Button Styles */
 .button, input[type="button"], input[type="submit"] {
-    background-color: transparent;
+    background-color: #f4f4f5;
     color: #111 !important;
-    border: 1px solid #111;
+    border: 1px solid #ccc;
     border-radius: 6px;
     padding: 8px 16px;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     font-weight: 500;
     transition: all 0.2s ease-in-out;
     cursor: pointer;
-    box-shadow: none;
-    text-shadow: none;
-    outline: none;
 }
 
 .button:hover, input[type="button"]:hover, input[type="submit"]:hover {
@@ -542,12 +539,13 @@ input[type="text"].button:hover {
 }
 
 .msc-btn-primary {
-    background: #0f172a !important;
-    color: #fff !important;
+    background: #f4f4f5 !important;
+    color: #111111 !important;
+    border: 1px solid #cccccc !important;
 }
 
 .msc-btn-primary:hover {
-    background: #334155 !important;
+    background: #e2e8f0 !important;
     transform: translateY(-1px);
 }
 
