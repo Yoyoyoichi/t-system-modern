@@ -4267,15 +4267,14 @@ function settingSave(){
   document.getElementById("flexButton").checked + "^^" + 
   document.getElementById("blackCheck").checked;
   novelRowNum = Number(document.getElementById("novelSentenceNumber").value);
-  var xmlhttp=createXmlHttpRequest();
-  if(xmlhttp!=null)
-  {
-    xmlhttp.open("POST", "../settingSave.php", false);
-    xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    var data="data="+moji;
-    xmlhttp.send(data);
-    var res=xmlhttp.responseText;
-  }
+    // Use async fetch to prevent UI freezing
+  fetch("../settingSave.php", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/x-www-form-urlencoded"
+    },
+    body: "data=" + encodeURIComponent(moji)
+  }).catch(e => console.error("Setting save failed:", e));
 }
 
 function parseStrToBoolean(str) {
