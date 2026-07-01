@@ -5238,7 +5238,13 @@ window.addEventListener('DOMContentLoaded', () => {
         return null;
     }
     
-    moveEl('autoQuestionButton', headerRight, 'msc-btn msc-btn-primary');
+    const btnAuto = moveEl('autoQuestionButton', headerRight, 'msc-btn msc-btn-primary');
+    if (btnAuto) {
+        btnAuto.addEventListener('click', () => {
+            const aiBox = document.getElementById('msc-ai-hint-box');
+            if (aiBox) aiBox.style.display = 'none';
+        });
+    }
     moveEl('buttonmodifyquestion', headerRight, 'msc-btn msc-btn-secondary');
 
     cardHeader.appendChild(headerLeft);
@@ -5295,8 +5301,16 @@ window.addEventListener('DOMContentLoaded', () => {
     // 6. Create Action Buttons Area (Next Question / Answer)
     const actionArea = document.createElement('div');
     actionArea.className = 'msc-actions-row';
-    moveEl('button01', actionArea, 'msc-btn-huge msc-btn-primary');
-    moveEl('button02', actionArea, 'msc-btn-huge msc-btn-secondary');
+    const btn01 = moveEl('button01', actionArea, 'msc-btn-huge msc-btn-primary');
+    const btn02 = moveEl('button02', actionArea, 'msc-btn-huge msc-btn-secondary');
+    
+    // Hide AI Hint Box when moving to next question
+    if (btn01) {
+        btn01.addEventListener('click', () => {
+            const aiBox = document.getElementById('msc-ai-hint-box');
+            if (aiBox) aiBox.style.display = 'none';
+        });
+    }
     
     // Create AI Hint Button
     const aiHintBtn = document.createElement('button');
