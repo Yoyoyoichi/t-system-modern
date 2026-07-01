@@ -912,7 +912,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     }
 
     //データベースからカテゴリー1を取得
-    $str_sql = "select $db_column from $db_name where question != 'settings'";
+    $str_sql = "select DISTINCT $db_column from $db_name where question != 'settings'";
         // echo $str_sql.",\n"."\n";//
     $result = $mysqli->query($str_sql);
     if (is_array($result)) {
@@ -941,7 +941,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     echo "{$sampleSelectBox}";
 
     //データベースからカテゴリー2を取得
-    $str_sql = "select category2 from $db_name where question != 'settings'";
+    $str_sql = "select DISTINCT category2 from $db_name where question != 'settings'";
     $result = $mysqli->query($str_sql);
 
     if (!$result) {error_log($mysqli->error);exit;}
@@ -965,7 +965,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
 
     //データベースからカテゴリー3を取得
-    $str_sql = "select category3 from $db_name where question != 'settings'";
+    $str_sql = "select DISTINCT category3 from $db_name where question != 'settings'";
     $result = $mysqli->query($str_sql);
 
     if (!$result) {error_log($mysqli->error);exit;}
@@ -988,7 +988,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     echo "{$sampleSelectBox}";
 
     //データベースからカテゴリー4を取得
-    $str_sql = "select category4 from $db_name where question != 'settings'";
+    $str_sql = "select DISTINCT category4 from $db_name where question != 'settings'";
     $result = $mysqli->query($str_sql);
 
     if (!$result) {error_log($mysqli->error);exit;}
@@ -1011,7 +1011,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     echo "{$sampleSelectBox}";
 
     //データベースからカテゴリー5を取得
-    $str_sql = "select category5 from $db_name where question != 'settings'";
+    $str_sql = "select DISTINCT category5 from $db_name where question != 'settings'";
     $result = $mysqli->query($str_sql);
 
     if (!$result) {error_log($mysqli->error);exit;}
