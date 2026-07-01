@@ -5295,7 +5295,7 @@ window.addEventListener('DOMContentLoaded', () => {
     // Create AI Hint Display Area (moved here from bottom)
     const aiHintBox = document.createElement('div');
     aiHintBox.id = 'msc-ai-hint-box';
-    aiHintBox.style.cssText = 'display: none; flex: 1; padding: 16px; background: #f8fafc; border: 2px solid #bbf7d0; border-radius: 8px; font-size: 16px; color: #334155; line-height: 1.6; white-space: pre-wrap; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1); min-width: 0;';
+    aiHintBox.style.cssText = 'display: none; flex: 1; padding: 16px; background: #f8fafc; border: 2px solid #bbf7d0; border-radius: 8px; font-size: 16px; color: #334155; line-height: 1.6; white-space: pre-wrap; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1); min-width: 0; height: 180px; overflow-y: auto;';
     metadataLayout.appendChild(aiHintBox);
 
     cardBody.appendChild(metadataLayout);
@@ -5353,6 +5353,7 @@ window.addEventListener('DOMContentLoaded', () => {
     
     window.resetAIHint = () => {
         window.aiHintDepth = 0;
+        window.aiHintHistoryText = '';
         const btnText = document.getElementById('msc-ai-btn-text');
         if (btnText) btnText.innerText = 'AI サポート';
         const aiBox = document.getElementById('msc-ai-hint-box');
@@ -5396,11 +5397,16 @@ window.addEventListener('DOMContentLoaded', () => {
                     question: qText, 
                     answer: aText,
                     is_answer_revealed: isRevealed,
-                    depth: currentDepth
+                    depth: currentDepth,
+                    previous_hints: window.aiHintHistoryText || ''
                 })
             });
             const data = await response.json();
             if (data.hint) {
+                // Record this hint in history for the next request
+                if (typeof window.aiHintHistoryText === 'undefined') window.aiHintHistoryText = '';
+                window.aiHintHistoryText += data.hint + '\n\n';
+                
                 const title = currentDepth > 1 
                     ? `<strong>🤖 深掘り解説 (レベル${currentDepth}):</strong><br><br>`
                     : (isRevealed ? '<strong>🤖 AI解説:</strong><br><br>' : '<strong>🤖 AIヒント:</strong><br><br>');
