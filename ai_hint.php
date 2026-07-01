@@ -73,7 +73,7 @@ if (empty($api_key) || $api_key === "YOUR_OPENAI_API_KEY_HERE") {
     exit;
 }
 
-$model = 'gemini-2.5-flash';
+$model = 'gemini-flash-latest';
 $url = "https://generativelanguage.googleapis.com/v1beta/models/" . $model . ":generateContent?key=" . $api_key;
 
 $ch = curl_init();
@@ -129,7 +129,7 @@ curl_close($ch);
 
 if ($http_status !== 200) {
     if ($http_status == 429) {
-        $error_msg = "API制限に達しました（押しすぎ防止）。約15秒待ってからもう一度お試しください。";
+        $error_msg = "API制限に達しました（1分間の回数上限）。約1分ほど待ってからもう一度お試しください。";
     } else {
         $error_msg = 'API Error: ' . $http_status . ' (リトライ後)';
     }
