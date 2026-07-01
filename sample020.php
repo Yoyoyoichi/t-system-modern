@@ -6,7 +6,7 @@
 <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate, max-age=0" />
 <meta http-equiv="Pragma" content="no-cache" />
 <meta http-equiv="Expires" content="0" />
-\n<meta charset="UTF-8">
+<meta charset="UTF-8">
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 	<link rel="icon" href="./favicon.ico">
 	<link rel="apple-touch-icon" href="./apple-touch-icon.png" sizes="180x180">
@@ -164,9 +164,9 @@
 }
 
 .button:hover, input[type="button"]:hover, input[type="submit"]:hover {
-    background-color: #111;
-    color: #fff !important;
-    border-color: #111;
+    background-color: #f4f4f5;
+    color: #111 !important;
+    border-color: #ccc;
 }
 
 .button:active, input[type="button"]:active, input[type="submit"]:active {
@@ -673,11 +673,13 @@ input[type="text"].button:hover {
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
 }
 .msc-btn-primary.msc-btn-huge {
-    background: #111111 !important;
-    color: #fff !important;
+    background: #ffffff !important;
+    color: #111111 !important;
+    border: 1px solid #dddddd !important;
 }
 .msc-btn-primary.msc-btn-huge:hover {
-    background: #333333 !important;
+    background: #f4f4f5 !important;
+    border-color: #cccccc !important;
     transform: translateY(-2px);
 }
 .msc-btn-secondary.msc-btn-huge {
@@ -724,9 +726,9 @@ input[type="text"].button:hover {
 .msc-btn-poor { background: #ffffff !important; color: #111111 !important; border: 1px solid #dddddd !important; }
 .msc-btn-poor:hover { background: #f4f4f5 !important; border-color: #cccccc !important; transform: translateY(-1px); }
 .msc-btn-nav { background: #ffffff !important; color: #111111 !important; border: 1px solid #dddddd !important; }
-.msc-btn-nav:hover { background: #111111 !important; color: #ffffff !important; transform: translateY(-1px); }
+.msc-btn-nav:hover { background: #f4f4f5 !important; color: #111111 !important; border-color: #cccccc !important; transform: translateY(-1px); }
 .msc-btn-undo { background: #ffffff !important; color: #111111 !important; border: 1px solid #dddddd !important; }
-.msc-btn-undo:hover { background: #111111 !important; color: #ffffff !important; transform: translateY(-1px); }
+.msc-btn-undo:hover { background: #f4f4f5 !important; color: #111111 !important; border-color: #cccccc !important; transform: translateY(-1px); }
 
 .msc-textarea {
     width: 100% !important;
