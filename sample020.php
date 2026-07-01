@@ -5295,7 +5295,7 @@ window.addEventListener('DOMContentLoaded', () => {
     // Create AI Hint Display Area (moved here from bottom)
     const aiHintBox = document.createElement('div');
     aiHintBox.id = 'msc-ai-hint-box';
-    aiHintBox.style.cssText = 'display: none; flex: 1; padding: 16px; background: #f8fafc; border: 2px solid #bbf7d0; border-radius: 8px; font-size: 16px; color: #334155; line-height: 1.6; white-space: pre-wrap; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1); min-width: 0; height: 180px; overflow-y: auto;';
+    aiHintBox.style.cssText = 'display: none; flex: 1; padding: 16px; background: #f8fafc; border: 2px solid #bbf7d0; border-radius: 8px; font-size: 16px; color: #334155; line-height: 1.6; white-space: pre-wrap; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1); min-width: 0; height: 100px; overflow-y: auto;';
     metadataLayout.appendChild(aiHintBox);
 
     cardBody.appendChild(metadataLayout);
@@ -5375,8 +5375,8 @@ window.addEventListener('DOMContentLoaded', () => {
         const isRevealed = (typeof AnswerShown2 !== 'undefined' && AnswerShown2 === true);
         
         const loadingMsg = currentDepth > 1 
-            ? '🤖 <strong>AIがさらに深い情報を考えています...</strong>'
-            : (isRevealed ? '🤖 <strong>AIが解説を考えています...</strong>' : '🤖 <strong>AIがヒントを考えています...</strong>');
+            ? '🤖 <strong>さらに深い情報を考えています...</strong>'
+            : (isRevealed ? '🤖 <strong>解説を考えています...</strong>' : '🤖 <strong>ヒントを考えています...</strong>');
             
         if (currentDepth === 1) {
             aiHintBox.innerHTML = loadingMsg;
@@ -5407,10 +5407,7 @@ window.addEventListener('DOMContentLoaded', () => {
                 if (typeof window.aiHintHistoryText === 'undefined') window.aiHintHistoryText = '';
                 window.aiHintHistoryText += data.hint + '\n\n';
                 
-                const title = currentDepth > 1 
-                    ? `<strong>🤖 深掘り解説 (レベル${currentDepth}):</strong><br><br>`
-                    : (isRevealed ? '<strong>🤖 AI解説:</strong><br><br>' : '<strong>🤖 AIヒント:</strong><br><br>');
-                const formattedHint = title + data.hint.replace(/\n/g, '<br>');
+                const formattedHint = data.hint.replace(/\n/g, '<br>');
                 
                 if (currentDepth === 1) {
                     aiHintBox.innerHTML = formattedHint;
