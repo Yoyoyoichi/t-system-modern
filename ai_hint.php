@@ -85,12 +85,30 @@ $payload = [
 ];
 
 curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($payload));
-$result = curl_exec($ch);
-$http_status = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+
+$max_retries = 3;
+$retry_delay = 1; // seconds
+$http_status = 0;
+$result = false;
+
+for ($attempt = 1; $attempt <= $max_retries; $attempt++) {
+    $result = curl_exec($ch);
+    $http_status = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+    
+    // If it's a 50x error (like 503), wait and retry
+    if ($http_status >= 500 && $http_status < 600 && $attempt < $max_retries) {
+        sleep($retry_delay);
+        $retry_delay *= 2; // Exponential backoff
+        continue;
+    }
+    // Success or client error (4xx) -> break out and handle it
+    break;
+}
+
 curl_close($ch);
 
 if ($http_status !== 200) {
-    echo json_encode(['error' => 'API Error: ' . $http_status, 'details' => $result]);
+    echo json_encode(['error' => 'API Error: ' . $http_status . ' (リトライ後)', 'details' => $result]);
     exit;
 }
 
