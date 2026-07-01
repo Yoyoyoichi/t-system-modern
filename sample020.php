@@ -5256,7 +5256,24 @@ window.addEventListener('DOMContentLoaded', () => {
     cardBody.className = 'msc-body';
     
     // questionInfo is actually the Metadata (Level, Correct count, etc.)
-    moveEl('questionInfo', cardBody, 'msc-metadata-box');
+    const metadataLayout = document.createElement('div');
+    metadataLayout.id = 'msc-metadata-layout';
+    metadataLayout.style.cssText = 'display: flex; gap: 16px; width: 100%; align-items: stretch; margin-bottom: 16px;';
+    
+    const qInfo = moveEl('questionInfo', metadataLayout, 'msc-metadata-box');
+    if (qInfo) {
+        qInfo.style.flex = '1';
+        qInfo.style.minWidth = '0';
+        qInfo.style.margin = '0';
+    }
+
+    // Create AI Hint Display Area (moved here from bottom)
+    const aiHintBox = document.createElement('div');
+    aiHintBox.id = 'msc-ai-hint-box';
+    aiHintBox.style.cssText = 'display: none; flex: 1; padding: 16px; background: #f8fafc; border: 2px solid #bbf7d0; border-radius: 8px; font-size: 16px; color: #334155; line-height: 1.6; white-space: pre-wrap; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1); min-width: 0;';
+    metadataLayout.appendChild(aiHintBox);
+
+    cardBody.appendChild(metadataLayout);
     
     // textareas is the MAIN Question Textarea! Move it to body!
     // Do NOT add msc-hidden, let PHP script toggle its display!
@@ -5278,24 +5295,8 @@ window.addEventListener('DOMContentLoaded', () => {
     moveEl('novel', cardAnswer, 'msc-hidden');
     moveEl('preQInfo', cardAnswer, 'msc-info-text');
 
-    const answerLayout = document.createElement('div');
-    answerLayout.id = 'msc-answer-layout';
-    answerLayout.style.cssText = 'display: flex; gap: 16px; width: 100%; align-items: stretch;';
-    
-    const txt2 = moveEl('textareas2', answerLayout, 'msc-textarea msc-answer-textarea');
-    if (txt2) {
-        txt2.style.flex = '1';
-        txt2.style.minWidth = '0';
-        txt2.style.margin = '0';
-    }
+    moveEl('textareas2', cardAnswer, 'msc-textarea msc-answer-textarea');
 
-    // Create AI Hint Display Area
-    const aiHintBox = document.createElement('div');
-    aiHintBox.id = 'msc-ai-hint-box';
-    aiHintBox.style.cssText = 'display: none; flex: 1; padding: 16px; background: #f8fafc; border: 2px solid #bbf7d0; border-radius: 8px; font-size: 16px; color: #334155; line-height: 1.6; white-space: pre-wrap; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1); min-width: 0;';
-    answerLayout.appendChild(aiHintBox);
-
-    cardAnswer.appendChild(answerLayout);
     studyCard.appendChild(cardAnswer);
 
     // 6. Create Action Buttons Area (Next Question / Answer)
