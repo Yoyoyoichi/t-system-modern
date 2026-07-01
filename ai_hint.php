@@ -25,6 +25,8 @@ $history_text = isset($data['history_text']) ? $data['history_text'] : '';
 
 $depth = isset($data['depth']) ? intval($data['depth']) : 1;
 
+$previous_hints = isset($data['previous_hints']) ? trim($data['previous_hints']) : '';
+
 // ---------------------------------------------------------
 // AIへのプロンプト（指示）の構成
 // ---------------------------------------------------------
@@ -55,6 +57,10 @@ if ($is_answer_revealed) {
     if ($answer) {
         $user_message .= "\n\n（※システム注: 実際の正解は「" . $answer . "」です。この正解テキストをそのまま出力しないようにヒントを組み立ててください。）";
     }
+}
+
+if ($previous_hints && $depth > 1) {
+    $user_message .= "\n\n【これまでに出た解説・ヒント】\n" . $previous_hints . "\n\n（※上記の内容と被らないように、新しい情報で続きを解説してください）";
 }
 
 // ---------------------------------------------------------
