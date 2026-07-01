@@ -54,7 +54,7 @@ if (empty($api_key) || $api_key === "YOUR_OPENAI_API_KEY_HERE") {
     exit;
 }
 
-$url = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=" . $api_key;
+$url = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-lite:generateContent?key=" . $api_key;
 
 $ch = curl_init();
 curl_setopt($ch, CURLOPT_URL, $url);
