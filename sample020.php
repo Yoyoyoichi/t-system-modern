@@ -3974,8 +3974,9 @@ function whichKey1(){
           event.returnValue = false;
           break;
         case 84: // T key
-          var aiBtn_node = document.getElementById('msc-ai-hint-btn');
-          if (aiBtn_node) aiBtn_node.click();
+          if (typeof window.triggerAIHint === 'function') {
+              window.triggerAIHint();
+          }
           event.keyCode = 0;
           event.returnValue = false;
           if (event.preventDefault) event.preventDefault();
@@ -5333,30 +5334,21 @@ window.addEventListener('DOMContentLoaded', () => {
 
     // AI Hint Box creation moved above to answer area
     
-    aiHintBtn.addEventListener('click', async () => {
+    window.triggerAIHint = async () => {
+        if (aiHintBtn.disabled) return;
+        
         aiHintBox.style.display = 'block';
         
         // Check if answer is revealed using the global variable AnswerShown2 or if textareas2 is visible
         const isRevealed = (typeof AnswerShown2 !== 'undefined' && AnswerShown2 === true);
         
         aiHintBox.innerHTML = isRevealed 
-            ? '🤖 <strong>AIが解説と学習状況の分析を考えています...</strong>' 
+            ? '🤖 <strong>AIが解説を考えています...</strong>' 
             : '🤖 <strong>AIがヒントを考えています...</strong>';
         aiHintBtn.disabled = true;
         
         const qText = document.getElementById('textareas').value;
         const aText = document.getElementById('textareas2').value;
-        
-        // Extract question history
-        let historyText = "";
-        if (typeof window.allQuestionsData !== 'undefined' && typeof rand !== 'undefined') {
-            const qInfo = window.allQuestionsData.find(r => r.questionnumber == rand);
-            if (qInfo) {
-                const qDate = qInfo.qdate && qInfo.qdate !== '0000-00-00 00:00:00' ? qInfo.qdate : '記録なし';
-                historyText = `正解数: ${qInfo.correct}回, 不正解数: ${qInfo.incorrect}回, 最終回答日: ${qDate}`;
-                if (qInfo.poorat) historyText += `, 最近の傾向データ: ${qInfo.poorat}`;
-            }
-        }
         
         try {
             const response = await fetch('ai_hint.php', {
@@ -5365,13 +5357,12 @@ window.addEventListener('DOMContentLoaded', () => {
                 body: JSON.stringify({ 
                     question: qText, 
                     answer: aText,
-                    is_answer_revealed: isRevealed,
-                    history_text: historyText
+                    is_answer_revealed: isRevealed
                 })
             });
             const data = await response.json();
             if (data.hint) {
-                const title = isRevealed ? '<strong>🤖 AI解説＆分析:</strong><br><br>' : '<strong>🤖 AIヒント:</strong><br><br>';
+                const title = isRevealed ? '<strong>🤖 AI解説:</strong><br><br>' : '<strong>🤖 AIヒント:</strong><br><br>';
                 aiHintBox.innerHTML = title + data.hint.replace(/\n/g, '<br>');
             } else if (data.error) {
                 aiHintBox.innerText = 'エラーが発生しました: ' + data.error;
@@ -5380,7 +5371,9 @@ window.addEventListener('DOMContentLoaded', () => {
             aiHintBox.innerText = '通信エラーが発生しました。';
         }
         aiHintBtn.disabled = false;
-    });
+    };
+    
+    aiHintBtn.addEventListener('click', window.triggerAIHint);
 
     // 7. Create Feedback Buttons Area (Good / Poor / Nav)
     const feedbackArea = document.createElement('div');
