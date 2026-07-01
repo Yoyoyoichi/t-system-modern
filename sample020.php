@@ -3973,6 +3973,12 @@ function whichKey1(){
           event.keyCode = 0;
           event.returnValue = false;
           break;
+        case 84: // T key
+          const aiBtn = document.getElementById('msc-ai-hint-btn');
+          if (aiBtn) aiBtn.click();
+          event.keyCode = 0;
+          event.returnValue = false;
+          break;
         case 87:
           sendRequest();
           event.keyCode = 0;
