@@ -1792,7 +1792,7 @@ word-wrap:break-word;'></pre>
     <div class="msc-settings-checkboxes">
 
         <label class="msc-checkbox-wrapper">
-            <input class ="button" type="checkbox" class="msc-checkbox" id = "qachange" onchange = "settingSave()" style="font-size: 20px;margin:2vh 0px 0px 0px">
+            <input class="msc-checkbox" type="checkbox" id="qachange" onchange = "settingSave()">
             <span class="msc-checkbox-label">問題/解答</span>
         </label>
         <label class="msc-checkbox-wrapper">
@@ -1800,27 +1800,27 @@ word-wrap:break-word;'></pre>
             <span class="msc-checkbox-label">自動読上</span>
         </label>
         <label class="msc-checkbox-wrapper">
-            <input class ="button" type="checkbox" class="msc-checkbox" id = "keyControl" onchange = "settingSave()" style="font-size: 20px;margin:2vh 0px 0px 2vh">
+            <input class="msc-checkbox" type="checkbox" id="keyControl" onchange = "settingSave()">
             <span class="msc-checkbox-label">キー操作</span>
         </label>
         <label class="msc-checkbox-wrapper">
-            <input class ="button" type="checkbox" class="msc-checkbox" id = "answerByMyself" onchange = "settingSave()" style="font-size: 20px;margin:2vh 0px 0px 0px">
+            <input class="msc-checkbox" type="checkbox" id="answerByMyself" onchange = "settingSave()">
             <span class="msc-checkbox-label">解答入力</span>
         </label>
         <label class="msc-checkbox-wrapper">
-            <input class ="button" type="checkbox" class="msc-checkbox" id = "randomOrNot" onchange = "settingSave()" style="font-size: 20px;margin:2vh 0px 0px 2vh">
+            <input class="msc-checkbox" type="checkbox" id="randomOrNot" onchange = "settingSave()">
             <span class="msc-checkbox-label">ランダム</span>
         </label>
         <label class="msc-checkbox-wrapper">
-            <input class ="button" type="checkbox" class="msc-checkbox" id = "chordsOrNot" onchange = "settingSave()" style="font-size: 20px;margin:2vh 0px 0px 2vh">
+            <input class="msc-checkbox" type="checkbox" id="chordsOrNot" onchange = "settingSave()">
             <span class="msc-checkbox-label">コード音声</span>
         </label>
         <label class="msc-checkbox-wrapper">
-            <input class ="button" type="checkbox" class="msc-checkbox" id="flexButton" value="横並び" onchange='QnAareaFlex();settingSave()' style="font-size: 20px;margin:2vh 0px 0px 2vh">
+            <input class="msc-checkbox" type="checkbox" id="flexButton" value="横並び" onchange='QnAareaFlex();settingSave()'>
             <span class="msc-checkbox-label">横並び</span>
         </label>
         <label class="msc-checkbox-wrapper">
-            <input class ="button" type="checkbox" class="msc-checkbox" id="blackCheck" value="真っ黒" onchange='blackOrWhite();settingSave()' style="font-size: 20px;margin:2vh 0px 0px 2vh">
+            <input class="msc-checkbox" type="checkbox" id="blackCheck" value="真っ黒" onchange='blackOrWhite();settingSave()'>
             <span class="msc-checkbox-label">真っ黒</span>
         </label>
     </div>
