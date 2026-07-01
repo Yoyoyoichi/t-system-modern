@@ -671,21 +671,23 @@ input[type="text"].button:hover {
     transition: all 0.2s;
 }
 .msc-btn-primary.msc-btn-huge {
-    background: #0ea5e9 !important;
-    color: #fff !important;
+    background: #111111 !important;
+    color: #ffffff !important;
+    border: 1px solid #111111 !important;
 }
 .msc-btn-primary.msc-btn-huge:hover {
-    background: #0284c7 !important;
+    background: #333333 !important;
+    border-color: #333333 !important;
     transform: translateY(-2px);
 }
 .msc-btn-secondary.msc-btn-huge {
-    background: #fff !important;
-    color: #0f172a !important;
-    border: 2px solid #cbd5e1 !important;
+    background: #ffffff !important;
+    color: #111111 !important;
+    border: 1px solid #dddddd !important;
 }
 .msc-btn-secondary.msc-btn-huge:hover {
-    background: #f8fafc !important;
-    border-color: #94a3b8 !important;
+    background: #f4f4f5 !important;
+    border-color: #cccccc !important;
     transform: translateY(-2px);
 }
 .msc-feedback-row {
@@ -737,10 +739,10 @@ input[type="text"].button:hover {
     color: #ffffff;
     border-color: #111111;
 }
-.msc-btn-nav { background: #64748b !important; color: #fff !important; }
-.msc-btn-nav:hover { background: #475569 !important; transform: translateY(-1px); }
-.msc-btn-undo { background: #f59e0b !important; color: #fff !important; }
-.msc-btn-undo:hover { background: #d97706 !important; transform: translateY(-1px); }
+.msc-btn-nav { background: #ffffff !important; color: #111111 !important; border: 1px solid #dddddd !important; }
+.msc-btn-nav:hover { background: #111111 !important; color: #ffffff !important; border-color: #111111 !important; transform: translateY(-1px); }
+.msc-btn-undo { background: #ffffff !important; color: #111111 !important; border: 1px solid #dddddd !important; }
+.msc-btn-undo:hover { background: #111111 !important; color: #ffffff !important; border-color: #111111 !important; transform: translateY(-1px); }
 
 .msc-textarea {
     width: 100%;
