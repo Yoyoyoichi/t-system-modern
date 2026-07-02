@@ -6,6 +6,7 @@
 // 【重要】ここにGoogle GeminiのAPIキーを設定してください
 // ==========================================
 $api_key = "AIzaSyBHvYkCZIPlH4EaHcUsHChqBPDLHTNnamw";
+$model = "gemini-1.5-flash";
 
 header('Content-Type: application/json');
 
@@ -73,7 +74,6 @@ if (empty($api_key) || $api_key === "YOUR_OPENAI_API_KEY_HERE") {
     exit;
 }
 
-$model = 'gemini-flash-latest';
 $url = "https://generativelanguage.googleapis.com/v1beta/models/" . $model . ":generateContent?key=" . $api_key;
 
 $ch = curl_init();
