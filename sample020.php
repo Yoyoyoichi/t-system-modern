@@ -591,7 +591,7 @@ input[type="text"].button:hover {
     border: 1px solid #e2e8f0;
     border-radius: 8px;
     padding: 16px;
-    height: 110px;
+    height: 100%;
     overflow-y: auto;
     font-family: inherit;
 }
