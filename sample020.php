@@ -5298,7 +5298,7 @@ window.addEventListener('DOMContentLoaded', () => {
     
     const aiHintBox = document.createElement('div');
     aiHintBox.id = 'msc-ai-hint-box';
-    aiHintBox.style.cssText = 'display: none; position: absolute; top: 0; left: 0; right: 0; bottom: 0; padding: 16px; background: #f8fafc; border: 2px solid #bbf7d0; border-radius: 8px; font-size: 14px; color: #334155; line-height: 1.6; white-space: pre-wrap; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1); overflow-y: auto;';
+    aiHintBox.style.cssText = 'display: none; position: absolute; top: 0; left: 0; right: 0; bottom: 0; padding: 16px; background: #f8fafc; border: 2px solid #bbf7d0; border-radius: 8px; font-size: 13px; color: #334155; line-height: 1.6; white-space: pre-wrap; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1); overflow-y: auto;';
     
     aiHintWrapper.appendChild(aiHintBox);
     metadataLayout.appendChild(aiHintWrapper);
