@@ -5283,7 +5283,7 @@ window.addEventListener('DOMContentLoaded', () => {
     // questionInfo is actually the Metadata (Level, Correct count, etc.)
     const metadataLayout = document.createElement('div');
     metadataLayout.id = 'msc-metadata-layout';
-    metadataLayout.style.cssText = 'display: flex; gap: 16px; width: 100%; align-items: stretch; margin-bottom: 16px; min-height: 160px;';
+    metadataLayout.style.cssText = 'display: flex; gap: 16px; width: 100%; align-items: stretch; margin-bottom: 16px; min-height: 200px;';
     
     const qInfo = moveEl('questionInfo', metadataLayout, 'msc-metadata-box');
     if (qInfo) {
