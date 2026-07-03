@@ -658,9 +658,9 @@ input[type="text"].button:hover {
 }
 .msc-btn-huge {
     flex: 1;
-    height: 80px;
-    font-size: 28px !important;
-    font-weight: 700;
+    height: 60px;
+    font-size: 18px !important;
+    font-weight: 600;
     border-radius: 12px;
     cursor: pointer;
     border: none;
@@ -672,8 +672,8 @@ input[type="text"].button:hover {
 }
 .msc-btn-primary.msc-btn-huge {
     background: #ffffff !important;
-    color: #111111 !important;
-    border: 1px solid #dddddd !important;
+    color: #555555 !important;
+    border: 1px solid #e2e8f0 !important;
 }
 .msc-btn-primary.msc-btn-huge:hover {
     background: #f4f4f5 !important;
@@ -681,9 +681,9 @@ input[type="text"].button:hover {
     transform: translateY(-2px);
 }
 .msc-btn-secondary.msc-btn-huge {
-    background: #fff !important;
-    color: #0f172a !important;
-    border: 2px solid #cbd5e1 !important;
+    background: #ffffff !important;
+    color: #64748b !important;
+    border: 1px solid #e2e8f0 !important;
 }
 .msc-btn-secondary.msc-btn-huge:hover {
     background: #f8fafc !important;
@@ -5359,7 +5359,7 @@ window.addEventListener('DOMContentLoaded', () => {
     const aiHintBtn = document.createElement('button');
     aiHintBtn.type = 'button';
     aiHintBtn.className = 'msc-btn-huge msc-btn-secondary';
-    aiHintBtn.style.cssText = 'background: #f9f9f9 !important; border-color: #666 !important; color: #333 !important; font-size: 20px !important; display: flex; align-items: center; justify-content: center; gap: 8px;';
+    aiHintBtn.style.cssText = 'background: #f9f9f9 !important; border-color: #e2e8f0 !important; color: #64748b !important; font-size: 18px !important; display: flex; align-items: center; justify-content: center; gap: 8px;';
     aiHintBtn.innerHTML = '🤖 <span id="msc-ai-btn-text">AI サポート</span>';
     aiHintBtn.id = 'msc-ai-hint-btn';
     actionArea.appendChild(aiHintBtn);
