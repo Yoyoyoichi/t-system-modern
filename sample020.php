@@ -2247,7 +2247,6 @@ async function fetchAnswerFromSupabase(qnum, mode) {
     if (mode === 2) {
         reply = data.question || "";
         if (reply === "NULL") reply = "";
-        if (data.hint && data.hint !== "NULL") reply += "\n............................................................\n" + data.hint;
     } else {
         reply = data.answer1 || "";
         if (reply === "NULL") reply = "";
@@ -2261,9 +2260,6 @@ async function fetchAnswerFromSupabase(qnum, mode) {
                     reply = val;
                 }
             }
-        }
-        if (data.hint && data.hint !== "NULL") {
-            reply += "\n............................................................\n" + data.hint;
         }
     }
     return reply;
