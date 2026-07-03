@@ -6,7 +6,7 @@
 // 【重要】ここにGoogle GeminiのAPIキーを設定してください
 // ==========================================
 $api_key = "AIzaSyBHvYkCZIPlH4EaHcUsHChqBPDLHTNnamw";
-$model = "gemini-2.5-flash-lite";
+$model = "gemini-flash-lite-latest";
 
 header('Content-Type: application/json');
 
