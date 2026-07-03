@@ -5426,8 +5426,21 @@ window.addEventListener('DOMContentLoaded', () => {
                 
                 const formattedHint = data.hint.replace(/\n/g, '<br>');
                 
-                // SAVE IT to the database
+                // Update local cache so it appears immediately on reload without fetching
                 const qNum = typeof rand !== 'undefined' ? rand : null;
+                let localData = window.allQuestionsData ? window.allQuestionsData.find(r => r.questionnumber == qNum) : null;
+                if (localData) {
+                    // If there was already a hint, append it, otherwise set it
+                    if (localData.hint && localData.hint !== "NULL") {
+                        if (!localData.hint.includes(data.hint)) {
+                            localData.hint += '\n\n' + data.hint;
+                        }
+                    } else {
+                        localData.hint = data.hint;
+                    }
+                }
+                
+                // SAVE IT to the database
                 const dbName = (document.mainform && document.mainform.DB_name) ? document.mainform.DB_name.value : null;
                 if (qNum && dbName) {
                     fetch('save_ai_hint.php', {
@@ -5437,20 +5450,7 @@ window.addEventListener('DOMContentLoaded', () => {
                     })
                     .then(res => res.json())
                     .then(saveRes => {
-                        if(saveRes.success) {
-                            // Update local cache so it appears immediately on reload without fetching
-                            let localData = window.allQuestionsData ? window.allQuestionsData.find(r => r.questionnumber == qNum) : null;
-                            if (localData) {
-                                // If there was already a hint, append it, otherwise set it
-                                if (localData.hint && localData.hint !== "NULL") {
-                                    if (!localData.hint.includes(data.hint)) {
-                                        localData.hint += '\n\n' + data.hint;
-                                    }
-                                } else {
-                                    localData.hint = data.hint;
-                                }
-                            }
-                        }
+                        if(!saveRes.success) console.error("Server returned error when saving hint:", saveRes);
                     })
                     .catch(e => console.error("Failed to save hint", e));
                 }

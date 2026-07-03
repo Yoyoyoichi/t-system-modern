@@ -33,7 +33,7 @@ $safe_db_name = $mysqli->real_escape_string($db_name);
 $safe_hint = $mysqli->real_escape_string($hint);
 
 // Allow any table, but enforce basic safety (table names shouldn't have quotes/spaces)
-if (!preg_match('/^[a-zA-Z0-9_]+$/', $safe_db_name)) {
+if (!preg_match('/^[a-zA-Z0-9_-]+$/', $safe_db_name)) {
     echo json_encode(['success' => false, 'error' => 'Invalid database name format']);
     exit;
 }
