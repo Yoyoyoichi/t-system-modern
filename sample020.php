@@ -2667,6 +2667,18 @@ async function sendRequest2(){
   AnswerShown = true;
   AnswerShown2 = true;
   
+  // 自動的にAI解説を表示する処理
+  let currentQData = window.allQuestionsData ? window.allQuestionsData.find(r => r.questionnumber == rand) : null;
+  if (currentQData && currentQData.hint && currentQData.hint !== "NULL") {
+      const aiBox = document.getElementById('msc-ai-hint-box');
+      const btnText = document.getElementById('msc-ai-btn-text');
+      if (aiBox && btnText) {
+          aiBox.style.display = 'block';
+          aiBox.innerHTML = currentQData.hint.replace(/\n/g, '<br>');
+          btnText.innerText = 'AI さらに深く';
+      }
+  }
+  
   /** 重複チェックしながら乱数作成 */
   for(i = min; i < max+1; i++){
     while(true){
@@ -5414,6 +5426,35 @@ window.addEventListener('DOMContentLoaded', () => {
                 
                 const formattedHint = data.hint.replace(/\n/g, '<br>');
                 
+                // SAVE IT to the database
+                const qNum = typeof rand !== 'undefined' ? rand : null;
+                const dbName = (document.mainform && document.mainform.DB_name) ? document.mainform.DB_name.value : null;
+                if (qNum && dbName) {
+                    fetch('save_ai_hint.php', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ questionnumber: qNum, db_name: dbName, hint: data.hint })
+                    })
+                    .then(res => res.json())
+                    .then(saveRes => {
+                        if(saveRes.success) {
+                            // Update local cache so it appears immediately on reload without fetching
+                            let localData = window.allQuestionsData ? window.allQuestionsData.find(r => r.questionnumber == qNum) : null;
+                            if (localData) {
+                                // If there was already a hint, append it, otherwise set it
+                                if (localData.hint && localData.hint !== "NULL") {
+                                    if (!localData.hint.includes(data.hint)) {
+                                        localData.hint += '\n\n' + data.hint;
+                                    }
+                                } else {
+                                    localData.hint = data.hint;
+                                }
+                            }
+                        }
+                    })
+                    .catch(e => console.error("Failed to save hint", e));
+                }
+
                 if (currentDepth === 1) {
                     aiHintBox.innerHTML = formattedHint;
                 } else {
