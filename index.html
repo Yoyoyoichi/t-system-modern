@@ -2637,8 +2637,9 @@ async function sendRequest2(){
   		document.getElementById( "textareas2" ).value = document.getElementById( "textareas2" ).value + res + "\n";
         document.getElementById( "textareas2" ).value = document.getElementById( "textareas2" ).value + AnswerTyped ; 
 
-        
-        event.keyCode = 0;
+        if (typeof event !== 'undefined' && event) {
+          event.keyCode = 0;
+        }
       } else {
         document.getElementById( "textareas2" ).value = res;
       }
