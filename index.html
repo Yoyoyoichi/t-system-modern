@@ -1587,7 +1587,7 @@ word-wrap:break-word;'></pre>
             <span class="msc-checkbox-label">自動読上</span>
         </label>
         <label class="msc-checkbox-wrapper">
-            <input class="msc-checkbox" type="checkbox" id="keyControl" onchange = "settingSave()">
+            <input class="msc-checkbox" type="checkbox" id="keyControl" onchange = "settingSave()" checked>
             <span class="msc-checkbox-label">キー操作</span>
         </label>
         <label class="msc-checkbox-wrapper">
@@ -2426,7 +2426,7 @@ function createXmlHttpRequest()
 
 
 async function sendRequest2(){
-    if (document.activeElement && document.activeElement.tagName !== 'TEXTAREA') {
+    if (document.activeElement) {
         document.activeElement.blur();
     }
 
