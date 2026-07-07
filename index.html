@@ -5375,10 +5375,6 @@ window.addEventListener('DOMContentLoaded', () => {
             }
             await listChanged();
             
-            // データを読み込んだ後、最初の問題を表示する（手動の「問題」ボタンクリックと同じ動き）
-            if (typeof sendRequest === 'function') {
-                sendRequest();
-            }
         }, 100);
     }
 });
