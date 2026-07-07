@@ -3637,7 +3637,7 @@ function keydown(event) {
     // console.log('event.key is ' + event.key);
     whichKey1(event)
   }else if((document.getElementById("keyControl").checked) //キー操作にチェックがあり
-  && (!document.getElementById("answerByMyself").checked)//解答入力にチェックがあり
+  && (document.activeElement.id != "textareas2")//解答欄がアクティブでなく
   && (document.activeElement.id != "textareas")//問題欄がアクティブでなく
   && (document.activeElement.id != "criteria1")//基準欄がアクティブでなく
   && (document.activeElement.id != "criteria2")
