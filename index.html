@@ -3651,413 +3651,142 @@ function keydown(event) {
 }
 
 function whichKey1(event){
-  if ((event.ctrlKey)) {
-    if (event.keyCode === 229){
-        switch (event.code) {
-          case "KeyE":
-              sendRequest2();
-              event.returnValue = false;
-              event.keyCode = 0;
-              return false;
-              break;
-          case "KeyR":
-              sendRequest2();
-              event.returnValue = false;
-              event.keyCode = 0;
-              return false;
-              break;
-          case "KeyQ":
-              sendRequest();
-              event.returnValue = false;
-              event.keyCode = 0;
-              return false;
-              break;
-          case "KeyW":
-              sendRequest();
-              event.returnValue = false;
-              event.keyCode = 0;
-              return false;
-              break;
-          case "KeyF":
-              sendRequest3('good1');
-              event.returnValue = false;
-              event.keyCode = 0;
-              return false;
-              break;
-          case "KeyD":
-              sendRequest3('good2');
-              event.returnValue = false;
-              event.keyCode = 0;
-              return false;
-              break;
-          case "KeyS":
-              sendRequest3('good3');
-              event.returnValue = false;
-              event.keyCode = 0;
-              return false;
-              break;
-          case "KeyA":
-              sendRequest3('good4');
-              event.returnValue = false;
-              event.keyCode = 0;
-              return false;
-              break;
-          
-          case "KeyJ":
-              sendRequest3('good1');
-              event.returnValue = false;
-              event.keyCode = 0;
-              return false;
-              break;
-          case "KeyH":
-              sendRequest3('good1');
-              event.returnValue = false;
-              event.keyCode = 0;
-              return false;
-              break;
-          case "KeyV":
-              sendRequest4('poor1');
-              event.returnValue = false;
-              event.keyCode = 0;
-              return false;
-              break;
-          case "KeyB":
-              sendRequest4('poor1');
-              event.returnValue = false;
-              event.keyCode = 0;
-              return false;
-              break;
-          case "KeyN":
-              sendRequest4('poor1');
-              event.returnValue = false;
-              event.keyCode = 0;
-              return false;
-              break;
-          case "KeyC":
-              sendRequest4('poor2');
-              event.returnValue = false;
-              event.keyCode = 0;
-              return false;
-              break;
-          case "KeyX":
-              sendRequest4('poor3');
-              event.returnValue = false;
-              event.keyCode = 0;
-              return false;
-              break;
-          case "KeyZ":
-              sendRequest4('poor4');
-              event.returnValue = false;
-              event.keyCode = 0;
-              return false;
-              break;
-          case "KeyM":
-              readQuestion();
-              event.returnValue = false;
-              event.keyCode = 0;
-              return false;
-              break;
-          default:
-              ;
-              break;
-        }
-    } else {
-      switch (event.keyCode) {
-        case 82:
-          sendRequest2();
-          event.keyCode = 0;
-          event.returnValue = false;
-          break;
-        case 69:
-          sendRequest2();
-          event.keyCode = 0;
-          event.returnValue = false;
-          break;
-        case 87:
-          sendRequest();
-          event.keyCode = 0;
-          event.returnValue = false;
-          break;
-        case 81:
-          sendRequest();
-          event.keyCode = 0;
-          event.returnValue = false;
-          break;
-        case 70:
-          sendRequest3('good1');
-          event.keyCode = 0;
-          event.returnValue = false;
-        break;
-        case 74:
-          sendRequest3('good1');
-          event.keyCode = 0;
-          event.returnValue = false;
-        break;
-        case 72:
-          sendRequest3('good1');
-          event.keyCode = 0;
-          event.returnValue = false;
-        break;
-        case 52:
-          readAnswer()
-          event.keyCode = 0;
-          event.returnValue = false;
-        break;
-        case 68:
-          sendRequest3('good2');
-          event.keyCode = 0;
-          event.returnValue = false;
-        break;
-        case 83:
-          sendRequest3('good3');
-          event.keyCode = 0;
-          event.returnValue = false;
-        break;
-        case 65:
-          sendRequest3('good4');
-          event.keyCode = 0;
-          event.returnValue = false;
-          break;
-        case 86:
-          sendRequest4('poor1');
-          event.keyCode = 0;
-          event.returnValue = false;
-          break;
-        // case 54:
-          // sendRequest4('poor1');
-          // event.keyCode = 0;
-          // event.returnValue = false;
-          // break;
-        case 73:
-          sendRequest4('poor1');
-          event.keyCode = 0;
-          event.returnValue = false;
-          break;
-        case 67:
-          sendRequest4('poor2');
-          event.keyCode = 0;
-          event.returnValue = false;
-          break;
-        case 88:
-          sendRequest4('poor3');
-          event.keyCode = 0;
-          event.returnValue = false;
-          break;
-        case 90:
-          sendRequest4('poor4');
-          event.keyCode = 0;
-          event.returnValue = false;
-          break;
-        
-        default:
-          ;
-          break;
-      }
-    }
-  }else if(event.keyCode === 219){
-    sendRequest3('good1');
-    event.keyCode = 0;
-    event.returnValue = false;
-  }else if(event.keyCode === 221){
-    sendRequest4('poor1');
-    event.keyCode = 0;
-    event.returnValue = false;
-  }
-}
-function whichKey2(event){
-  if (event.keyCode === 229 && event.keyCode != "ControlLeft"){
+  if (event.ctrlKey) {
     switch (event.code) {
       case "KeyE":
-          sendRequest2();
-          event.returnValue = false;
-          event.keyCode = 0;
-          return false;
-          break;
       case "KeyR":
           sendRequest2();
-          event.returnValue = false;
-          event.keyCode = 0;
+          if (event.preventDefault) event.preventDefault();
           return false;
-          break;
       case "KeyT":
           if (typeof window.triggerAIHint === 'function') {
               window.triggerAIHint();
           }
-          event.returnValue = false;
-          event.keyCode = 0;
           if (event.preventDefault) event.preventDefault();
           return false;
-          break;
       case "KeyQ":
-          sendRequest();
-          event.returnValue = false;
-          event.keyCode = 0;
-          return false;
-          break;
       case "KeyW":
           sendRequest();
-          event.returnValue = false;
-          event.keyCode = 0;
+          if (event.preventDefault) event.preventDefault();
           return false;
-          break;
       case "KeyF":
+      case "KeyJ":
+      case "KeyH":
           sendRequest3('good1');
-          event.returnValue = false;
-          event.keyCode = 0;
+          if (event.preventDefault) event.preventDefault();
           return false;
-          break;
       case "KeyD":
           sendRequest3('good2');
-          event.returnValue = false;
-          event.keyCode = 0;
+          if (event.preventDefault) event.preventDefault();
           return false;
-          break;
       case "KeyS":
           sendRequest3('good3');
-          event.returnValue = false;
-          event.keyCode = 0;
+          if (event.preventDefault) event.preventDefault();
           return false;
-          break;
       case "KeyA":
           sendRequest3('good4');
-          event.returnValue = false;
-          event.keyCode = 0;
+          if (event.preventDefault) event.preventDefault();
           return false;
-          break;
       case "KeyV":
+      case "KeyI":
+      case "KeyB":
+      case "KeyN":
           sendRequest4('poor1');
-          event.returnValue = false;
-          event.keyCode = 0;
+          if (event.preventDefault) event.preventDefault();
           return false;
-          break;
       case "KeyC":
           sendRequest4('poor2');
-          event.returnValue = false;
-          event.keyCode = 0;
+          if (event.preventDefault) event.preventDefault();
           return false;
-          break;
       case "KeyX":
           sendRequest4('poor3');
-          event.returnValue = false;
-          event.keyCode = 0;
+          if (event.preventDefault) event.preventDefault();
           return false;
-          break;
       case "KeyZ":
           sendRequest4('poor4');
-          event.returnValue = false;
-          event.keyCode = 0;
+          if (event.preventDefault) event.preventDefault();
           return false;
-          break;
-
-      default:
-          ;
-          break;
+      case "KeyP":
+          backQuestion();
+          if (event.preventDefault) event.preventDefault();
+          return false;
     }
   } else {
-    switch (event.keyCode) {
-      case 82:
-          sendRequest2();
-          event.keyCode = 0;
-          event.returnValue = false;
-          break;
-      case 69:
-          sendRequest2();
-          event.keyCode = 0;
-          event.returnValue = false;
-          break;
-      case 84: // T key
-          if (typeof window.triggerAIHint === 'function') {
-              window.triggerAIHint();
-          }
-          event.keyCode = 0;
-          event.returnValue = false;
-          if (event.preventDefault) event.preventDefault();
-          break;
-      case 87:
-          sendRequest();
-          event.keyCode = 0;
-          event.returnValue = false;
-          break;
-      case 81:
-          sendRequest();
-          event.keyCode = 0;
-          event.returnValue = false;
-          break;
-      case 70:
-          sendRequest3('good1');
-          event.keyCode = 0;
-          event.returnValue = false;
-          break;
-      case 74:
-          sendRequest3('good1');
-          event.keyCode = 0;
-          event.returnValue = false;
-          break;
-      case 72:
-          sendRequest3('good1');
-          event.keyCode = 0;
-          event.returnValue = false;
-          break;
-      case 68:
-          sendRequest3('good2');
-          event.keyCode = 0;
-          event.returnValue = false;
-          break;
-      case 83:
-          sendRequest3('good3');
-          event.keyCode = 0;
-          event.returnValue = false;
-          break;
-      case 65:
-          sendRequest3('good4');
-          event.keyCode = 0;
-          event.returnValue = false;
-          break;
-      case 86:
-          sendRequest4('poor1');
-          event.keyCode = 0;
-          event.returnValue = false;
-          break;
-      // case 54:
-      //     sendRequest4('poor1');
-      //     event.keyCode = 0;
-      //     event.returnValue = false;
-      //     break;
-      case 52:
-          readAnswer()
-          event.keyCode = 0;
-          event.returnValue = false;
-        break;
-      case 73:
-          sendRequest4('poor1');
-          event.keyCode = 0;
-          event.returnValue = false;
-          break;
-      case 67:
-          sendRequest4('poor2');
-          event.keyCode = 0;
-          event.returnValue = false;
-          break;
-      case 88:
-          sendRequest4('poor3');
-          event.keyCode = 0;
-          event.returnValue = false;
-          break;
-      case 90:
-          sendRequest4('poor4');
-          event.keyCode = 0;
-          event.returnValue = false;
-          break;
-      case 80:
-          backQuestion();
-          event.keyCode = 0;
-          event.returnValue = false;
-          break;
-      
-      default:
-          ;
-          break;
+    if (event.code === "BracketLeft") {
+      sendRequest3('good1');
+      if (event.preventDefault) event.preventDefault();
+      return false;
+    } else if (event.code === "BracketRight") {
+      sendRequest4('poor1');
+      if (event.preventDefault) event.preventDefault();
+      return false;
     }
+  }
+}
+
+function whichKey2(event){
+  switch (event.code) {
+    case "KeyE":
+    case "KeyR":
+        sendRequest2();
+        if (event.preventDefault) event.preventDefault();
+        return false;
+    case "KeyT":
+        if (typeof window.triggerAIHint === 'function') {
+            window.triggerAIHint();
+        }
+        if (event.preventDefault) event.preventDefault();
+        return false;
+    case "KeyQ":
+    case "KeyW":
+        sendRequest();
+        if (event.preventDefault) event.preventDefault();
+        return false;
+    case "KeyF":
+    case "KeyJ":
+    case "KeyH":
+        sendRequest3('good1');
+        if (event.preventDefault) event.preventDefault();
+        return false;
+    case "KeyD":
+        sendRequest3('good2');
+        if (event.preventDefault) event.preventDefault();
+        return false;
+    case "KeyS":
+        sendRequest3('good3');
+        if (event.preventDefault) event.preventDefault();
+        return false;
+    case "KeyA":
+        sendRequest3('good4');
+        if (event.preventDefault) event.preventDefault();
+        return false;
+    case "KeyV":
+    case "KeyI":
+    case "KeyB":
+    case "KeyN":
+        sendRequest4('poor1');
+        if (event.preventDefault) event.preventDefault();
+        return false;
+    case "KeyC":
+        sendRequest4('poor2');
+        if (event.preventDefault) event.preventDefault();
+        return false;
+    case "KeyX":
+        sendRequest4('poor3');
+        if (event.preventDefault) event.preventDefault();
+        return false;
+    case "KeyZ":
+        sendRequest4('poor4');
+        if (event.preventDefault) event.preventDefault();
+        return false;
+    case "Digit4":
+        readAnswer();
+        if (event.preventDefault) event.preventDefault();
+        return false;
+    case "KeyP":
+        backQuestion();
+        if (event.preventDefault) event.preventDefault();
+        return false;
   }
 }
 
