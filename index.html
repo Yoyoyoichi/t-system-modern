@@ -5169,18 +5169,50 @@ window.addEventListener('DOMContentLoaded', () => {
         const aText = document.getElementById('textareas2').value;
         
         try {
-            const response = await fetch('ai_hint.php', {
+            const API_KEY = "AIzaSyBHvYkCZIPlH4EaHcUsHChqBPDLHTNnamw";
+            const url = "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=" + API_KEY;
+            
+            let system_prompt = "";
+            let user_message = "";
+            
+            if (isRevealed) {
+                if (currentDepth === 1) {
+                    system_prompt = "あなたは優秀な学習サポートAIです。ユーザーはすでにこの問題の解答を確認しました。\nこの問題のわかりやすい「解説」を行ってください。\n\n【重要】回答は全体で「4〜5行程度」に収めてください。学習者が楽しく記憶に定着させやすいように「語源」「暗記法」「イメージ法」「面白い語呂合わせ（ダジャレ等）」のいずれかを簡潔に盛り込み、さらに必ず【短い例文を1つ】含めてください。問題文や解答自体をそのまま繰り返す必要はありません。";
+                    user_message = "以下の問題についての解説をお願いします。\n\n【問題】\n" + qText + "\n\n【正解】\n" + aText;
+                } else if (currentDepth === 2) {
+                    system_prompt = "あなたは優秀な学習サポートAIです。ユーザーは一度解説を読みましたが、さらに深い情報を求めています。\n\n【重要】回答は全体で「4〜5行程度」に収めてください。前回とは異なる視点で、記憶に残る語源の解説や強烈なイメージ法、ひねりの効いた語呂合わせなどを簡潔に提供し、必ず【別の短い例文を1つ】含めてください。";
+                    user_message = "以下の問題について、もっと深掘りした解説や、別の角度からの暗記法（語源や語呂合わせなど）、そして例文を1つお願いします。\n\n【問題】\n" + qText + "\n\n【正解】\n" + aText;
+                } else {
+                    system_prompt = "あなたは優秀な学習サポートAIです。ユーザーはさらに高度な情報を求めています。\n\n【重要】回答は全体で「4〜5行程度」に収めてください。同義語・反意語との使い分けなどを説明しつつ、ユーモアを交えた独自の暗記法や語源を提案し、必ず【実用的な例文を1つ】含めてください。";
+                    user_message = "以下の問題について、さらに高度で実践的な知識（類義語の使い分けなど）と、それを覚えるための面白いイメージ法や語源、そして例文を1つ教えてください。\n\n【問題】\n" + qText + "\n\n【正解】\n" + aText;
+                }
+            } else {
+                if (currentDepth === 1) {
+                    system_prompt = "あなたは優秀な学習サポートAIです。ユーザーは現在問題を解いている最中で、まだ解答を見ていません。\n絶対に直接的な答え（正解）を言わずに、答えを導くための「ヒント」だけを出してください。\n\n【重要】回答は全体で「4〜5行程度」に収めてください。答えの最初の文字を教えたり、関連する知識を小出しにするなどして、ユーザーが自力で閃くように誘導してください。";
+                    user_message = "以下の問題の答えがわからないので、直接的な正解は言わずにヒントをください。\n\n【問題】\n" + qText;
+                } else {
+                    system_prompt = "あなたは優秀な学習サポートAIです。ユーザーは最初のヒントを見ましたが、まだ正解にたどり着けていません。\n絶対に直接的な正解は言わずに、先ほどよりも『もう一歩答えに近づくような強いヒント』を出してください。\n\n【重要】回答は全体で「4〜5行程度」に収めてください。答えの文字数や、答えを構成する具体的な要素など、より決定的なヒントを提供してください。";
+                    user_message = "最初のヒントだけではわかりませんでした。もう少しだけ答えに近い追加のヒントをください（直接的な正解はまだ言わないでください）。\n\n【問題】\n" + qText;
+                }
+            }
+            
+            const payload = {
+                contents: [{
+                    parts: [{ text: "System:\n" + system_prompt + "\n\nHistory:\n" + (window.aiHintHistoryText || '') + "\n\nUser:\n" + user_message }]
+                }],
+                generationConfig: {
+                    temperature: 0.7,
+                    maxOutputTokens: 250
+                }
+            };
+
+            const response = await fetch(url, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ 
-                    question: qText, 
-                    answer: aText,
-                    is_answer_revealed: isRevealed,
-                    depth: currentDepth,
-                    previous_hints: window.aiHintHistoryText || ''
-                })
+                body: JSON.stringify(payload)
             });
-            const data = await response.json();
+            const rawData = await response.json();
+            const data = { hint: rawData.candidates[0].content.parts[0].text };
             if (data.hint) {
                 // Record this hint in history for the next request
                 if (typeof window.aiHintHistoryText === 'undefined') window.aiHintHistoryText = '';
