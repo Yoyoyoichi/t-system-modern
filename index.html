@@ -2847,6 +2847,73 @@ function intRandom(min, max){
     return Math.floor( Math.random() * (max - min + 1)) + min;
 }
 
+window.getSelected = (id) => {
+    const elem = document.getElementById(id);
+    if(!elem) return [];
+    const opts = elem.options;
+    const selected = [];
+    for (let i = 0; i < opts.length; i++) {
+        if (opts[i].selected && opts[i].value !== "") {
+            selected.push(opts[i].value);
+        }
+    }
+    return selected;
+};
+
+window.updateDropdown = async (targetId, searchCategoryName, filterCriteria) => {
+    let db_name = document.mainform.DB_name.value || 'terashima01';
+    db_name = db_name.toLowerCase();
+    
+    const targetElement = document.getElementById(targetId);
+    if(!targetElement) return;
+    
+    const currentSelections = window.getSelected(targetId);
+
+    // Show loading state
+    while (targetElement.lastChild) {
+        targetElement.removeChild(targetElement.lastChild);
+    }
+    const loadingOption = document.createElement("option");
+    loadingOption.value = "";
+    loadingOption.innerText = "読込中...";
+    targetElement.appendChild(loadingOption);
+    try { $(`#${targetId}`).trigger("chosen:updated"); } catch(e) {}
+
+    let query = supabaseClient.from(db_name).select(searchCategoryName).neq('question', 'settings');
+    
+    if (filterCriteria.ctg1 && filterCriteria.ctg1.length > 0) query = query.in('category1', filterCriteria.ctg1);
+    if (filterCriteria.ctg2 && filterCriteria.ctg2.length > 0) query = query.in('category2', filterCriteria.ctg2);
+    if (filterCriteria.ctg3 && filterCriteria.ctg3.length > 0) query = query.in('category3', filterCriteria.ctg3);
+    if (filterCriteria.ctg4 && filterCriteria.ctg4.length > 0) query = query.in('category4', filterCriteria.ctg4);
+
+    const { data, error } = await query;
+    if (error) {
+        console.error(`Error fetching ${searchCategoryName}:`, error);
+        return;
+    }
+
+    let uniqueVals = [...new Set(data.map(item => item[searchCategoryName]))]
+        .filter(val => val !== null && val !== undefined && String(val).trim() !== "")
+        .map(val => String(val));
+    
+    // Remove loading state
+    while (targetElement.lastChild) {
+        targetElement.removeChild(targetElement.lastChild);
+    }
+
+    uniqueVals.forEach(val => {
+        const option = document.createElement("option");
+        option.value = val;
+        option.innerText = val;
+        if (currentSelections.includes(val)) {
+            option.selected = true;
+        }
+        targetElement.appendChild(option);
+    });
+
+    try { $(`#${targetId}`).trigger("chosen:updated"); } catch(e) {}
+};
+
 async function listChange(categorySelect) {
     console.log("Triggered by:", categorySelect?.id);
     if (categorySelect && categorySelect.id === 'ctg1') {
@@ -2873,72 +2940,8 @@ async function listChange(categorySelect) {
     let db_name = document.mainform.DB_name.value || 'terashima01';
     db_name = db_name.toLowerCase();
 
-    const getSelected = (id) => {
-        const elem = document.getElementById(id);
-        if(!elem) return [];
-        const opts = elem.options;
-        const selected = [];
-        for (let i = 0; i < opts.length; i++) {
-            if (opts[i].selected && opts[i].value !== "") {
-                selected.push(opts[i].value);
-            }
-        }
-        return selected;
-    };
-
-    const updateDropdown = async (targetId, searchCategoryName, filterCriteria) => {
-        const targetElement = document.getElementById(targetId);
-        if(!targetElement) return;
-        
-        const currentSelections = getSelected(targetId);
-
-        // Show loading state
-        while (targetElement.lastChild) {
-            targetElement.removeChild(targetElement.lastChild);
-        }
-        const loadingOption = document.createElement("option");
-        loadingOption.value = "";
-        loadingOption.innerText = "読込中...";
-        targetElement.appendChild(loadingOption);
-        try { $(`#${targetId}`).trigger("chosen:updated"); } catch(e) {}
-
-        let query = supabaseClient.from(db_name).select(searchCategoryName).neq('question', 'settings');
-        
-        if (filterCriteria.ctg1 && filterCriteria.ctg1.length > 0) query = query.in('category1', filterCriteria.ctg1);
-        if (filterCriteria.ctg2 && filterCriteria.ctg2.length > 0) query = query.in('category2', filterCriteria.ctg2);
-        if (filterCriteria.ctg3 && filterCriteria.ctg3.length > 0) query = query.in('category3', filterCriteria.ctg3);
-        if (filterCriteria.ctg4 && filterCriteria.ctg4.length > 0) query = query.in('category4', filterCriteria.ctg4);
-
-        const { data, error } = await query;
-        if (error) {
-            console.error(`Error fetching ${searchCategoryName}:`, error);
-            return;
-        }
-
-        let uniqueVals = [...new Set(data.map(item => item[searchCategoryName]))]
-            .filter(val => val !== null && val !== undefined && String(val).trim() !== "")
-            .map(val => String(val));
-        
-        // Remove loading state
-        while (targetElement.lastChild) {
-            targetElement.removeChild(targetElement.lastChild);
-        }
-
-        uniqueVals.forEach(val => {
-            const option = document.createElement("option");
-            option.value = val;
-            option.innerText = val;
-            if (currentSelections.includes(val)) {
-                option.selected = true;
-            }
-            targetElement.appendChild(option);
-        });
-
-        try { $(`#${targetId}`).trigger("chosen:updated"); } catch(e) {}
-    };
-
     const triggerId = categorySelect.id;
-    let filters = { ctg1: getSelected('ctg1') };
+    let filters = { ctg1: window.getSelected('ctg1') };
 
     if (triggerId === 'ctg1') {
         await updateDropdown('ctg2', 'category2', filters);
