@@ -3873,7 +3873,7 @@ if (response[7]) {
 }
 document.getElementById("qachange").checked = parseStrToBoolean(response[8]);
 document.getElementById("autoread").checked = parseStrToBoolean(response[9]);
-document.getElementById("keyControl").checked = parseStrToBoolean(response[10]);
+document.getElementById("keyControl").checked = (response[10] !== undefined && response[10] !== '') ? parseStrToBoolean(response[10]) : true;
 document.getElementById("answerByMyself").checked = parseStrToBoolean(response[11]);
 document.getElementById("randomOrNot").checked = parseStrToBoolean(response[12]);
 document.getElementById("flexButton").checked = parseStrToBoolean(response[18]);
