@@ -1660,6 +1660,7 @@ let rand = "";
 var questionnumbers = "";
 var min = 0, max = "";
 var phpfile1 = "";
+var response2 = [];
 var phpfile2 = "";
 var databasename = document.mainform.DB_name.value;
 document.getElementById("reminder").href += "?"+databasename;
@@ -2032,6 +2033,9 @@ async function fetchAnswerFromSupabase(qnum, mode) {
 }
 
 async function sendRequest(){
+    if (document.activeElement && document.activeElement.tagName !== 'TEXTAREA') {
+        document.activeElement.blur();
+    }
 
     if (typeof window.resetAIHint === 'function') window.resetAIHint();
 
@@ -2422,6 +2426,9 @@ function createXmlHttpRequest()
 
 
 async function sendRequest2(){
+    if (document.activeElement && document.activeElement.tagName !== 'TEXTAREA') {
+        document.activeElement.blur();
+    }
 
   if (typeof window.resetAIHint === 'function') window.resetAIHint();
 
@@ -2665,6 +2672,10 @@ async function sendRequest2(){
 
 async function sendRequest3(goodPoor)
 {
+  if (document.activeElement && document.activeElement.tagName !== 'TEXTAREA') {
+      document.activeElement.blur();
+  }
+
   if (typeof window.resetAIHint === 'function') window.resetAIHint();
   
   now = new Date();
@@ -2703,6 +2714,10 @@ var incorrectNumber = 0;
 
 
 async function sendRequest4(goodPoor){
+  if (document.activeElement && document.activeElement.tagName !== 'TEXTAREA') {
+      document.activeElement.blur();
+  }
+
   if (typeof window.resetAIHint === 'function') window.resetAIHint();
   
   now = new Date();
@@ -3615,7 +3630,7 @@ function keydown(event) {
 
   // 出力テスト
   console.log(active_element);
-  if ((document.getElementById("keyControl").checked) && (AnswerShown)//キー操作にチェックがあり
+  if ((document.getElementById("keyControl").checked) //キー操作にチェックがあり
   && (document.activeElement.id == "textareas2")//解答欄がアクティブであり
   && (document.getElementById("answerByMyself").checked)) {//解答入力にチェックがあるとき
     // console.log('event.keyCode is ' + event.keyCode);
@@ -3623,7 +3638,6 @@ function keydown(event) {
     whichKey1(event)
   }else if((document.getElementById("keyControl").checked) //キー操作にチェックがあり
   && (!document.getElementById("answerByMyself").checked)//解答入力にチェックがあり
-  && (document.activeElement.id != "textareas2")//解答欄がアクティブでなく
   && (document.activeElement.id != "textareas")//問題欄がアクティブでなく
   && (document.activeElement.id != "criteria1")//基準欄がアクティブでなく
   && (document.activeElement.id != "criteria2")
@@ -4675,7 +4689,7 @@ function turnWhite(){
     elements[i].style.color = '#000000';
   }
   var wIMG = document.getElementById("backGround").value;
-  document.body.style.backgroundImage = "url(./bg/" + response2[0] + ")";
+  document.body.style.backgroundImage = "url(./bg/" + wIMG + ")";
   document.getElementById("questionInfo").style.color = '#000000';
 }
 function removeQuestion(){
