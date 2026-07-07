@@ -802,27 +802,27 @@ input[type="text"].button:hover {
     &nbsp;&nbsp;&nbsp;
     <br>
     <br>
-    <a id ="UpdateSql" href="UpdateSql2.php">
+    <a id ="UpdateSql" href="javascript:alert(\'Webアプリ版ではこちらの機能は現在移行準備中です\');">
         <font size="4" color="#FF6633">問題追加1</font>
     </a>
     &nbsp;&nbsp;
-    <a id="TerashimaSheets" href="TerashimaSheets.php" >
+    <a id="TerashimaSheets" href="javascript:alert(\'Webアプリ版ではこちらの機能は現在移行準備中です\');" >
         <font size="4" color="#38a3ea">問題追加2</font>
     </a>
     &nbsp;&nbsp;
-    <a id="resultgraph" href="testJSCharts.php">
+    <a id="resultgraph" href="javascript:alert(\'Webアプリ版ではこちらの機能は現在移行準備中です\');">
         <font size="4" color="#38a3ea">結果グラフ</font>
     </a>
     &nbsp;&nbsp;
-    <a id="ranking" href="ranking.php">
+    <a id="ranking" href="javascript:alert(\'Webアプリ版ではこちらの機能は現在移行準備中です\');">
         <font size="4" color="#38a3ea">ランキング</font>
     </a>
     &nbsp;&nbsp;
-    <a id="reminder" href="reminder.php">
+    <a id="reminder" href="javascript:alert(\'Webアプリ版ではこちらの機能は現在移行準備中です\');">
         <font size="4" color="#38a3ea">復習</font>
     </a>
     &nbsp;&nbsp;
-    <a id="review2" href="reviewT-System.php " >
+    <a id="review2" href="javascript:alert(\'Webアプリ版ではこちらの機能は現在移行準備中です\');" >
         <font size="4" color="#38a3ea">一覧</font>
     </a>
   </div>
@@ -4066,14 +4066,10 @@ function settingSave(){
   document.getElementById("flexButton").checked + "^^" + 
   document.getElementById("blackCheck").checked;
   novelRowNum = Number(document.getElementById("novelSentenceNumber").value);
-    // Use async fetch to prevent UI freezing
-  fetch("../settingSave.php", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/x-www-form-urlencoded"
-    },
-    body: "data=" + encodeURIComponent(moji)
-  }).catch(e => console.error("Setting save failed:", e));
+  
+  // Webアプリ化対応: サーバー(PHP)の代わりにブラウザのLocalStorageに保存する
+  localStorage.setItem('t_system_settings_' + document.mainform.DB_name.value, moji);
+  console.log("Settings saved locally to browser storage.");
 }
 
 function parseStrToBoolean(str) {
