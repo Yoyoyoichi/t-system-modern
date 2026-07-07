@@ -1,0 +1,208 @@
+<div id ="setting" class="setting" style=" width:93%" >
+  <pre style='font-size: 25px'>設定</pre>
+
+  <select class="selectBox" name='autoSpeed' id='autoSpeed' onchange = "settingSave()" style='width: 23%; font-size: 20px;'>
+    <option value="" disabled>&#26368;&#20302;&#27491;&#35299;&#25968;</option><option value="3" selected>3</option>
+    <option value=1>1</option>
+    <option value=2>2</option>
+    
+    <option value=4>4</option>
+    <option value=5>5</option>
+    <option value=6>6</option>
+    <option value=7>7</option>
+    <option value=8>8</option>
+    <option value=9>9</option>
+    <option value=10>10</option>
+  </select>
+  <select class="selectBox" name='autoReading' id='autoReading' onchange = "settingSave()" style='width: 23%; font-size: 20px;'>
+    <option value='je' style='width: 23%' placeholder="読上音声">読上音声</option>
+    <option value='je'>問題-日本語/解答‐英語</option>
+    <option value='ej'>問題-英語/解答‐日本語</option>
+    <option value='jj'>問題-日本語/解答‐日本語</option>
+    <option value='ee'>問題-英語/解答‐英語</option>
+    <option value='j*'>問題だけ-日本語</option>
+    <option value='e*'>問題だけ-英語</option>
+    <option value='*j'>解答だけ‐日本語</option>
+    <option value='*e'>解答だけ‐英語</option>
+  </select>
+
+  <select class="selectBox" name='jpSpeed' id='jpSpeed' onchange = "settingSave()" style='width: 23%; font-size: 20px;'>
+    <option value=1.2 style='width: 23%' placeholder="日本語読み上げ速さ">日本語読み上げ速さ</option>
+    <option value=0.3>0.3</option>
+    <option value=0.4>0.4</option>
+    <option value=0.5>0.5</option>
+    <option value=0.6>0.6</option>
+    <option value=0.7>0.7</option>
+    <option value=0.8>0.8</option>
+    <option value=0.9>0.9</option>
+    <option value=1.0>1.0</option>
+    <option value=1.1>1.1</option>
+    <option value=1.2>1.2</option>
+    <option value=1.3>1.3</option>
+    <option value=1.4>1.4</option>
+    <option value=1.5>1.5</option>
+    <option value=1.6>1.6</option>
+    <option value=1.7>1.7</option>
+
+
+
+  </select>
+  <select class="selectBox" name='engSpeed' id='engSpeed' onchange = "settingSave()" style='width: 23%; font-size: 20px;'>
+    <option value=0.7 style='width: 23%' placeholder="英語読み上げ速さ">英語読み上げ速さ</option>
+    <option value=0.4>0.4</option>
+    <option value=0.5>0.5</option>
+    <option value=0.6>0.6</option>
+    <option value=0.7>0.7</option>
+    <option value=0.8>0.8</option>
+    <option value=0.9>0.9</option>
+    <option value=1.0>1.0</option>
+    <option value=1.1>1.1</option>
+    <option value=1.2>1.2</option>
+    <option value=1.3>1.3</option>
+    <option value=1.4>1.4</option>
+    <option value=1.5>1.5</option>
+  </select>
+  <br>
+  <select class="selectBox" name='NOC' id='NOC' onchange = "settingSave()" style='width: 23%; font-size: 20px;margin:30px 0px 0px 0px' >
+    <option value="" disabled>最低正解数</option><option value="3" selected>3</option>
+    <option value=0>0</option>
+    <option value=1>1</option>
+    <option value=2>2</option>
+    
+    <option value=4>4</option>
+    <option value=5>5</option>
+    <option value=6>6</option>
+    <option value=7>7</option>
+    <option value=8>8</option>
+    <option value=9>9</option>
+    <option value=10>10</option>
+  </select>
+
+  <select class="selectBox" name='autoAnswer' id='autoAnswer' onchange = "settingSave()" style='width: 23%; font-size: 20px;margin:30px 0px 0px 0px'>
+    <option value=0 style='width: 23%' placeholder="自動解答秒数">自動解答秒数</option>
+    <option value=0>なし</option>
+    <option value=0.5>0.5</option>
+    <option value=0.6>0.6</option>
+    <option value=0.7>0.7</option>
+    <option value=0.8>0.8</option>
+    <option value=0.9>0.9</option>
+    <option value=1>1</option>
+    <option value=1.2>1.2</option>
+    <option value=1.3>1.3</option>
+    <option value=1.5>1.5</option>
+    <option value=1.7>1.7</option>
+    <option value=1.8>1.8</option>
+    <option value=2>2</option>
+    <option value=2.5>2.5</option>
+    
+    <option value=3.5>3.5</option>
+    <option value=4>4</option>
+    <option value=5>5</option>
+    <option value=6>6</option>
+    <option value=7>7</option>
+    <option value=8>8</option>
+    <option value=9>9</option>
+    <option value=10>10</option>
+    <option value=15>15</option>
+    
+    <option value=30>30</option>
+    <option value=60>60</option>
+    <option value=120>120</option>
+    <option value=180>180</option>
+    <option value=240>240</option>
+    <option value=300>300</option>
+  </select>
+  <select class="selectBox" name='backGround' id='backGround' style='width: 23%; font-size: 20px;margin:30px 0px 0px 0px' onchange = 'changeBG();settingSave()'>
+    <option value="RRice-colorful-wall.jpg" style='width: 23%' placeholder="背景画像">背景画像</option>
+    <option value="colored-pencil-pattern1144.png">①</option>
+    <option value="fancy-floral-pattern-384.jpg">②</option>
+    <option value="mint-green-chevron-stripes-2361.png">③</option>
+    <option value="RRice-colorful-wall.jpg">④</option>
+    <option value="p_da0686_m_da06860.jpg">⑤</option>
+    <option value="b065.gif">⑥</option>
+    <option value="p_da0671_m_da06710.jpg">⑦</option>
+    <option value="p_da0725_m_da07250.jpg">⑧</option>
+    <option value="p_da0689_m_da06892.jpg">⑨</option>
+    <option value="p_da0667_m_da06670.jpg">⑩</option>
+    <option value="p_da0669_m_da06693.jpg">⑪</option>
+    <option value="p_da0491_m_da04913.jpg">⑫</option>
+    <option value="p_da0451_m_da04510.jpg">⑬</option>
+    <option value="p_da0438_m_da04380.jpg">⑭</option>
+    <option value="0341_mosaictile_s.jpg">⑮</option>
+    <option value="0108_brick_s.jpg">⑯</option>
+    <option value="p_da0694_l_da06940.jpg">⑰</option>
+    <option value="49502.jpg">⑱</option>
+    <option value="stylish-floral-pattern.png">⑲</option>
+    <option value="painted-wood-planks-large-background.jpg">⑳</option>
+    <option value="seamless-bamboo-pattern-842.png">㉑</option>
+    <option value="dandelion-seeds-pattern.png">㉒</option>
+    <option value="music-pattern-with-trumpet-1929.png">㉓</option>
+    <option value="canadian-dollar.png">㉔</option>
+    <option value="pixel-heart.png">㉕</option>
+    <option value="christmas-colour.png">㉖</option>
+    <option value="food.png">㉗</option>
+    <option value="donuts.png">㉘</option>
+    <option value="dinos.png">㉙</option>
+    <option value="panda-madness.gif">㉚</option>
+    <option value="pattern8-pattern-44a.png">㉛</option>
+    <option value="patternhead64a-thumb.png">㉜</option>
+    <option value="repeated-square.png">㉝</option>
+    <option value="1702.png">㉞</option>
+    <option value="yellow-5456111_1920.jpg">㉟</option>
+
+    
+  </select>
+    <select class="selectBox" name='fontSelect' id='fontSelect' style='width: 23%; font-size: 20px;margin:30px 0px 0px 0px' onchange = 'settingSave()'>
+    <option value="SimHei" style='width: 23%' placeholder="フォント">フォント</option>
+    <option value="ＭＳ 明朝">ＭＳ 明朝</option>
+    <option value="SimHei">SimHei</option>
+    <option value="Times">Times</option>
+    <option value="Arial">Arial</option>
+    <option value="sans-serif">sans-serif</option>
+    <option value="arial black">arial black</option>
+    <option value="arial narrow">arial narrow</option>
+    <option value="arial unicode ms">arial unicode ms</option>
+    <option value="Century Gothic">Century Gothic</option>
+    <option value="Franklin Gothic Medium">Franklin Gothic Medium</option>
+    <option value="Gulim">Gulim</option>
+    <option value="Dotum">Dotum</option>
+    <option value="Haettenschweiler">Haettenschweiler</option>
+    <option value="Impact">Impact</option>
+    <option value="Ludica Sans Unicode">Ludica Sans Unicode</option>
+    <option value="Microsoft Sans Serif">Microsoft Sans Serif</option>
+    <option value="MS Sans Serif">MS Sans Serif</option>
+    <option value="MV Boil">MV Boil</option>
+    <option value="New Gulim">New Gulim</option>
+    <option value="Tahoma">Tahoma</option>
+    <option value="Trebuchet">Trebuchet</option>
+
+  </select>
+  </select>
+    <select class="selectBox" name='novelSelect' id='novelSelect' style='display:none;width: 23%; font-size: 20px;margin:30px 0px 0px 0px' onchange = 'settingSave()'>
+    <option value="なし" style='width: 23%' placeholder="フォント">小説</option>
+    <option value="なし">なし</option>
+  </select>
+  <input class ="button" type="text" name="novelSentenceNumber" id="novelSentenceNumber" onChange='settingSave()' value = "" 
+  style='display:none;width: 8%; font-size: 16px;box-sizing:border-box;vertical-align:middle;margin:30px 0px 0px 0px '>
+
+  <br>
+  <input class ="button" type="checkbox" id = "qachange" onchange = "settingSave()" style="font-size: 20px;margin:2vh 0px 0px 0px">
+  <font size="4" color="#000000" class="checkText" ;>問題/解答</font>
+  <input class ="button" type="checkbox" id = "autoread" onchange = "settingSave()" style="font-size: 20px;margin:2vh 0px 0px 2vh">
+  <font size="4" color="#000000" class="checkText";>自動読み上げ</font>
+  <input class ="button" type="checkbox" id = "keyControl" onchange = "settingSave()" style="font-size: 20px;margin:2vh 0px 0px 2vh">
+  <font size="4" color="#000000" class="checkText";>キー操作</font>
+  <br>
+  <input class ="button" type="checkbox" id = "answerByMyself" onchange = "settingSave()" style="font-size: 20px;margin:2vh 0px 0px 0px">
+  <font size="4" color="#000000" class="checkText";>解答入力</font>
+  <input class ="button" type="checkbox" id = "randomOrNot" onchange = "settingSave()" style="font-size: 20px;margin:2vh 0px 0px 2vh">
+  <font size="4" color="#000000" class="checkText";>ランダム</font>
+  <input class ="button" type="checkbox" id = "chordsOrNot" onchange = "settingSave()" style="font-size: 20px;margin:2vh 0px 0px 2vh">
+  <font size="4" color="#000000" class="checkText";>コード音声</font>
+  <input class ="button" type="checkbox" id="flexButton" value="横並び" onchange='QnAareaFlex();settingSave()' style="font-size: 20px;margin:2vh 0px 0px 2vh">
+  <font size="4" color="#000000" class="checkText";>横並び</font>
+  <input class ="button" type="checkbox" id="blackCheck" value="真っ黒" onchange='blackOrWhite();settingSave()' style="font-size: 20px;margin:2vh 0px 0px 2vh">
+  <font size="4" color="#000000" class="checkText";>真っ黒</font>
+  <br>
+
+</div>

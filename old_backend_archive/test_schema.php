@@ -1,0 +1,1 @@
+<?php require_once "db_wrapper.php"; $mysqli = new db_wrapper("localhost", "terashimayo", "Yoyoyo444", "terashimayo"); $res = $mysqli->query("show tables limit 1;"); $table = $res->fetch_row()[0]; $res = $mysqli->query("show create table $table;"); echo $res->fetch_row()[1]; ?>  

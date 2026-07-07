@@ -1,0 +1,5317 @@
+
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+
+<meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate, max-age=0" />
+<meta http-equiv="Pragma" content="no-cache" />
+<meta http-equiv="Expires" content="0" />
+<meta charset="UTF-8">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+	<link rel="icon" href="./favicon.ico">
+	<link rel="apple-touch-icon" href="./apple-touch-icon.png" sizes="180x180">
+  <script type="text/javascript"
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  </script>
+  
+<title>T-System</title>
+<style type="text/css">
+  /* #site-box { width : 900px ; } */
+  body {
+    background: #f4f4f5;
+    line-height: 1vh;
+  }
+  span{
+
+  }
+  select{
+    vertical-align:middle !important;          
+    scrollbar-color: black;
+  }
+  textarea{
+    font-size:30px; background-color: #ffffff; 
+    
+  }
+  input {
+    border-color:grey;
+  }
+  img {
+    /* max-width: 100%; */
+    /* max-height: 100%; */
+    width: auto;
+    height: auto;
+    overflow:auto;
+    top: 50%;
+  }
+  input[type=checkbox] {
+      width: 40px;
+      height: 40px;
+  }
+  input[type=radio] {
+      width: 40px;
+      height: 40px;
+  }
+  .img-container--precedo {
+    overflow:auto;
+    resize: both;
+    position: relative;
+    height:20vh;
+    width:97%;
+    text-align: center;
+    border: 2px solid darkgray;
+    border-radius: 0.67em;   /* 角丸 */
+
+    &:before {
+    content: '';
+    /* display: inline-block; */
+    vertical-align: middle;
+    /* height: 100%; */
+    width: 0;
+    margin-left: -0.3em;
+
+    }
+
+  }
+  .textlines {
+    font-family: "SimHei";
+    border: 1px solid #ccc;  /* 枠線 */
+    border-radius: 0.67em;   /* 角丸 */
+    background-color: #ffffff;  /* 背景色 */
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.25);
+    padding:0px;
+    margin:0px 0px 0px 10px
+
+  }
+  .info02{
+
+  }
+  div.questionbuttonbox {
+      width:97%; height:50px;
+      margin:1vh; padding:0px;
+  }
+  .modifyanswerbox{
+      display: flex;
+  }
+  div.answerbuttonbox {
+      width:550px; height:5px;
+      margin:1vh; padding:0px;
+  }
+  div.modifybuttonbox {
+      width:550px; height:5px;
+      margin:1vh; padding:0px;
+  }
+  div.undermarginbox {
+      width:550px; height:5px;
+      margin:1vh; padding:0px;
+  }
+  #information{
+    font-family: "ＭＳ Ｐゴシック";
+    border: 1px solid #ccc;  /* 枠線 */
+    border-radius: 0.67em;   /* 角丸 */
+    /* padding: 0.5em;          内側の余白量 */
+    background-color: #ffffff;  /* 背景色 */
+      box-shadow: 0 3px 6px rgba(0, 0, 0, 0.25);
+    /*width: 20em;             /* 横幅 */*/
+    /*height: 120px;           /* 高さ */*/
+    /*font-size: 1em;          /* 文字サイズ */*/
+    line-height: 1.2;        /* 行の高さ */
+  }
+  div.bottomButtonBox{
+
+    height:300px
+  }
+  div.setting {
+
+    /* top:2200px; */
+    padding: 0.5em 1em;
+    margin: 1%;
+    color: #333333;
+    background: #f4f4f5;/*背景色*/
+    border-top: solid 6px #1dc1d6;
+    box-shadow: 0 3px 4px rgba(0, 0, 0, 0.32);/*影*/
+  }
+  table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+  td {
+    border: 1px solid black;
+    padding: 8px;
+    text-align: left;
+    white-space: pre-wrap; /* 改行を維持する */
+    word-wrap: break-word; /* 長い単語を折り返す */
+    white-space: normal; /* デフォルトの空白処理 */
+    line-height: 1.5; /* 行間を設定する */
+    font-size: 10px; /* フォントサイズを設定する */
+  }
+
+
+
+/* Apple/Vercel Minimalist Button Styles */
+.button, input[type="button"], input[type="submit"] {
+    background-color: #f4f4f5;
+    color: #111 !important;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    padding: 8px 16px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-weight: 500;
+    transition: all 0.2s ease-in-out;
+    cursor: pointer;
+}
+
+.button:hover, input[type="button"]:hover, input[type="submit"]:hover {
+    background-color: #f4f4f5;
+    color: #111 !important;
+    border-color: #ccc;
+}
+
+.button:active, input[type="button"]:active, input[type="submit"]:active {
+    transform: scale(0.98);
+}
+
+/* Good/Correct buttons (botan03) - Subtle Green */
+input[name="botan03"] {
+    color: #111111 !important;
+    border-color: #111111;
+}
+input[name="botan03"]:hover {
+    background-color: #f4f4f5;
+    color: #fff !important;
+}
+
+/* Poor/Incorrect buttons (botan04) - Subtle Red */
+input[name="botan04"] {
+    color: #111111 !important;
+    border-color: #111111;
+}
+input[name="botan04"]:hover {
+    background-color: #f4f4f5;
+    color: #fff !important;
+}
+
+/* Text inputs (search, criteria, etc) */
+input[type="text"].button {
+    background-color: #fff;
+    color: #111 !important;
+    border: 1px solid #ddd;
+    box-shadow: inset 0 1px 2px rgba(0,0,0,0.05);
+    cursor: text;
+}
+input[type="text"].button:focus {
+    border-color: #111;
+    box-shadow: 0 0 0 1px #111;
+}
+input[type="text"].button:hover {
+    background-color: #fff;
+    color: #111 !important;
+}
+
+
+
+
+/* Modern Top Panel CSS */
+.modern-top-panel {
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 24px;
+    margin: 16px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    border: 1px solid #eaeaea;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+.mtp-header-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+#DB_name {
+    width: 300px !important;
+    height: 48px !important;
+    font-size: 24px !important;
+    border: none !important;
+    border-bottom: 2px solid #111 !important;
+    border-radius: 0 !important;
+    background: transparent;
+    color: #111;
+    font-weight: 600;
+    transition: all 0.3s;
+}
+#DB_name:focus {
+    outline: none;
+    border-bottom-color: #111111 !important;
+}
+
+#grandParent1 {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+#grandParent1 input[type="submit"] {
+    background: #111;
+    color: #fff !important;
+    border-radius: 6px;
+    padding: 10px 24px;
+    font-size: 16px !important;
+    height: auto !important;
+    width: auto !important;
+    font-weight: 600;
+}
+
+#grandParent1 a {
+    text-decoration: none;
+    padding: 8px 16px;
+    border-radius: 20px;
+    background: #f4f4f5;
+    transition: all 0.2s;
+}
+#grandParent1 a:hover {
+    background: #e4e4e7;
+    transform: translateY(-1px);
+}
+#grandParent1 a font {
+    color: #3f3f46 !important;
+    font-size: 14px !important;
+    font-weight: 600;
+}
+
+.mtp-stats-row {
+    display: flex;
+    gap: 24px;
+    margin-bottom: 24px;
+}
+
+.modern-stats {
+    flex: 1;
+    background: #f8fafc;
+    border-radius: 8px;
+    padding: 16px;
+    border: 1px solid #e2e8f0;
+}
+
+.modern-stats p {
+    font-size: 15px !important;
+    color: #334155 !important;
+    line-height: 1.6;
+    margin: 0;
+    width: 100% !important;
+}
+
+.mtp-info-container {
+    flex: 1;
+}
+
+#information {
+    width: 100% !important;
+    height: 100% !important;
+    min-height: 120px;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 12px;
+    font-size: 16px !important;
+    background: #f8fafc;
+    color: #334155;
+    box-sizing: border-box;
+}
+
+.mtp-category-row {
+    display: flex;
+    gap: 12px;
+    height: 180px;
+    margin-bottom: 24px;
+}
+
+.mtp-category-row select {
+    flex: 1;
+    height: 100% !important;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 8px;
+    font-size: 14px !important;
+    background: #ffffff;
+    color: #1e293b;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+    outline: none;
+}
+.mtp-category-row select:focus {
+    border-color: #94a3b8;
+    box-shadow: 0 0 0 2px rgba(148, 163, 184, 0.2);
+}
+.mtp-category-row select option {
+    padding: 8px;
+    border-bottom: 1px solid #f1f5f9;
+}
+
+/* New Filters Row CSS */
+.mtp-filters-container {
+    display: flex;
+    gap: 24px;
+    background: #f8fafc;
+    padding: 20px;
+    border-radius: 12px;
+    border: 1px solid #e2e8f0;
+    flex-wrap: wrap;
+}
+
+.mtp-filter-group {
+    flex: 1;
+    min-width: 300px;
+}
+
+.mtp-group-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: #64748b;
+    margin-bottom: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.mtp-button-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 8px;
+}
+
+.mtp-time-grid {
+    grid-template-columns: repeat(4, 1fr);
+}
+
+.mtp-filter-btn {
+    background: #fff;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    padding: 12px 8px;
+    font-size: 13px !important;
+    color: #334155 !important;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-weight: 500;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.02);
+    text-align: center;
+}
+
+.mtp-filter-btn:hover {
+    background: #f1f5f9;
+    border-color: #94a3b8;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+}
+
+.mtp-filter-btn:active {
+    transform: translateY(0);
+}
+
+.mtp-level-btn {
+    background: #ffffff;
+    border-color: #111111;
+    color: #111111 !important;
+}
+.mtp-level-btn:hover {
+    background: #f1f5f9;
+    border-color: #334155;
+}
+
+
+
+/* Modern Search Panel CSS */
+.modern-search-panel {
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 24px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    border: 1px solid #eaeaea;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+.msp-title {
+    font-size: 16px;
+    font-weight: 600;
+    color: #111;
+    margin-bottom: 20px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #eaeaea;
+}
+.msp-general-row { display: flex; gap: 16px; margin-bottom: 24px; flex-wrap: wrap; }
+.msp-criteria-container { display: flex; flex-direction: column; gap: 12px; }
+.msp-criteria-row { display: flex; gap: 12px; align-items: center; background: #f8fafc; padding: 12px; border-radius: 8px; border: 1px solid #e2e8f0; }
+.msp-select { height: 44px !important; border: 1px solid #cbd5e1; border-radius: 6px; padding: 0 12px; font-size: 14px !important; background: #fff; color: #334155; outline: none; transition: all 0.2s; min-width: 140px; }
+.msp-select:focus { border-color: #94a3b8; box-shadow: 0 0 0 2px rgba(148, 163, 184, 0.2); }
+.msp-op { min-width: 60px; width: 60px; text-align: center; }
+.msp-input { height: 44px !important; border: 1px solid #cbd5e1; border-radius: 6px; padding: 0 12px; font-size: 15px !important; background: #fff; color: #334155 !important; outline: none; flex: 1; transition: all 0.2s; }
+.msp-input:focus { border-color: #94a3b8; box-shadow: 0 0 0 2px rgba(148, 163, 184, 0.2); }
+.msp-search { border: none; border-bottom: 2px solid #cbd5e1; border-radius: 0; background: transparent; padding-left: 0; font-size: 18px !important; flex: 1; min-width: 200px; }
+.msp-search:focus { border-bottom-color: #111; box-shadow: none; }
+.msp-btn { height: 44px !important; background: #111; color: #fff !important; border: none; border-radius: 6px; padding: 0 20px; font-size: 14px !important; font-weight: 500; cursor: pointer; transition: all 0.2s; white-space: nowrap; }
+.msp-btn:hover { background: #333; transform: translateY(-1px); }
+
+/* Unified 2-Column Layout */
+.unified-panel-container {
+    display: flex;
+    gap: 32px;
+    margin-top: 24px;
+    padding-top: 24px;
+    border-top: 1px solid #eaeaea;
+    align-items: stretch;
+}
+.unified-left-col {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+.unified-right-col {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+.modern-search-panel.unified-right-content {
+    margin: 0;
+    height: 100%;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+}
+.msp-criteria-container {
+    flex: 1;
+    justify-content: space-between;
+}
+
+
+
+
+/* Modern Study Card CSS */
+.modern-study-card {
+    background: #ffffff;
+    border-radius: 16px;
+    margin: 24px 16px;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.06);
+    border: 1px solid #eaeaea;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    overflow: hidden;
+}
+
+.msc-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 32px;
+    background: #fafafa;
+    border-bottom: 1px solid #eaeaea;
+}
+
+.msc-counter {
+    font-size: 16px;
+    font-weight: 500;
+    color: #64748b;
+}
+
+.msc-current {
+    font-size: 24px;
+    font-weight: 700;
+    color: #0f172a;
+}
+
+.msc-header-right {
+    display: flex;
+    gap: 12px;
+}
+
+.msc-btn {
+    height: 40px;
+    padding: 0 24px;
+    border-radius: 8px;
+    font-size: 15px !important;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    line-height: 1;
+}
+
+.msc-btn-primary {
+    background: #f4f4f5 !important;
+    color: #111111 !important;
+    border: 1px solid #cccccc !important;
+}
+
+.msc-btn-primary:hover {
+    background: #e2e8f0 !important;
+    transform: translateY(-1px);
+}
+
+.msc-btn-secondary {
+    background: #fff !important;
+    color: #0f172a !important;
+    border: 1px solid #cbd5e1 !important;
+}
+
+.msc-btn-secondary:hover {
+    background: #f8fafc !important;
+    border-color: #94a3b8 !important;
+}
+
+.msc-btn-sm {
+    height: 36px;
+    padding: 0 16px;
+    font-size: 13px !important;
+    background: #f1f5f9 !important;
+    color: #475569 !important;
+    border: 1px solid #e2e8f0 !important;
+}
+
+.msc-btn-sm:hover {
+    background: #e2e8f0 !important;
+}
+
+.msc-body {
+    padding: 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.msc-metadata-box {
+    font-size: 15px !important;
+    line-height: 1.6 !important;
+    color: #64748b;
+    white-space: pre-wrap;
+    word-break: break-word;
+    margin: 0;
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 16px;
+    height: 100%;
+    overflow-y: auto;
+    font-family: inherit;
+}
+
+
+.msc-media-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+}
+
+.msc-toolbox {
+    margin: 0 32px;
+    padding: 16px;
+    background: #f8fafc;
+    border-radius: 12px;
+    border: 1px solid #f1f5f9;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.msc-toolbox-label {
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #94a3b8;
+    letter-spacing: 0.05em;
+}
+
+.msc-toolbox-items {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    flex: 1;
+}
+
+.msc-select {
+    height: 36px !important;
+    padding: 0 12px;
+    border-radius: 6px;
+    border: 1px solid #cbd5e1;
+    font-size: 13px !important;
+    background: #fff;
+    color: #475569;
+    outline: none;
+}
+
+.msc-select:focus {
+    border-color: #94a3b8;
+}
+
+.msc-answer {
+    padding: 32px;
+}
+.msc-actions-row {
+    padding: 24px;
+    display: flex;
+    gap: 16px;
+    border-top: 1px solid #e2e8f0;
+    background: #f8fafc;
+    border-radius: 0 0 12px 12px;
+}
+.msc-btn-huge {
+    flex: 1;
+    height: 60px;
+    font-size: 18px !important;
+    font-weight: 600;
+    border-radius: 12px;
+    cursor: pointer;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+.msc-btn-primary.msc-btn-huge {
+    background: #ffffff !important;
+    color: #555555 !important;
+    border: 1px solid #e2e8f0 !important;
+}
+.msc-btn-primary.msc-btn-huge:hover {
+    background: #f4f4f5 !important;
+    border-color: #cccccc !important;
+    transform: translateY(-2px);
+}
+.msc-btn-secondary.msc-btn-huge {
+    background: #ffffff !important;
+    color: #64748b !important;
+    border: 1px solid #e2e8f0 !important;
+}
+.msc-btn-secondary.msc-btn-huge:hover {
+    background: #f8fafc !important;
+    border-color: #94a3b8 !important;
+    transform: translateY(-2px);
+}
+.msc-feedback-row {
+    padding: 16px 24px;
+    background: #f1f5f9;
+    flex-wrap: wrap;
+    justify-content: center;
+    border-radius: 0 !important;
+}
+.msc-utility-row {
+    padding: 16px 24px;
+    background: #f8fafc;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.msc-btn-feedback {
+    flex: 1 1 calc(10% - 16px);
+    min-width: 60px;
+    height: 50px;
+    margin: 4px;
+    font-size: 16px !important;
+    font-weight: 600;
+    border-radius: 8px;
+    cursor: pointer;
+    border: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+}
+.msc-btn-good { background: #ffffff !important; color: #111111 !important; border: 1px solid #dddddd !important; }
+.msc-btn-good:hover { background: #f4f4f5 !important; border-color: #cccccc !important; transform: translateY(-1px); }
+.msc-btn-poor { background: #ffffff !important; color: #111111 !important; border: 1px solid #dddddd !important; }
+.msc-btn-poor:hover { background: #f4f4f5 !important; border-color: #cccccc !important; transform: translateY(-1px); }
+.msc-btn-nav { background: #ffffff !important; color: #111111 !important; border: 1px solid #dddddd !important; }
+.msc-btn-nav:hover { background: #f4f4f5 !important; color: #111111 !important; border-color: #cccccc !important; transform: translateY(-1px); }
+.msc-btn-undo { background: #ffffff !important; color: #111111 !important; border: 1px solid #dddddd !important; }
+.msc-btn-undo:hover { background: #f4f4f5 !important; color: #111111 !important; border-color: #cccccc !important; transform: translateY(-1px); }
+
+.msc-textarea {
+    width: 100% !important;
+    height: 120px !important;
+    padding: 16px;
+    border-radius: 12px;
+    border: 2px solid #e2e8f0;
+    font-size: 20px !important;
+    color: #0f172a;
+    background: #fff;
+    resize: vertical;
+    transition: all 0.2s;
+    box-sizing: border-box;
+    line-height: 1.5;
+}
+
+.msc-textarea:focus {
+    border-color: #111111;
+    outline: none;
+    box-shadow: 0 0 0 4px rgba(17, 17, 17, 0.1);
+}
+
+.msc-question-textarea {
+    background: #f8fafc;
+    border-color: #334155;
+}
+
+.msc-answer-textarea {
+    border-color: #111111;
+}
+
+.msc-hidden {
+    display: none !important;
+}
+
+.msc-info-text {
+    font-size: 14px;
+    color: #64748b;
+    margin-bottom: 12px;
+}
+\n</style>
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script> -->
+<script type="text/javascript" src="jquery-3.4.1.min.js"></script>
+
+<script src="midiChord.js"></script>
+<!-- shims -->
+<script src="./Basic.files/Base64.js" type="text/javascript"></script>
+<script src="./Basic.files/Base64binary.js" type="text/javascript"></script>
+<script src="./Basic.files/WebAudioAPI.js" type="text/javascript"></script>
+<!-- midi.js -->
+<script src="./Basic.files/audioDetect.js" type="text/javascript"></script>
+<script src="./Basic.files/gm.js" type="text/javascript"></script>
+<script src="./Basic.files/loader.js" type="text/javascript"></script>
+<script src="./Basic.files/plugin.audiotag.js" type="text/javascript"></script>
+<script src="./Basic.files/plugin.webaudio.js" type="text/javascript"></script>
+<script src="./Basic.files/plugin.webmidi.js" type="text/javascript"></script>
+<!-- utils -->
+<script src="./Basic.files/dom_request_xhr.js" type="text/javascript"></script>
+<script src="./Basic.files/dom_request_script.js" type="text/javascript"></script>
+<body>
+
+<form name ="mainform" id ="mainform" action="" method="post">
+    <input
+        type="text" id="DB_name"  name="DB_name"  class='textlines'
+        value=""
+        style='width: 50%; font-size: 40px;height:50px;'
+    >
+
+
+
+ <div id ="grandParent1">
+    <input class ="button" type="submit" value="送信" style='font-size: 25px;width: 20%; height: 120px'>
+    &nbsp;&nbsp;&nbsp;
+    <br>
+    <br>
+    <a id ="UpdateSql" href="UpdateSql2.php">
+        <font size="4" color="#FF6633">問題追加1</font>
+    </a>
+    &nbsp;&nbsp;
+    <a id="TerashimaSheets" href="TerashimaSheets.php" >
+        <font size="4" color="#38a3ea">問題追加2</font>
+    </a>
+    &nbsp;&nbsp;
+    <a id="resultgraph" href="testJSCharts.php">
+        <font size="4" color="#38a3ea">結果グラフ</font>
+    </a>
+    &nbsp;&nbsp;
+    <a id="ranking" href="ranking.php">
+        <font size="4" color="#38a3ea">ランキング</font>
+    </a>
+    &nbsp;&nbsp;
+    <a id="reminder" href="reminder.php">
+        <font size="4" color="#38a3ea">復習</font>
+    </a>
+    &nbsp;&nbsp;
+    <a id="review2" href="reviewT-System.php " >
+        <font size="4" color="#38a3ea">一覧</font>
+    </a>
+  </div>
+
+
+</div>
+  <input class ="button" type="button" name="Lv0" id="Lv0" onClick="levelZero()" value="レベルゼロ"
+  style=" width:15vw;height:150px; font-size: 20px">
+  <input class ="button" type="button" name="Lv1" id="Lv1" onClick="levelOne()" value="レベル1"
+  style=" width:15vw;height:150px; font-size: 20px">
+  <input class ="button" type="button" name="Lv2" id="Lv2" onClick="levelTwo()" value="レベル2"
+  style=" width:15vw;height:150px; font-size: 20px">
+  <input class ="button" type="button" name="Lv3" id="Lv3" onClick="levelThree()" value="レベル3"
+  style=" width:15vw;height:150px; font-size: 20px">
+  <input class ="button" type="button" name="Lv3" id="Lv4" onClick="levelFour()" value="レベル4"
+  style=" width:15vw;height:150px; font-size: 20px">
+  <input class ="button" type="button" name="atLeastOne" id="atLeastOne" onClick="atLeastOneFunc()" value="回答済み"
+  style=" width:15vw;height:150px; font-size: 20px">
+  <input class ="button" type="button" name="NotYet" id="NotYet" onClick="NotYetQuestion()" value="未回答"
+  style=" width:15vw;height:150px; font-size: 20px">
+  <input class ="button" type="button" name="yesterday" id="yesterday" onClick="yesterdayQuestion()" value="昨日"
+  style=" width:15vw;height:150px; font-size: 20px">
+  <input class ="button" type="button" name="noToday" id="noToday" onClick="noTodayQuestion()" value="今日やってない"
+    style=" width:15vw;height:150px; font-size: 20px;margin:5px 0px 0px 0px">
+  <input class ="button"  type="button" name="U50" id="U50" onClick="UnderFifty()" value="50％以下"
+  style=" width:15vw;height:150px; font-size: 20px;margin:5px 0px 0px 0px">
+  <div style="display:flex">
+<!--       <div style="padding:5px 5px 5px 0px;  " >
+      <input type="button" class = "button" name="oneByOne" id="oneByOne" onClick="oneByOneFunc()" value="新しいの1つずつ"
+      style=" width:15vw;height:50px; font-size: 15px"><br>
+      <input type="button" class = "button" name="oneByOne" id="twoByTwo" onClick="twoByTwoFunc()" value="新しいの2つずつ"
+      style=" width:15vw;height:50px; font-size: 15px"><br>
+      <input type="button" class = "button" name="oneByOne" id="threeByThree" onClick="threeByThreeFunc()" value="新しいの3つずつ"
+      style=" width:15vw;height:50px; font-size: 15px">
+    </div> -->
+    
+    <input class ="button" type="button" name="errToday" id="errToday" onClick="errTodayQuestion()" value="今日間違えた"
+    style=" width:15vw;height:150px; font-size: 20px;margin:5px 5px 0px 0px">
+    <input class ="button" type="button" name="errLast" id="errLast" onClick="errLastQuestion()" value="最後不正解"
+    style=" width:15vw;height:150px; font-size: 20px;margin:5px 5px 0px 0px">
+    <input class ="button" type="button" name="threeDaysAgo" id="threeDaysAgo" onClick="threeDaysAgoQuestion()" value="3日前"
+  	style=" width:15vw;height:150px; font-size: 20px;margin:5px 5px 0px 0px">
+    <input class ="button" type="button" name="aWeekAgo" id="aWeekAgo" onClick="aWeekAgoQuestion()" value="1週間前"
+    style=" width:15vw;height:150px; font-size: 20px;margin:5px 5px 0px 0px">
+    <input class ="button" type="button" name="aMonthAgo" id="aMonthAgo" onClick="aMonthAgoQuestion()" value="1ヵ月前"
+    style=" width:15vw;height:150px; font-size: 20px;margin:5px 5px 0px 0px">
+    
+  </div>
+</div>
+
+<select class="selectBox" name='MaxQuestionNumber' id='MaxQuestionNumber' onchange = "settingSave()"
+  style='width: 12%; font-size: 25px;height: 5vh;line-height: 1vh;vertical-align:top;margin:5px 5px 5px 0px'>
+    <option value="" disabled>&#21839;&#38988;&#25968;</option><option value="20" selected>20</option>
+    <option value="all">all</option>
+    
+    <option value=4>4</option>
+    <option value=5>5</option>
+    <option value=6>6</option>
+    <option value=7>7</option>
+    <option value=8>8</option>
+    <option value=9>9</option>
+    <option value=10>10</option>
+    <option value=15>15</option>
+    
+    <option value=25>25</option>
+    <option value=30>30</option>
+    <option value=35>35</option>
+    <option value=40>40</option>
+    <option value=45>45</option>
+    <option value=50>50</option>
+    <option value=100>100</option>
+  </select>
+  <br>
+<br>
+<div class ="criterias" style="width: 99%;line-height: 6vh;">
+<select class="selectBox" name='category4' id='category4' onChange='listChanged()' style="width: 32%; font-size: 40px;">
+  <option value='nul'> </option>
+  <option value='incorrect'>不正解数</option>
+  <option value='correct'>正解数</option>
+  <option value='pca'>正答率</option>
+  <option value='qdate'>日付</option>
+  <option value='pasttime'>経過時間</option>
+  <option value='questionnumber'>問題番号</option>
+</select>
+<select class="selectBox" name='operator1' id='operator1'  onChange='listChanged()' style='width: 32%; font-size: 40px;'>
+  <option value='nul'> </option>
+  <option value='='>=</option>
+  <option value='>'>></option>
+  <option value='<'><</option>
+</select>
+<input class ="button" type="text" name="criteria1" id="criteria1" onChange='listChanged()' value = "" style='width: 30%; font-size: 40px;box-sizing:border-box;vertical-align:middle; '>
+<input class ="button" type="button" name="getTodayNumber" id="getTodayNumber" onClick="getTodayNumberFunc()" value="今">
+<br>
+<select class="selectBox" name='category5' id='category5' onChange='listChanged()' style='width: 32%; font-size: 40px;'>
+  <option value='nul'> </option>
+  <option value='incorrect'>不正解数</option>
+  <option value='correct'>正解数</option>
+  <option value='pca'>正答率</option>
+  <option value='qdate'>日付</option>
+  <option value='pasttime'>経過時間</option>
+  <option value='questionnumber'>問題番号</option>
+</select>
+<select class="selectBox" name='operator2' id='operator2' onChange='listChanged()' style='width: 32%; font-size: 40px;'>
+  <option value='nul'> </option>
+  <option value='='>=</option>
+  <option value='>'>></option>
+  <option value='<'><</option>
+</select>
+<input class ="button" type="text" name="criteria2" id="criteria2" onChange='listChanged()' value = "" style='width: 30%; font-size: 40px;box-sizing:border-box;vertical-align:middle; '>
+<input class ="button" type="button" name="getfirstDayNumber" id="getfirstDayNumber" onClick="getFirstDayFunc()" value="未">
+<br>
+<select class="selectBox" name='category6' id='category6' onChange='listChanged()' style='width: 32%; font-size: 40px;'>
+  <option value='nul'> </option>
+  <option value='incorrect'>不正解数</option>
+  <option value='correct'>正解数</option>
+  <option value='pca'>正答率</option>
+  <option value='qdate'>日付</option>
+  <option value='pasttime'>経過時間</option>
+  <option value='questionnumber'>問題番号</option>
+</select>
+<select class="selectBox" name='operator3' id='operator3' onChange='listChanged()' style='width: 32%; font-size: 40px;'>
+  <option value='nul'> </option>
+  <option value='='>=</option>
+  <option value='>'>></option>
+  <option value='<'><</option>
+</select>
+<input class ="button" type="text" name="criteria3" id="criteria3" onChange='listChanged()' value = "" style='width: 30%; font-size: 40px;box-sizing:border-box;vertical-align:middle; '>
+<br>
+
+<select class="selectBox" name='poorat2' id='poorat2' onChange='listChanged()'　 style='width: 32%; font-size: 40px;'>
+  <option value='' disabled selected style='display:none;' >達成度選択</option>
+  <option value='good4'>☆☆☆☆</option>
+  <option value='good3'>☆☆☆</option>
+  <option value='good2'>☆☆</option>
+  <option value='good1'>☆</option>
+  <option value=''> </option>
+  <option value='poor1'>×</option>
+  <option value='poor2'>××</option>
+  <option value='poor3'>×××</option>
+  <option value='poor4'>××××</option>
+</select>
+<select class="selectBox" name='qlevel' id='qlevel' onChange='listChanged()'　 style='width: 32%; font-size: 40px;'>
+  <option value='' disabled selected style='display:none;' >レベル選択</option>
+  <option value='8'>8</option>
+  <option value='7'>7</option>
+  <option value='6'>6</option>
+  <option value='5'>5</option>
+  <option value='4'>4</option>
+  <option value='3'>3</option>
+  <option value='2'>2</option>
+  <option value='1'>1</option>
+  <option value='0'>0</option>
+  <option value=''></option>
+</select>
+
+<input class ="button" type="text" name="wordSearch" id="wordSearch" onChange='listChanged()' placeholder = "検索"
+style='width: 30%; font-size: 38px;box-sizing:border-box;vertical-align:middle; '>
+<br>
+
+</div>
+
+<div class="questionbuttonbox" style='line-height: 2vh;vertical-align:bottom;margin:2px' >
+
+　<div style="float: left; width:35%;margin:15px 0px 0px 0px">
+    <span class = 'info02' style='font-size: 30px;vertical-align:middle' id="press-button">0</span>
+    <font size="6" class = 'info02' color="#000000" style=";vertical-align:bottom">問目</font>&ensp; &ensp;
+    <font size="6" class = 'info02' color="#000000" style=";vertical-align:middle">全</font>
+    <span style="font-size: 30px;vertical-align:middle"class = 'info02' id="totalQuestionNumber"></span>
+    <font size="6" class = 'info02' color="#000000" style=";vertical-align:middle">問</font>
+  </div>
+<!--   <select class="selectBox" name='MaxQuestionNumber' id='MaxQuestionNumber' onchange = "settingSave()"
+  style='width: 12%; font-size: 25px;height: 5vh;line-height: 1vh;vertical-align:top;float: left;margin:0px 5px 5px 0px'>
+    <option value=20 >問題数</option>
+    <option value="all">all</option>
+    
+    <option value=4>4</option>
+    <option value=5>5</option>
+    <option value=6>6</option>
+    <option value=7>7</option>
+    <option value=8>8</option>
+    <option value=9>9</option>
+    <option value=10>10</option>
+    <option value=15>15</option>
+    
+    <option value=25>25</option>
+    <option value=30>30</option>
+    <option value=35>35</option>
+    <option value=40>40</option>
+    <option value=45>45</option>
+    <option value=50>50</option>
+    <option value=100>100</option>
+  </select> -->
+  <input class ="button" type="button" name="botan" id="autoQuestionButton" onClick="autoQuestion();" value="Auto"
+  style="float: left; left: 75;width:23%;height: 5vh; font-size: 40px;line-height: 1vh;margin:0px 5px 5px 0px">
+  <input class ="button" type="button" name="botan" id="buttonmodifyquestion" onClick="sendRequest5();" value="修正"
+  style="float: left; left: 52%;width:23%;height :5vh; font-size: 40px;line-height: 1vh;vertical-align:top">
+  
+
+</div>
+
+</div>
+
+
+<pre id="questionInfo" style=' font-size: 20px;width:100%;overflow-y: scroll; line-height:100%;height:15vh; white-space: pre-wrap;white-space:-moz-pre-wrap;
+  white-space:-o-pre-wrap;
+  white-space:-pre-wrap;
+  word-wrap:break-word;margin:0px'>
+</pre>
+
+<div id ='QandAwindow' >
+
+  <TEXTAREA id="textareas" style="width:97%;height: 20vh;"  wrap="soft" class='textlines' style="visibility:hidden ; font-size:20px;"></TEXTAREA>
+
+  <div id ="div1" class="img-container--precedo" >
+    <div id ="questionMath" style = "margin: 10px"></div>
+    <img id="mypic1" src="" style="height: 27.5vh;">    
+  </div>
+  <br>
+
+<div class="questionbuttonbox" id="questionbuttonbox" style='line-height: 2vh;vertical-align:bottom' >
+
+<select class="selectBox" name='poorat' id='poorat' onChange='listChanged()' style='width: 5%; font-size: 25px;height: 5vh;line-height: 1vh;vertical-align:top;'>
+    <option value='' disabled selected style='display:none;'>達成度</option>
+    <option value='good4'>☆☆☆☆</option>
+    <option value='good3'>☆☆☆</option>
+    <option value='good2'>☆☆</option>
+    <option value='good1'>☆</option>
+    <option value=''> </option>
+    <option value='poor1'>×</option>
+    <option value='poor2'>××</option>
+    <option value='poor3'>×××</option>
+    <option value='poor4'>××××</option>
+</select>
+<select class="selectBox" name='fontresize' id='fontresize' onChange="textareafontresize();settingSave()"
+  style='width: 10%; font-size: 20px;height: 5vh;line-height: 1vh;vertical-align:top;'>
+  <option value='' >文字サイズ</option>
+  <option value='5px'>5</option>
+  <option value='6px'>6</option>
+  <option value='7px'>7</option>
+  <option value='8px'>8</option>
+  <option value='9px'>9</option>
+  <option value='10px'>10</option>
+  <option value='11px'>11</option>
+  <option value='12px'>12</option>
+  <option value='13px'>13</option>
+  <option value='14px'>14</option>
+  <option value='15px'>15</option>
+  <option value='15px'>16</option>
+  <option value='15px'>17</option>
+  <option value='15px'>18</option>
+  <option value='15px'>19</option>
+  <option value='20px'>20</option>
+  <option value='21px'>21</option>
+  <option value='22px'>22</option>
+  <option value='23px'>23</option>
+  <option value='24px'>24</option>
+  <option value='25px'>25</option>
+  <option value='30px'>30</option>
+  <option value='35px'>35</option>
+  <option value='40px'>40</option>
+  <option value='45px'>45</option>
+  <option value='50px'>50</option>
+  <option value='55px'>55</option>
+  <option value='60px'>60</option>
+  <option value='65px'>65</option>
+</select>
+<select class="selectBox" name='mp3Speed' id='mp3Speed' onChange="textareafontresize()"
+  style='width: 5%; font-size: 20px;height: 5vh;line-height: 1vh;vertical-align:top;'>
+  <option value=1>mp3</option>
+  <option value=0.2>0.2</option>
+  <option value=0.3>0.3</option>
+  <option value=0.4>0.4</option>
+  <option value=0.5>0.5</option>
+  <option value=0.6>0.6</option>
+  <option value=0.7>0.7</option>
+  <option value=0.8>0.8</option>
+  <option value=0.9>0.9</option>
+  <option value=1>1.0</option>
+</select>
+<select class="selectBox"  name="mp3StartPoint" id = "mp3StartPoint" style="width:3%;font-size: 25px;height: 5vh;">
+    <option value=0>0</option>
+</select>
+
+<select class="selectBox" name="imageSize1" id = "imageSize1" value="1" min="-10" max="10" step="0.1" onChange="imageSizeChange1()"
+style="width:7%;font-size: 20px;height: 5vh;">
+  <option value=1>画像①</option>
+  <option value=0.1>0.1</option>
+  <option value=0.2>0.2</option>
+  <option value=0.3>0.3</option>
+  <option value=0.4>0.4</option>
+  <option value=0.5>0.5</option>
+  <option value=0.6>0.6</option>
+  <option value=0.7>0.7</option>
+  <option value=0.8>0.8</option>
+  <option value=0.9>0.9</option>
+  <option value=1>1.0</option>
+  <option value=1.1>1.1</option>
+  <option value=1.2>1.2</option>
+  <option value=1.3>1.3</option>
+  <option value=1.4>1.4</option>
+  <option value=1.5>1.5</option>
+  <option value=1.6>1.6</option>
+  <option value=1.7>1.7</option>
+  <option value=1.8>1.8</option>
+  <option value=1.9>1.9</option>
+  <option value=2>2</option>
+  
+  <option value=4>4</option>
+  <option value=5>5</option>
+  <option value=6>6</option>
+  <option value=7>7</option>
+  <option value=8>8</option>
+  <option value=9>9</option>
+  <option value=10>10</option>
+</select>
+<select class="selectBox"  name="imageSize2" id = "imageSize2" value="1" min="-10" max="10" step="0.1" onChange="imageSizeChange2()"style="width:7%;font-size: 20px;height: 5vh;">
+  <option value=1>画像②</option>
+  <option value=0.1>0.1</option>
+  <option value=0.2>0.2</option>
+  <option value=0.3>0.3</option>
+  <option value=0.4>0.4</option>
+  <option value=0.5>0.5</option>
+  <option value=0.6>0.6</option>
+  <option value=0.7>0.7</option>
+  <option value=0.8>0.8</option>
+  <option value=0.9>0.9</option>
+  <option value=1>1.0</option>
+  <option value=1.1>1.1</option>
+  <option value=1.2>1.2</option>
+  <option value=1.3>1.3</option>
+  <option value=1.4>1.4</option>
+  <option value=1.5>1.5</option>
+  <option value=1.6>1.6</option>
+  <option value=1.7>1.7</option>
+  <option value=1.8>1.8</option>
+  <option value=1.9>1.9</option>
+  <option value=2>2</option>
+  
+  <option value=4>4</option>
+  <option value=5>5</option>
+  <option value=6>6</option>
+  <option value=7>7</option>
+  <option value=8>8</option>
+  <option value=9>9</option>
+  <option value=10>10</option>
+</select>
+
+<input class ="button" type="button" name="botan" id="buttonreadtxt" onClick="readAnswer();" value="読み上げ"
+style="float: right; left: 75%;width:26%;height: 5vh; font-size: 40px;line-height: 1vh;vertical-align:top">
+<input class ="button" type="button" name="botan" id="buttonreadtxt" onClick="readQuestion();" value="読み上げ"
+style="float: right; left: 75;width:26%;height: 5vh; font-size: 40px;vertical-align:top;margin:0px 0px 0px 5px">
+
+</div>
+<br>
+
+<pre id="novel" hidden style=' font-size: 30px;width:90%;height:5%;margin:10px; line-height:100%; white-space: pre-wrap;white-space:-moz-pre-wrap;
+white-space:-o-pre-wrap;
+white-space:-pre-wrap;
+word-wrap:break-word;'></pre>
+<div id="preQInfo" style=' font-size: 15px;width:97%;line-height: 5vh;'></div>
+
+
+  <TEXTAREA id="textareas2" style="width:97%;height: 20vh;" wrap="soft" class='textlines' style="font-size:40px;" onkeydown="AnswerSent(event.keyCode);"></TEXTAREA>
+  <br>
+
+  <div id ="div2" class="img-container--precedo">
+    <div id ="answerMath" style = "margin: 10px;line-height:30px;text-align: left;white-space: pre-wrap;"></div>
+    <img id="mypic2" src=""　style="height: 27.5vh;">
+    <div id ="answerHint" style = "margin: 10px;line-height:30px;text-align: left"></div>
+  </div>
+  </div>
+
+
+<br>
+<div id = "bottomButtonBox" class="bottomButtonBox">
+  <input class ="button" type="button" name="botan01" id="button01" onClick="sendRequest()"value="次の問題"
+  style="width:49%;height :7vh;font-size: 40px;margin:0px 0px 10px 0px ">
+  <input class ="button" type="button" name="botan02" id="button02" onClick="sendRequest2();" value="解答"
+  style="width:49%;height :7vh;font-size: 40px;margin:0px 0px 10px 0px ">
+  <input class ="button" type="button" name="botan03" id="button03" onClick="sendRequest3('good4');" value="☆☆☆☆"
+  style="width:24.2%;height:10vh; font-size: 30px">
+  <input class ="button" type="button" name="botan03" id="button03" onClick="sendRequest3('good3');" value="☆☆☆"
+  style="width:24.2%;height:10vh; font-size: 30px">
+  <input class ="button" type="button" name="botan03" id="button03" onClick="sendRequest3('good2');" value="☆☆"
+  style="width:24.2%;height:10vh; font-size: 30px">
+  <input class ="button" type="button" name="botan03" id="button03" onClick="sendRequest3('good1');" value="☆"
+  style="width:24.2%;height:10vh; font-size: 30px">
+    <input class ="button" type="button" name="botan04" id="button04" onClick="sendRequest4('poor4');" value="××××"
+  style="width:24.2%;height:10vh; font-size: 30px">
+  <input class ="button" type="button" name="botan04" id="button04" onClick="sendRequest4('poor3');" value="×××"
+  style="width:24.2%;height:10vh; font-size: 30px">
+  <input class ="button" type="button" name="botan04" id="button04" onClick="sendRequest4('poor2');" value="××"
+  style="width:24.2%;height:10vh; font-size: 30px">
+  <input class ="button" type="button" name="botan04" id="button04" onClick="sendRequest4('poor1');" value="×"
+  style="width:24.2%;height:10vh; font-size: 30px">
+  <input class ="button" type="button" name="botan05" id="button05" onClick="backQuestion();"value="前の問題"
+  style="width:24.2%;height:5vh;font-size: 40px">
+  <input class ="button" type="button" name="botan05" id="button05" onClick="removeQuestion();sendRequest()"value="スキップ"
+  style="width:24.2%;height:5vh;font-size: 40px">
+  <input class ="button" type="button"  name="botan06" id="button06" onClick="correctMinus();"value="正解-"
+  style="position: absolute;left:50%;width:23.8%;height:5vh;font-size: 20px">
+  <input class ="button" type="button" name="botan07" id="button07" onClick="incorrectMinus();"value="不正解-"
+  style="position: absolute;left:74.5%;width:23.8%;height:5vh;font-size: 20px">
+
+</div>
+
+<style>
+.msc-settings-panel {
+    margin-top: 24px;
+    background: #ffffff;
+    
+    border: 1px solid #e2e8f0;
+    border-radius: 16px;
+    padding: 24px;
+    margin: 24px auto 0 auto;
+    width: 100%;
+    max-width: 1200px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    font-family: 'Inter', sans-serif;
+    color: #111111;
+    box-sizing: border-box;
+}
+.msc-settings-header {
+    margin-bottom: 24px;
+    border-bottom: 1px solid #e2e8f0;
+    padding-bottom: 12px;
+}
+.msc-settings-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #111111;
+}
+.msc-settings-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+}
+.msc-setting-item {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+.msc-setting-label {
+    font-size: 0.85rem;
+    color: #94a3b8;
+    font-weight: 500;
+}
+.msc-select, .msc-input {
+    width: 100%;
+    height: 36px;
+    background: #ffffff;
+    border: 1px solid #cbd5e1;
+    color: #fff;
+    border-radius: 8px;
+    padding: 0 12px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+.msc-select:hover, .msc-input:hover {
+    border-color: #111111;
+}
+.msc-select option {
+    background: #1e293b;
+    color: #fff;
+}
+.msc-settings-divider {
+    height: 1px;
+    background: #e2e8f0;
+    margin: 24px 0;
+}
+.msc-settings-checkboxes {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+.msc-checkbox-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+}
+.msc-checkbox {
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    background: #ffffff;
+    border: 2px solid #cbd5e1;
+    border-radius: 6px;
+    cursor: pointer;
+    position: relative;
+    transition: all 0.2s;
+}
+.msc-checkbox:checked {
+    background: #111111;
+    border-color: #111111;
+}
+.msc-checkbox:checked::after {
+    content: '';
+    position: absolute;
+    left: 6px;
+    top: 2px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+}
+.msc-checkbox-label {
+    font-size: 0.95rem;
+    color: #334155;
+    user-select: none;
+}
+</style>
+
+
+<div class="msc-settings-panel">
+    <div class="msc-settings-header">
+        <span class="msc-settings-title">詳細設定</span>
+    </div>
+    <div class="msc-settings-grid">
+
+        <div class="msc-setting-item">
+            <span class="msc-setting-label">最低正解数</span>
+            <div class="msc-setting-control">
+                <select class="selectBox" name='autoSpeed' id='autoSpeed' onchange = "settingSave()" style='width: 23%; font-size: 20px;'>
+    <option value="3" selected>3</option>
+    <option value=1>1</option>
+    <option value=2>2</option>
+    
+    <option value=4>4</option>
+    <option value=5>5</option>
+    <option value=6>6</option>
+    <option value=7>7</option>
+    <option value=8>8</option>
+    <option value=9>9</option>
+    <option value=10>10</option>
+  </select>
+            </div>
+        </div>
+        <div class="msc-setting-item">
+            <span class="msc-setting-label">読上音声</span>
+            <div class="msc-setting-control">
+                <select class="selectBox" name='autoReading' id='autoReading' onchange = "settingSave()" style='width: 23%; font-size: 20px;'>
+    
+    <option value='je'>問題-日本語/解答‐英語</option>
+    <option value='ej'>問題-英語/解答‐日本語</option>
+    <option value='jj'>問題-日本語/解答‐日本語</option>
+    <option value='ee'>問題-英語/解答‐英語</option>
+    <option value='j*'>問題だけ-日本語</option>
+    <option value='e*'>問題だけ-英語</option>
+    <option value='*j'>解答だけ‐日本語</option>
+    <option value='*e'>解答だけ‐英語</option>
+  </select>
+            </div>
+        </div>
+        <div class="msc-setting-item">
+            <span class="msc-setting-label">🇯🇵 日本語速さ</span>
+            <div class="msc-setting-control">
+                <select class="selectBox" name='jpSpeed' id='jpSpeed' onchange = "settingSave()" style='width: 23%; font-size: 20px;'>
+    
+    <option value=0.3>0.3</option>
+    <option value=0.4>0.4</option>
+    <option value=0.5>0.5</option>
+    <option value=0.6>0.6</option>
+    <option value=0.7>0.7</option>
+    <option value=0.8>0.8</option>
+    <option value=0.9>0.9</option>
+    <option value=1.0>1.0</option>
+    <option value=1.1>1.1</option>
+    <option value=1.2>1.2</option>
+    <option value=1.3>1.3</option>
+    <option value=1.4>1.4</option>
+    <option value=1.5>1.5</option>
+    <option value=1.6>1.6</option>
+    <option value=1.7>1.7</option>
+
+
+
+  </select>
+            </div>
+        </div>
+        <div class="msc-setting-item">
+            <span class="msc-setting-label">🇺🇸 英語速さ</span>
+            <div class="msc-setting-control">
+                <select class="selectBox" name='engSpeed' id='engSpeed' onchange = "settingSave()" style='width: 23%; font-size: 20px;'>
+    
+    <option value=0.4>0.4</option>
+    <option value=0.5>0.5</option>
+    <option value=0.6>0.6</option>
+    <option value=0.7>0.7</option>
+    <option value=0.8>0.8</option>
+    <option value=0.9>0.9</option>
+    <option value=1.0>1.0</option>
+    <option value=1.1>1.1</option>
+    <option value=1.2>1.2</option>
+    <option value=1.3>1.3</option>
+    <option value=1.4>1.4</option>
+    <option value=1.5>1.5</option>
+  </select>
+            </div>
+        </div>
+        <div class="msc-setting-item">
+            <span class="msc-setting-label">最低正解数</span>
+            <div class="msc-setting-control">
+                <select class="selectBox" name='NOC' id='NOC' onchange = "settingSave()" style='width: 23%; font-size: 20px' >
+    <option value="3" selected>3</option>
+    <option value=0>0</option>
+    <option value=1>1</option>
+    <option value=2>2</option>
+    
+    <option value=4>4</option>
+    <option value=5>5</option>
+    <option value=6>6</option>
+    <option value=7>7</option>
+    <option value=8>8</option>
+    <option value=9>9</option>
+    <option value=10>10</option>
+  </select>
+            </div>
+        </div>
+        <div class="msc-setting-item">
+            <span class="msc-setting-label">自動解答(秒)</span>
+            <div class="msc-setting-control">
+                <select class="selectBox" name='autoAnswer' id='autoAnswer' onchange = "settingSave()" style='width: 23%; font-size: 20px'>
+    
+    <option value=0>なし</option>
+    <option value=0.5>0.5</option>
+    <option value=0.6>0.6</option>
+    <option value=0.7>0.7</option>
+    <option value=0.8>0.8</option>
+    <option value=0.9>0.9</option>
+    <option value=1>1</option>
+    <option value=1.2>1.2</option>
+    <option value=1.3>1.3</option>
+    <option value=1.5>1.5</option>
+    <option value=1.7>1.7</option>
+    <option value=1.8>1.8</option>
+    <option value=2>2</option>
+    <option value=2.5>2.5</option>
+    
+    <option value=3.5>3.5</option>
+    <option value=4>4</option>
+    <option value=5>5</option>
+    <option value=6>6</option>
+    <option value=7>7</option>
+    <option value=8>8</option>
+    <option value=9>9</option>
+    <option value=10>10</option>
+    <option value=15>15</option>
+    
+    <option value=30>30</option>
+    <option value=60>60</option>
+    <option value=120>120</option>
+    <option value=180>180</option>
+    <option value=240>240</option>
+    <option value=300>300</option>
+  </select>
+            </div>
+        </div>
+        <div class="msc-setting-item">
+            <span class="msc-setting-label">背景画像</span>
+            <div class="msc-setting-control">
+                <select class="selectBox" name='backGround' id='backGround' style='width: 23%; font-size: 20px' onchange = 'changeBG();settingSave()'>
+    
+    <option value="colored-pencil-pattern1144.png">①</option>
+    <option value="fancy-floral-pattern-384.jpg">②</option>
+    <option value="mint-green-chevron-stripes-2361.png">③</option>
+    <option value="RRice-colorful-wall.jpg">④</option>
+    <option value="p_da0686_m_da06860.jpg">⑤</option>
+    <option value="b065.gif">⑥</option>
+    <option value="p_da0671_m_da06710.jpg">⑦</option>
+    <option value="p_da0725_m_da07250.jpg">⑧</option>
+    <option value="p_da0689_m_da06892.jpg">⑨</option>
+    <option value="p_da0667_m_da06670.jpg">⑩</option>
+    <option value="p_da0669_m_da06693.jpg">⑪</option>
+    <option value="p_da0491_m_da04913.jpg">⑫</option>
+    <option value="p_da0451_m_da04510.jpg">⑬</option>
+    <option value="p_da0438_m_da04380.jpg">⑭</option>
+    <option value="0341_mosaictile_s.jpg">⑮</option>
+    <option value="0108_brick_s.jpg">⑯</option>
+    <option value="p_da0694_l_da06940.jpg">⑰</option>
+    <option value="49502.jpg">⑱</option>
+    <option value="stylish-floral-pattern.png">⑲</option>
+    <option value="painted-wood-planks-large-background.jpg">⑳</option>
+    <option value="seamless-bamboo-pattern-842.png">㉑</option>
+    <option value="dandelion-seeds-pattern.png">㉒</option>
+    <option value="music-pattern-with-trumpet-1929.png">㉓</option>
+    <option value="canadian-dollar.png">㉔</option>
+    <option value="pixel-heart.png">㉕</option>
+    <option value="christmas-colour.png">㉖</option>
+    <option value="food.png">㉗</option>
+    <option value="donuts.png">㉘</option>
+    <option value="dinos.png">㉙</option>
+    <option value="panda-madness.gif">㉚</option>
+    <option value="pattern8-pattern-44a.png">㉛</option>
+    <option value="patternhead64a-thumb.png">㉜</option>
+    <option value="repeated-square.png">㉝</option>
+    <option value="1702.png">㉞</option>
+    <option value="yellow-5456111_1920.jpg">㉟</option>
+
+    
+  </select>
+            </div>
+        </div>
+        <div class="msc-setting-item">
+            <span class="msc-setting-label">フォント</span>
+            <div class="msc-setting-control">
+                <select class="selectBox" name='fontSelect' id='fontSelect' style='width: 23%; font-size: 20px' onchange = 'settingSave()'>
+    
+    <option value="ＭＳ 明朝">ＭＳ 明朝</option>
+    <option value="SimHei">SimHei</option>
+    <option value="Times">Times</option>
+    <option value="Arial">Arial</option>
+    <option value="sans-serif">sans-serif</option>
+    <option value="arial black">arial black</option>
+    <option value="arial narrow">arial narrow</option>
+    <option value="arial unicode ms">arial unicode ms</option>
+    <option value="Century Gothic">Century Gothic</option>
+    <option value="Franklin Gothic Medium">Franklin Gothic Medium</option>
+    <option value="Gulim">Gulim</option>
+    <option value="Dotum">Dotum</option>
+    <option value="Haettenschweiler">Haettenschweiler</option>
+    <option value="Impact">Impact</option>
+    <option value="Ludica Sans Unicode">Ludica Sans Unicode</option>
+    <option value="Microsoft Sans Serif">Microsoft Sans Serif</option>
+    <option value="MS Sans Serif">MS Sans Serif</option>
+    <option value="MV Boil">MV Boil</option>
+    <option value="New Gulim">New Gulim</option>
+    <option value="Tahoma">Tahoma</option>
+    <option value="Trebuchet">Trebuchet</option>
+
+  </select>
+            </div>
+        </div>
+        <div class="msc-setting-item" style="display:none;">
+            <span class="msc-setting-label">小説</span>
+            <div class="msc-setting-control">
+                <select class="selectBox" name='novelSelect' id='novelSelect' style='display:none;width: 23%; font-size: 20px' onchange = 'settingSave()'>
+    
+    <option value="なし">なし</option>
+  </select>
+            </div>
+        </div>
+        <div class="msc-setting-item" style="display:none;">
+            <span class="msc-setting-label">文章番号</span>
+            <div class="msc-setting-control">
+                <input class ="button" type="text" name="novelSentenceNumber" id="novelSentenceNumber" onChange='settingSave()' value = "" 
+  style='display:none;width: 8%; font-size: 16px;box-sizing:border-box;vertical-align:middle '>
+            </div>
+        </div>
+    </div>
+    <div class="msc-settings-divider"></div>
+    <div class="msc-settings-checkboxes">
+
+        <label class="msc-checkbox-wrapper">
+            <input class="msc-checkbox" type="checkbox" id="qachange" onchange = "settingSave()">
+            <span class="msc-checkbox-label">問題/解答</span>
+        </label>
+        <label class="msc-checkbox-wrapper">
+            <input class="msc-checkbox" type="checkbox" id="autoread" onchange="settingSave()">
+            <span class="msc-checkbox-label">自動読上</span>
+        </label>
+        <label class="msc-checkbox-wrapper">
+            <input class="msc-checkbox" type="checkbox" id="keyControl" onchange = "settingSave()">
+            <span class="msc-checkbox-label">キー操作</span>
+        </label>
+        <label class="msc-checkbox-wrapper">
+            <input class="msc-checkbox" type="checkbox" id="answerByMyself" onchange = "settingSave()">
+            <span class="msc-checkbox-label">解答入力</span>
+        </label>
+        <label class="msc-checkbox-wrapper">
+            <input class="msc-checkbox" type="checkbox" id="randomOrNot" onchange = "settingSave()">
+            <span class="msc-checkbox-label">ランダム</span>
+        </label>
+        <label class="msc-checkbox-wrapper">
+            <input class="msc-checkbox" type="checkbox" id="chordsOrNot" onchange = "settingSave()">
+            <span class="msc-checkbox-label">コード音声</span>
+        </label>
+        <label class="msc-checkbox-wrapper">
+            <input class="msc-checkbox" type="checkbox" id="flexButton" value="横並び" onchange='QnAareaFlex();settingSave()'>
+            <span class="msc-checkbox-label">横並び</span>
+        </label>
+        <label class="msc-checkbox-wrapper">
+            <input class="msc-checkbox" type="checkbox" id="blackCheck" value="真っ黒" onchange='blackOrWhite();settingSave()'>
+            <span class="msc-checkbox-label">真っ黒</span>
+        </label>
+    </div>
+</div>
+
+<div class="undermarginbox" >
+</div>
+
+
+
+
+
+<script type="text/javascript">
+const supabaseUrl = 'https://eqtxzxqvkprnmkiyczvv.supabase.co';
+const supabaseKey = 'sb_publishable_L9iiPiRICnSt60jLa_xT9A_dgTphJ2e';
+const supabaseClient = supabase.createClient(supabaseUrl, supabaseKey);
+
+async function myFetch(url, dataStr) {
+    try {
+        let response = await fetch(url, {
+            method: 'POST',
+            headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+            body: dataStr
+        });
+        return await response.text();
+    } catch (e) {
+        console.error("Fetch error:", e);
+        return "";
+    }
+}
+
+
+var sendbackDBName = location.search.substring(1);
+// console.log('sendbackDBName is '+sendbackDBName);
+if (sendbackDBName) {
+    document.getElementById("DB_name").value = sendbackDBName;
+}
+document.getElementById("div2").style.display = "none";
+document.getElementById("div2").style.display = "none";
+document.getElementById("div1").style.display = "none";
+var num = 0;
+var flag1 = false;
+var oneByOneflag = false;
+var twoByTwoflag = false;
+var threeByThreeflag = false;
+var answertextareaflag = false;
+var autoflag = false;
+var randoms = [];
+let rand = "";
+var questionnumbers = "";
+var min = 0, max = "";
+var phpfile1 = "";
+var phpfile2 = "";
+var databasename = document.mainform.DB_name.value;
+document.getElementById("reminder").href += "?"+databasename;
+document.getElementById("resultgraph").href += "?"+databasename;
+document.getElementById("UpdateSql").href += "?"+databasename;
+document.getElementById("review2").href += "?"+databasename;
+document.getElementById("TerashimaSheets").href += "?"+databasename;
+
+// console.log('databasename is '+databasename);
+var getQstartTime = 0;
+var getQendTime = 0;
+var getpastTime =0;
+var now = 0;
+var answertext="";
+var questiontext="";
+var imagefolder ="";
+var speech;
+var speech2;
+var correctQuestions = new Array();
+var incorrectQuestions = new Array();
+var overlapCorrectQuestions = new Array();
+var overlapIncorrectQuestions = new Array();
+var minimumCorrect ;
+var MaxQuestionNumber;
+var AnswerShown = false;
+var AnswerTypedFlag = false;
+var AnswerShown2 = false;//自動回答表示の解除用
+// var AnswerWaitingFlag = false;//自動解答表示を待っているかどうか
+var sleepId = "";//sleepのタイマーのID
+var mp3PlayFlag = false;
+var imageHeight1;
+var imageWidth1;
+var imageHeight2;
+var imageWidth2;
+var yesterdayIncorrect =false;
+var QnAareaFlexFlug = false;
+var slashKakko = "\\\(";
+var musicStartFlug = false;
+
+const text1 = document.getElementById('textareas');
+
+
+
+for (let i = 1; i < 500; i++) {//Mp3開始地点セレクト要素追加
+    // selectタグを取得する
+  var select = document.getElementById("mp3StartPoint");
+  // optionタグを作成する
+  var option = document.createElement("option");
+  // optionタグのテキストを4に設定する
+  option.text = i * 0.01 ;
+  // optionタグのvalueを4に設定する
+  option.value = i * 0.01;
+  // selectタグの子要素にoptionタグを追加する
+  select.appendChild(option);
+}
+
+
+
+
+async function fetchQuestionsFromSupabase() {
+    let db_name = document.mainform.DB_name.value || 'terashima01';
+    db_name = db_name.toLowerCase();
+
+    const getSelected = (id) => {
+        const elem = document.getElementById(id);
+        if(!elem) return [];
+        const opts = elem.options;
+        const selected = [];
+        for (let i = 0; i < opts.length; i++) {
+            if (opts[i].selected && opts[i].value !== "") {
+                selected.push(opts[i].value);
+            }
+        }
+        return selected;
+    };
+
+    const category1 = getSelected('ctg1');
+    const category2 = getSelected('ctg2');
+    const category3 = getSelected('ctg3');
+    const category4List = getSelected('ctg4');
+    const category5List = getSelected('ctg5');
+
+    let query = supabaseClient.from(db_name).select('*');
+
+    if (category1.length > 0) query = query.in('category1', category1);
+    if (category2.length > 0) query = query.in('category2', category2);
+    if (category3.length > 0) query = query.in('category3', category3);
+    if (category4List.length > 0) query = query.in('category4', category4List);
+    if (category5List.length > 0) query = query.in('category5', category5List);
+
+    const cat4 = document.mainform.category4.value;
+    const cat5 = document.mainform.category5.value;
+    const cat6 = document.mainform.category6.value;
+    const op1 = document.mainform.operator1.value;
+    const op2 = document.mainform.operator2.value;
+    const op3 = document.mainform.operator3.value;
+    const crit1 = document.mainform.criteria1.value;
+    const crit2 = document.mainform.criteria2.value;
+    const crit3 = document.mainform.criteria3.value;
+
+    const applyCondition = (q, cat, op, crit) => {
+        if (!cat || !op || !crit) return q;
+        if (cat === "qdate" && op === "=") {
+            if(crit.length >= 8) {
+                let formattedDate = crit.substring(0,4) + "-" + crit.substring(4,6) + "-" + crit.substring(6,8);
+                return q.like('pre_qdate', `%${formattedDate}%`);
+            }
+        }
+        if (op === "=") return q.eq(cat, crit);
+        if (op === ">") return q.gt(cat, crit);
+        if (op === "<") return q.lt(cat, crit);
+        if (op === ">=") return q.gte(cat, crit);
+        if (op === "<=") return q.lte(cat, crit);
+        if (op === "like") return q.like(cat, `%${crit}%`);
+        if (op === "!=") return q.neq(cat, crit);
+        return q;
+    };
+
+    query = applyCondition(query, cat4, op1, crit1);
+    query = applyCondition(query, cat5, op2, crit2);
+    query = applyCondition(query, cat6, op3, crit3);
+
+    const poorat2 = document.mainform.poorat2.value;
+    if (poorat2) query = query.eq('poorat', poorat2);
+
+    const qlevel = document.mainform.qlevel.value;
+    if (qlevel) query = query.eq('q_level', qlevel);
+
+    if (yesterdayIncorrect) {
+        query = query.like('q_record', '×%');
+    }
+
+    const { data, error } = await query;
+    if (error) {
+        console.error("Supabase Error fetching questions:", error);
+        return [];
+    }
+
+    let filteredData = data || [];
+    window.allQuestionsData = filteredData; // Save globally for instant prefetching!
+    const wordSearch = document.mainform.wordSearch.value;
+    if (wordSearch) {
+        const ws = wordSearch.toLowerCase();
+        filteredData = filteredData.filter(row => {
+            return ['question','answer1','hint','tag','category1','category2','category3','category4','category5','questionnumber']
+                .some(k => row[k] && String(row[k]).toLowerCase().includes(ws));
+        });
+    }
+
+    if (cat4 === "qdate" && cat5 === "qdate" && cat6 === "qdate" && op1 === "=" && op2 === "=" && op3 === "=") {
+        let halfYearAgo = new Date();
+        halfYearAgo.setMonth(halfYearAgo.getMonth() - 6);
+        const yyyymmdd = halfYearAgo.toISOString().split('T')[0].replace(/-/g, '');
+        
+        let resultNums = [];
+        for (let row of filteredData) {
+            let pq = (row.pre_qdate || "").replace(/-/g, '');
+            if (pq.includes(crit1) || pq.includes(crit2) || pq.includes(crit3) || pq === yyyymmdd) {
+                resultNums.push(row.questionnumber);
+            }
+        }
+        
+        const today = new Date().toISOString().split('T')[0];
+        const { data: todayData } = await supabaseClient.from(db_name).select('questionnumber').eq('qdate', today);
+        const todayNums = todayData ? todayData.map(d => d.questionnumber) : [];
+        
+        return resultNums.filter(num => !todayNums.includes(num));
+    }
+
+    return filteredData.map(row => row.questionnumber);
+}
+
+
+
+async function updateAndDisplayDailyTotal(isCorrect = null) {
+    try {
+        let db_name = document.mainform?.DB_name?.value || 'terashima01';
+        db_name = db_name.toLowerCase();
+        const today = new Date().toLocaleDateString('ja-JP').replace(/\//g, '-').split('-').map(n => n.padStart(2, '0')).join('-');
+        
+        // Use questionnumber = -100 for DAILY, -101 for ALL_TIME
+        // Fetch both
+        const { data: records } = await supabaseClient.from(db_name).select('*').in('questionnumber', [-100, -101]);
+        
+        let dailyRow = records?.find(r => r.questionnumber === -100);
+        let allRow = records?.find(r => r.questionnumber === -101);
+        
+        // 1. Initialize ALL_TIME if missing
+        if (!allRow) {
+            const fallbackTotalQ = document.getElementById('stat-total-q')?.getAttribute('data-val') || 0;
+            const fallbackCorr = parseInt(document.getElementById('stat-total-correct')?.getAttribute('data-val') || 0);
+            const fallbackIncorr = parseInt(document.getElementById('stat-total-incorrect')?.getAttribute('data-val') || 0);
+            
+            allRow = { questionnumber: -101, question: 'ALL_TIME_RECORD', correct: fallbackCorr, incorrect: fallbackIncorr, category1: fallbackTotalQ.toString() };
+            await supabaseClient.from(db_name).insert(allRow);
+        }
+        
+        // 2. Initialize DAILY if missing or stale
+        if (!dailyRow || dailyRow.qdate !== today) {
+            // Delete stale daily row just in case, though upsert would overwrite if pk matches
+            // Actually questionnumber -100 is the pk, so upsert overwrites!
+            dailyRow = { questionnumber: -100, question: 'DAILY_RECORD', qdate: today, correct: 0, incorrect: 0 };
+            await supabaseClient.from(db_name).upsert(dailyRow);
+        }
+        
+        // 3. Increment if answering
+        if (isCorrect !== null) {
+            if (isCorrect) {
+                dailyRow.correct = (dailyRow.correct || 0) + 1;
+                allRow.correct = (allRow.correct || 0) + 1;
+            } else {
+                dailyRow.incorrect = (dailyRow.incorrect || 0) + 1;
+                allRow.incorrect = (allRow.incorrect || 0) + 1;
+            }
+            // Update Supabase
+            await supabaseClient.from(db_name).upsert([dailyRow, allRow]);
+        }
+        
+        // 4. Update DOM
+        const dailyTotal = (dailyRow.correct || 0) + (dailyRow.incorrect || 0);
+        const allCorrect = allRow.correct || 0;
+        const allIncorrect = allRow.incorrect || 0;
+        const totalQ = allRow.category1 || document.getElementById('stat-total-q')?.getAttribute('data-val') || 0;
+        const rate = (allCorrect + allIncorrect) > 0 ? ((allCorrect / (allCorrect + allIncorrect)) * 100).toFixed(2) : 0;
+        
+        const elToday = document.getElementById('todayTotalDone');
+        if (elToday) elToday.innerText = `今日やった合計は ${dailyTotal} です。`;
+        
+        const elQ = document.getElementById('stat-total-q');
+        if (elQ) elQ.innerText = `やった問題数の合計は ${totalQ} です。`;
+        
+        const elC = document.getElementById('stat-total-correct');
+        if (elC) elC.innerText = `正解の合計は ${allCorrect} です。`;
+        
+        const elI = document.getElementById('stat-total-incorrect');
+        if (elI) elI.innerText = `不正解の合計は ${allIncorrect} です。`;
+        
+        const elR = document.getElementById('stat-correct-rate');
+        if (elR) elR.innerText = `正答率は ${rate} ％です。`;
+        
+    } catch(e) {
+        console.error("Failed to update stats:", e);
+    }
+}
+
+async function updateRecordSupabase(qnum, isCorrect, pastTime, pooratVal) {
+    updateAndDisplayDailyTotal(isCorrect); // Fire and forget
+
+    let db_name = document.mainform.DB_name.value || 'terashima01';
+    db_name = db_name.toLowerCase();
+    
+    const { data: row, error } = await supabaseClient.from(db_name).select('*').eq('questionnumber', qnum).single();
+    if (error || !row) {
+        console.error("Supabase update error:", error);
+        return;
+    }
+
+    let updates = {};
+    const todayStr = new Date().toISOString().split('T')[0];
+    const isToday = row.pre_qdate && String(row.pre_qdate).startsWith(todayStr);
+
+    if (isCorrect) {
+        updates.correct = parseInt(row.correct || 0, 10) + 1;
+        updates.pca = updates.correct / (updates.correct + parseInt(row.incorrect || 0, 10)) * 100;
+    } else {
+        updates.incorrect = parseInt(row.incorrect || 0, 10) + 1;
+        updates.pca = parseInt(row.correct || 0, 10) / (parseInt(row.correct || 0, 10) + updates.incorrect) * 100;
+    }
+    updates.qdate = todayStr;
+    updates.pasttime = pastTime;
+
+    if (!isToday) {
+        let q_record = row.q_record || "";
+        let pre_qdate = row.pre_qdate || "";
+        let q_level = row.q_level || 0;
+
+        if (isCorrect) {
+            updates.q_record = "〇" + q_record;
+            updates.correct2 = parseInt(row.correct2 || 0, 10) + 1;
+            updates.pca2 = updates.correct2 / (updates.correct2 + parseInt(row.incorrect2 || 0, 10)) * 100;
+            updates.poorat = pooratVal;
+
+            const matchRecord = (str) => q_record === str || q_record.startsWith(str + "×");
+            if (!pre_qdate || q_record === "×" || matchRecord("〇") || matchRecord("〇〇") || matchRecord("〇〇〇") || matchRecord("〇〇〇〇") || matchRecord("〇〇〇〇〇") || matchRecord("〇〇〇〇〇〇")) {
+                updates.q_level = q_level + 1;
+            } else if (q_record.startsWith("〇〇〇〇〇〇〇〇〇〇")) {
+                updates.q_level = q_level + 1;
+            }
+        } else {
+            updates.q_record = "×" + q_record;
+            updates.incorrect2 = parseInt(row.incorrect2 || 0, 10) + 1;
+            updates.pca2 = parseInt(row.correct2 || 0, 10) / (parseInt(row.correct2 || 0, 10) + updates.incorrect2) * 100;
+            updates.q_level = q_level > 0 ? q_level - 1 : 0;
+            updates.poorat = pooratVal;
+        }
+
+        let new_pre = todayStr + (pre_qdate ? "," + pre_qdate : "");
+        new_pre = new_pre.replace(/,+$/, '').replace(/\s+$/, '');
+        updates.pre_qdate = new_pre;
+    }
+
+    // Fire and forget, don't await to keep UI fast
+    supabaseClient.from(db_name).update(updates).eq('questionnumber', qnum).then(({error}) => {
+        if(error) console.error("Update fail:", error);
+    });
+}
+
+async function fetchQuestionFromSupabase(qnum, mode) {
+    let db_name = document.mainform.DB_name.value || 'terashima01';
+    db_name = db_name.toLowerCase();
+    
+    let data = window.allQuestionsData ? window.allQuestionsData.find(r => r.questionnumber == qnum) : null;
+    if (!data) return "Error fetching question^^^Error^^^";
+
+    
+    let questionText = mode === 2 ? data.answer1 : data.question;
+    
+    let info = "";
+    if (mode === 2) {
+        info += "Level：" + (data.q_level || "") + " <br>";
+        info += "正解数：" + (data.correct2 || 0) + " 不正解数：" + (data.incorrect2 || 0) + "<br>";
+        info += "前回：" + (data.pre_qdate ? data.pre_qdate.substring(0, 33) : "") + "<br>";
+        info += "記録：" + (data.q_record || "");
+    } else {
+        info += (data.category1 || "");
+        if (data.category2) info += " - " + data.category2;
+        if (data.category3) info += " - " + data.category3;
+        if (data.category4) info += " - " + data.category4;
+        if (data.category5) info += " - " + data.category5;
+        info += "    <br>Level：" + (data.q_level || "") + "   ";
+        info += "正解数：" + (data.correct2 || 0) + " 不正解数：" + (data.incorrect2 || 0) + "   ";
+        info += "前回：" + (data.pre_qdate ? data.pre_qdate.substring(0, 33) : "") + "<br>";
+        info += "記録：" + (data.q_record || "");
+        if (data.qsentence) info += "<br>" + data.qsentence;
+        if (data.tag) info += "<br>" + data.tag;
+        info += "<br>問題番号：" + (data.questionnumber || "");
+    }
+    
+    let imagefolder = data.imagefolder || "";
+    return questionText + "^^^" + info + "^^^" + imagefolder;
+}
+
+async function fetchAnswerFromSupabase(qnum, mode) {
+    let db_name = document.mainform?.DB_name?.value || 'terashima01';
+    db_name = db_name.toLowerCase();
+    
+    let data = window.allQuestionsData ? window.allQuestionsData.find(r => r.questionnumber == qnum) : null;
+    if (!data) return "Error fetching answer";
+
+    let reply = "";
+    if (mode === 2) {
+        reply = data.question || "";
+        if (reply === "NULL") reply = "";
+    } else {
+        reply = data.answer1 || "";
+        if (reply === "NULL") reply = "";
+        
+        for (let i = 2; i <= 15; i++) {
+            let val = data['answer'+i];
+            if (val !== null && val !== undefined && val !== "NULL" && String(val).trim() !== "") {
+                if (reply !== "") {
+                    reply += ",\n" + val;
+                } else {
+                    reply = val;
+                }
+            }
+        }
+    }
+    return reply;
+}
+
+async function sendRequest(){
+
+    if (typeof window.resetAIHint === 'function') window.resetAIHint();
+
+    let parent = document.getElementById("answerMath");
+    while(parent.lastChild){
+      parent.removeChild(parent.lastChild);
+    }
+    if ((document.getElementById("novelSelect").value) && !(document.getElementById("novelSelect").value == "なし")){
+      novelRowNum = Number(novelRowNum) +1;
+      getNovelSentence();
+    }
+
+    if (!document.getElementById("mypic2")=== null) {
+      if (document.getElementById("mypic2").src){
+        document.getElementById("mypic2").src= "";
+      }      
+    }
+    
+    clearTimeout(sleepId);//自動解答表示のタイマーをクリア
+    AnswerShown2 = false;//答えはまだ表示されていない
+    if (num < MaxQuestionNumber ) {
+      num++;
+    } else {
+      num=0;
+    }
+    now = new Date();
+    getQstartTime = now.getTime();
+    answertextareaflag = false;
+    var QAChangeChecked = document.getElementById("qachange").checked;////
+
+    if (flag1 == false){
+      if (document.getElementById("MaxQuestionNumber").value == "all") {
+        MaxQuestionNumber = questionnumbers.length;
+      } else {
+        MaxQuestionNumber = Number(document.getElementById("MaxQuestionNumber").value);
+      }
+      MaxQuestionNumber = Number(document.getElementById("MaxQuestionNumber").value);
+    }
+
+
+    if (QAChangeChecked) {
+        var phpfile1 = "getonequestion2.php";
+        var phpfile2 = "getanswer2.php";
+    } else {
+        var phpfile1 = "getonequestion1.php";
+        var phpfile2 = "getanswer1.php";
+    }
+
+    if (num+1 > MaxQuestionNumber ) {
+      removeCorrects();
+      num=0;
+      randoms = [];
+      // max = questionnumbers.length-1;
+        if (max==0) {
+          max=1;
+        }
+      /** 重複チェックしながら乱数作成 */
+      for(i = min; i < questionnumbers.length; i++){
+        while(true){
+          // alert(i);
+          var tmp = intRandom(min, questionnumbers.length-1);
+          if(!randoms.includes(tmp)){
+            randoms.push(tmp);
+            break;
+          }
+        }
+      }
+      var randQNum = new Array();
+      for (let i = 0; i < questionnumbers.length; i++) {
+        randQNum[i] = questionnumbers[randoms[i]];
+      }
+      var correctQuestionsSave = correctQuestions;
+      // console.log('correctQuestions  is '+correctQuestions );
+      correctQuestions = correctQuestionsSave;
+      // console.log('correctQuestions  is '+correctQuestions );
+      if (document.getElementById("randomOrNot").checked) {
+        questionnumbers.length = 0;
+        questionnumbers = randQNum;
+      }
+    }
+    
+    // Fetch questions from Supabase directly in Javascript! ONLY on first load!
+    if (flag1 == false) {
+        questionnumbers = await fetchQuestionsFromSupabase();
+      
+      // Fallback if empty
+            if (!questionnumbers || questionnumbers.length === 0) {
+          // empty or error handling
+          document.getElementById("totalQuestionNumber").innerHTML = "0";
+          document.getElementById("textareas").value = "該当する問題がありません";
+          const pressBtn = document.getElementById("press-button");
+          if (pressBtn) pressBtn.innerHTML = "0/0";
+          
+          // update modern UI counter too
+          const mscPress = document.getElementById('msc-press-button');
+          const mscTotal = document.getElementById('msc-total');
+          if (mscPress) mscPress.innerText = "0";
+          if (mscTotal) mscTotal.innerText = "0";
+          
+          return; // 該当問題がない場合はここで処理を打ち切る
+      } else {
+          document.getElementById("totalQuestionNumber").innerHTML = questionnumbers.length;
+      }
+    }
+    
+    if (questionnumbers && questionnumbers.length === 0 && flag1 == true) {
+        // If it's empty after the first load, it means all questions are finished!
+        document.getElementById("textareas").value = "お疲れ様でした！全問終了です。";
+        document.getElementById("questionInfo").innerHTML = "完了";
+        document.getElementById("totalQuestionNumber").innerHTML = 0;
+        return;
+    }
+      if (MaxQuestionNumber <= (questionnumbers ? questionnumbers.length : 0)) {
+        max = Number(MaxQuestionNumber);
+      } else {
+        max = questionnumbers ? questionnumbers.length : 0;
+        MaxQuestionNumber = max;
+      }
+
+
+      document.getElementById("press-button").innerHTML = num+1  +"/"+　Number(max);
+
+      if (flag1 == false){
+        // alert(max);
+          randoms = [];
+        /** 重複チェックしながら乱数作成 */
+        for(i = min; i < questionnumbers.length; i++){ randoms.push(i); }
+        for(let j = randoms.length - 1; j > 0; j--) { const k = Math.floor(Math.random() * (j + 1)); [randoms[j], randoms[k]] = [randoms[k], randoms[j]]; }
+        flag1 = true;
+        var randQNum = new Array();
+        for (let i = 0; i < questionnumbers.length; i++) {
+          randQNum[i] = questionnumbers[randoms[i]];
+        }
+        var correctQuestionsSave = correctQuestions;
+        // console.log('correctQuestions  is '+correctQuestions );
+
+        correctQuestions = correctQuestionsSave;
+        // console.log('correctQuestions  is '+correctQuestions );
+        if (document.getElementById("randomOrNot").checked) {
+          questionnumbers.length = 0;
+          questionnumbers = randQNum;
+        }
+
+        questionnumbers = questionnumbers = questionnumbers.slice(0, MaxQuestionNumber);
+      }
+
+
+    if (max==1) {
+    rand = questionnumbers[0];
+    } else {
+    rand = questionnumbers[num];
+    }
+    // console.log('questionnumbers is '+questionnumbers);
+    // console.log(' randoms[num]is '+randoms[num]);
+    // console.log('376 rand is '+rand);
+
+
+    // alert(num);
+    /*alert(rand);*/
+    // alert(questionnumbers[1]);
+
+
+    var moji=rand + "." + document.mainform.DB_name.value + "." + 
+    document.mainform.novelSentenceNumber.value;
+    moji = encodeURIComponent(moji);
+
+
+
+    
+    let mode = phpfile1 === "getonequestion2.php" ? 2 : 1;
+    var res = await fetchQuestionFromSupabase(rand, mode);
+    {
+
+
+        // console.log('558 res is '+res);
+        var res = res.split('^^^');
+        imagefolder = res[2];
+
+        var doc0= document.getElementById("questionInfo");
+
+        var correctNum = ""
+        var question = ""
+        if (res[0].indexOf("正解数")<0) {
+            question = res[0];
+            correctNum = res[1];
+        } else {
+            question = res[1];
+            correctNum = res[0];
+        }
+
+        doc0.innerHTML= correctNum;
+        questiontext = question;
+
+
+        if ((question.indexOf( "jpg" ) > -1)||(question.indexOf( "png" ) > -1)||(question.indexOf( "gif" ) > -1)||(question.indexOf( "jpeg" ) > -1)) {
+          document.getElementById("textareas").style.display = "none";
+          document.getElementById("mypic1").style.display = "block";
+          document.getElementById("div1").style.display = "block";          
+          document.getElementById("questionMath").innerText ="";
+          
+          // var imageadress =  res.split('\n');
+          // console.log('question is ' + question);
+          question = question.split('\n\n');
+          if (question.length > 1) {
+            if (question[1].indexOf( "ttp" ) > 0){
+              document.getElementById("mypic1").src=question[1];
+            } else {
+              document.getElementById("mypic1").src='images/'+imagefolder+'/' + question[1];
+            }
+          } else {
+            if (question[0].indexOf( "ttp" ) > 0){
+              document.getElementById("mypic1").src=question[0];
+            } else {
+              document.getElementById("mypic1").src='images/'+imagefolder+'/' + question[0];
+            }
+          }
+
+
+          var image1 = new Image();
+          var width;
+          var height;
+
+          image1.onload = function(){
+              width = image1.width;
+              height = image1.height;
+              imageSize = document.getElementById("imageSize1").value * image1.width ;
+              if ((imageSize>1000)){
+               imageSize = 1000;
+              }
+              if ((width>height)){
+                  document.getElementById("mypic1").style.width = imageSize + "px";  // 横幅を400pxにリサイズ
+                  document.getElementById("mypic1").style.height = height * (imageSize / width)+"px"; // 高さを横幅の変化割合に合わせる;
+                  if (parseInt(document.getElementById("mypic1").style.height)>parseInt(document.getElementById("div1").clientHeight)) {
+                    document.getElementById("mypic1").style.height = document.getElementById("div1").clientHeight +"px";
+                    document.getElementById("mypic1").style.width = (document.getElementById("mypic1").height*width)/height + "px";
+                  } else {
+                  }
+              } else {
+                document.getElementById("mypic1").style.width = image1.width * 1 * document.getElementById("imageSize1").value + "px";
+                document.getElementById("mypic1").style.height = height * (image1.width * 1 * document.getElementById("imageSize1").value/ width)+"px";
+                // document.getElementById("mypic1").style.height = document.getElementById("div1").clientHeight +"px";
+                // document.getElementById("mypic1").style.width = (document.getElementById("mypic1").height*width)/height + "px";
+              }
+
+              imageWidth1 = Number(document.getElementById("mypic1").style.width.substr(0,document.getElementById("mypic1").style.width.length -2));
+              imageHeight1 = Number(document.getElementById("mypic1").style.height.substr(0,document.getElementById("mypic1").style.height.length -2));
+
+          }
+          // if (question.length > 1) {
+          //   image1.src ='images/'+imagefolder+'/' + question[1];
+          // } else {
+          //   image1.src ='images/'+imagefolder+'/' + question[0];
+          // }
+          // image1.src = 'images/'+imagefolder+'/' + question;
+          if (question.length > 1) {
+            if (question[1].indexOf( "ttp" ) > 0){
+              image1.src=question[1];
+            } else {
+              image1.src='images/'+imagefolder+'/' + question[1];
+            }
+          } else {
+            if (question[0].indexOf( "ttp" ) > 0){
+              image1.src=question[0];
+            } else {
+              image1.src='images/'+imagefolder+'/' + question[0];
+            }
+          }
+
+       
+
+        } else if ((question.indexOf( slashKakko ) > -1)){
+          document.getElementById("textareas").style.display = "none";
+          document.getElementById("div1").style.display = "block";
+          document.getElementById("mypic1").style.display = "none";
+          document.getElementById("questionMath").innerText = question;
+          if (!(document.getElementById("mypic1")=== null)) {
+            if (document.getElementById("mypic1").src){
+              document.getElementById("mypic1").src= "";
+            }      
+          }else{
+            var img_element = document.createElement('img');
+            img_element.id= 'mypic1';
+            // 指定した要素にimg要素を挿入
+            var content_area = document.getElementById("div1");
+            content_area.appendChild(img_element);
+          }
+          
+          MathJax.Hub.Typeset(document.getElementById("div1"));//数式再読み込み
+        
+        } else if (isHTML(question)){
+          document.getElementById("textareas").style.display = "none";
+          document.getElementById("div1").style.display = "block";
+          document.getElementById("mypic1").style.display = "none";
+          document.getElementById("questionMath").innerHTML = question;
+        } else {
+          document.getElementById("div1").style.display = "none";
+          document.getElementById("textareas").style.display = "block";
+          document.getElementById( "textareas" ).value = "";
+          document.getElementById( "textareas" ).value = question ;////////
+          document.getElementById( "textareas2" ).value = "";
+          AnswerShown = false;
+        }
+
+
+
+    }　//苦手度を取得
+
+    var moji=rand + "." + document.mainform.DB_name.value;
+    moji = encodeURIComponent(moji);
+    var xmlhttp=createXmlHttpRequest2();
+    if(xmlhttp!=null)
+    {
+        
+      let row = window.allQuestionsData ? window.allQuestionsData.find(r => r.questionnumber == rand) : null;
+      document.getElementById("poorat").value = (row && row.poorat) ? row.poorat : "";
+
+
+    }
+    var slcLang = document.getElementById("autoReading").value;
+    if (document.getElementById("autoread").checked && !(document.getElementById( "textareas" ).value == "")
+    && !(slcLang == "*e") && !(slcLang == "*j")) {
+      readQuestion();
+    }
+
+    var ifautoAnswer = document.getElementById("autoAnswer");
+
+    if ((ifautoAnswer.value > 0)) { //最初だけは自動で音楽を流さない
+      async function main(){
+      var sec = Number(ifautoAnswer.value);
+      await sleep(sec*1000);
+        if (AnswerShown2 == false){
+          sendRequest2();
+        }
+      }
+      main();
+    }else {
+      
+    }
+    if ((document.getElementById("chordsOrNot").checked)&&((document.getElementById("ctg3").value ==="コード")||(document.getElementById("ctg3").value ==="音程"))) {
+      playChords(document.getElementById("textareas").value);
+    }
+
+
+  // imageResize();
+    // settingSave()
+  if (mp3PlayFlag != false||music.paused===false) {
+    stop();
+    music.currentTime = 0;
+    mp3PlayFlag=false;
+  }
+}
+
+function isHTML(str) {
+    // 正規表現を使用してHTMLタグをチェック
+    const pattern = /<\/?[a-z][\s\S]*>/i;
+    return pattern.test(str);
+}
+
+
+function createXmlHttpRequest()
+{
+    var xmlhttp=null;
+    //alert("3");
+    if(window.ActiveXObject)
+    {
+        try
+        {
+            xmlhttp=new ActiveXObject("Msxml2.XMLHTTP");
+        }
+        catch(e)
+        {
+            try
+            {
+                xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+            }
+            catch (e2)
+            {
+            }
+        }
+    }
+    else if(window.XMLHttpRequest)
+    {
+        xmlhttp = new XMLHttpRequest();
+    }
+    return xmlhttp;
+
+}
+
+
+async function sendRequest2(){
+
+  if (typeof window.resetAIHint === 'function') window.resetAIHint();
+
+ randoms = [];
+  AnswerShown = true;
+  AnswerShown2 = true;
+  
+  // 自動的にAI解説を表示する処理
+  let currentQData = window.allQuestionsData ? window.allQuestionsData.find(r => r.questionnumber == rand) : null;
+  if (currentQData && currentQData.hint && currentQData.hint !== "NULL") {
+      const aiBox = document.getElementById('msc-ai-hint-box');
+      const btnText = document.getElementById('msc-ai-btn-text');
+      if (aiBox && btnText) {
+          aiBox.style.display = 'block';
+          aiBox.innerHTML = currentQData.hint.replace(/\n/g, '<br>');
+          btnText.innerText = 'AI さらに深く';
+      }
+  }
+  
+  /** 重複チェックしながら乱数作成 */
+  for(i = min; i < max+1; i++){
+    while(true){
+      // alert(i);
+      var tmp = intRandom(min, max);
+      if(!randoms.includes(tmp)){
+        randoms.push(tmp);
+        break;
+      }
+    }
+  }
+
+
+
+
+  // console.log('606 getpastTime is '+getpastTime);
+  var QAChangeChecked = document.getElementById("qachange").checked;////
+
+  if (QAChangeChecked) {
+      var phpfile1 = "getonequestion2.php";
+      var phpfile2 = "getanswer2.php";
+  } else {
+      var phpfile1 = "getonequestion1.php";
+      var phpfile2 = "getanswer1.php";
+  }
+  var moji=rand + "." + document.mainform.DB_name.value;
+  moji = encodeURIComponent(moji);
+  
+    let mode = phpfile2 === "getanswer2.php" ? 2 : 1;
+    var res = await fetchAnswerFromSupabase(rand, mode);
+    {
+
+    // console.log('502 res is '+ res);
+    var AnswerTyped = document.getElementById( "textareas2" ).value;
+    document.getElementById( "textareas2" ).value = "";
+
+
+    if ((res.indexOf( "jpg" ) > -1)||(res.indexOf( "png" ) > -1)||(res.indexOf( "gif" ) > -1)||(res.indexOf( "jpeg" ) > -1)) {
+      var resArr=Array();
+      if (res.indexOf( "\n.....\n" ) > -1){
+        resArr = res.split('\n.....\n');
+        res = resArr[0];
+        document.getElementById("answerHint").innerText = resArr[1];
+      }
+      
+      document.getElementById("textareas2").style.display = "none";
+      document.getElementById("mypic2").style.display = "block";
+      document.getElementById("div2").style.display = "block";
+      document.getElementById("answerMath").innerText ="";
+      let parent = document.getElementById("answerMath");
+      while(parent.lastChild){
+        parent.removeChild(parent.lastChild);
+      }
+      // resizeTextareas();
+      if (!resArr.length){
+        document.getElementById("answerHint").innerText ="";
+      }
+      var imageadress =  res.split('\n');
+      // console.log('imageadress is ' + imageadress);
+      if (res.indexOf( "ttp" ) > 0){
+        document.getElementById("mypic2").src=res;
+      } else {
+        document.getElementById("mypic2").src='images/'+imagefolder+'/' + imageadress[0];
+      }
+      
+      // document.getElementById("mypic2").style.width = "200px"
+      var el = document.getElementById("mypic2");
+      var image2 = new Image();
+      var width2;
+      var height2;
+
+
+      image2.onload = function(){
+        width2 = image2.width;//画像の幅
+        height2 = image2.height;//画像の高さ
+        modifiedWidth2 = document.getElementById("imageSize2").value * width2 ;//画像幅に指定値をかけたもの
+        modifiedHeight2  = document.getElementById("imageSize2").value * height2 ;
+        if ((imageSize2>1000)){
+          imageSize2 = 1000;
+        }
+        console.log('div2.width is ' + $('#div2').width());
+        console.log('div2.height is ' + $('#div2').height());
+        var result = $('#div2').innerWidth() - $('#div2').clientWidth;
+        console.log('result is ' + result);
+        if ((width2>height2)){
+          document.getElementById("mypic2").style.width = modifiedWidth2 + "px";  // 
+          document.getElementById("mypic2").style.height = modifiedHeight2　+"px"; // 高さを横幅の変化割合に合わせる;
+          // document.getElementById("mypic2").style.width = $('#div1').width() + "px";  // 
+          // document.getElementById("mypic2").style.height = $('#div1').height()　+"px"; // 高さを横幅の変化割合に合わせる;
+          if (parseInt(document.getElementById("mypic2").style.width) > $('#div2').width()) {
+            var pic2w = parseInt(document.getElementById("mypic2").style.width);
+            var pic2h = parseInt(document.getElementById("mypic2").style.height);
+            document.getElementById("mypic2").style.width = $('#div2').width() + "px";  // 
+            document.getElementById("mypic2").style.height =  ($('#div2').width() * pic2h)/pic2w + "px";
+          }
+          if (parseInt(document.getElementById("mypic2").style.height) > $('#div2').height()) {
+            var pic2w = parseInt(document.getElementById("mypic2").style.width);
+            var pic2h = parseInt(document.getElementById("mypic2").style.height);
+            document.getElementById("mypic2").style.height = $('#div2').height() + "px";  // 
+            document.getElementById("mypic2").style.width =  ($('#div2').height() * pic2w)/pic2h + "px";
+          }
+        } else {
+          document.getElementById("mypic2").style.width = image2.width * document.getElementById("imageSize2").value + "px";
+          document.getElementById("mypic2").style.height = height2 * (image2.width * document.getElementById("imageSize2").value/ width2)+"px";
+          // document.getElementById("mypic1").style.height = document.getElementById("div1").clientHeight +"px";
+          // document.getElementById("mypic1").style.width = (document.getElementById("mypic1").height*width)/height + "px";
+          if (parseInt(document.getElementById("mypic2").style.height) > $('#div2').height()) {
+            var pic2w = parseInt(document.getElementById("mypic2").style.width);
+            var pic2h = parseInt(document.getElementById("mypic2").style.height);
+            document.getElementById("mypic2").style.height = $('#div2').height() + "px";  // 
+            document.getElementById("mypic2").style.width =  ($('#div2').height() * pic2w)/pic2h + "px";
+          }
+          if (parseInt(document.getElementById("mypic2").style.width) > $('#div2').width()) {
+            var pic2w = parseInt(document.getElementById("mypic2").style.width);
+            var pic2h = parseInt(document.getElementById("mypic2").style.height);
+            document.getElementById("mypic2").style.width = $('#div2').width() + "px";  // 
+            document.getElementById("mypic2").style.height =  ($('#div2').width() * pic2h)/pic2w + "px";
+          }
+        }
+
+        imageWidth2 = Number(document.getElementById("mypic2").style.width.substr(0,document.getElementById("mypic2").style.width.length -2));
+        imageHeight2 = Number(document.getElementById("mypic2").style.height.substr(0,document.getElementById("mypic2").style.height.length -2));
+      }
+
+        if (res.indexOf( "ttp" ) > 0){
+          image2.src=res;
+        } else {
+          image2.src='images/'+imagefolder+'/' + imageadress[0];
+        }
+    }else if (res.indexOf( "mp3" ) > 0||music.paused===false){//答えがmp3なら
+      if (musicStartFlug === false){
+        musicStartFlug = true;
+      }else{
+        music.preload = "auto";
+        music.src = "./mp3/" + res;
+        music.load();
+        init(res);
+        if (mp3PlayFlag != true) {
+          play();
+          mp3PlayFlag=true;
+        } else {
+          stop();
+          mp3PlayFlag=false;
+        }
+        if (res === "問題がありません。"){
+          stop();
+          mp3PlayFlag=false;
+        }
+      }      
+    } else if ((res.indexOf( slashKakko ) > -1)||(res.indexOf("span") > -1)){
+      document.getElementById("textareas2").style.display = "none";
+      document.getElementById("div2").style.display = "block";
+      document.getElementById("mypic2").style.display = "none";
+      // document.getElementById("answerMath").innerText = res;
+      if (res.indexOf("span") > -1){ //Html形式の解答なら
+        let parent = document.getElementById("answerMath");
+        while(parent.lastChild){
+          parent.removeChild(parent.lastChild);
+        }
+        document.getElementById("answerMath").insertAdjacentHTML('afterbegin',res);
+      }else{
+        
+        document.getElementById("answerMath").innerText = res;
+      }
+      if (!(document.getElementById("mypic2")=== null)) {
+        if (document.getElementById("mypic2").src){
+          document.getElementById("mypic2").src= "";
+        }      
+      }else{
+        var img_element = document.createElement('img');
+        img_element.id= 'mypic2';
+        // 指定した要素にimg要素を挿入
+        var content_area = document.getElementById("div2");
+        content_area.appendChild(img_element);
+      }
+
+      MathJax.Hub.Typeset(document.getElementById("div2"));//数式再読み込み
+    } else if (isHTML(res)){
+          document.getElementById("textareas2").style.display = "none";
+          document.getElementById("div2").style.display = "block";
+          document.getElementById("mypic2").style.display = "none";
+          document.getElementById("answerMath").innerHTML = res;
+    } else {
+      document.getElementById("answerMath").innerText ="";
+      let parent = document.getElementById("answerMath");
+      while(parent.lastChild){
+        parent.removeChild(parent.lastChild);
+      }
+      
+      document.getElementById("div2").style.display = "none";
+      document.getElementById("textareas2").style.display = "block";
+      document.getElementById( "textareas2" ).value = "";
+      if (AnswerTypedFlag === true) {
+  		document.getElementById( "textareas2" ).value = document.getElementById( "textareas2" ).value + res + "\n";
+        document.getElementById( "textareas2" ).value = document.getElementById( "textareas2" ).value + AnswerTyped ; 
+
+        
+        event.keyCode = 0;
+      } else {
+        document.getElementById( "textareas2" ).value = res;
+      }
+      answertext = res ;
+
+    }
+  }
+  if (answertextareaflag == false ) {
+      answertextareaflag = true;
+  }else{
+      answertextareaflag = false
+      document.getElementById( "textareas2" ).value = "";
+      document.getElementById("mypic2").src= "";
+
+  }
+  var slcLang = document.getElementById("autoReading").value;
+  if (document.getElementById("autoread").checked && !(document.getElementById( "textareas2" ).value == "")
+  && !(slcLang == "e*") && !(slcLang == "j*")) {
+    readAnswer();
+  }
+
+}
+
+async function sendRequest3(goodPoor)
+{
+  if (typeof window.resetAIHint === 'function') window.resetAIHint();
+  
+  now = new Date();
+  getQendTime = now.getTime();
+  getpastTime = Math.round((getQendTime-getQstartTime)/100)/10;
+  correctQuestions.push(rand);
+  document.mainform.poorat.value = goodPoor;
+  incorrectNumber = 0;
+  // console.log('document.mainform.poorat.value is ' + document.mainform.poorat.value);
+  var moji=rand + "^" + document.mainform.DB_name.value + "^" + document.mainform.poorat.value + "^" +getpastTime;
+  moji = encodeURIComponent(moji);
+  // console.log('656 poorat is '+ document.mainform.poorat.value);
+  // console.log('657 getpastTime is '+ getpastTime);
+  var xmlhttp=createXmlHttpRequest2();
+  if(xmlhttp!=null)
+  {
+    
+    // Step 5: Instantly update Supabase in the background
+    updateRecordSupabase(rand, true, getpastTime, document.mainform.poorat.value);
+    
+
+    // console.log('534 addcorrectres is '+res);
+    document.getElementById( "textareas2" ).value = "";
+    // document.getElementById( "preQInfo" ).innerHTML = "前問の結果  " +res;
+    document.getElementById("div2").style.display = "none";
+    document.getElementById("textareas2").style.display = "block";
+  }
+
+
+  sendRequest();
+
+}
+
+
+var incorrectNumber = 0;
+
+
+async function sendRequest4(goodPoor){
+  if (typeof window.resetAIHint === 'function') window.resetAIHint();
+  
+  now = new Date();
+  getQendTime = now.getTime();
+  getpastTime = Math.round((getQendTime-getQstartTime)/100)/10;
+  incorrectQuestions.push(rand);
+  let arr = incorrectQuestions.filter(element => element == rand)//何回同じ問題を間違えているのか
+  if (arr.length >20){return};
+  incorrectNumber = incorrectNumber + 1
+  if (incorrectNumber >100){
+    return;
+  };
+  document.mainform.poorat.value = goodPoor;
+  var moji=rand + "^" + document.mainform.DB_name.value + "^" + document.mainform.poorat.value + "^" +getpastTime;
+  moji = encodeURIComponent(moji);
+  // console.log('678 poorat is '+ document.mainform.poorat.value);
+  // console.log('679 getpastTime is '+ getpastTime);
+  var xmlhttp=createXmlHttpRequest2();
+  if(xmlhttp!=null){
+    
+    // Step 5: Instantly update Supabase in the background
+    updateRecordSupabase(rand, false, getpastTime, document.mainform.poorat.value);
+    
+
+    document.getElementById( "textareas2" ).value = "";
+    // document.getElementById( "preQInfo" ).innerHTML = "前問の結果  " +res;
+    document.getElementById("div2").style.display = "none";
+    document.getElementById("textareas2").style.display = "block";
+  }
+
+  sendRequest();
+}
+
+async function correctMinus(){
+  let db_name = document.mainform.DB_name.value || 'terashima01';
+  db_name = db_name.toLowerCase();
+  
+  const { data: row } = await supabaseClient.from(db_name).select('*').eq('questionnumber', rand).single();
+  if (row) {
+      let updates = { correct: Math.max(0, (row.correct || 0) - 1) };
+      updates.pca = updates.correct / (updates.correct + parseInt(row.incorrect || 0, 10)) * 100;
+      
+      let q_record = row.q_record || "";
+      if (q_record.startsWith("〇")) {
+          updates.q_record = q_record.substring(1);
+      }
+      
+      let q_level = row.q_level || 0;
+      updates.q_level = Math.max(0, q_level - 1);
+      
+      await supabaseClient.from(db_name).update(updates).eq('questionnumber', rand);
+      document.getElementById("textareas2").value = "正解を取り消しました";
+      document.getElementById("div2").style.display = "none";
+      document.getElementById("textareas2").style.display = "block";
+  }
+}
+
+async function incorrectMinus(){
+  let db_name = document.mainform.DB_name.value || 'terashima01';
+  db_name = db_name.toLowerCase();
+  
+  const { data: row } = await supabaseClient.from(db_name).select('*').eq('questionnumber', rand).single();
+  if (row) {
+      let updates = { incorrect: Math.max(0, (row.incorrect || 0) - 1) };
+      updates.pca = parseInt(row.correct || 0, 10) / (parseInt(row.correct || 0, 10) + updates.incorrect) * 100;
+      
+      let q_record = row.q_record || "";
+      if (q_record.startsWith("×")) {
+          updates.q_record = q_record.substring(1);
+      }
+      
+      let q_level = row.q_level || 0;
+      updates.q_level = q_level + 1;
+      
+      await supabaseClient.from(db_name).update(updates).eq('questionnumber', rand);
+      document.getElementById("textareas2").value = "不正解を取り消しました";
+      document.getElementById("div2").style.display = "none";
+      document.getElementById("textareas2").style.display = "block";
+  }
+}
+
+async function sendRequest5(){
+  let db_name = document.mainform.DB_name.value || 'terashima01';
+  db_name = db_name.toLowerCase();
+  
+  let newQ = document.getElementById("textareas").value;
+  let newA = document.getElementById("textareas2").value;
+  let updates = { question: newQ, answer1: newA };
+  
+  var QAChangeChecked = document.getElementById("qachange").checked;
+  if (QAChangeChecked) {      
+      updates.question = newA;
+      updates.answer1 = newQ;
+  } else {
+      if (newA.indexOf('...............') !== -1) {
+          let split = newA.split('\n............................................................\n');
+          updates.answer1 = split[0];
+          updates.hint = split[1];
+      }
+  }
+
+  // 修正する問題と答えに自分の解答やヒントがなければ修正する。
+  if (newA.indexOf('Your Answer') === -1 && newA.indexOf('...............') === -1) {
+      const { error } = await supabaseClient.from(db_name).update(updates).eq('questionnumber', rand);
+      if (!error) {
+          console.log("Modified question " + rand);
+      }
+  }
+}
+
+async function deleteQ(){
+  let db_name = document.mainform.DB_name.value || 'terashima01';
+  db_name = db_name.toLowerCase();
+  const { error } = await supabaseClient.from(db_name).delete().eq('questionnumber', rand);
+  if (!error) {
+      document.getElementById("textareas").value = "問題を削除しました。";
+      document.getElementById("textareas2").value = "";
+  }
+}
+
+function createXmlHttpRequest2(){
+  var xmlhttp=null;
+  if(window.ActiveXObject){
+    try{
+      xmlhttp=new ActiveXObject("Msxml2.XMLHTTP");
+    }
+    catch(e){
+      try{
+        xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+      }
+      catch (e2){
+      }
+    }
+  }
+  else if(window.XMLHttpRequest){
+    xmlhttp = new XMLHttpRequest();
+  }
+  return xmlhttp;
+}
+
+/** min以上max以下の整数値の乱数を返す */
+function intRandom(min, max){
+    return Math.floor( Math.random() * (max - min + 1)) + min;
+}
+
+async function listChange(categorySelect) {
+    console.log("Triggered by:", categorySelect?.id);
+    if (categorySelect && categorySelect.id === 'ctg1') {
+        const resetVal = (id, val) => { const el = document.getElementById(id); if (el) el.value = val; };
+        resetVal('wordSearch', '');
+        resetVal('category4', '*');
+        resetVal('operator1', '=');
+        resetVal('criteria1', '');
+        resetVal('category5', '*');
+        resetVal('operator2', '=');
+        resetVal('criteria2', '');
+        resetVal('category6', '*');
+        resetVal('operator3', '=');
+        resetVal('criteria3', '');
+        
+        if (typeof $ !== 'undefined' && $.fn.chosen) {
+            $('#category4, #operator1, #category5, #operator2, #category6, #operator3').trigger('chosen:updated');
+        }
+    }
+    firstRemoveFlag = false;
+    num = 0;
+    flag1 = false;
+    
+    let db_name = document.mainform.DB_name.value || 'terashima01';
+    db_name = db_name.toLowerCase();
+
+    const getSelected = (id) => {
+        const elem = document.getElementById(id);
+        if(!elem) return [];
+        const opts = elem.options;
+        const selected = [];
+        for (let i = 0; i < opts.length; i++) {
+            if (opts[i].selected && opts[i].value !== "") {
+                selected.push(opts[i].value);
+            }
+        }
+        return selected;
+    };
+
+    const updateDropdown = async (targetId, searchCategoryName, filterCriteria) => {
+        const targetElement = document.getElementById(targetId);
+        if(!targetElement) return;
+        
+        const currentSelections = getSelected(targetId);
+
+        // Show loading state
+        while (targetElement.lastChild) {
+            targetElement.removeChild(targetElement.lastChild);
+        }
+        const loadingOption = document.createElement("option");
+        loadingOption.value = "";
+        loadingOption.innerText = "読込中...";
+        targetElement.appendChild(loadingOption);
+        try { $(`#${targetId}`).trigger("chosen:updated"); } catch(e) {}
+
+        let query = supabaseClient.from(db_name).select(searchCategoryName).neq('question', 'settings');
+        
+        if (filterCriteria.ctg1 && filterCriteria.ctg1.length > 0) query = query.in('category1', filterCriteria.ctg1);
+        if (filterCriteria.ctg2 && filterCriteria.ctg2.length > 0) query = query.in('category2', filterCriteria.ctg2);
+        if (filterCriteria.ctg3 && filterCriteria.ctg3.length > 0) query = query.in('category3', filterCriteria.ctg3);
+        if (filterCriteria.ctg4 && filterCriteria.ctg4.length > 0) query = query.in('category4', filterCriteria.ctg4);
+
+        const { data, error } = await query;
+        if (error) {
+            console.error(`Error fetching ${searchCategoryName}:`, error);
+            return;
+        }
+
+        let uniqueVals = [...new Set(data.map(item => item[searchCategoryName]))]
+            .filter(val => val !== null && val !== undefined && String(val).trim() !== "")
+            .map(val => String(val));
+        
+        // Remove loading state
+        while (targetElement.lastChild) {
+            targetElement.removeChild(targetElement.lastChild);
+        }
+
+        uniqueVals.forEach(val => {
+            const option = document.createElement("option");
+            option.value = val;
+            option.innerText = val;
+            if (currentSelections.includes(val)) {
+                option.selected = true;
+            }
+            targetElement.appendChild(option);
+        });
+
+        try { $(`#${targetId}`).trigger("chosen:updated"); } catch(e) {}
+    };
+
+    const triggerId = categorySelect.id;
+    let filters = { ctg1: getSelected('ctg1') };
+
+    if (triggerId === 'ctg1') {
+        await updateDropdown('ctg2', 'category2', filters);
+    }
+    
+    filters.ctg2 = getSelected('ctg2');
+    if (triggerId === 'ctg1' || triggerId === 'ctg2') {
+        await updateDropdown('ctg3', 'category3', filters);
+    }
+    
+    filters.ctg3 = getSelected('ctg3');
+    if (triggerId === 'ctg1' || triggerId === 'ctg2' || triggerId === 'ctg3') {
+        await updateDropdown('ctg4', 'category4', filters);
+    }
+    
+    filters.ctg4 = getSelected('ctg4');
+    if (triggerId === 'ctg1' || triggerId === 'ctg2' || triggerId === 'ctg3' || triggerId === 'ctg4') {
+        await updateDropdown('ctg5', 'category5', filters);
+    }
+}
+
+
+async function listChanged(){
+  firstRemoveFlag = false;
+  num = -1;
+  flag1 = false;
+  yesterdayIncorrect = false;
+  
+  const infoEl = document.getElementById("questionInfo");
+  if (infoEl) infoEl.innerHTML = "DB読み込み中... (Loading DB...)";
+  
+  questionnumbers = await fetchQuestionsFromSupabase();
+  
+  if (infoEl) infoEl.innerHTML = "DB読み込み完了。該当問題数: " + (questionnumbers ? questionnumbers.length : 0);
+  const totalQEl = document.getElementById("totalQuestionNumber");
+  if (totalQEl) totalQEl.innerHTML = (questionnumbers ? questionnumbers.length : 0);
+  
+  let ddl = document.getElementById('MaxQuestionNumber');
+  if (ddl && ddl.value && ddl.value !== 'all' && !isNaN(Number(ddl.value))) {
+    MaxQuestionNumber = Number(ddl.value);
+    max = MaxQuestionNumber;
+  } else {
+    MaxQuestionNumber = questionnumbers ? questionnumbers.length : 0;
+  }
+}
+
+async function backQuestion(){
+  if ((document.getElementById("novelSelect").value) && !(document.getElementById("novelSelect").value == "なし")){
+    //小説戻す
+    novelRowNum = Number(novelRowNum)-1
+    getNovelSentence();
+  }
+  now = new Date();
+  getQstartTime = now.getTime();
+  console.log(`backQuestion`);
+  answertextareaflag = false;
+  var QAChangeChecked = document.getElementById("qachange").checked;////
+
+  if (QAChangeChecked) {
+      var phpfile1 = "getonequestion2.php";
+      var phpfile2 = "getanswer2.php";
+  } else {
+      var phpfile1 = "getonequestion1.php";
+      var phpfile2 = "getanswer1.php";
+  }
+
+  var xmlhttp=createXmlHttpRequest();
+  if(xmlhttp!=null){
+    if (num>0) {
+        num = num -1;
+    } else {
+        num=Number(max)-1;
+    }
+    // console.log('num is '+num);
+    document.getElementById("press-button").innerHTML = num+1   +"/"+Number(max);
+    rand = questionnumbers[num];
+    var moji=rand + "." + document.mainform.DB_name.value;
+    moji = encodeURIComponent(moji);
+    
+    let mode = phpfile1 === "getonequestion2.php" ? 2 : 1;
+    var res = await fetchQuestionFromSupabase(rand, mode);
+    {
+
+      // console.log('1120 res is '+res);
+      var res = res.split('^^^');
+      var doc0= document.getElementById("questionInfo");
+      var correctNum = ""
+      var question = ""
+
+      if (res[0].indexOf("正解数")<0) {
+        question = res[0];
+        correctNum = res[1];
+      } else {
+        question = res[1];
+        correctNum = res[0];
+      }
+
+      doc0.innerHTML= correctNum;
+
+      if ((question.indexOf( "jpg" ) > -1)||(question.indexOf( "png" ) > -1)||(question.indexOf( "gif" ) > -1)||(question.indexOf( "jpeg" ) > -1)) {
+        document.getElementById("textareas").style.display = "none";
+        document.getElementById("div1").style.display = "block";
+        // var imageadress =  res.split('\n');
+        // console.log('question is ' + question);
+        // console.log('imagefolder is ' + res[2]);
+        document.getElementById("mypic1").src='images/'+res[2]+'/' + question;
+        // document.getElementById("mypic1").style.width = "700px";
+      } else {
+        document.getElementById("div1").style.display = "none";
+        document.getElementById("textareas").style.display = "block";
+        document.getElementById( "textareas" ).value = "";
+        document.getElementById( "textareas" ).value = question ;
+        document.getElementById( "textareas2" ).value = "";;
+      }
+    }　//苦手度を取得
+    var moji=rand + "." + document.mainform.DB_name.value;
+    moji = encodeURIComponent(moji);
+    var xmlhttp=createXmlHttpRequest2();
+    if(xmlhttp!=null)
+    {
+      
+      let row = window.allQuestionsData ? window.allQuestionsData.find(r => r.questionnumber == rand) : null;
+      document.getElementById("poorat").value = (row && row.poorat) ? row.poorat : "";
+
+    }
+  }
+}
+
+function forgettingcurve(){
+  listChanged()
+  var now = new Date();
+  var yesterday = new Date(now.getFullYear(), now.getMonth(), now.getDate() - 1);
+  var aweekago = new Date(now.getFullYear(), now.getMonth(), now.getDate() - 7);
+  var amonthago = new Date(now.getFullYear(), now.getMonth(), now.getDate() - 30);
+
+  document.getElementById("category4").value = "qdate";
+  document.getElementById("operator1").value = "=";
+  document.getElementById("criteria1").value = formatDate(yesterday, 'YYYYMMDD');
+  document.getElementById("category5").value = "qdate";
+  document.getElementById("operator2").value = "=";
+  document.getElementById("criteria2").value = formatDate(aweekago, 'YYYYMMDD');
+  document.getElementById("category6").value = "qdate";
+  document.getElementById("operator3").value = "=";
+  document.getElementById("criteria3").value = formatDate(amonthago, 'YYYYMMDD');
+  sendRequest()
+}
+
+async function NotYetQuestion() {
+  
+  document.getElementById("category5").value = "qdate";
+  document.getElementById("operator2").value = "<";
+  document.getElementById("criteria2").value = "20190101";
+  document.getElementById("category4").value = "";
+  document.getElementById("operator1").value = "";
+  document.getElementById("criteria1").value = "";
+  document.getElementById("category6").value = "";
+  document.getElementById("operator3").value = "";
+  document.getElementById("criteria3").value = "";
+  await listChanged();
+  sendRequest()
+}
+
+async function UnderFifty() {
+  
+  document.getElementById("category6").value = "pca";
+  document.getElementById("operator3").value = "<";
+  document.getElementById("criteria3").value = "50";
+  document.getElementById("category5").value = "incorrect";
+  document.getElementById("operator2").value = ">";
+  document.getElementById("criteria2").value = "0";
+  document.getElementById("category4").value = "qdate";
+  document.getElementById("operator1").value = "<";
+  getTodayNumberFunc()
+  await listChanged();
+  sendRequest()
+}
+async function yesterdayQuestion(){
+  num = -1;
+  flag1 = false;
+  document.getElementById("category4").value = "qdate";
+  document.getElementById("operator1").value = "<";
+  getTodayNumberFunc();
+  document.getElementById("category5").value = "qdate";
+  document.getElementById("operator2").value = "=";
+  yesterdayIncorrect = true;
+  getYesterdayNumberFunc();
+  sendRequest();
+}
+async function threeDaysAgoQuestion() {
+  num = -1;
+  flag1 = false;
+  document.getElementById("category4").value = "qdate";
+  document.getElementById("operator1").value = "<";
+  getTodayNumberFunc();
+  document.getElementById("category5").value = "qdate";
+  document.getElementById("operator2").value = "=";
+  getThreeDaysAgoNumberFunc();
+  await listChanged();
+  sendRequest();
+}
+async function noTodayQuestion() {
+  num = -1;
+  flag1 = false;
+  document.getElementById("category4").value = "qdate";
+  document.getElementById("operator1").value = "<";
+  getTodayNumberFunc();
+  await listChanged();
+  sendRequest();
+}
+async function errTodayQuestion(){
+  num = -1;
+  flag1 = false;
+  document.getElementById("category4").value = "qdate";
+  document.getElementById("operator1").value = "=";
+  getTodayNumberFunc();
+  yesterdayIncorrect = true;
+  sendRequest();
+}
+async function errLastQuestion(){
+  num = -1;
+  flag1 = false;
+  yesterdayIncorrect = true;
+  sendRequest();
+}
+async function aWeekAgoQuestion() {
+  num = -1;
+  flag1 = false;
+  document.getElementById("category4").value = "qdate";
+  document.getElementById("operator1").value = "<";
+  getTodayNumberFunc();
+  document.getElementById("category5").value = "qdate";
+  document.getElementById("operator2").value = "=";
+  getAWeekAgoNumberFunc();
+  await listChanged();
+  sendRequest();
+}
+async function aMonthAgoQuestion() {
+  num = -1;
+  flag1 = false;
+  document.getElementById("category4").value = "qdate";
+  document.getElementById("operator1").value = "<";
+  getTodayNumberFunc();
+  document.getElementById("category5").value = "qdate";
+  document.getElementById("operator2").value = "=";
+  getAMonthAgoNumberFunc();
+  await listChanged();
+  sendRequest();
+}
+async function levelZero() {
+  
+  document.getElementById("category4").value = "qdate";
+  document.getElementById("operator1").value = "<";
+  getTodayNumberFunc()
+  document.getElementById("category5").value = "qdate";
+  document.getElementById("operator2").value = ">";
+  document.getElementById("criteria2").value = "20190101";
+  document.getElementById("category6").value = "";
+  document.getElementById("operator3").value = "";
+  document.getElementById("criteria3").value = "";
+  document.getElementById("qlevel").value = "0";
+  await listChanged();
+  sendRequest()
+}
+async function levelOne() {
+  
+  document.getElementById("category4").value = "qdate";
+  document.getElementById("operator1").value = "<";
+  getTodayNumberFunc()
+  document.getElementById("category5").value = "qdate";
+  document.getElementById("operator2").value = ">";
+  document.getElementById("criteria2").value = "20190101";
+  document.getElementById("category6").value = "";
+  document.getElementById("operator3").value = "";
+  document.getElementById("criteria3").value = "";
+  document.getElementById("qlevel").value = "1";
+  await listChanged();
+  sendRequest()
+}
+async function levelTwo() {
+  
+  document.getElementById("category4").value = "qdate";
+  document.getElementById("operator1").value = "<";
+  getTodayNumberFunc()
+  document.getElementById("category5").value = "qdate";
+  document.getElementById("operator2").value = ">";
+  document.getElementById("criteria2").value = "20190101";
+  document.getElementById("category6").value = "";
+  document.getElementById("operator3").value = "";
+  document.getElementById("criteria3").value = "";
+  document.getElementById("qlevel").value = "2";
+  await listChanged();
+  sendRequest()
+}
+async function levelThree() {
+  
+  document.getElementById("category4").value = "qdate";
+  document.getElementById("operator1").value = "<";
+  getTodayNumberFunc()
+  document.getElementById("category5").value = "qdate";
+  document.getElementById("operator2").value = ">";
+  document.getElementById("criteria2").value = "20190101";
+  document.getElementById("category6").value = "";
+  document.getElementById("operator3").value = "";
+  document.getElementById("criteria3").value = "";
+  document.getElementById("qlevel").value = "3";
+  await listChanged();
+  sendRequest()
+}
+async function levelFour() {
+  
+  document.getElementById("category4").value = "qdate";
+  document.getElementById("operator1").value = "<";
+  getTodayNumberFunc()
+  document.getElementById("category5").value = "qdate";
+  document.getElementById("operator2").value = ">";
+  document.getElementById("criteria2").value = "20190101";
+  document.getElementById("category6").value = "";
+  document.getElementById("operator3").value = "";
+  document.getElementById("criteria3").value = "";
+  document.getElementById("qlevel").value = "4";
+  await listChanged();
+  sendRequest()
+}
+function ZeroPercent(){
+  listChanged()
+  document.getElementById("category6").value = "pca";
+  document.getElementById("operator3").value = "=";
+  document.getElementById("criteria3").value = "0";
+  document.getElementById("category5").value = "incorrect";
+  document.getElementById("operator2").value = ">";
+  document.getElementById("criteria2").value = "0";
+  document.getElementById("category4").value = "qdate";
+  document.getElementById("operator1").value = "<";
+  getTodayNumberFunc()
+  sendRequest()
+}
+async function atLeastOneFunc() {
+  
+  document.getElementById("category5").value = "qdate";
+  document.getElementById("operator2").value = ">";
+  document.getElementById("criteria2").value = "20190101";
+  document.getElementById("category4").value = "qdate";
+  document.getElementById("operator1").value = "<";
+  getTodayNumberFunc()
+  await listChanged();
+  sendRequest()
+}
+
+async function oneByOneFunc() {
+  oneByOneflag = true;
+  
+  document.getElementById("category4").value = "qdate";
+  document.getElementById("operator1").value = "<";
+  document.getElementById("criteria1").value = "20190101";
+  document.getElementById("category5").value = "";
+  document.getElementById("operator2").value = "";
+  document.getElementById("criteria2").value = "";
+  document.getElementById("category6").value = "";
+  document.getElementById("operator3").value = "";
+  document.getElementById("criteria3").value = "";
+  await listChanged();
+  sendRequest()
+  oneByOneflag = false;
+}
+
+async function twoByTwoFunc() {
+  twoByTwoflag = true;
+  
+  document.getElementById("category4").value = "qdate";
+  document.getElementById("operator1").value = "<";
+  document.getElementById("criteria1").value = "20190101";
+  document.getElementById("category5").value = "";
+  document.getElementById("operator2").value = "";
+  document.getElementById("criteria2").value = "";
+  document.getElementById("category6").value = "";
+  document.getElementById("operator3").value = "";
+  document.getElementById("criteria3").value = "";
+  await listChanged();
+  sendRequest()
+  twoByTwoflag = false;
+}
+
+async function threeByThreeFunc() {
+  threeByThreeflag = true;
+  
+  document.getElementById("category4").value = "qdate";
+  document.getElementById("operator1").value = "<";
+  document.getElementById("criteria1").value = "20190101";
+  document.getElementById("category5").value = "";
+  document.getElementById("operator2").value = "";
+  document.getElementById("criteria2").value = "";
+  document.getElementById("category6").value = "";
+  document.getElementById("operator3").value = "";
+  document.getElementById("criteria3").value = "";
+  await listChanged();
+  sendRequest()
+  threeByThreeflag = false;
+}
+var formatDate = function (date, format) {
+  if (!format) format = 'YYYY-MM-DD hh:mm:ss.SSS';
+  format = format.replace(/YYYY/g, date.getFullYear());
+  format = format.replace(/MM/g, ('0' + (date.getMonth() + 1)).slice(-2));
+  format = format.replace(/DD/g, ('0' + date.getDate()).slice(-2));
+  format = format.replace(/hh/g, ('0' + date.getHours()).slice(-2));
+  format = format.replace(/mm/g, ('0' + date.getMinutes()).slice(-2));
+  format = format.replace(/ss/g, ('0' + date.getSeconds()).slice(-2));
+  if (format.match(/S/g)) {
+    var milliSeconds = ('00' + date.getMilliseconds()).slice(-3);
+    var length = format.match(/S/g).length;
+    for (var i = 0; i < length; i++) format = format.replace(/S/, milliSeconds.substring(i, i + 1));
+  }
+  return format;
+};
+
+
+
+const uttr2 = new SpeechSynthesisUtterance()
+
+function readAnswer(){//
+  // 発言を作成
+  uttr2.text = answerText2.value;
+
+  var isJapanese = false;  //日本語（英語以外）の場合「true」に設定
+  for(var i=0; i < uttr2.text.length; i++){
+      if(uttr2.text.charCodeAt(i) >= 256) {
+        isJapanese = true;
+        break;
+      }
+  }
+
+  var lang;
+
+  if (isJapanese){
+    lang=readVoices.find(el => el.indexOf('Japanese')>-1);
+    if (!lang){
+      lang=readVoices.find(el => el.indexOf('Kyoko')>-1);
+    }
+  }else{
+    lang=readVoices.find(el => el.indexOf('English')>-1);
+    if (!lang){
+      lang=readVoices.find(el => el.indexOf('Samantha')>-1);
+    }
+  }
+
+  // 言語 (日本語:ja-JP, アメリカ英語:en-US, イギリス英語:en-GB, 中国語:zh-CN, 韓国語:ko-KR)
+  var slcLang = document.getElementById("autoReading").value
+
+
+
+
+  uttr2.rate = 0.7
+
+  if (isJapanese == true) {
+    uttr2.rate = document.getElementById("jpSpeed").value;
+  } else {      
+    uttr2.rate = document.getElementById("engSpeed").value;
+  }
+
+  // 高さ 0-2 初期値:1
+  uttr2.pitch = 1
+
+  // 音量 0-1 初期値:1
+  uttr2.volume = 0.75
+
+  
+  // // ③ 選択された声を指定
+  // uttr2.voice = window.speechSynthesis.getVoices()[voice];
+  // alert(readVoices);
+  uttr2.voice = speechSynthesis
+  .getVoices()
+  .filter(voice => voice.name == lang)[0]; //言語設定
+
+  speechSynthesis.speak(uttr2)
+  // alert(uttr2.voice.name);
+
+
+
+}
+const uttr = new SpeechSynthesisUtterance();
+
+function readQuestion(){
+  // const uttr = new SpeechSynthesisUtterance(questionText2.value)
+  uttr.text = questionText2.value;
+  var isJapanese = false;  //日本語（英語以外）の場合「true」に設定
+  for(var i=0; i < uttr.text.length; i++){
+      if(uttr.text.charCodeAt(i) >= 256) {
+        isJapanese = true;
+        break;
+      }
+  }
+
+  var lang;
+
+  if (isJapanese){
+    lang=readVoices.find(el => el.indexOf('Japanese')>-1);
+    if (!lang){
+      lang=readVoices.find(el => el.indexOf('Kyoko')>-1);
+    }
+  }else{
+    lang=readVoices.find(el => el.indexOf('English')>-1);
+    if (!lang){
+      lang=readVoices.find(el => el.indexOf('Samantha')>-1);
+    }
+  }
+
+  // 言語 (日本語:ja-JP, アメリカ英語:en-US, イギリス英語:en-GB, 中国語:zh-CN, 韓国語:ko-KR)
+  var slcLang = document.getElementById("autoReading").value
+  
+
+  uttr.rate = 0.7
+
+  if (isJapanese == true) {
+    uttr.rate = document.getElementById("jpSpeed").value;
+  } else {      
+    uttr.rate = document.getElementById("engSpeed").value;
+  }
+
+  // 高さ 0-2 初期値:1
+  uttr.pitch = 1
+
+  // 音量 0-1 初期値:1
+  uttr.volume = 0.75
+  // ③ 選択された声を指定
+  // uttr.voice = window.speechSynthesis.getVoices()[voice];
+
+  // alert (uttr.rate);
+  uttr.voice = speechSynthesis
+  .getVoices()
+  .filter(voice => voice.name == lang)[0]; 
+  // .filter(voice => voice.name == readVoices[0])[0];      //言語設定
+  // uttr.voice = speechSynthesis
+  //   .getVoices()
+  //   .filter(voice => voice.name === voiceSelect.value)[0]
+  // 発言を再生 (発言キュー発言に追加)
+  speechSynthesis.speak(uttr)
+
+
+
+}
+
+function autoQuestion(){
+  // console.log('document.getElementById("jpSpeed").value is ' + document.getElementById("jpSpeed").value);
+  var slcLang = document.getElementById("autoReading").value;
+  if (autoflag==false) {
+  autoflag = true;
+  } else {
+  autoflag = false;
+  }
+  var finishReading = false;
+  var finishReading2 = false;
+  // console.log('autoflag is ' + autoflag);
+  if (document.getElementById("autoread").checked) {
+    async function main(){
+      for(;;) {
+        if (autoflag == false) {
+            break;
+        }
+
+        sendRequest();
+        if (!(slcLang == "*e") && !(slcLang == "*j")){
+          uttr.onend = function (event) {
+            // console.log(`3`);
+            finishReading = true;
+          }
+          while (finishReading == false){
+            // i++;    // この文が無いと無限ループになってしまう。
+            // console.log(i);
+            await sleep(500);
+          }
+        }
+
+        sendRequest2();
+        if (!(slcLang == "e*") && !(slcLang == "j*")){
+              uttr2.onend = function (event) {
+                // console.log(`4`);
+                finishReading2 = true;
+              }
+              while (finishReading2 == false){
+                i++;    // この文が無いと無限ループになってしまう。
+                // console.log(i);
+                await sleep(500);
+              }
+        }
+        finishReading = false;
+        finishReading2 = false;
+      }
+    }
+    main();
+
+  } else {
+    var speed = document.getElementById("autoSpeed").value * 1000;
+    async function main(){
+      for(;;) {
+        if (autoflag == false) {
+            break;
+        }
+        sendRequest();
+        await sleep(speed);
+        sendRequest2();
+        await sleep(speed);
+      }
+    }
+    main();
+  }
+}
+
+function sleep(time){
+  return new Promise(resolve => {
+    sleepId = setTimeout(resolve, time);
+  });
+}
+
+function textareafontresize(){
+  document.getElementById("textareas").style.fontSize = document.getElementById("fontresize").value;
+  document.getElementById("textareas2").style.fontSize = document.getElementById("fontresize").value;
+  document.getElementById("questionMath").style.fontSize = document.getElementById("fontresize").value;
+  document.getElementById("answerMath").style.fontSize = document.getElementById("fontresize").value;
+  document.getElementById("answerHint").style.fontSize = document.getElementById("fontresize").value;
+
+    
+}
+
+var firstRemoveFlag =false;
+
+function removeCorrects(){
+  var counts = {};
+  minimumCorrect = Number(document.getElementById("NOC").value);
+  console.log('削除前　questionnumbers is ' + questionnumbers);
+  for(var i=0;i< correctQuestions.length;i++){
+    var key = correctQuestions[i];
+    counts[key] = (counts[key])? counts[key] + 1 : 1 ;
+  }
+  for (var key in counts) {
+      console.log(key + " : " + counts[key]);
+  }
+  if (!firstRemoveFlag) {
+    for (let i = 0; i < questionnumbers.length; i++) {
+      if (Number(counts[questionnumbers[i]]) == 1) {
+        questionnumbers.splice(i, 1);
+        i=i-1;
+        
+      }
+      firstRemoveFlag =true;
+    }
+  } else {
+    for (let i = 0; i < questionnumbers.length; i++) {
+      if (Number(counts[questionnumbers[i]]) >= minimumCorrect) {
+        questionnumbers.splice(i, 1);
+        i=i-1;
+      }
+    }
+  }
+  // console.log('削除後　questionnumbers is ' + questionnumbers);
+  MaxQuestionNumber = questionnumbers.length;
+}
+
+
+
+// document.onkeydown = keydown;
+document.addEventListener('keydown', (ev) => {
+  if(!ev.repeat)
+  keydown()
+})
+function keydown() {
+  console.log('event.keyCode is ' + event.keyCode);
+  console.log('event.code is ' + event.code);
+  console.log('event.shiftKey is ' + event.altKey);
+  // 現在フォーカスが与えられている要素を取得する
+  var active_element = document.activeElement;
+
+  // 出力テスト
+  console.log(active_element);
+  if ((document.getElementById("keyControl").checked) && (AnswerShown)//キー操作にチェックがあり
+  && (document.activeElement.id == "textareas2")//解答欄がアクティブであり
+  && (document.getElementById("answerByMyself").checked)) {//解答入力にチェックがあるとき
+    // console.log('event.keyCode is ' + event.keyCode);
+    // console.log('event.key is ' + event.key);
+    whichKey1()
+  }else if((document.getElementById("keyControl").checked) //キー操作にチェックがあり
+  && (!document.getElementById("answerByMyself").checked)//解答入力にチェックがあり
+  && (document.activeElement.id != "textareas2")//解答欄がアクティブでなく
+  && (document.activeElement.id != "textareas")//問題欄がアクティブでなく
+  && (document.activeElement.id != "criteria1")//基準欄がアクティブでなく
+  && (document.activeElement.id != "criteria2")
+  && (document.activeElement.id != "criteria3")
+  && (document.activeElement.id != "wordSearch")//検索欄がアクティブでなく
+  && (document.activeElement.id != "information")//通信欄がアクティブでなく
+  && (document.activeElement.id != "DB_name")){//データベース名欄がアクティブでないとき　⇒つまり文字入力しないでキー操作のみで学習するとき
+
+    whichKey2()
+  }
+}
+
+function whichKey1(){
+  if ((event.ctrlKey)) {
+    if (event.keyCode === 229){
+        switch (event.code) {
+          case "KeyE":
+              sendRequest2();
+              event.returnValue = false;
+              event.keyCode = 0;
+              return false;
+              break;
+          case "KeyR":
+              sendRequest2();
+              event.returnValue = false;
+              event.keyCode = 0;
+              return false;
+              break;
+          case "KeyQ":
+              sendRequest();
+              event.returnValue = false;
+              event.keyCode = 0;
+              return false;
+              break;
+          case "KeyW":
+              sendRequest();
+              event.returnValue = false;
+              event.keyCode = 0;
+              return false;
+              break;
+          case "KeyF":
+              sendRequest3('good1');
+              event.returnValue = false;
+              event.keyCode = 0;
+              return false;
+              break;
+          case "KeyD":
+              sendRequest3('good2');
+              event.returnValue = false;
+              event.keyCode = 0;
+              return false;
+              break;
+          case "KeyS":
+              sendRequest3('good3');
+              event.returnValue = false;
+              event.keyCode = 0;
+              return false;
+              break;
+          case "KeyA":
+              sendRequest3('good4');
+              event.returnValue = false;
+              event.keyCode = 0;
+              return false;
+              break;
+          
+          case "KeyJ":
+              sendRequest3('good1');
+              event.returnValue = false;
+              event.keyCode = 0;
+              return false;
+              break;
+          case "KeyH":
+              sendRequest3('good1');
+              event.returnValue = false;
+              event.keyCode = 0;
+              return false;
+              break;
+          case "KeyV":
+              sendRequest4('poor1');
+              event.returnValue = false;
+              event.keyCode = 0;
+              return false;
+              break;
+          case "KeyB":
+              sendRequest4('poor1');
+              event.returnValue = false;
+              event.keyCode = 0;
+              return false;
+              break;
+          case "KeyN":
+              sendRequest4('poor1');
+              event.returnValue = false;
+              event.keyCode = 0;
+              return false;
+              break;
+          case "KeyC":
+              sendRequest4('poor2');
+              event.returnValue = false;
+              event.keyCode = 0;
+              return false;
+              break;
+          case "KeyX":
+              sendRequest4('poor3');
+              event.returnValue = false;
+              event.keyCode = 0;
+              return false;
+              break;
+          case "KeyZ":
+              sendRequest4('poor4');
+              event.returnValue = false;
+              event.keyCode = 0;
+              return false;
+              break;
+          case "KeyM":
+              readQuestion();
+              event.returnValue = false;
+              event.keyCode = 0;
+              return false;
+              break;
+          default:
+              ;
+              break;
+        }
+    } else {
+      switch (event.keyCode) {
+        case 82:
+          sendRequest2();
+          event.keyCode = 0;
+          event.returnValue = false;
+          break;
+        case 69:
+          sendRequest2();
+          event.keyCode = 0;
+          event.returnValue = false;
+          break;
+        case 87:
+          sendRequest();
+          event.keyCode = 0;
+          event.returnValue = false;
+          break;
+        case 81:
+          sendRequest();
+          event.keyCode = 0;
+          event.returnValue = false;
+          break;
+        case 70:
+          sendRequest3('good1');
+          event.keyCode = 0;
+          event.returnValue = false;
+        break;
+        case 74:
+          sendRequest3('good1');
+          event.keyCode = 0;
+          event.returnValue = false;
+        break;
+        case 72:
+          sendRequest3('good1');
+          event.keyCode = 0;
+          event.returnValue = false;
+        break;
+        case 52:
+          readAnswer()
+          event.keyCode = 0;
+          event.returnValue = false;
+        break;
+        case 68:
+          sendRequest3('good2');
+          event.keyCode = 0;
+          event.returnValue = false;
+        break;
+        case 83:
+          sendRequest3('good3');
+          event.keyCode = 0;
+          event.returnValue = false;
+        break;
+        case 65:
+          sendRequest3('good4');
+          event.keyCode = 0;
+          event.returnValue = false;
+          break;
+        case 86:
+          sendRequest4('poor1');
+          event.keyCode = 0;
+          event.returnValue = false;
+          break;
+        // case 54:
+          // sendRequest4('poor1');
+          // event.keyCode = 0;
+          // event.returnValue = false;
+          // break;
+        case 73:
+          sendRequest4('poor1');
+          event.keyCode = 0;
+          event.returnValue = false;
+          break;
+        case 67:
+          sendRequest4('poor2');
+          event.keyCode = 0;
+          event.returnValue = false;
+          break;
+        case 88:
+          sendRequest4('poor3');
+          event.keyCode = 0;
+          event.returnValue = false;
+          break;
+        case 90:
+          sendRequest4('poor4');
+          event.keyCode = 0;
+          event.returnValue = false;
+          break;
+        
+        default:
+          ;
+          break;
+      }
+    }
+  }else if(event.keyCode === 219){
+    sendRequest3('good1');
+    event.keyCode = 0;
+    event.returnValue = false;
+  }else if(event.keyCode === 221){
+    sendRequest4('poor1');
+    event.keyCode = 0;
+    event.returnValue = false;
+  }
+}
+function whichKey2(){
+  if (event.keyCode === 229 && event.keyCode != "ControlLeft"){
+    switch (event.code) {
+      case "KeyE":
+          sendRequest2();
+          event.returnValue = false;
+          event.keyCode = 0;
+          return false;
+          break;
+      case "KeyR":
+          sendRequest2();
+          event.returnValue = false;
+          event.keyCode = 0;
+          return false;
+          break;
+      case "KeyT":
+          if (typeof window.triggerAIHint === 'function') {
+              window.triggerAIHint();
+          }
+          event.returnValue = false;
+          event.keyCode = 0;
+          if (event.preventDefault) event.preventDefault();
+          return false;
+          break;
+      case "KeyQ":
+          sendRequest();
+          event.returnValue = false;
+          event.keyCode = 0;
+          return false;
+          break;
+      case "KeyW":
+          sendRequest();
+          event.returnValue = false;
+          event.keyCode = 0;
+          return false;
+          break;
+      case "KeyF":
+          sendRequest3('good1');
+          event.returnValue = false;
+          event.keyCode = 0;
+          return false;
+          break;
+      case "KeyD":
+          sendRequest3('good2');
+          event.returnValue = false;
+          event.keyCode = 0;
+          return false;
+          break;
+      case "KeyS":
+          sendRequest3('good3');
+          event.returnValue = false;
+          event.keyCode = 0;
+          return false;
+          break;
+      case "KeyA":
+          sendRequest3('good4');
+          event.returnValue = false;
+          event.keyCode = 0;
+          return false;
+          break;
+      case "KeyV":
+          sendRequest4('poor1');
+          event.returnValue = false;
+          event.keyCode = 0;
+          return false;
+          break;
+      case "KeyC":
+          sendRequest4('poor2');
+          event.returnValue = false;
+          event.keyCode = 0;
+          return false;
+          break;
+      case "KeyX":
+          sendRequest4('poor3');
+          event.returnValue = false;
+          event.keyCode = 0;
+          return false;
+          break;
+      case "KeyZ":
+          sendRequest4('poor4');
+          event.returnValue = false;
+          event.keyCode = 0;
+          return false;
+          break;
+
+      default:
+          ;
+          break;
+    }
+  } else {
+    switch (event.keyCode) {
+      case 82:
+          sendRequest2();
+          event.keyCode = 0;
+          event.returnValue = false;
+          break;
+      case 69:
+          sendRequest2();
+          event.keyCode = 0;
+          event.returnValue = false;
+          break;
+      case 84: // T key
+          if (typeof window.triggerAIHint === 'function') {
+              window.triggerAIHint();
+          }
+          event.keyCode = 0;
+          event.returnValue = false;
+          if (event.preventDefault) event.preventDefault();
+          break;
+      case 87:
+          sendRequest();
+          event.keyCode = 0;
+          event.returnValue = false;
+          break;
+      case 81:
+          sendRequest();
+          event.keyCode = 0;
+          event.returnValue = false;
+          break;
+      case 70:
+          sendRequest3('good1');
+          event.keyCode = 0;
+          event.returnValue = false;
+          break;
+      case 74:
+          sendRequest3('good1');
+          event.keyCode = 0;
+          event.returnValue = false;
+          break;
+      case 72:
+          sendRequest3('good1');
+          event.keyCode = 0;
+          event.returnValue = false;
+          break;
+      case 68:
+          sendRequest3('good2');
+          event.keyCode = 0;
+          event.returnValue = false;
+          break;
+      case 83:
+          sendRequest3('good3');
+          event.keyCode = 0;
+          event.returnValue = false;
+          break;
+      case 65:
+          sendRequest3('good4');
+          event.keyCode = 0;
+          event.returnValue = false;
+          break;
+      case 86:
+          sendRequest4('poor1');
+          event.keyCode = 0;
+          event.returnValue = false;
+          break;
+      // case 54:
+      //     sendRequest4('poor1');
+      //     event.keyCode = 0;
+      //     event.returnValue = false;
+      //     break;
+      case 52:
+          readAnswer()
+          event.keyCode = 0;
+          event.returnValue = false;
+        break;
+      case 73:
+          sendRequest4('poor1');
+          event.keyCode = 0;
+          event.returnValue = false;
+          break;
+      case 67:
+          sendRequest4('poor2');
+          event.keyCode = 0;
+          event.returnValue = false;
+          break;
+      case 88:
+          sendRequest4('poor3');
+          event.keyCode = 0;
+          event.returnValue = false;
+          break;
+      case 90:
+          sendRequest4('poor4');
+          event.keyCode = 0;
+          event.returnValue = false;
+          break;
+      case 80:
+          backQuestion();
+          event.keyCode = 0;
+          event.returnValue = false;
+          break;
+      
+      default:
+          ;
+          break;
+    }
+  }
+}
+
+function settingSave(){
+  // console.log('document.getElementById("fontresize").value is '+document.getElementById("fontresize").value);
+  moji = document.mainform.DB_name.value + "^^" + 
+  document.getElementById("MaxQuestionNumber").value + "^^" +
+  document.getElementById("fontresize").value + "^^" +
+  document.getElementById("autoSpeed").value + "^^" +
+  document.getElementById("autoReading").value + "^^" +
+  document.getElementById("jpSpeed").value + "^^" +
+  document.getElementById("engSpeed").value + "^^" +
+  document.getElementById("NOC").value + "^^" +
+  document.getElementById("autoAnswer").value + "^^" +
+  document.getElementById("qachange").checked + "^^" +
+  document.getElementById("autoread").checked + "^^" +
+  document.getElementById("keyControl").checked + "^^" +
+  document.getElementById("answerByMyself").checked + "^^" +
+  document.getElementById("randomOrNot").checked + "^^" +
+  document.getElementById("backGround").value + "@@@@" +
+  document.getElementById("fontSelect").value + "^^" + 
+  document.getElementById("novelSelect").value + "^^" + 
+  document.getElementById("novelSentenceNumber").value + "^^" + 
+  document.getElementById("flexButton").checked + "^^" + 
+  document.getElementById("blackCheck").checked;
+  novelRowNum = Number(document.getElementById("novelSentenceNumber").value);
+    // Use async fetch to prevent UI freezing
+  fetch("../settingSave.php", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/x-www-form-urlencoded"
+    },
+    body: "data=" + encodeURIComponent(moji)
+  }).catch(e => console.error("Setting save failed:", e));
+}
+
+function parseStrToBoolean(str) {
+  // 文字列を判定
+  return (str == 'true') ? true : false;
+
+}
+
+var selectElement = document.getElementById("novelSelect");
+var novels = "";　// 変数受け渡し。
+novels = novels.split(",", -1);　// bb_csvをsplit()でカンマ区切り配列に再編成。
+for(var i = 1; i < novels.length; i ++){
+  var option = document.createElement("option");
+  option.value = novels[i];
+  option.innerText = novels[i];
+  selectElement.appendChild(option);
+}
+
+
+
+var response = '';
+response = response.split('^');
+// console.log('response is '+response);
+if (response[0]) {
+  if (response[0]==="all"){
+    document.getElementById("MaxQuestionNumber").value = "all"
+  } else {
+    document.getElementById("MaxQuestionNumber").value = Number(response[0]);
+  }
+}
+// document.getElementById("MaxQuestionNumber").value = Number(response[0]);
+if (response[1]) {
+  document.getElementById("fontresize").value = response[1];
+}
+textareafontresize()
+if (response[2]) {
+  document.getElementById("autoSpeed").value =  Number(response[2]);
+}
+if (response[3]) {
+  document.getElementById("autoReading").value = response[3];
+  }
+if (response[4]) {
+  document.getElementById("jpSpeed").value = response[4];
+}
+if (response[5]) {
+  document.getElementById("engSpeed").value = response[5];
+}
+// console.log('document.getElementById("engSpeed").value is ' + document.getElementById("engSpeed").value);
+if (response[6]) {
+  document.getElementById("NOC").value = Number(response[6]);
+}
+if (response[7]) {
+  document.getElementById("autoAnswer").value = Number(response[7]);
+}
+document.getElementById("qachange").checked = parseStrToBoolean(response[8]);
+document.getElementById("autoread").checked = parseStrToBoolean(response[9]);
+document.getElementById("keyControl").checked = parseStrToBoolean(response[10]);
+document.getElementById("answerByMyself").checked = parseStrToBoolean(response[11]);
+document.getElementById("randomOrNot").checked = parseStrToBoolean(response[12]);
+document.getElementById("flexButton").checked = parseStrToBoolean(response[18]);
+if (response[13]) {  
+response2 = response[13].split('@@@@');}
+if (response2[0]) {
+document.getElementById("backGround").value = response2[0];}
+changeBG();
+if (response2[1]) {
+document.getElementById("fontSelect").value = response2[1];}
+changeFont();
+if (response[16]) {
+document.getElementById("novelSelect").value = response[16];}
+if (response[21]) {
+  if (response[21]==='true'){
+    document.getElementById("blackCheck").checked = true;
+    turnBlack()
+  } else{
+    document.getElementById("blackCheck").checked = false;
+  }
+}
+
+if (response[18]==="true") {
+  QnAareaFlex();
+}
+if (response[20]) {
+  if ((document.getElementById("novelSelect").value) && !(document.getElementById("novelSelect").value == "なし")){
+    document.getElementById("novelSentenceNumber").value = response[20];
+  }
+}
+
+
+function AnswerSent(code)
+{
+    //エンターキー押下なら
+    if((13 === code) && (AnswerShown === false) && (document.getElementById("autoAnswer").value === "0")
+    && (document.getElementById("answerByMyself").checked))
+    {
+        AnswerTypedFlag = true;
+        sendRequest2();
+    }
+}
+function getTodayNumberFunc()
+{
+  var dt = new Date();
+
+  dt.setDate(dt.getDate());
+  var y = dt.getFullYear();
+  var m = ("00" + (dt.getMonth()+1)).slice(-2);
+  var d = ("00" + dt.getDate()).slice(-2);
+  var result = y  + m  + d;
+  document.getElementById("criteria1").value = result;
+}
+function getYesterdayNumberFunc()
+{
+  var dt = new Date();
+
+  dt.setDate(dt.getDate()-1);
+  var y = dt.getFullYear();
+  var m = ("00" + (dt.getMonth()+1)).slice(-2);
+  var d = ("00" + dt.getDate()).slice(-2);
+  var result = y  + m +  d;
+  document.getElementById("criteria2").value = result;
+}
+function getThreeDaysAgoNumberFunc()
+{
+  var dt = new Date();
+
+  dt.setDate(dt.getDate()-3);
+  var y = dt.getFullYear();
+  var m = ("00" + (dt.getMonth()+1)).slice(-2);
+  var d = ("00" + dt.getDate()).slice(-2);
+  var result = y  + m +  d;
+  document.getElementById("criteria2").value = result;
+}
+function getAfterNdays(n){
+   var dt = new Date();
+   dt.setDate(dt.getDate()+n);
+   return formatDate(dt);
+}
+function getAWeekAgoNumberFunc()
+{
+  var dt = new Date();
+
+  dt.setDate(dt.getDate()-7);
+  var y = dt.getFullYear();
+  var m = ("00" + (dt.getMonth()+1)).slice(-2);
+  var d = ("00" + dt.getDate()).slice(-2);
+  var result = y  + m +  d;
+  document.getElementById("criteria2").value = result;
+}
+function getAMonthAgoNumberFunc()
+{
+  var dt = new Date();
+
+  dt.setDate(dt.getDate()-31);
+  var y = dt.getFullYear();
+  var m = ("00" + (dt.getMonth()+1)).slice(-2);
+  var d = ("00" + dt.getDate()).slice(-2);
+  var result = y  + m +  d;
+  document.getElementById("criteria2").value = result;
+  // var objDate = new Date();
+
+  // objDate.setDate(objDate.getDate() - 1);
+  // var result = String(objDate.getFullYear())+String(objDate.getMonth())+String(objDate.getDate())
+  // console.log(objDate.getFullYear())
+  // console.log(objDate.getMonth())
+  // console.log(objDate.getDate())
+  document.getElementById("criteria2").value = result;
+}
+function getFirstDayFunc()
+{
+  document.getElementById("criteria2").value ="20010101";
+}
+
+var base = 60;
+
+var key =  ["C","C#","D","E♭","E","F","F#","G","A♭","A","B♭","B"];
+
+var chordname={"△":"100010010000",
+"maj":"100010010000",
+"m":"100100010000",
+"dim":"100100100000",
+"aug":"100010001000",
+"△7":"100010010001",
+"maj7":"100010010001",
+"m7":"100100010010",
+"7":"100010010010",
+"dim7":"100100100100",
+"m7♭5":"100100100010",
+"minmaj7":"100100010001",
+"6":"100010010100",
+"m6":"100100010100",
+"9":"100010010010001",
+"maj9":"101010010001",
+"m9":"101100010010",
+"sus2":"101000010000",
+"sus4":"100001010000",
+"7b9":"10001001001001",
+"7s9":"100110010010",
+"7s11":"100010110010",
+"7b13":"100010011010",
+"7sus4":"100001010010",
+"aug7":"100010001010",
+"maj7s11":"100010110001",
+"7#5":"100010001010",
+"m#5":"100100001000",
+"7b5":"100010100010"};
+
+function getNote(_chordname){
+  j=0;
+  note=[];
+  for(i=0;i<12;i++){
+    j = chordname[_chordname].indexOf("1",j);
+    if(j == -1){break;}
+    note[note.length]=j;
+    j=j+1;
+  }
+  return note;
+};
+
+function getMIDI(chord){
+  if (chord.substr(1,3) === "sus") {
+    _key=chord.substr(0,1);
+    _chordname=chord.substr(1);
+  } else if (chord.substr(2,3) === "sus") {
+    _key=chord.substr(0,2);
+    _chordname=chord.substr(2);
+  } else if (chord.substr(1,1) === "s"){
+    _key=chord.substr(0,2);
+    _chordname=chord.substr(2);
+  } else if (chord.substr(1,1) === "#"){
+    _key=chord.substr(0,2);
+    _chordname=chord.substr(2);
+  } else if (chord.substr(1,1) === "b"){
+    _key=chord.substr(0,2);
+    _chordname=chord.substr(2);
+  } else if (chord.substr(1,1) === "♭"){
+    _key=chord.substr(0,2);
+    _chordname=chord.substr(2);
+  } else {
+    _key=chord.substr(0,1);
+    _chordname=chord.substr(1);
+  }
+  if (_chordname===""){_chordname="maj"};
+  if (_key==="G♭"){_key==="F#"};
+  if (_key==="D♭"){_key==="C#"};
+  if (_key==="A#"){_key==="B♭"};
+  if (_key==="Gb"){_key==="F#"};
+  if (_key==="Db"){_key==="C#"};
+  if (_key==="As"){_key==="B♭"};
+  if (_key==="Fs"){_key==="F#"};
+  if (_key==="Cs"){_key==="C#"};
+
+  root = base + key.indexOf(_key);
+  note= getNote(_chordname);
+  midi=[];
+  for(i=0;i<note.length;i++){
+      midi[i]=root+note[i];
+  }
+  return midi;
+};
+
+function playMIDI(midi){
+    MIDI.loadPlugin({
+        soundfontUrl: "./soundfont/",
+        instrument: "acoustic_grand_piano",
+        onprogress: function(state, progress) {
+            console.log(state, progress);
+        },
+        onsuccess: function() {
+            var delay = 0; // play one note every quarter second
+            var velocity = 127; // how hard the note hits
+            // play the note
+            MIDI.setVolume(0, 127);
+            for(i=0;i<midi.length;i++){
+                for(j=0;j<midi[i].length;j++){
+                    MIDI.noteOn(0, midi[i][j], velocity, delay);
+                    MIDI.noteOff(0, midi[i][j], delay + 0.75);
+                }
+                delay = delay +1;
+            }
+        }
+    });
+    return "";
+};
+
+function playChords(chords){
+    _chords=chords.split(/\r\n|\r|\n| |,/);//改行コードもしくは空白もしくはカンマ
+    console.log(_chords);
+    //_chords = chords.split(" ");
+    _midi = []
+    for(_c in _chords){
+        if(_chords[_c].length==0){continue;}
+        _midi[_midi.length]=getMIDI(_chords[_c]);
+    }
+    playMIDI(_midi);
+}
+
+var music = new Audio();
+var music2 = new Audio();
+var musicFlag = false;
+var rres;
+var musicDuration ="";
+function init(res) {
+  rres = res;
+  music.preload = "auto";
+  music.src = "./mp3/" + res;
+  music.load();
+  music2.preload = "auto";
+  music2.src = "./mp3/" + res;
+  music2.load();
+
+  music.addEventListener('loadedmetadata',function(e) {
+      console.log(music.duration); // 総時間の取得
+      musicDuration = music.duration
+
+  });
+
+  music.addEventListener('pause',function(e) {
+  console.log("pause!");
+  music.currentTime = 0;
+
+
+  var isPlaying = music.currentTime > 0 && !music.paused && !music.ended
+      && music.readyState > 2;
+
+  if (!isPlaying) {
+    music.src = "./mp3/" + res + "#t=0," + String(musicDuration - Number(document.getElementById("mp3StartPoint").value));
+    setTimeout(function() {
+        music.playbackRate = document.getElementById("mp3Speed").value;
+      music.play();
+      var musicFlag = true;
+    }, 0);
+    }
+
+  });
+
+}
+
+var timeout_id = null;
+
+function play() {
+  // music.loop = true;
+
+
+  // music.currentTime = Number(document.getElementById("mp3StartPoint").value);
+  music.playbackRate = document.getElementById("mp3Speed").value;
+  music.play();
+  var musicFlag = true;
+  // timeout_id =setTimeout("play();", musicDuration- Number(document.getElementById("mp3StartPoint").value));
+
+  // timeout_id =setTimeout("play();", 3000);
+}
+
+
+
+function stop() {
+  music.pause();
+  // music2.pause();
+  // music.currentTime = Number(document.getElementById("mp3StartPoint").value);
+  // setTimeout() メソッドの動作をキャンセルする
+clearTimeout(timeout_id);
+timeout_id = null;
+}
+
+
+function imageSizeChange1(){
+  imageSize = document.getElementById("imageSize1").value;
+  document.getElementById("mypic1").style.width = imageWidth1 * Number(imageSize) + "px";  // 横幅を400pxにリサイズ
+  document.getElementById("mypic1").style.height = imageHeight1 * Number(imageSize) + "px";  // 横幅を400pxにリサイズ
+}
+
+
+function imageSizeChange2(){
+  imageSize = document.getElementById("imageSize2").value;
+  document.getElementById("mypic2").style.width = imageWidth2 * Number(imageSize) + "px";  // 横幅を400pxにリサイズ
+  document.getElementById("mypic2").style.height = imageHeight2 * Number(imageSize) + "px";  // 横幅を400pxにリサイズ
+}
+async function informationChange(){
+    localStorage.setItem('t_system_info', document.mainform.information.value);
+}
+
+function changeBG(wIMG) {
+  var wIMG = document.getElementById("backGround").value;
+  document.body.style.backgroundImage = "url(./bg/" + wIMG + ")";///////////////////
+}
+
+function　changeFont(){
+  var elements = document.getElementsByClassName('textlines');
+  for(i=0;i<elements.length;i++){
+    elements[i].style.fontFamily = document.getElementById("fontSelect").value;;
+  }
+}
+
+function newOnesFunc(){
+
+}
+//音声読み上げ
+const answerText2        = document.querySelector('#textareas2')
+const questionText2        = document.querySelector('#textareas')
+const voiceSelect = document.querySelector('#voice-select')
+const speakBtn    = document.querySelector('#speak-btn')
+var readVoices = new Array();
+var readVoiceJp ="";
+var readVoiceEng ="";
+
+// selectタグの中身を声の名前が入ったoptionタグで埋める
+function appendVoices() {
+  // ①　使える声の配列を取得
+  // 配列の中身は SpeechSynthesisVoice オブジェクト
+  const voices = speechSynthesis.getVoices()
+  voices.forEach(voice => { //　アロー関数 (ES6)
+    // 日本語と英語以外の声は選択肢に追加しない。
+    if(!voice.lang.match('ja|en-US')) return
+    readVoices.push(voice.name);
+  });
+  // alert(readVoices);
+  var voiceNum =0;
+  readVoices.forEach( function( item ) {
+    if (item.includes('ja') || item.includes('Ja')|| item.includes('Kyoko')) {
+      if(!readVoiceJp){readVoiceJp = voiceNum};
+    }
+    if (item.includes('en') || item.includes('En')|| item.includes('Samantha')) {
+      if(!readVoiceEng){readVoiceEng = voiceNum;}
+    }
+    voiceNum += 1;
+  });
+  // alert(readVoices);
+}
+
+appendVoices()
+
+// // ② 使える声が追加されたときに着火するイベントハンドラ。
+// // Chrome は非同期に(一個ずつ)声を読み込むため必要。
+speechSynthesis.onvoiceschanged = e => {
+  appendVoices();
+}
+
+
+
+    // Execute loadVoices.
+    
+
+
+
+
+
+
+var novelRowNum = 1;
+if (document.getElementById("novelSentenceNumber").value) {
+  novelRowNum = Number(document.getElementById("novelSentenceNumber").value);
+}
+    
+
+
+async function getNovelSentence(){
+    console.log("getNovelSentence called but feature is disabled in serverless.");
+}
+
+function  category1Change(){
+  // var elem = document.querySelectorAll('select[name="category2"] option');
+  // for(var i=0; i<elem.length; i++) {
+  //   elem[i].selected = false;
+  // }
+  // var elem = document.querySelectorAll('select[name="category3"] option');
+  // for(var i=0; i<elem.length; i++) {
+  //   elem[i].selected = false;
+  // }
+  // var elem = document.querySelectorAll('select[name="category4"] option');
+  // for(var i=0; i<elem.length; i++) {
+  //   elem[i].selected = false;
+  // }
+  // var elem = document.querySelectorAll('select[name="category5"] option');
+  // for(var i=0; i<elem.length; i++) {
+  //   elem[i].selected = false;
+  // }
+}
+
+function QnAareaFlex(){
+  var mainform = document.getElementById("mainform");
+  var Qarea = document.getElementById("textareas");
+  var QareaImage = document.getElementById("div1");
+  var Aarea = document.getElementById("textareas2");
+  var AareaImage = document.getElementById("div2");
+  var PrePosision = document.getElementById("questionbuttonbox");
+  var ParentElement = document.getElementById("QandAwindow");
+  if (QnAareaFlexFlug === false){
+    Qarea.style.width= "42%"; 
+    QareaImage.style.width= "42%";
+    Qarea.style.height= "60vh"; 
+    QareaImage.style.height= "62.5vh";
+    Aarea.style.width= "42%"; 
+    AareaImage.style.width= "42%"; 
+    Aarea.style.height= "60vh"; 
+    AareaImage.style.height= "62.5vh"; 
+    Qarea.style.float = "left";
+    QareaImage.style.float = "left";
+    // AareaImage.style.float = "left";
+    // Aarea.style.display= "flex"; 
+    // AareaImage.style.display= "flex"; 
+    if (AareaImage.style.display === "none"){
+      AareaImage.style.display= "none";
+    }
+    ParentElement.insertBefore(AareaImage,QareaImage.nextSibling);
+    ParentElement.insertBefore(Aarea,QareaImage.nextSibling);
+    // document.getElementById("flexButton").checked = true;
+    QnAareaFlexFlug = true;
+  }else{
+    Qarea.style.width= "97%";
+    QareaImage.style.width= "97%"; 
+    Qarea.style.height= "24vh"; 
+    QareaImage.style.height= "27.5vh";
+    Aarea.style.width= "97%"; 
+    AareaImage.style.width= "97%";
+    Aarea.style.height= "24vh"; 
+    AareaImage.style.height= "27.5vh"; 
+    // Aarea.style.display= "block"; 
+    // AareaImage.style.display= "block"; 
+    if (AareaImage.style.display === "none"){
+      AareaImage.style.display= "none";
+    }
+    ParentElement.insertBefore(Aarea,PrePosision.nextSibling);
+    ParentElement.insertBefore(AareaImage,Aarea.nextSibling);
+    QnAareaFlexFlug = false;
+    // document.getElementById("flexButton").checked = false;
+  }
+}
+function blackOrWhite(){
+  if (document.getElementById("blackCheck").checked){
+    
+    turnBlack();
+  } else {
+    turnWhite();
+  }
+}
+
+function turnBlack(){
+
+  var elements = document.getElementsByClassName('info02');
+  for(i=0;i<elements.length;i++){
+    // elements[i].style.backgroundColor = '#000000'; 
+    elements[i].style.color = '#7a7a7a';
+  }
+  var elements = document.getElementsByClassName('textlines');
+  for(i=0;i<elements.length;i++){
+    elements[i].style.backgroundColor = '#000000'; 
+    elements[i].style.color = '#7a7a7a';
+  }
+  var elements = document.getElementsByClassName('button');
+  for(i=0;i<elements.length;i++){
+    elements[i].style.backgroundColor = '#000000'; 
+    elements[i].style.color = '#7a7a7a';
+  }
+  var elements = document.getElementsByClassName('selectBox');
+  for(i=0;i<elements.length;i++){
+    elements[i].style.backgroundColor = '#000000'; 
+    elements[i].style.color = '#7a7a7a';
+  }
+  var elements = document.getElementsByClassName('setting');
+  for(i=0;i<elements.length;i++){
+    elements[i].style.backgroundColor = '#000000'; 
+    elements[i].style.color = '#7a7a7a';
+  }
+  var elements = document.getElementsByClassName('checkText');
+  for(i=0;i<elements.length;i++){
+    elements[i].style.color = '#7a7a7a';
+  }
+  var wIMG = document.getElementById("backGround").value;
+  document.body.style.backgroundImage = "url(./bg/" + "1701.png" + ")";
+  document.getElementById("questionInfo").style.color = '#7a7a7a';
+}
+function turnWhite(){
+
+  var elements = document.getElementsByClassName('info02');
+  for(i=0;i<elements.length;i++){
+    // elements[i].style.backgroundColor = '#000000'; 
+    elements[i].style.color = '#000000';
+  }
+  var elements = document.getElementsByClassName('textlines');
+  for(i=0;i<elements.length;i++){
+    elements[i].style.backgroundColor = '#ffccff'; 
+    elements[i].style.color = '#000000';
+  }
+  var elements = document.getElementsByClassName('button');
+  for(i=0;i<elements.length;i++){
+    elements[i].style.backgroundColor = '#EEEEEE'; 
+    elements[i].style.color = '#000000';
+  }
+  var elements = document.getElementsByClassName('selectBox');
+  for(i=0;i<elements.length;i++){
+    elements[i].style.backgroundColor = '#EEEEEE'; 
+    elements[i].style.color = '#000000';
+  }
+  var elements = document.getElementsByClassName('setting');
+  for(i=0;i<elements.length;i++){
+    elements[i].style.backgroundColor = '#e4fcff'; 
+    elements[i].style.color = '#000000';
+  }
+  var elements = document.getElementsByClassName('checkText');
+  for(i=0;i<elements.length;i++){
+    elements[i].style.color = '#000000';
+  }
+  var wIMG = document.getElementById("backGround").value;
+  document.body.style.backgroundImage = "url(./bg/" + response2[0] + ")";
+  document.getElementById("questionInfo").style.color = '#000000';
+}
+function removeQuestion(){
+  if (questionnumbers != ""){
+    if (!firstRemoveFlag) {
+    //  questionnumbers.splice(num, 1);
+      correctQuestions.push(rand);
+    } else {
+      correctQuestions.push(rand);
+      correctQuestions.push(rand);
+      correctQuestions.push(rand);
+      correctQuestions.push(rand);
+      correctQuestions.push(rand);
+      correctQuestions.push(rand);
+      correctQuestions.push(rand);
+    }
+  }
+}
+function escape_html (string) {//HTMLエスケープ処理
+  if(typeof string !== 'string') {
+    return string;
+  }
+  return string.replace(/[&'`"<>]/g, function(match) {
+    return {
+      '&': '&amp;',
+      "'": '&#x27;',
+      '`': '&#x60;',
+      '"': '&quot;',
+      '<': '&lt;',
+      '>': '&gt;',
+    }[match]
+  });
+}
+
+
+function resizeTextareas(){
+  var width;
+  var height;
+  observer.disconnect();
+  observer2.disconnect();
+
+  if ( elementTextareas.style.width.match("%")) {//%が含まれているか
+    // width=elementTextareas.style.width; 
+    // height=elementTextareas.style.height; 
+    width=Number(parseInt(elementTextareas.style.width))+Number(2); 
+    width=width+"%"
+    height=Number(parseInt(elementTextareas.style.height))+Number(2); 
+    height=height+"vh"
+  }else{
+    width=Number(parseInt(elementTextareas.style.width))+Number(25); 
+    width=width+"px"
+    height=Number(parseInt(elementTextareas.style.height))+Number(25); 
+    height=height+"px"
+  }
+  console.log("11  "+elementTextareas.style.width);
+  console.log("12  "+ width);
+  console.log("13  "+height);
+  
+  console.log("13.1  "+$('#div2').width());
+  console.log("13.2  "+$('#div2').height());
+  $('#textareas2').width(elementTextareas.style.width); 
+  $('#textareas2').height(elementTextareas.style.height); 
+  $('#div1').width(width); 
+  $('#div1').height(height); 
+  $('#div2').width(width); 
+  $('#div2').height(height); 
+  console.log("14  "+$('#div2').width());
+  console.log("15  "+$('#div2').height());
+
+  observer2.observe(elementTextareas2, options);
+  observer.observe(elementTextareas, options);
+}
+document.addEventListener('keydown', function(event) {
+    // Ctrlキーが押されているか、F12キーが押されているかを確認
+    if (event.ctrlKey && event.key === 'F12') {
+        readQuestion();
+        event.preventDefault(); // デフォルトの動作をキャンセル
+    }
+});
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+<script>
+window.addEventListener('DOMContentLoaded', () => {
+    if(document.querySelector('.modern-top-panel')) return;
+
+    const topPanel = document.createElement('div');
+    topPanel.className = 'modern-top-panel';
+
+    // 1. Header Row
+    const headerRow = document.createElement('div');
+    headerRow.className = 'mtp-header-row';
+    const dbInput = document.getElementById('DB_name');
+    if(dbInput) { dbInput.placeholder = "Enter DB Name..."; headerRow.appendChild(dbInput); }
+
+    const gp1 = document.getElementById('grandParent1');
+    if(gp1) {
+        Array.from(gp1.childNodes).forEach(node => {
+            if(node.nodeName === 'BR' || (node.nodeName === '#text' && node.textContent.trim() === '')) node.remove();
+        });
+        headerRow.appendChild(gp1);
+    }
+    topPanel.appendChild(headerRow);
+
+    
+    
+    // 2. Stats Row (Compact)
+    const statsRow = document.createElement('div');
+    statsRow.className = 'mtp-stats-row';
+    const massages = document.getElementById('massages');
+    if(massages) { 
+        massages.className = 'modern-stats'; 
+        
+        // Parse the text to create a compact flex layout
+        const p = massages.querySelector('p');
+        if(p) {
+            const text = p.innerHTML;
+            const cleanText = text.replace(/<br>\s*<br>/gi, '<span class="stat-sep"></span>').replace(/\n/g, '');
+            p.innerHTML = cleanText;
+            p.className = 'compact-stats-text';
+        }
+        statsRow.appendChild(massages); 
+    }
+
+    // Completely remove the old information textarea AND its parent div to be 100% sure it's gone
+    const infoTextarea = document.getElementById('information');
+    if(infoTextarea) {
+        const parent = infoTextarea.parentElement;
+        if(parent && parent.tagName === 'DIV') {
+            parent.style.display = 'none';
+            parent.remove(); // Nuke it from the DOM completely
+        }
+        infoTextarea.style.display = 'none';
+        infoTextarea.remove();
+    }
+
+    topPanel.appendChild(statsRow);
+
+
+
+    // 3. Categories Row
+    const catRow = document.createElement('div');
+    catRow.className = 'mtp-category-row';
+    for(let i=1; i<=5; i++) {
+        const ctg = document.getElementById('ctg'+i);
+        if(ctg) { ctg.removeAttribute('style'); catRow.appendChild(ctg); }
+    }
+    topPanel.appendChild(catRow);
+
+    // 4. Filters Row (Level 0 to One Month Ago)
+    const filtersContainer = document.createElement('div');
+    filtersContainer.className = 'mtp-filters-container';
+    
+    // Level Filters
+    const levelGroup = document.createElement('div');
+    levelGroup.className = 'mtp-filter-group';
+    levelGroup.innerHTML = '<div class="mtp-group-title">Level Filters</div>';
+    const levelButtons = document.createElement('div');
+    levelButtons.className = 'mtp-button-grid';
+    ['Lv0','Lv1','Lv2','Lv3','Lv4'].forEach(id => {
+        let el = document.getElementById(id);
+        if(el) { el.removeAttribute('style'); el.className = 'mtp-filter-btn mtp-level-btn'; levelButtons.appendChild(el); }
+    });
+    levelGroup.appendChild(levelButtons);
+    filtersContainer.appendChild(levelGroup);
+
+    // Time/Status Filters
+    const timeGroup = document.createElement('div');
+    timeGroup.className = 'mtp-filter-group';
+    timeGroup.innerHTML = '<div class="mtp-group-title">Condition Filters</div>';
+    const timeButtons = document.createElement('div');
+    timeButtons.className = 'mtp-button-grid mtp-time-grid';
+    ['atLeastOne','NotYet','yesterday','noToday','U50','errToday','errLast','threeDaysAgo','aWeekAgo','aMonthAgo'].forEach(id => {
+        let el = document.getElementById(id);
+        if(el) { el.removeAttribute('style'); el.className = 'mtp-filter-btn mtp-time-btn'; timeButtons.appendChild(el); }
+    });
+    timeGroup.appendChild(timeButtons);
+    filtersContainer.appendChild(timeGroup);
+
+    topPanel.appendChild(filtersContainer);
+
+    // Insert the panel at the very top of the form
+    const form = document.getElementById('mainform');
+    if(form) { form.insertBefore(topPanel, form.firstChild); }
+});
+</script>
+
+
+
+
+
+<script>
+window.addEventListener('DOMContentLoaded', () => {
+    // Prevent double execution
+    if(document.querySelector('.unified-panel-container')) return;
+
+    // We will build the advanced search contents first
+    const searchPanel = document.createElement('div');
+    searchPanel.className = 'modern-search-panel unified-right-content';
+    searchPanel.innerHTML = '<div class="msp-title">Advanced Search & Criteria</div>';
+
+    // Helper to move elements safely
+    function moveEl(id, parent, customClass) {
+        const el = document.getElementById(id);
+        if(el) {
+            el.removeAttribute('style');
+            if(customClass) el.className = customClass;
+            parent.appendChild(el);
+            return el;
+        }
+        return null;
+    }
+
+    // 1. General Settings Row
+    const generalRow = document.createElement('div');
+    generalRow.className = 'msp-general-row';
+    moveEl('MaxQuestionNumber', generalRow, 'msp-select');
+    moveEl('poorat2', generalRow, 'msp-select');
+    moveEl('qlevel', generalRow, 'msp-select');
+    moveEl('wordSearch', generalRow, 'msp-input msp-search');
+    searchPanel.appendChild(generalRow);
+
+    // 2. Criteria Rows
+    const criteriaRowsContainer = document.createElement('div');
+    criteriaRowsContainer.className = 'msp-criteria-container';
+
+    function buildCriteriaRow(catId, opId, critId, btnId) {
+        const row = document.createElement('div');
+        row.className = 'msp-criteria-row';
+        moveEl(catId, row, 'msp-select');
+        moveEl(opId, row, 'msp-select msp-op');
+        moveEl(critId, row, 'msp-input');
+        if(btnId) moveEl(btnId, row, 'msp-btn');
+        if(row.children.length > 0) criteriaRowsContainer.appendChild(row);
+    }
+
+    buildCriteriaRow('category4', 'operator1', 'criteria1', 'getTodayNumber');
+    buildCriteriaRow('category5', 'operator2', 'criteria2', 'getfirstDayNumber');
+    buildCriteriaRow('category6', 'operator3', 'criteria3', null);
+    searchPanel.appendChild(criteriaRowsContainer);
+
+    // Clean up the old .criterias div if it's empty
+    const oldCriterias = document.querySelector('.criterias');
+    if(oldCriterias) {
+        Array.from(oldCriterias.childNodes).forEach(n => {
+            if(n.nodeName === 'BR' || (n.nodeName === '#text' && n.textContent.trim() === '')) n.remove();
+        });
+        if(oldCriterias.childNodes.length === 0) oldCriterias.remove();
+    }
+
+    // NOW UNIFY THEM
+    const unifiedContainer = document.createElement('div');
+    unifiedContainer.className = 'unified-panel-container';
+
+    const unifiedLeft = document.createElement('div');
+    unifiedLeft.className = 'unified-left-col';
+
+    const unifiedRight = document.createElement('div');
+    unifiedRight.className = 'unified-right-col';
+
+    // Get the existing mtp-filters-container which holds Level and Condition filters
+    const oldFiltersContainer = document.querySelector('.mtp-filters-container');
+    if (oldFiltersContainer) {
+        // Move its children (Level group, Time group) into unifiedLeft
+        while(oldFiltersContainer.firstChild) {
+            unifiedLeft.appendChild(oldFiltersContainer.firstChild);
+        }
+        // Remove the old empty container
+        oldFiltersContainer.remove();
+    }
+
+    // Put advanced search in the right column
+    unifiedRight.appendChild(searchPanel);
+
+    unifiedContainer.appendChild(unifiedLeft);
+    unifiedContainer.appendChild(unifiedRight);
+
+    // Insert unified container into the top panel
+    const topPanel = document.querySelector('.modern-top-panel');
+    const form = document.getElementById('mainform');
+    if(topPanel) {
+        // We append it inside the topPanel to keep it as one unified block
+        topPanel.appendChild(unifiedContainer);
+        
+        const settingsPanel = document.querySelector('.msc-settings-panel');
+        if (settingsPanel) topPanel.appendChild(settingsPanel);
+    } else if(form) {
+        form.insertBefore(unifiedContainer, form.firstChild);
+    }
+});
+</script>
+
+
+
+
+
+
+<script>
+window.addEventListener('DOMContentLoaded', () => {
+    if(document.querySelector('.modern-study-card')) return;
+
+    // 1. Create Main Container
+    const studyCard = document.createElement('div');
+    studyCard.className = 'modern-study-card';
+
+    // 2. Create Header (Counter + Action Buttons)
+    const cardHeader = document.createElement('div');
+    cardHeader.className = 'msc-header';
+
+    const headerLeft = document.createElement('div');
+    headerLeft.className = 'msc-header-left';
+    
+    // Extract counters from the first questionbuttonbox
+    const pressButton = document.getElementById('press-button');
+    const totalQuestionNumber = document.getElementById('totalQuestionNumber');
+    
+    if (pressButton && totalQuestionNumber) {
+        const counterText = document.createElement('div');
+        counterText.className = 'msc-counter';
+        counterText.innerHTML = `<span class="msc-current" id="msc-press-button"></span> 問目 / 全 <span id="msc-total"></span> 問`;
+        headerLeft.appendChild(counterText);
+        
+        // Sync original spans to the new ones (hide the originals)
+        const updateCounter = () => {
+            const mscPress = document.getElementById('msc-press-button');
+            const mscTotal = document.getElementById('msc-total');
+            if (mscPress) mscPress.innerText = pressButton.innerText;
+            if (mscTotal) mscTotal.innerText = totalQuestionNumber.innerText;
+        };
+        updateCounter();
+        const observer = new MutationObserver(updateCounter);
+        observer.observe(pressButton, { childList: true, characterData: true, subtree: true });
+        observer.observe(totalQuestionNumber, { childList: true, characterData: true, subtree: true });
+        
+        pressButton.parentElement.style.display = 'none';
+    }
+
+    const headerRight = document.createElement('div');
+    headerRight.className = 'msc-header-right';
+
+    function moveEl(id, parent, customClass) {
+        const el = document.getElementById(id);
+        if(el) {
+            el.removeAttribute('style');
+            if(customClass) el.className = customClass;
+            parent.appendChild(el);
+            return el;
+        }
+        return null;
+    }
+    
+    const btnAuto = moveEl('autoQuestionButton', headerRight, 'msc-btn msc-btn-primary');
+    if (btnAuto) {
+        btnAuto.addEventListener('click', () => {
+            const aiBox = document.getElementById('msc-ai-hint-box');
+            if (aiBox) aiBox.style.display = 'none';
+        });
+    }
+    moveEl('buttonmodifyquestion', headerRight, 'msc-btn msc-btn-secondary');
+
+    cardHeader.appendChild(headerLeft);
+    cardHeader.appendChild(headerRight);
+    studyCard.appendChild(cardHeader);
+
+    // 3. Create Body (Question Text + Images)
+    const cardBody = document.createElement('div');
+    cardBody.className = 'msc-body';
+    
+    // questionInfo is actually the Metadata (Level, Correct count, etc.)
+    const metadataLayout = document.createElement('div');
+    metadataLayout.id = 'msc-metadata-layout';
+    metadataLayout.style.cssText = 'display: flex; gap: 16px; width: 100%; align-items: stretch; margin-bottom: 16px; min-height: 200px;';
+    
+    const qInfo = moveEl('questionInfo', metadataLayout, 'msc-metadata-box');
+    if (qInfo) {
+        qInfo.style.flex = '1';
+        qInfo.style.minWidth = '0';
+        qInfo.style.margin = '0';
+    }
+
+    // Create AI Hint Display Area (moved here from bottom)
+    const aiHintWrapper = document.createElement('div');
+    aiHintWrapper.style.cssText = 'flex: 1; min-width: 0; position: relative;';
+    
+    const aiHintBox = document.createElement('div');
+    aiHintBox.id = 'msc-ai-hint-box';
+    aiHintBox.style.cssText = 'display: none; position: absolute; top: 0; left: 0; right: 0; bottom: 0; padding: 16px; background: #fafafa; border: 2px solid #666; border-radius: 8px; font-size: 14.5px; color: #333; line-height: 1.6; white-space: pre-wrap; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1); overflow-y: auto;';
+    
+    aiHintWrapper.appendChild(aiHintBox);
+    metadataLayout.appendChild(aiHintWrapper);
+
+    cardBody.appendChild(metadataLayout);
+    
+    // textareas is the MAIN Question Textarea! Move it to body!
+    // Do NOT add msc-hidden, let PHP script toggle its display!
+    moveEl('textareas', cardBody, 'msc-textarea msc-question-textarea');
+    
+    const div1 = document.getElementById('div1');
+    if (div1) {
+        div1.removeAttribute('style');
+        div1.className = 'msc-media-container';
+        cardBody.appendChild(div1);
+    }
+    
+    studyCard.appendChild(cardBody);
+
+    // 5. Create Answer Area
+    const cardAnswer = document.createElement('div');
+    cardAnswer.className = 'msc-answer';
+    
+    moveEl('novel', cardAnswer, 'msc-hidden');
+    moveEl('preQInfo', cardAnswer, 'msc-info-text');
+
+    moveEl('textareas2', cardAnswer, 'msc-textarea msc-answer-textarea');
+
+    studyCard.appendChild(cardAnswer);
+
+    // 6. Create Action Buttons Area (Next Question / Answer)
+    const actionArea = document.createElement('div');
+    actionArea.className = 'msc-actions-row';
+    const btn01 = moveEl('button01', actionArea, 'msc-btn-huge msc-btn-primary');
+    const btn02 = moveEl('button02', actionArea, 'msc-btn-huge msc-btn-secondary');
+    
+    // Hide AI Hint Box when moving to next question
+    if (btn01) {
+        btn01.addEventListener('click', () => {
+            const aiBox = document.getElementById('msc-ai-hint-box');
+            if (aiBox) aiBox.style.display = 'none';
+        });
+    }
+    
+    // Create AI Hint Button
+    const aiHintBtn = document.createElement('button');
+    aiHintBtn.type = 'button';
+    aiHintBtn.className = 'msc-btn-huge msc-btn-secondary';
+    aiHintBtn.style.cssText = 'background: #f9f9f9 !important; border-color: #e2e8f0 !important; color: #64748b !important; font-size: 18px !important; display: flex; align-items: center; justify-content: center; gap: 8px;';
+    aiHintBtn.innerHTML = '🤖 <span id="msc-ai-btn-text">AI サポート</span>';
+    aiHintBtn.id = 'msc-ai-hint-btn';
+    actionArea.appendChild(aiHintBtn);
+    
+    studyCard.appendChild(actionArea);
+
+    // AI Hint Box creation moved above to answer area
+    
+    window.resetAIHint = () => {
+        window.aiHintDepth = 0;
+        window.aiHintHistoryText = '';
+        const btnText = document.getElementById('msc-ai-btn-text');
+        if (btnText) btnText.innerText = 'AI サポート';
+        const aiBox = document.getElementById('msc-ai-hint-box');
+        if (aiBox) aiBox.style.display = 'none';
+        const aiBtn = document.getElementById('msc-ai-hint-btn');
+        if (aiBtn) aiBtn.disabled = false;
+    };
+
+    window.triggerAIHint = async () => {
+        if (aiHintBtn.disabled) return;
+        
+        if (typeof window.aiHintDepth === 'undefined') window.aiHintDepth = 0;
+        window.aiHintDepth++;
+        const currentDepth = window.aiHintDepth;
+        
+        aiHintBox.style.display = 'block';
+        
+        // Check if answer is revealed using the global variable AnswerShown2 or if textareas2 is visible
+        const isRevealed = (typeof AnswerShown2 !== 'undefined' && AnswerShown2 === true);
+        
+        const loadingMsg = currentDepth > 1 
+            ? '🤖 <strong>さらに深い情報を考えています...</strong>'
+            : (isRevealed ? '🤖 <strong>解説を考えています...</strong>' : '🤖 <strong>ヒントを考えています...</strong>');
+            
+        if (currentDepth === 1) {
+            aiHintBox.innerHTML = loadingMsg;
+        } else {
+            aiHintBox.innerHTML += `<div id="ai-loading-${currentDepth}" style="margin-top:10px; padding-top:10px; border-top:1px dashed #ccc;">${loadingMsg}</div>`;
+        }
+        
+        aiHintBtn.disabled = true;
+        
+        const qText = document.getElementById('textareas').value;
+        const aText = document.getElementById('textareas2').value;
+        
+        try {
+            const response = await fetch('ai_hint.php', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ 
+                    question: qText, 
+                    answer: aText,
+                    is_answer_revealed: isRevealed,
+                    depth: currentDepth,
+                    previous_hints: window.aiHintHistoryText || ''
+                })
+            });
+            const data = await response.json();
+            if (data.hint) {
+                // Record this hint in history for the next request
+                if (typeof window.aiHintHistoryText === 'undefined') window.aiHintHistoryText = '';
+                window.aiHintHistoryText += data.hint + '\n\n';
+                
+                const formattedHint = data.hint.replace(/\n/g, '<br>');
+                
+                // Update local cache so it appears immediately on reload without fetching
+                const qNum = typeof rand !== 'undefined' ? rand : null;
+                let localData = window.allQuestionsData ? window.allQuestionsData.find(r => r.questionnumber == qNum) : null;
+                if (localData) {
+                    // If there was already a hint, append it, otherwise set it
+                    if (localData.hint && localData.hint !== "NULL") {
+                        if (!localData.hint.includes(data.hint)) {
+                            localData.hint += '\n\n' + data.hint;
+                        }
+                    } else {
+                        localData.hint = data.hint;
+                    }
+                }
+                
+                // SAVE IT to the database using Supabase directly
+                const dbName = (document.mainform && document.mainform.DB_name) ? document.mainform.DB_name.value : null;
+                if (qNum && dbName && localData && typeof supabaseClient !== 'undefined') {
+                    supabaseClient.from(dbName).update({ hint: localData.hint }).eq('questionnumber', qNum)
+                        .then(({error}) => {
+                            if (error) console.error("Supabase error saving hint:", error);
+                        })
+                        .catch(e => console.error("Failed to save hint", e));
+                }
+
+                if (currentDepth === 1) {
+                    aiHintBox.innerHTML = formattedHint;
+                } else {
+                    const loadingDiv = document.getElementById(`ai-loading-${currentDepth}`);
+                    if (loadingDiv) {
+                        loadingDiv.outerHTML = `<div style="margin-top:10px; padding-top:10px; border-top:1px dashed #ccc;">${formattedHint}</div>`;
+                    }
+                }
+                
+                // Change button text to indicate deeper info available
+                document.getElementById('msc-ai-btn-text').innerText = `さらに深掘り (Lv.${currentDepth + 1})`;
+            } else if (data.error) {
+                if (currentDepth === 1) {
+                    aiHintBox.innerText = 'エラーが発生しました: ' + data.error;
+                } else {
+                    const loadingDiv = document.getElementById(`ai-loading-${currentDepth}`);
+                    if (loadingDiv) loadingDiv.innerText = 'エラーが発生しました: ' + data.error;
+                }
+            }
+        } catch (e) {
+            if (currentDepth === 1) {
+                aiHintBox.innerText = '通信エラーが発生しました。';
+            } else {
+                const loadingDiv = document.getElementById(`ai-loading-${currentDepth}`);
+                if (loadingDiv) loadingDiv.innerText = '通信エラーが発生しました。';
+            }
+        }
+        aiHintBtn.disabled = false;
+    };
+    
+    aiHintBtn.addEventListener('click', window.triggerAIHint);
+
+    // 7. Create Feedback Buttons Area (Good / Poor / Nav)
+    const feedbackArea = document.createElement('div');
+    feedbackArea.className = 'msc-actions-row msc-feedback-row';
+
+    document.querySelectorAll('input[name="botan03"]').forEach(btn => {
+        btn.removeAttribute('style');
+        btn.className = 'msc-btn-feedback msc-btn-good';
+        feedbackArea.appendChild(btn);
+    });
+
+    document.querySelectorAll('input[name="botan04"]').forEach(btn => {
+        btn.removeAttribute('style');
+        btn.className = 'msc-btn-feedback msc-btn-poor';
+        feedbackArea.appendChild(btn);
+    });
+
+    studyCard.appendChild(feedbackArea);
+
+    // 8. Create Utility Buttons Area (Back / Skip / Minus)
+    const utilityArea = document.createElement('div');
+    utilityArea.className = 'msc-actions-row msc-utility-row';
+
+    document.querySelectorAll('input[name="botan05"]').forEach(btn => {
+        btn.removeAttribute('style');
+        btn.className = 'msc-btn-feedback msc-btn-nav';
+        utilityArea.appendChild(btn);
+    });
+
+    const b06 = document.getElementById('button06');
+    if (b06) {
+        b06.removeAttribute('style');
+        b06.className = 'msc-btn-feedback msc-btn-undo';
+        utilityArea.appendChild(b06);
+    }
+    
+    const b07 = document.getElementById('button07');
+    if (b07) {
+        b07.removeAttribute('style');
+        b07.className = 'msc-btn-feedback msc-btn-undo';
+        utilityArea.appendChild(b07);
+    }
+
+    studyCard.appendChild(utilityArea);
+
+    // Insert the Study Card below the unified filters
+    const unifiedPanel = document.querySelector('.unified-panel-container');
+    const form = document.getElementById('mainform');
+    if (unifiedPanel) {
+        unifiedPanel.after(studyCard);
+    } else if (form) {
+        form.appendChild(studyCard);
+    }
+    
+    const qBoxes = document.querySelectorAll('.questionbuttonbox');
+    qBoxes.forEach(b => b.style.display = 'none');
+
+    const bottomBox = document.getElementById('bottomButtonBox');
+    if (bottomBox) bottomBox.style.display = 'none';
+});
+</script>
+
+<script>
+window.addEventListener('DOMContentLoaded', () => {
+    // Fetch and display the true Supabase daily/total stats to replace the stale PHP MySQL values on load
+    if (typeof updateAndDisplayDailyTotal === 'function') {
+        updateAndDisplayDailyTotal(null);
+    }
+});
+</script>
+</body>
+</html>
