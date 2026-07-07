@@ -3603,9 +3603,9 @@ function removeCorrects(){
 // document.onkeydown = keydown;
 document.addEventListener('keydown', (ev) => {
   if(!ev.repeat)
-  keydown()
+  keydown(ev)
 })
-function keydown() {
+function keydown(event) {
   console.log('event.keyCode is ' + event.keyCode);
   console.log('event.code is ' + event.code);
   console.log('event.shiftKey is ' + event.altKey);
@@ -3619,7 +3619,7 @@ function keydown() {
   && (document.getElementById("answerByMyself").checked)) {//解答入力にチェックがあるとき
     // console.log('event.keyCode is ' + event.keyCode);
     // console.log('event.key is ' + event.key);
-    whichKey1()
+    whichKey1(event)
   }else if((document.getElementById("keyControl").checked) //キー操作にチェックがあり
   && (!document.getElementById("answerByMyself").checked)//解答入力にチェックがあり
   && (document.activeElement.id != "textareas2")//解答欄がアクティブでなく
@@ -3631,11 +3631,11 @@ function keydown() {
   && (document.activeElement.id != "information")//通信欄がアクティブでなく
   && (document.activeElement.id != "DB_name")){//データベース名欄がアクティブでないとき　⇒つまり文字入力しないでキー操作のみで学習するとき
 
-    whichKey2()
+    whichKey2(event)
   }
 }
 
-function whichKey1(){
+function whichKey1(event){
   if ((event.ctrlKey)) {
     if (event.keyCode === 229){
         switch (event.code) {
@@ -3849,7 +3849,7 @@ function whichKey1(){
     event.returnValue = false;
   }
 }
-function whichKey2(){
+function whichKey2(event){
   if (event.keyCode === 229 && event.keyCode != "ControlLeft"){
     switch (event.code) {
       case "KeyE":
@@ -5144,6 +5144,7 @@ window.addEventListener('DOMContentLoaded', () => {
     aiHintBtn.style.cssText = 'background: #f9f9f9 !important; border-color: #e2e8f0 !important; color: #64748b !important; font-size: 18px !important; display: flex; align-items: center; justify-content: center; gap: 8px;';
     aiHintBtn.innerHTML = '🤖 <span id="msc-ai-btn-text">AI サポート</span>';
     aiHintBtn.id = 'msc-ai-hint-btn';
+    aiHintBtn.addEventListener('click', window.triggerAIHint);
     actionArea.appendChild(aiHintBtn);
     
     studyCard.appendChild(actionArea);
