@@ -4935,7 +4935,7 @@ window.addEventListener('DOMContentLoaded', () => {
         
         try {
             const API_KEY = "AIzaSyBHvYkCZIPlH4EaHcUsHChqBPDLHTNnamw";
-            const url = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-lite-latest:generateContent?key=" + API_KEY;
+            const url = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-lite:generateContent?key=" + API_KEY;
             
             let system_prompt = "";
             let user_message = "";
@@ -4977,6 +4977,25 @@ window.addEventListener('DOMContentLoaded', () => {
                 body: JSON.stringify(payload)
             });
             const rawData = await response.json();
+            
+            if (!response.ok) {
+                const errMsg = rawData.error?.message || '';
+                let displayMsg = 'AIサポートでエラーが発生しました。';
+                if (response.status === 429) {
+                    displayMsg = '⚠️ APIの利用上限に達しました。しばらく時間をおいてからお試しください。';
+                } else if (response.status === 404) {
+                    displayMsg = '⚠️ AIモデルが見つかりません。設定を確認してください。';
+                }
+                if (currentDepth === 1) {
+                    aiHintBox.innerText = displayMsg;
+                } else {
+                    const loadingDiv = document.getElementById(`ai-loading-${currentDepth}`);
+                    if (loadingDiv) loadingDiv.innerText = displayMsg;
+                }
+                aiHintBtn.disabled = false;
+                return;
+            }
+            
             const data = { hint: rawData.candidates[0].content.parts[0].text };
             if (data.hint) {
                 // Record this hint in history for the next request
