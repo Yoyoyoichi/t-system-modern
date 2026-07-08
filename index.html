@@ -4980,12 +4980,7 @@ window.addEventListener('DOMContentLoaded', () => {
             
             if (!response.ok) {
                 const errMsg = rawData.error?.message || '';
-                let displayMsg = 'AIサポートでエラーが発生しました。';
-                if (response.status === 429) {
-                    displayMsg = '⚠️ APIの利用上限に達しました。しばらく時間をおいてからお試しください。';
-                } else if (response.status === 404) {
-                    displayMsg = '⚠️ AIモデルが見つかりません。設定を確認してください。';
-                }
+                let displayMsg = `⚠️ AIエラーが発生しました (${response.status}): ${errMsg}`;
                 if (currentDepth === 1) {
                     aiHintBox.innerText = displayMsg;
                 } else {
@@ -5048,11 +5043,12 @@ window.addEventListener('DOMContentLoaded', () => {
                 }
             }
         } catch (e) {
+            const displayMsg = '⚠️ 通信エラーまたは例外が発生しました: ' + (e.message || e);
             if (currentDepth === 1) {
-                aiHintBox.innerText = '通信エラーが発生しました。';
+                aiHintBox.innerText = displayMsg;
             } else {
                 const loadingDiv = document.getElementById(`ai-loading-${currentDepth}`);
-                if (loadingDiv) loadingDiv.innerText = '通信エラーが発生しました。';
+                if (loadingDiv) loadingDiv.innerText = displayMsg;
             }
         }
         aiHintBtn.disabled = false;
