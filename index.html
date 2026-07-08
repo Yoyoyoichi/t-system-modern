@@ -2981,6 +2981,7 @@ async function listChange(categorySelect) {
 
 
 async function listChanged(){
+  settingLoad();
   firstRemoveFlag = false;
   num = -1;
   flag1 = false;
@@ -3837,73 +3838,96 @@ for(var i = 1; i < novels.length; i ++){
 
 
 
-var response = '';
-response = response.split('^');
-// console.log('response is '+response);
-if (response[0]) {
-  if (response[0]==="all"){
-    document.getElementById("MaxQuestionNumber").value = "all"
-  } else {
-    document.getElementById("MaxQuestionNumber").value = Number(response[0]);
+function settingLoad() {
+  let dbName = document.mainform && document.mainform.DB_name ? document.mainform.DB_name.value : '';
+  if (!dbName) {
+    dbName = 'terashima01';
+    if (document.getElementById("DB_name")) {
+      document.getElementById("DB_name").value = dbName;
+    }
   }
-}
-// document.getElementById("MaxQuestionNumber").value = Number(response[0]);
-if (response[1]) {
-  document.getElementById("fontresize").value = response[1];
-}
-textareafontresize()
-if (response[2]) {
-  document.getElementById("autoSpeed").value =  Number(response[2]);
-}
-if (response[3]) {
-  document.getElementById("autoReading").value = response[3];
+
+  let saved = localStorage.getItem('t_system_settings_' + dbName);
+  if (!saved) {
+    // Default fallback settings
+    document.getElementById("keyControl").checked = true;
+    return;
   }
-if (response[4]) {
-  document.getElementById("jpSpeed").value = response[4];
-}
-if (response[5]) {
-  document.getElementById("engSpeed").value = response[5];
-}
-// console.log('document.getElementById("engSpeed").value is ' + document.getElementById("engSpeed").value);
-if (response[6]) {
-  document.getElementById("NOC").value = Number(response[6]);
-}
-if (response[7]) {
-  document.getElementById("autoAnswer").value = Number(response[7]);
-}
-document.getElementById("qachange").checked = parseStrToBoolean(response[8]);
-document.getElementById("autoread").checked = parseStrToBoolean(response[9]);
-document.getElementById("keyControl").checked = (response[10] !== undefined && response[10] !== '') ? parseStrToBoolean(response[10]) : true;
-document.getElementById("answerByMyself").checked = parseStrToBoolean(response[11]);
-document.getElementById("randomOrNot").checked = parseStrToBoolean(response[12]);
-document.getElementById("flexButton").checked = parseStrToBoolean(response[18]);
-if (response[13]) {  
-response2 = response[13].split('@@@@');}
-if (response2[0]) {
-document.getElementById("backGround").value = response2[0];}
-changeBG();
-if (response2[1]) {
-document.getElementById("fontSelect").value = response2[1];}
-changeFont();
-if (response[16]) {
-document.getElementById("novelSelect").value = response[16];}
-if (response[21]) {
-  if (response[21]==='true'){
-    document.getElementById("blackCheck").checked = true;
-    turnBlack()
-  } else{
-    document.getElementById("blackCheck").checked = false;
+
+  var response = saved.split('^');
+  var response2 = [];
+  
+  if (response[0]) {
+    if (response[0]==="all"){
+      document.getElementById("MaxQuestionNumber").value = "all"
+    } else {
+      document.getElementById("MaxQuestionNumber").value = Number(response[0]);
+    }
+  }
+  if (response[1]) {
+    document.getElementById("fontresize").value = response[1];
+  }
+  textareafontresize();
+  if (response[2]) {
+    document.getElementById("autoSpeed").value =  Number(response[2]);
+  }
+  if (response[3]) {
+    document.getElementById("autoReading").value = response[3];
+  }
+  if (response[4]) {
+    document.getElementById("jpSpeed").value = response[4];
+  }
+  if (response[5]) {
+    document.getElementById("engSpeed").value = response[5];
+  }
+  if (response[6]) {
+    document.getElementById("NOC").value = Number(response[6]);
+  }
+  if (response[7]) {
+    document.getElementById("autoAnswer").value = Number(response[7]);
+  }
+  document.getElementById("qachange").checked = parseStrToBoolean(response[8]);
+  document.getElementById("autoread").checked = parseStrToBoolean(response[9]);
+  document.getElementById("keyControl").checked = (response[10] !== undefined && response[10] !== '') ? parseStrToBoolean(response[10]) : true;
+  document.getElementById("answerByMyself").checked = parseStrToBoolean(response[11]);
+  document.getElementById("randomOrNot").checked = parseStrToBoolean(response[12]);
+  document.getElementById("flexButton").checked = parseStrToBoolean(response[18]);
+  
+  if (response[13]) {  
+    response2 = response[13].split('@@@@');
+  }
+  if (response2[0]) {
+    document.getElementById("backGround").value = response2[0];
+  }
+  changeBG();
+  if (response2[1]) {
+    document.getElementById("fontSelect").value = response2[1];
+  }
+  changeFont();
+  if (response[16]) {
+    document.getElementById("novelSelect").value = response[16];
+  }
+  if (response[21]) {
+    if (response[21]==='true'){
+      document.getElementById("blackCheck").checked = true;
+      turnBlack();
+    } else{
+      document.getElementById("blackCheck").checked = false;
+    }
+  }
+
+  if (response[18]==="true") {
+    QnAareaFlex();
+  }
+  if (response[20]) {
+    if ((document.getElementById("novelSelect").value) && !(document.getElementById("novelSelect").value == "なし")){
+      document.getElementById("novelSentenceNumber").value = response[20];
+    }
   }
 }
 
-if (response[18]==="true") {
-  QnAareaFlex();
-}
-if (response[20]) {
-  if ((document.getElementById("novelSelect").value) && !(document.getElementById("novelSelect").value == "なし")){
-    document.getElementById("novelSentenceNumber").value = response[20];
-  }
-}
+// Initial setup from default select on script load
+settingLoad();
 
 
 function AnswerSent(code)
