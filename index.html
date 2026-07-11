@@ -817,7 +817,7 @@ input[type="text"].button:hover {
 <body>
 <div class="t-system-header">
     <span class="t-system-logo">T-System</span>
-    <span class="t-system-version">v1.2.0 "Pure-Modern"</span>
+    <span class="t-system-version">v1.3.0 "Secure-Keys"</span>
 </div>
 
 <form name ="mainform" id ="mainform" action="" onsubmit="event.preventDefault(); (async () => { await updateDropdown('ctg1', 'category1', {}); await listChanged(); sendRequest(); })();">
@@ -1376,6 +1376,12 @@ word-wrap:break-word;'></pre>
         <span class="msc-settings-title">詳細設定</span>
     </div>
     <div class="msc-settings-grid">
+        <div class="msc-setting-item">
+            <span class="msc-setting-label">Gemini APIキー</span>
+            <div class="msc-setting-control">
+                <input type="password" id="gemini_api_key" placeholder="AIzaSy..." onchange="saveGeminiApiKey()" style="width: 80%; font-size: 16px;">
+            </div>
+        </div>
 
         <div class="msc-setting-item">
             <span class="msc-setting-label">最低正解数</span>
@@ -3968,6 +3974,17 @@ function settingLoad() {
       document.getElementById("blackCheck").checked = false;
     }
   }
+
+  const savedKey = localStorage.getItem('gemini_api_key') || '';
+  const apiKeyInput = document.getElementById('gemini_api_key');
+  if (apiKeyInput) {
+    apiKeyInput.value = savedKey;
+  }
+}
+
+function saveGeminiApiKey() {
+  const key = document.getElementById('gemini_api_key').value.trim();
+  localStorage.setItem('gemini_api_key', key);
 }
 
 // Initial setup from default select on script load
@@ -5002,7 +5019,14 @@ window.addEventListener('DOMContentLoaded', () => {
         const aText = document.getElementById('textareas2').value;
         
         try {
-            const API_KEY = "AIzaSyBHvYkCZIPlH4EaHcUsHChqBPDLHTNnamw";
+            const API_KEY = localStorage.getItem('gemini_api_key') || "";
+            if (!API_KEY) {
+                alert("AI機能を使用するには、画面下部の「詳細設定」から「Gemini APIキー」を設定してください。");
+                aiHintBtn.disabled = false;
+                const loadingEl = document.getElementById(`ai-loading-${currentDepth}`);
+                if (loadingEl) loadingEl.remove();
+                return;
+            }
             const url = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-lite:generateContent?key=" + API_KEY;
             
             let system_prompt = "";
