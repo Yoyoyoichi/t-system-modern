@@ -223,63 +223,79 @@ input[type="text"].button:hover {
 
 .mtp-header-row {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
     align-items: center;
-    margin-bottom: 24px;
-    gap: 20px;
+    background: #f3f3f3;
+    padding: 4px 8px !important;
+    border-bottom: 1px solid #cacaca;
+    margin-bottom: 8px !important;
+    gap: 12px;
     flex-wrap: wrap;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 }
 
 #DB_name {
-    width: 300px !important;
-    height: 48px !important;
-    font-size: 24px !important;
-    border: none !important;
-    border-bottom: 2px solid #111 !important;
-    border-radius: 0 !important;
-    background: transparent;
-    color: #111;
-    font-weight: 600;
-    transition: all 0.3s;
+    width: 180px !important;
+    height: 22px !important;
+    font-size: 12px !important;
+    border: 1px solid #cacaca !important;
+    border-radius: 2px !important;
+    background: #ffffff !important;
+    color: #1a1aa6 !important;
+    padding: 2px 6px !important;
+    font-family: Consolas, monospace !important;
+    font-weight: normal !important;
+    transition: none;
 }
 #DB_name:focus {
-    outline: none;
-    border-bottom-color: #111111 !important;
+    outline: 1px solid #1a73e8;
+    border-color: #1a73e8 !important;
 }
 
 #grandParent1 {
     display: flex;
-    gap: 12px;
+    gap: 6px;
     align-items: center;
     flex-wrap: wrap;
 }
 
 #grandParent1 input[type="submit"] {
-    background: #111;
-    color: #fff !important;
-    border-radius: 6px;
-    padding: 10px 24px;
-    font-size: 16px !important;
-    height: auto !important;
+    background: #f3f3f3 !important;
+    color: #333333 !important;
+    border: 1px solid #cacaca !important;
+    border-radius: 3px !important;
+    padding: 2px 8px !important;
+    font-size: 12px !important;
+    height: 22px !important;
     width: auto !important;
-    font-weight: 600;
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif !important;
+    font-weight: normal !important;
+    cursor: pointer;
+}
+#grandParent1 input[type="submit"]:hover {
+    background: #eaeaea !important;
+    border-color: #a0a0a0 !important;
 }
 
 #grandParent1 a {
     text-decoration: none;
-    padding: 8px 16px;
-    border-radius: 20px;
-    background: #f4f4f5;
-    transition: all 0.2s;
+    padding: 2px 6px;
+    border-radius: 3px;
+    background: #f3f3f3;
+    border: 1px solid #cacaca;
+    transition: background 0.1s;
+    height: 22px;
+    display: inline-flex;
+    align-items: center;
 }
 #grandParent1 a:hover {
-    background: #e4e4e7;
-    transform: translateY(-1px);
+    background: #eaeaea;
+    transform: none;
 }
 #grandParent1 a font {
-    color: #3f3f46 !important;
-    font-size: 14px !important;
-    font-weight: 600;
+    color: #5f6368 !important;
+    font-size: 11px !important;
+    font-weight: normal !important;
 }
 
 .mtp-stats-row {
@@ -861,7 +877,7 @@ input[type="text"].button:hover {
         <div class="devtools-tab">Application</div>
     </div>
     <div class="devtools-header-right">
-        <span class="t-system-version">v1.3.4-step1</span>
+        <span class="t-system-version">v1.3.4-step2</span>
     </div>
 </div>
 
