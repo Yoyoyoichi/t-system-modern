@@ -1050,6 +1050,200 @@ input[type="text"].button:hover {
     background-color: #eaeaea !important;
     color: #222 !important;
 }
+/* Google Sheets Camouflage Step 3: Ribbon and Table grid styles */
+.sheet-toolbar {
+    background-color: #edf2fa !important;
+    height: 38px !important;
+    border-bottom: 1px solid #dadce0 !important;
+    display: flex !important;
+    align-items: center !important;
+    padding: 0 12px !important;
+    gap: 12px !important;
+    flex-shrink: 0;
+    width: 100%;
+}
+
+.tb-btn {
+    padding: 4px 8px !important;
+    border-radius: 4px !important;
+    cursor: pointer !important;
+    font-size: 11px !important;
+    user-select: none;
+}
+.tb-btn:hover {
+    background-color: #e0e6ed !important;
+}
+
+.sheet-formula-bar {
+    height: 34px !important;
+    background-color: #ffffff !important;
+    border-bottom: 1px solid #dadce0 !important;
+    display: flex !important;
+    align-items: center !important;
+    padding: 0 8px !important;
+    flex-shrink: 0;
+    gap: 6px !important;
+    width: 100%;
+}
+
+.fx-address {
+    font-size: 11px !important;
+    font-weight: bold !important;
+    color: #5f6368 !important;
+    width: 45px !important;
+    text-align: center !important;
+    border-right: 1px solid #dadce0 !important;
+}
+
+.fx-icon {
+    font-style: italic !important;
+    color: #70757a !important;
+    font-family: 'Times New Roman', Times, serif !important;
+    font-size: 14px !important;
+    font-weight: bold !important;
+    padding: 0 6px !important;
+    border-right: 1px solid #dadce0 !important;
+    user-select: none;
+}
+
+.fx-input {
+    flex: 1 !important;
+    border: none !important;
+    outline: none !important;
+    font-family: monospace !important;
+    font-size: 11px !important;
+    background: transparent !important;
+}
+
+.grid-viewport {
+    flex: 1 !important;
+    overflow: auto !important;
+    width: 100%;
+}
+
+.sheet-table {
+    border-collapse: collapse !important;
+    width: 100% !important;
+    table-layout: fixed !important;
+}
+
+.sheet-table th {
+    background-color: #f8f9fa !important;
+    border: 1px solid #c0c0c0 !important;
+    color: #5f6368 !important;
+    font-size: 11px !important;
+    font-weight: normal !important;
+    text-align: center !important;
+    height: 24px !important;
+    position: sticky !important;
+    top: 0;
+    z-index: 10;
+}
+
+.sheet-table td.row-header {
+    background-color: #f8f9fa !important;
+    border: 1px solid #c0c0c0 !important;
+    color: #5f6368 !important;
+    text-align: center !important;
+    width: 40px !important;
+    position: sticky !important;
+    left: 0;
+    z-index: 5;
+    font-size: 11px !important;
+}
+
+.sheet-table td {
+    border: 1px solid #e0e0e0 !important;
+    height: 32px;
+    padding: 0 6px !important;
+    font-size: 12px !important;
+    vertical-align: middle !important;
+    background: #ffffff !important;
+}
+
+.active-select-cell {
+    outline: 2px solid #1a73e8 !important;
+    z-index: 2;
+}
+
+.cell-textarea {
+    width: 100% !important;
+    height: 100% !important;
+    border: none !important;
+    outline: none !important;
+    font-family: inherit !important;
+    font-size: 12px !important;
+    resize: none !important;
+    background: transparent !important;
+}
+
+.sheet-btn {
+    background-color: #0f9d58 !important;
+    color: white !important;
+    border: none !important;
+    padding: 4px 12px !important;
+    font-size: 11px !important;
+    cursor: pointer !important;
+    border-radius: 4px !important;
+    font-weight: bold !important;
+}
+.sheet-btn:hover {
+    background-color: #0b8043 !important;
+}
+/* Google Sheets Cell Integrations Style overrides */
+.sheet-table td .msc-header {
+    background: transparent !important;
+    border-bottom: none !important;
+    padding: 0 0 4px 0 !important;
+}
+
+.sheet-table td .msc-body {
+    padding: 0 !important;
+}
+
+.sheet-table td .msc-metadata-box {
+    display: none !important;
+}
+
+.sheet-table td .msc-answer {
+    padding: 0 !important;
+}
+
+.sheet-table td .msc-actions-row {
+    margin-top: 4px !important;
+    gap: 4px !important;
+    justify-content: center !important;
+}
+
+.sheet-table td .msc-actions-row input[type="button"],
+.sheet-table td .msc-actions-row button {
+    height: 24px !important;
+    font-size: 11px !important;
+    padding: 2px 6px !important;
+}
+
+.sheet-table td #textareas, 
+.sheet-table td #textareas2 {
+    border: none !important;
+    background: transparent !important;
+    padding: 0 !important;
+    font-size: 12px !important;
+    width: 100% !important;
+    height: 120px !important;
+    resize: none !important;
+    box-shadow: none !important;
+}
+
+.sheet-table td #textareas:focus,
+.sheet-table td #textareas2:focus {
+    outline: none !important;
+}
+
+.sheet-table td .msc-counter {
+    font-size: 10px !important;
+    color: #888888 !important;
+    margin-bottom: 2px !important;
+}
 \n</style>
 <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script> -->
 <script type="text/javascript" src="jquery-3.4.1.min.js"></script>
@@ -1086,7 +1280,7 @@ input[type="text"].button:hover {
             <span class="sheet-menu-item" id="menu-extensions">拡張機能</span>
         </div>
     </div>
-    <div class="sheet-version-tag">v1.3.4-sheet-step2-settings</div>
+    <div class="sheet-version-tag">v1.3.4-sheet-step3</div>
 </div>
 
 <form name ="mainform" id ="mainform" action="" onsubmit="event.preventDefault(); (async () => { await updateDropdown('ctg1', 'category1', {}); await listChanged(); sendRequest(); })();">
@@ -4872,86 +5066,123 @@ window.addEventListener('DOMContentLoaded', () => {
     const topPanel = document.createElement('div');
     topPanel.className = 'modern-top-panel';
 
-    // 1. Header Row
-    const headerRow = document.createElement('div');
-    headerRow.className = 'mtp-header-row';
-    const dbInput = document.getElementById('DB_name');
-    if(dbInput) { dbInput.placeholder = "Enter DB Name..."; headerRow.appendChild(dbInput); }
+    // 1. Google Sheets Toolbar
+    const toolbar = document.createElement('div');
+    toolbar.className = 'sheet-toolbar';
+    toolbar.innerHTML = `
+        <div class="tb-btn">🔙</div>
+        <div class="tb-btn">🔜</div>
+        <div class="tb-btn">🖨️</div>
+        <div style="border-right:1px solid #dadce0; height:20px;"></div>
+        <div class="tb-btn" style="font-weight:bold;">B</div>
+        <div class="tb-btn" style="font-style:italic;">I</div>
+        <div style="border-right:1px solid #dadce0; height:20px;"></div>
+        <div class="tb-btn">🎨 塗りつぶし</div>
+        <div class="tb-btn">田 枠線</div>
+    `;
+    topPanel.appendChild(toolbar);
 
-    const gp1 = document.getElementById('grandParent1');
-    if(gp1) {
-        Array.from(gp1.childNodes).forEach(node => {
-            if(node.nodeName === 'BR' || (node.nodeName === '#text' && node.textContent.trim() === '')) node.remove();
-        });
-        headerRow.appendChild(gp1);
-    }
-    topPanel.appendChild(headerRow);
+    // 2. Google Sheets Formula Bar
+    const formulaBar = document.createElement('div');
+    formulaBar.className = 'sheet-formula-bar';
+    formulaBar.innerHTML = `
+        <div class="fx-address">C3</div>
+        <div class="fx-icon">fx</div>
+        <input class="fx-input" type="text" value='=IF(C3="apple", "PASS", "FAIL")' readonly>
+    `;
+    topPanel.appendChild(formulaBar);
 
+    // 3. Grid Table viewport
+    const gridViewport = document.createElement('div');
+    gridViewport.className = 'grid-viewport';
+
+    const table = document.createElement('table');
+    table.className = 'sheet-table';
     
-    
-    // 2. Stats Row (Compact)
-    const statsRow = document.createElement('div');
-    statsRow.className = 'mtp-stats-row';
+    // Headers
+    table.innerHTML = `
+        <thead>
+            <tr>
+                <th style="width: 50px;"></th>
+                <th style="width: 100px;">A</th>
+                <th style="width: 350px;">B</th>
+                <th style="width: 350px;">C</th>
+                <th style="width: 120px;">D</th>
+                <th style="width: 100px;">E</th>
+                <th style="width: 100px;">F</th>
+                <th style="width: 100px;">G</th>
+            </tr>
+        </thead>
+    `;
+    const tbody = document.createElement('tbody');
+
+    // Row 1: STATUS & stats
+    const row1 = document.createElement('tr');
+    row1.innerHTML = `<td class="row-header">1</td><td style="font-weight:bold; background:#f8f9fa;">STATUS</td>`;
+    const statsCell = document.createElement('td');
+    statsCell.colSpan = 6;
     const massages = document.getElementById('massages');
-    if(massages) { 
-        massages.className = 'modern-stats'; 
-        
-        // Parse the text to create a compact flex layout
-        const p = massages.querySelector('p');
-        if(p) {
-            const text = p.innerHTML;
-            const cleanText = text.replace(/<br>\s*<br>/gi, '<span class="stat-sep"></span>').replace(/\n/g, '');
-            p.innerHTML = cleanText;
-            p.className = 'compact-stats-text';
-        }
-        statsRow.appendChild(massages); 
+    if (massages) {
+        massages.style.cssText = 'background:transparent; border:none; padding:0; margin:0;';
+        statsCell.appendChild(massages);
     }
+    row1.appendChild(statsCell);
+    tbody.appendChild(row1);
 
-    // Completely remove the old information textarea AND its parent div to be 100% sure it's gone
-    const infoTextarea = document.getElementById('information');
-    if(infoTextarea) {
-        const parent = infoTextarea.parentElement;
-        if(parent && parent.tagName === 'DIV') {
-            parent.style.display = 'none';
-            parent.remove(); // Nuke it from the DOM completely
-        }
-        infoTextarea.style.display = 'none';
-        infoTextarea.remove();
+    // Row 2: CONFIG & CATEGORIES (ctg1~5)
+    const row2 = document.createElement('tr');
+    row2.innerHTML = `<td class="row-header">2</td><td style="font-weight:bold; background:#f8f9fa;">CONFIG</td>`;
+    
+    // DB Input Cell (Cell B2)
+    const dbCell = document.createElement('td');
+    const dbInput = document.getElementById('DB_name');
+    if(dbInput) {
+        dbInput.placeholder = "Enter DB Name...";
+        dbInput.style.cssText = 'border:none; width:100%; outline:none; background:transparent; font-family:monospace;';
+        dbCell.appendChild(dbInput);
     }
+    row2.appendChild(dbCell);
 
-    topPanel.appendChild(statsRow);
-
-
-
-    // 3. Categories Row
-    const catRow = document.createElement('div');
-    catRow.className = 'mtp-category-row';
+    // Category cells (Cell C2 to G2)
     for(let i=1; i<=5; i++) {
+        const catCell = document.createElement('td');
         let ctg = document.getElementById('ctg'+i);
         if(!ctg) {
-            // Webアプリ化対応: PHPが生成していたセレクトボックスをJavaScriptで生成する
             ctg = document.createElement('select');
             ctg.id = 'ctg' + i;
             ctg.name = i === 4 ? 'categoryFour' : (i === 5 ? 'categoryFive' : 'category' + i);
             ctg.className = 'selectBox';
             ctg.multiple = true;
-            ctg.style.cssText = 'width:19%;height:22vh; font-size: 15px;margin:1px';
-            if(i === 1) ctg.onchange = function() { if(typeof category1Change === 'function') category1Change(); listChange(this); listChanged(); };
-            else ctg.onchange = function() { listChange(this); listChanged(); };
             
-            // Add a default "Loading..." option
             const opt = document.createElement('option');
             opt.value = "";
             opt.text = "読込中...";
             ctg.appendChild(opt);
-            
-            // Append to grandParent1 so old scripts can find it if needed, or just append straight to catRow
-        } else {
-            ctg.removeAttribute('style');
         }
-        catRow.appendChild(ctg);
+        ctg.style.cssText = 'border:none; width:100%; height:100%; outline:none; background:transparent; font-size:11px;';
+        if(i === 1) ctg.onchange = function() { if(typeof category1Change === 'function') category1Change(); listChange(this); listChanged(); };
+        else ctg.onchange = function() { listChange(this); listChanged(); };
+        
+        catCell.appendChild(ctg);
+        row2.appendChild(catCell);
     }
-    topPanel.appendChild(catRow);
+    tbody.appendChild(row2);
+
+    // Row 3: LEARNING (B3 and C3 will be placeholders for problem and answer inputs)
+    const row3 = document.createElement('tr');
+    row3.style.height = '160px';
+    row3.innerHTML = `
+        <td class="row-header">3</td>
+        <td style="font-weight:bold; background:#f8f9fa;">LEARNING</td>
+        <td id="cell-problem" style="vertical-align:top; padding:4px;"></td>
+        <td id="cell-answer" class="active-select-cell" style="vertical-align:top; padding:4px;"></td>
+        <td id="cell-actions" style="vertical-align:middle; text-align:center;" colSpan="4"></td>
+    `;
+    tbody.appendChild(row3);
+
+    table.appendChild(tbody);
+    gridViewport.appendChild(table);
+    topPanel.appendChild(gridViewport);
 
     // 4. Filters Row (Google Sheets ＋ DevTools Styles layout)
     const filtersContainer = document.createElement('div');
@@ -5561,13 +5792,31 @@ window.addEventListener('DOMContentLoaded', () => {
 
     studyCard.appendChild(utilityArea);
 
-    // Insert the Study Card below the unified filters
-    const unifiedPanel = document.querySelector('.unified-panel-container');
-    const form = document.getElementById('mainform');
-    if (unifiedPanel) {
-        unifiedPanel.after(studyCard);
-    } else if (form) {
-        form.appendChild(studyCard);
+    // Instead of adding studyCard container to the screen,
+    // we scatter its components into Google Sheets Row 3 cells!
+    const cellProblem = document.getElementById('cell-problem');
+    const cellAnswer = document.getElementById('cell-answer');
+    const cellActions = document.getElementById('cell-actions');
+
+    if (cellProblem && cellAnswer && cellActions) {
+        // 1. Problem Cell (Cell B3)
+        cellProblem.appendChild(cardHeader);
+        cellProblem.appendChild(cardBody);
+
+        // 2. Answer Cell (Cell C3)
+        cellAnswer.appendChild(cardAnswer);
+
+        // 3. Actions Cell (Cell D3)
+        cellActions.appendChild(actionArea);
+        cellActions.appendChild(feedbackArea);
+        cellActions.appendChild(utilityArea);
+    } else {
+        const unifiedPanel = document.querySelector('.unified-panel-container');
+        if (unifiedPanel) {
+            unifiedPanel.after(studyCard);
+        } else if (form) {
+            form.appendChild(studyCard);
+        }
     }
     
     const qBoxes = document.querySelectorAll('.questionbuttonbox');
