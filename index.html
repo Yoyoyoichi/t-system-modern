@@ -461,29 +461,53 @@ input[type="text"].button:hover {
 .msp-btn:hover { background: #333; transform: translateY(-1px); }
 
 /* Unified 2-Column Layout */
+body {
+    margin: 0 !important;
+    padding: 0 !important;
+    height: 100vh !important;
+    overflow: hidden !important;
+    display: flex !important;
+    flex-direction: column !important;
+}
+
+#mainform {
+    display: flex !important;
+    flex-direction: column !important;
+    height: calc(100vh - 40px) !important; /* subtract sheet-header */
+    overflow: hidden !important;
+}
+
+.modern-top-panel {
+    display: flex !important;
+    flex-direction: column !important;
+    height: 100% !important;
+}
+
+/* Unified 2-Column Layout */
 .unified-panel-container {
     display: flex;
     gap: 0px !important;
-    margin-top: 12px;
-    padding-top: 0px;
-    border-top: 1px solid #cacaca;
+    height: 100% !important;
     align-items: stretch;
     background: #ffffff;
+    overflow: hidden !important;
 }
 .unified-left-col {
-    flex: 2 !important;
+    flex: 21 !important; /* Roughly 68% */
     display: flex;
     flex-direction: column;
-    gap: 12px;
-    padding-right: 12px;
-    border-right: 1px solid #cacaca;
+    height: 100% !important;
+    overflow: hidden !important;
 }
 .unified-right-col {
-    flex: 1 !important;
+    flex: 10 !important; /* Roughly 32% */
     display: flex;
     flex-direction: column;
     background: #f3f3f3;
-    padding: 8px !important;
+    padding: 0 !important;
+    border-left: 1px solid #cacaca !important;
+    height: 100% !important;
+    overflow-y: auto !important;
 }
 .modern-search-panel.unified-right-content {
     margin: 0;
@@ -1119,6 +1143,7 @@ input[type="text"].button:hover {
     flex: 1 !important;
     overflow: auto !important;
     width: 100%;
+    height: calc(100% - 72px) !important;
 }
 
 .sheet-table {
@@ -1280,7 +1305,7 @@ input[type="text"].button:hover {
             <span class="sheet-menu-item" id="menu-extensions">拡張機能</span>
         </div>
     </div>
-    <div class="sheet-version-tag">v1.3.4-sheet-step3</div>
+    <div class="sheet-version-tag">v1.3.4-sheet-step3-layout</div>
 </div>
 
 <form name ="mainform" id ="mainform" action="" onsubmit="event.preventDefault(); (async () => { await updateDropdown('ctg1', 'category1', {}); await listChanged(); sendRequest(); })();">
