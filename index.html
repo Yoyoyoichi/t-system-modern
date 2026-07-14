@@ -1022,6 +1022,34 @@ input[type="text"].button:hover {
 .css-prop-value {
     color: #1a1aa6 !important; /* CSS property value */
 }
+.devtools-tabbar {
+    background-color: #f3f3f3 !important;
+    border-bottom: 1px solid #cacaca !important;
+    height: 28px !important;
+    display: flex !important;
+    align-items: center !important;
+    font-size: 11px !important;
+    color: #5f6368 !important;
+    flex-shrink: 0;
+    user-select: none;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif !important;
+}
+
+.dev-tab {
+    padding: 0 12px !important;
+    line-height: 28px !important;
+    cursor: pointer !important;
+    border-bottom: 2px solid transparent !important;
+}
+.dev-tab.active {
+    color: #1a73e8 !important;
+    border-bottom: 2px solid #1a73e8 !important;
+    font-weight: 500 !important;
+}
+.dev-tab:hover:not(.active) {
+    background-color: #eaeaea !important;
+    color: #222 !important;
+}
 \n</style>
 <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script> -->
 <script type="text/javascript" src="jquery-3.4.1.min.js"></script>
@@ -1058,7 +1086,7 @@ input[type="text"].button:hover {
             <span class="sheet-menu-item">拡張機能</span>
         </div>
     </div>
-    <div class="sheet-version-tag">v1.3.4-sheet-step2</div>
+    <div class="sheet-version-tag">v1.3.4-sheet-step2-fixed</div>
 </div>
 
 <form name ="mainform" id ="mainform" action="" onsubmit="event.preventDefault(); (async () => { await updateDropdown('ctg1', 'category1', {}); await listChanged(); sendRequest(); })();">
@@ -5115,15 +5143,21 @@ window.addEventListener('DOMContentLoaded', () => {
     const unifiedRight = document.createElement('div');
     unifiedRight.className = 'unified-right-col';
 
-    // Get the existing mtp-filters-container which holds Level and Condition filters
-    const oldFiltersContainer = document.querySelector('.mtp-filters-container');
+    // Create DevTools tabbar for the right pane
+    const devTabbar = document.createElement('div');
+    devTabbar.className = 'devtools-tabbar';
+    devTabbar.innerHTML = `
+        <div class="dev-tab active">Styles</div>
+        <div class="dev-tab">Computed</div>
+        <div class="dev-tab">Console</div>
+    `;
+    unifiedRight.appendChild(devTabbar);
+
+    // Get the existing devtools-styles-pane which holds Level and Condition filters
+    const oldFiltersContainer = document.querySelector('.devtools-styles-pane');
     if (oldFiltersContainer) {
-        // Move its children (Level group, Time group) into unifiedRight
-        while(oldFiltersContainer.firstChild) {
-            unifiedRight.appendChild(oldFiltersContainer.firstChild);
-        }
-        // Remove the old empty container
-        oldFiltersContainer.remove();
+        // Move the container itself into unifiedRight
+        unifiedRight.appendChild(oldFiltersContainer);
     }
 
     // Put advanced search in the right column
