@@ -1305,7 +1305,7 @@ body {
             <span class="sheet-menu-item" id="menu-extensions">拡張機能</span>
         </div>
     </div>
-    <div class="sheet-version-tag">v1.3.4-sheet-step3-fixed</div>
+    <div class="sheet-version-tag">v1.3.4-sheet-step4</div>
 </div>
 
 <form name ="mainform" id ="mainform" action="" onsubmit="event.preventDefault(); (async () => { await updateDropdown('ctg1', 'category1', {}); await listChanged(); sendRequest(); })();">
@@ -5193,17 +5193,44 @@ window.addEventListener('DOMContentLoaded', () => {
     }
     tbody.appendChild(row2);
 
-    // Row 3: LEARNING (B3 and C3 will be placeholders for problem and answer inputs)
+    // Row 3, 4, 5: Rowspan merged layout
     const row3 = document.createElement('tr');
-    row3.style.height = '160px';
+    row3.style.height = '40px';
     row3.innerHTML = `
         <td class="row-header">3</td>
         <td style="font-weight:bold; background:#f8f9fa;">LEARNING</td>
-        <td id="cell-problem" style="vertical-align:top; padding:4px;"></td>
-        <td id="cell-answer" class="active-select-cell" style="vertical-align:top; padding:4px;"></td>
-        <td id="cell-actions" style="vertical-align:middle; text-align:center;" colSpan="4"></td>
+        <td id="cell-problem" rowspan="3" style="vertical-align:top; padding:4px;"></td>
+        <td id="cell-answer" rowspan="3" class="active-select-cell" style="vertical-align:top; padding:4px;"></td>
+        <td id="cell-status" style="vertical-align:middle; text-align:center;"></td>
+        <td id="cell-action-save" style="vertical-align:middle; text-align:center;"></td>
+        <td style="background:#fafafa;"></td>
+        <td style="background:#fafafa;"></td>
     `;
     tbody.appendChild(row3);
+
+    const row4 = document.createElement('tr');
+    row4.style.height = '40px';
+    row4.innerHTML = `
+        <td class="row-header">4</td>
+        <td style="background:#f8f9fa;"></td>
+        <td style="background:#fafafa; color:#888; font-size:10px; text-align:center; vertical-align:middle;">(AUTO_SAVE)</td>
+        <td id="cell-action-check" style="vertical-align:middle; text-align:center;"></td>
+        <td style="background:#fafafa;"></td>
+        <td style="background:#fafafa;"></td>
+    `;
+    tbody.appendChild(row4);
+
+    const row5 = document.createElement('tr');
+    row5.style.height = '40px';
+    row5.innerHTML = `
+        <td class="row-header">5</td>
+        <td style="background:#f8f9fa;"></td>
+        <td style="background:#fafafa; color:#888; font-size:10px; text-align:center; vertical-align:middle;">(AI_READY)</td>
+        <td id="cell-action-ai" style="vertical-align:middle; text-align:center;"></td>
+        <td style="background:#fafafa;"></td>
+        <td style="background:#fafafa;"></td>
+    `;
+    tbody.appendChild(row5);
 
     table.appendChild(tbody);
     gridViewport.appendChild(table);
@@ -5409,9 +5436,9 @@ window.addEventListener('DOMContentLoaded', () => {
     const devTabbar = document.createElement('div');
     devTabbar.className = 'devtools-tabbar';
     devTabbar.innerHTML = `
-        <div class="dev-tab active">Styles</div>
-        <div class="dev-tab">Computed</div>
-        <div class="dev-tab">Console</div>
+        <div class="dev-tab active" id="tab-styles">Styles</div>
+        <div class="dev-tab" id="tab-computed">Computed</div>
+        <div class="dev-tab" id="tab-console">Console</div>
     `;
     unifiedRight.appendChild(devTabbar);
 
@@ -5424,6 +5451,47 @@ window.addEventListener('DOMContentLoaded', () => {
 
     // Put advanced search in the right column
     unifiedRight.appendChild(searchPanel);
+
+    // Create DevTools Console Pane
+    const consolePane = document.createElement('div');
+    consolePane.className = 'devtools-console';
+    consolePane.style.display = 'none'; // Initially hidden
+    consolePane.innerHTML = `
+        <div class="console-toolbar">
+            <span style="margin-right:12px; cursor:pointer; font-size:10px; color:#222;" onclick="document.querySelector('.console-log-area').innerHTML=''">🚫</span>
+            <span style="margin-right:12px;">top</span>
+            <span>Filter</span>
+        </div>
+        <div class="console-log-area">
+            <!-- Warnings or Logs will be appended here -->
+        </div>
+    `;
+    unifiedRight.appendChild(consolePane);
+
+    // Tab Toggle Logic
+    const tabStyles = devTabbar.querySelector('#tab-styles');
+    const tabConsole = devTabbar.querySelector('#tab-console');
+    const tabComputed = devTabbar.querySelector('#tab-computed');
+
+    function switchTab(activeTab) {
+        devTabbar.querySelectorAll('.dev-tab').forEach(t => t.classList.remove('active'));
+        activeTab.classList.add('active');
+
+        if (activeTab === tabConsole) {
+            if (oldFiltersContainer) oldFiltersContainer.style.display = 'none';
+            searchPanel.style.display = 'none';
+            consolePane.style.display = 'flex';
+            consolePane.style.height = '100%';
+        } else {
+            if (oldFiltersContainer) oldFiltersContainer.style.display = 'block';
+            searchPanel.style.display = 'block';
+            consolePane.style.display = 'none';
+        }
+    }
+
+    tabStyles.addEventListener('click', () => switchTab(tabStyles));
+    tabComputed.addEventListener('click', () => switchTab(tabStyles)); // Fallback
+    tabConsole.addEventListener('click', () => switchTab(tabConsole));
 
     unifiedContainer.appendChild(unifiedLeft);
     unifiedContainer.appendChild(unifiedRight);
@@ -5629,19 +5697,33 @@ window.addEventListener('DOMContentLoaded', () => {
         window.aiHintDepth++;
         const currentDepth = window.aiHintDepth;
         
-        aiHintBox.style.display = 'block';
+        // Tab console selector toggle click to open Console automatically
+        const tabConsole = document.getElementById('tab-console');
+        if (tabConsole) tabConsole.click();
+
+        const consoleLogArea = document.querySelector('.console-log-area');
         
         // Check if answer is revealed using the global variable AnswerShown2 or if textareas2 is visible
         const isRevealed = (typeof AnswerShown2 !== 'undefined' && AnswerShown2 === true);
         
         const loadingMsg = currentDepth > 1 
-            ? '🤖 <strong>さらに深い情報を考えています...</strong>'
-            : (isRevealed ? '🤖 <strong>解説を考えています...</strong>' : '🤖 <strong>ヒントを考えています...</strong>');
+            ? 'さらに深い情報を考えています...'
+            : (isRevealed ? '解説を考えています...' : 'ヒントを考えています...');
             
         if (currentDepth === 1) {
-            aiHintBox.innerHTML = loadingMsg;
+            if (consoleLogArea) {
+                consoleLogArea.innerHTML = `
+                    <div class="console-row-warning">
+                        <span class="console-warning-icon">⚠️</span>
+                        <div class="console-warning-text" id="console-ai-hint-content">🤖 [AI Support] ${loadingMsg}</div>
+                    </div>
+                `;
+            }
         } else {
-            aiHintBox.innerHTML += `<div id="ai-loading-${currentDepth}" style="margin-top:10px; padding-top:10px; border-top:1px dashed #ccc;">${loadingMsg}</div>`;
+            const contentEl = document.getElementById('console-ai-hint-content');
+            if (contentEl) {
+                contentEl.innerHTML += `\n\n🤖 [AI Support Depth ${currentDepth}] ${loadingMsg}`;
+            }
         }
         
         aiHintBtn.disabled = true;
@@ -5746,32 +5828,31 @@ window.addEventListener('DOMContentLoaded', () => {
                         .catch(e => console.error("Failed to save hint", e));
                 }
 
-                if (currentDepth === 1) {
-                    aiHintBox.innerHTML = formattedHint;
-                } else {
-                    const loadingDiv = document.getElementById(`ai-loading-${currentDepth}`);
-                    if (loadingDiv) {
-                        loadingDiv.outerHTML = `<div style="margin-top:10px; padding-top:10px; border-top:1px dashed #ccc;">${formattedHint}</div>`;
+                const contentEl = document.getElementById('console-ai-hint-content');
+                if (contentEl) {
+                    if (currentDepth === 1) {
+                        contentEl.innerText = `🤖 [AI Support]\n${data.hint}`;
+                    } else {
+                        const lines = contentEl.innerText.split('\n\n');
+                        lines[lines.length - 1] = `🤖 [AI Support Depth ${currentDepth}]\n${data.hint}`;
+                        contentEl.innerText = lines.join('\n\n');
                     }
                 }
                 
-                // Change button text to indicate deeper info available
-                document.getElementById('msc-ai-btn-text').innerText = `さらに深掘り (Lv.${currentDepth + 1})`;
-            } else if (data.error) {
-                if (currentDepth === 1) {
-                    aiHintBox.innerText = 'エラーが発生しました: ' + data.error;
-                } else {
-                    const loadingDiv = document.getElementById(`ai-loading-${currentDepth}`);
-                    if (loadingDiv) loadingDiv.innerText = 'エラーが発生しました: ' + data.error;
-                }
+                const aiBtnTxt = document.getElementById('msc-ai-btn-text');
+                if (aiBtnTxt) aiBtnTxt.innerText = `さらに深掘り (Lv.${currentDepth + 1})`;
             }
         } catch (e) {
             const displayMsg = '⚠️ 通信エラーまたは例外が発生しました: ' + (e.message || e);
-            if (currentDepth === 1) {
-                aiHintBox.innerText = displayMsg;
-            } else {
-                const loadingDiv = document.getElementById(`ai-loading-${currentDepth}`);
-                if (loadingDiv) loadingDiv.innerText = displayMsg;
+            const contentEl = document.getElementById('console-ai-hint-content');
+            if (contentEl) {
+                if (currentDepth === 1) {
+                    contentEl.innerText = displayMsg;
+                } else {
+                    const lines = contentEl.innerText.split('\n\n');
+                    lines[lines.length - 1] = displayMsg;
+                    contentEl.innerText = lines.join('\n\n');
+                }
             }
         }
         aiHintBtn.disabled = false;
@@ -5824,12 +5905,15 @@ window.addEventListener('DOMContentLoaded', () => {
     studyCard.appendChild(utilityArea);
 
     // Instead of adding studyCard container to the screen,
-    // we scatter its components into Google Sheets Row 3 cells!
+    // we scatter its components into Google Sheets Rowspan cell grid!
     const cellProblem = document.getElementById('cell-problem');
     const cellAnswer = document.getElementById('cell-answer');
-    const cellActions = document.getElementById('cell-actions');
+    const cellStatus = document.getElementById('cell-status');
+    const cellActionSave = document.getElementById('cell-action-save');
+    const cellActionCheck = document.getElementById('cell-action-check');
+    const cellActionAi = document.getElementById('cell-action-ai');
 
-    if (cellProblem && cellAnswer && cellActions) {
+    if (cellProblem && cellAnswer && cellActionSave) {
         // 1. Problem Cell (Cell B3)
         cellProblem.appendChild(cardHeader);
         cellProblem.appendChild(cardBody);
@@ -5837,10 +5921,86 @@ window.addEventListener('DOMContentLoaded', () => {
         // 2. Answer Cell (Cell C3)
         cellAnswer.appendChild(cardAnswer);
 
-        // 3. Actions Cell (Cell D3)
-        cellActions.appendChild(actionArea);
-        cellActions.appendChild(feedbackArea);
-        cellActions.appendChild(utilityArea);
+        // 3. Status Select Cell (Cell D3)
+        const statusSelect = document.createElement('select');
+        statusSelect.className = 'sheet-cell-select';
+        statusSelect.innerHTML = `
+            <option value="">-- 検証結果 --</option>
+            <option value="good4">STATUS_PASS_A (☆☆☆☆)</option>
+            <option value="good3">STATUS_PASS_B (☆☆☆)</option>
+            <option value="good2">STATUS_PASS_C (☆☆)</option>
+            <option value="good1">STATUS_PASS_D (☆)</option>
+            <option value="poor1">STATUS_FAIL_A (×)</option>
+            <option value="poor2">STATUS_FAIL_B (××</option>
+            <option value="poor3">STATUS_FAIL_C (×××</option>
+            <option value="poor4">STATUS_FAIL_D (××××</option>
+        `;
+        statusSelect.addEventListener('change', () => {
+            const val = statusSelect.value;
+            if (!val) return;
+            if (val.startsWith('good')) {
+                const level = val.replace('good', '');
+                const stars = ['☆', '☆☆', '☆☆☆', '☆☆☆☆'];
+                const targetText = stars[parseInt(level) - 1];
+                const btn = Array.from(document.querySelectorAll('input[name="botan03"]')).find(b => b.value === targetText);
+                if (btn) btn.click();
+            } else if (val.startsWith('poor')) {
+                const level = val.replace('poor', '');
+                const crosses = ['×', '××', '×××', '××××'];
+                const targetText = crosses[parseInt(level) - 1];
+                const btn = Array.from(document.querySelectorAll('input[name="botan04"]')).find(b => b.value === targetText);
+                if (btn) btn.click();
+            }
+            statusSelect.value = "";
+        });
+        cellStatus.appendChild(statusSelect);
+
+        // 4. Save Record Button Cell (Cell E3)
+        const btn01 = document.getElementById('button01');
+        if (btn01) {
+            btn01.className = 'sheet-cell-btn save-btn';
+            btn01.value = 'RECORD_SAVE';
+            cellActionSave.appendChild(btn01);
+        }
+
+        // 5. Check Answer Button Cell (Cell E4)
+        const btn02 = document.getElementById('button02');
+        if (btn02) {
+            btn02.className = 'sheet-cell-btn';
+            btn02.value = 'CHECK_ANSWER';
+            cellActionCheck.appendChild(btn02);
+        }
+
+        // 6. AI Support Button Cell (Cell E5)
+        if (aiHintBtn) {
+            aiHintBtn.className = 'sheet-cell-btn';
+            aiHintBtn.innerHTML = 'DEBUG_RUN';
+            cellActionAi.appendChild(aiHintBtn);
+        }
+
+        // Hide evaluation/utility containers from normal view (they exist in DOM for logic)
+        feedbackArea.style.display = 'none';
+        utilityArea.style.display = 'none';
+
+        // Keyboard Shortcuts (Ctrl+Enter for Submit, Ctrl+Down for Skip, Ctrl+Up for Back)
+        document.addEventListener('keydown', (e) => {
+            if (e.ctrlKey && e.key === 'Enter') {
+                e.preventDefault();
+                const btn = document.getElementById('button01');
+                if (btn) btn.click();
+            }
+            if (e.ctrlKey && e.key === 'ArrowDown') {
+                e.preventDefault();
+                const btn = Array.from(document.querySelectorAll('input[name="botan05"]')).find(b => b.value === 'スキップ');
+                if (btn) btn.click();
+            }
+            if (e.ctrlKey && e.key === 'ArrowUp') {
+                e.preventDefault();
+                const btn = Array.from(document.querySelectorAll('input[name="botan05"]')).find(b => b.value === '前の問題');
+                if (btn) btn.click();
+            }
+        });
+
     } else {
         const unifiedPanel = document.querySelector('.unified-panel-container');
         if (unifiedPanel) {
