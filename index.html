@@ -838,6 +838,75 @@ input[type="text"].button:hover {
     border: 1px solid #dadce0 !important;
     font-family: 'SFMono-Regular', Consolas, "Liberation Mono", Menlo, Courier, monospace;
 }
+/* Step 4: Study Card & Textareas DevTools Camouflage */
+.modern-study-card {
+    border-radius: 0 !important;
+    border: 1px solid #cacaca !important;
+    box-shadow: none !important;
+    background: #ffffff !important;
+    margin-top: 12px !important;
+}
+
+.msc-header {
+    background: #f3f3f3 !important;
+    border-bottom: 1px solid #cacaca !important;
+    padding: 6px 12px !important;
+    font-size: 11px !important;
+    color: #5f6368 !important;
+}
+
+.msc-counter {
+    font-size: 11px !important;
+}
+
+/* Textareas styled like code blocks */
+#textareas, #textareas2 {
+    font-family: Consolas, "Courier New", monospace !important;
+    font-size: 13px !important;
+    background-color: #fafafa !important;
+    border: 1px solid #cacaca !important;
+    color: #333333 !important;
+    padding: 6px !important;
+    border-radius: 2px !important;
+    box-shadow: none !important;
+    transition: border-color 0.1s !important;
+}
+
+#textareas:focus, #textareas2:focus {
+    border-color: #1a73e8 !important;
+    outline: none !important;
+}
+
+/* Flat feedback/utility buttons like DevTools */
+.msc-btn-feedback, .msc-btn-nav, .msc-btn-undo, .msc-btn-huge, .msc-btn-secondary,
+.msc-actions-row input[type="button"], .msc-actions-row button {
+    background: #f3f3f3 !important;
+    color: #333333 !important;
+    border: 1px solid #cacaca !important;
+    border-radius: 3px !important;
+    padding: 3px 8px !important;
+    font-size: 11px !important;
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif !important;
+    font-weight: normal !important;
+    cursor: pointer !important;
+    box-shadow: none !important;
+    transition: none !important;
+    height: auto !important;
+}
+
+.msc-btn-feedback:hover, .msc-btn-nav:hover, .msc-btn-undo:hover, .msc-btn-huge:hover {
+    background: #eaeaea !important;
+    border-color: #a0a0a0 !important;
+}
+
+/* Good and Poor status button variations */
+.msc-btn-good {
+    border-color: #cacaca !important;
+}
+
+.msc-btn-poor {
+    border-color: #cacaca !important;
+}
 \n</style>
 <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script> -->
 <script type="text/javascript" src="jquery-3.4.1.min.js"></script>
@@ -875,7 +944,7 @@ input[type="text"].button:hover {
         <div class="devtools-tab">Application</div>
     </div>
     <div class="devtools-header-right">
-        <span class="t-system-version">v1.3.4-step3</span>
+        <span class="t-system-version">v1.3.4-step4</span>
     </div>
 </div>
 
