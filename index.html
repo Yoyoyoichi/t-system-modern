@@ -907,81 +907,68 @@ input[type="text"].button:hover {
 .msc-btn-poor {
     border-color: #cacaca !important;
 }
-/* Excel Camouflage Step 1: Ribbon and Header styles */
-.excel-window-header {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    background-color: #f3f2f1;
-    border-bottom: 1px solid #d2d0ce;
-    user-select: none;
-    font-family: 'Segoe UI', Meiryo, sans-serif !important;
-}
-
-.excel-title-bar {
-    background-color: #107c41 !important; /* Excel Green */
-    color: #ffffff !important;
-    height: 30px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 12px;
-    font-size: 11px !important;
-}
-
-.excel-title-left {
-    font-weight: 500;
-}
-
-.excel-title-right {
-    font-size: 9px;
-    color: #d2d0ce;
-}
-
-.excel-tabs {
-    background-color: #f3f2f1 !important;
-    display: flex;
-    height: 28px;
-    align-items: flex-end;
-    padding-left: 8px;
-}
-
-.excel-tab {
-    padding: 0 12px;
-    height: 24px;
-    line-height: 24px;
-    font-size: 11px !important;
-    color: #323130 !important;
-    cursor: pointer;
-    border-top-left-radius: 3px;
-    border-top-right-radius: 3px;
-}
-
-.excel-tab:hover {
-    background-color: #eaeaea;
-}
-
-.excel-tab.active {
+/* Google Sheets Camouflage Step 1: Header styles */
+.sheet-header {
     background-color: #ffffff !important;
-    border-top: 2px solid #107c41 !important;
-    font-weight: 600;
-    color: #107c41 !important;
+    padding: 8px 16px 4px 16px !important;
+    display: flex !important;
+    align-items: center !important;
+    border-bottom: 1px solid #dadce0 !important;
+    flex-shrink: 0;
+    width: 100%;
+    user-select: none;
+    font-family: Roboto, Arial, sans-serif !important;
 }
 
-.excel-tab-spacer {
-    flex: 1;
+.sheet-icon {
+    color: #0f9d58 !important; /* Sheets Green */
+    font-size: 22px !important;
+    margin-right: 12px !important;
+    line-height: 1 !important;
+    font-weight: bold !important;
 }
 
-.excel-version-tag {
+.sheet-title-group {
+    display: flex !important;
+    flex-direction: column !important;
+}
+
+.sheet-title-row {
+    display: flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+}
+
+.sheet-name {
+    font-size: 14px !important;
+    color: #202124 !important;
+    font-weight: normal !important;
+}
+
+.sheet-menu-bar {
+    display: flex !important;
+    gap: 14px !important;
+    margin-top: 2px !important;
+    font-size: 11px !important;
+    color: #5f6368 !important;
+}
+
+.sheet-menu-item {
+    cursor: pointer !important;
+}
+.sheet-menu-item:hover {
+    color: #202124 !important;
+}
+
+.sheet-version-tag {
+    margin-left: auto;
     font-size: 10px !important;
-    background-color: #e1dfdd !important;
-    color: #323130 !important;
+    background-color: #f1f3f4 !important;
+    color: #5f6368 !important;
     padding: 1px 6px !important;
     border-radius: 2px !important;
-    border: 1px solid #d2d0ce !important;
+    border: 1px solid #dadce0 !important;
     font-family: Consolas, monospace !important;
-    margin-right: 8px;
-    margin-bottom: 2px;
 }
 \n</style>
 <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script> -->
@@ -1003,23 +990,23 @@ input[type="text"].button:hover {
 <script src="./Basic.files/dom_request_xhr.js" type="text/javascript"></script>
 <script src="./Basic.files/dom_request_script.js" type="text/javascript"></script>
 <body>
-<div class="excel-window-header">
-    <div class="excel-title-bar">
-        <div class="excel-title-left">🟩 T-System_Modern_Database_Workbook.xlsx - Excel</div>
-        <div class="excel-title-right">サインイン 🔲 ✕</div>
+<div class="sheet-header">
+    <div class="sheet-icon">田</div>
+    <div class="sheet-title-group">
+        <div class="sheet-title-row">
+            <span class="sheet-name">T-System_Modern_Database_Workbook</span>
+        </div>
+        <div class="sheet-menu-bar">
+            <span class="sheet-menu-item">ファイル</span>
+            <span class="sheet-menu-item">編集</span>
+            <span class="sheet-menu-item">表示</span>
+            <span class="sheet-menu-item">挿入</span>
+            <span class="sheet-menu-item">表示形式</span>
+            <span class="sheet-menu-item">データ</span>
+            <span class="sheet-menu-item">拡張機能</span>
+        </div>
     </div>
-    <div class="excel-tabs">
-        <div class="excel-tab">ファイル</div>
-        <div class="excel-tab active">ホーム</div>
-        <div class="excel-tab">挿入</div>
-        <div class="excel-tab">ページレイアウト</div>
-        <div class="excel-tab">数式</div>
-        <div class="excel-tab">データ</div>
-        <div class="excel-tab">校閲</div>
-        <div class="excel-tab">表示</div>
-        <div class="excel-tab-spacer"></div>
-        <div class="excel-version-tag">v1.3.4-excel-step1</div>
-    </div>
+    <div class="sheet-version-tag">v1.3.4-sheet-step1</div>
 </div>
 
 <form name ="mainform" id ="mainform" action="" onsubmit="event.preventDefault(); (async () => { await updateDropdown('ctg1', 'category1', {}); await listChanged(); sendRequest(); })();">
