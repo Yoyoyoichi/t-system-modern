@@ -1083,10 +1083,10 @@ input[type="text"].button:hover {
             <span class="sheet-menu-item">挿入</span>
             <span class="sheet-menu-item">表示形式</span>
             <span class="sheet-menu-item">データ</span>
-            <span class="sheet-menu-item">拡張機能</span>
+            <span class="sheet-menu-item" id="menu-extensions">拡張機能</span>
         </div>
     </div>
-    <div class="sheet-version-tag">v1.3.4-sheet-step2-fixed</div>
+    <div class="sheet-version-tag">v1.3.4-sheet-step2-settings</div>
 </div>
 
 <form name ="mainform" id ="mainform" action="" onsubmit="event.preventDefault(); (async () => { await updateDropdown('ctg1', 'category1', {}); await listChanged(); sendRequest(); })();">
@@ -5174,7 +5174,22 @@ window.addEventListener('DOMContentLoaded', () => {
         topPanel.appendChild(unifiedContainer);
         
         const settingsPanel = document.querySelector('.msc-settings-panel');
-        if (settingsPanel) topPanel.appendChild(settingsPanel);
+        if (settingsPanel) {
+            settingsPanel.style.display = 'none';
+            // Append it to unifiedRight to show under the DevTools section
+            unifiedRight.appendChild(settingsPanel);
+            
+            const extMenu = document.getElementById('menu-extensions');
+            if (extMenu) {
+                extMenu.addEventListener('click', () => {
+                    if (settingsPanel.style.display === 'none') {
+                        settingsPanel.style.display = 'block';
+                    } else {
+                        settingsPanel.style.display = 'none';
+                    }
+                });
+            }
+        }
     } else if(form) {
         form.insertBefore(unifiedContainer, form.firstChild);
     }
