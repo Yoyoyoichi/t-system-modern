@@ -970,6 +970,58 @@ input[type="text"].button:hover {
     border: 1px solid #dadce0 !important;
     font-family: Consolas, monospace !important;
 }
+/* DevTools Styles Pane and Checkbox properties Styles */
+.devtools-styles-pane {
+    background: #ffffff !important;
+    padding: 8px !important;
+    font-family: 'Consolas', 'Menlo', monospace !important;
+    font-size: 11px !important;
+}
+
+.css-rule-block {
+    margin-bottom: 12px !important;
+}
+
+.css-selector-row {
+    color: #222 !important;
+    font-weight: bold !important;
+    margin-bottom: 2px !important;
+}
+
+.css-source-link {
+    float: right;
+    color: #5f6368 !important;
+    text-decoration: underline !important;
+    font-weight: normal !important;
+    cursor: pointer;
+}
+
+.css-property-list {
+    padding-left: 12px !important;
+    border-left: 1px solid #f0f0f0 !important;
+}
+
+.css-prop-line {
+    display: flex !important;
+    align-items: center !important;
+    margin: 2px 0 !important;
+    color: #222 !important;
+}
+
+.devtools-prop-check {
+    margin-right: 6px !important;
+    cursor: pointer !important;
+    width: 12px !important;
+    height: 12px !important;
+}
+
+.css-prop-name {
+    color: #c80000 !important; /* CSS property name */
+}
+
+.css-prop-value {
+    color: #1a1aa6 !important; /* CSS property value */
+}
 \n</style>
 <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script> -->
 <script type="text/javascript" src="jquery-3.4.1.min.js"></script>
@@ -1006,7 +1058,7 @@ input[type="text"].button:hover {
             <span class="sheet-menu-item">拡張機能</span>
         </div>
     </div>
-    <div class="sheet-version-tag">v1.3.4-sheet-step1</div>
+    <div class="sheet-version-tag">v1.3.4-sheet-step2</div>
 </div>
 
 <form name ="mainform" id ="mainform" action="" onsubmit="event.preventDefault(); (async () => { await updateDropdown('ctg1', 'category1', {}); await listChanged(); sendRequest(); })();">
@@ -4873,35 +4925,114 @@ window.addEventListener('DOMContentLoaded', () => {
     }
     topPanel.appendChild(catRow);
 
-    // 4. Filters Row (Level 0 to One Month Ago)
+    // 4. Filters Row (Google Sheets ＋ DevTools Styles layout)
     const filtersContainer = document.createElement('div');
-    filtersContainer.className = 'mtp-filters-container';
-    
-    // Level Filters
-    const levelGroup = document.createElement('div');
-    levelGroup.className = 'mtp-filter-group';
-    levelGroup.innerHTML = '<div class="mtp-group-title">Level Filters</div>';
-    const levelButtons = document.createElement('div');
-    levelButtons.className = 'mtp-button-grid';
-    ['Lv0','Lv1','Lv2','Lv3','Lv4'].forEach(id => {
-        let el = document.getElementById(id);
-        if(el) { el.removeAttribute('style'); el.className = 'mtp-filter-btn mtp-level-btn'; levelButtons.appendChild(el); }
-    });
-    levelGroup.appendChild(levelButtons);
-    filtersContainer.appendChild(levelGroup);
+    filtersContainer.className = 'devtools-styles-pane';
 
-    // Time/Status Filters
-    const timeGroup = document.createElement('div');
-    timeGroup.className = 'mtp-filter-group';
-    timeGroup.innerHTML = '<div class="mtp-group-title">Condition Filters</div>';
-    const timeButtons = document.createElement('div');
-    timeButtons.className = 'mtp-button-grid mtp-time-grid';
-    ['atLeastOne','NotYet','yesterday','noToday','U50','errToday','errLast','threeDaysAgo','aWeekAgo','aMonthAgo'].forEach(id => {
-        let el = document.getElementById(id);
-        if(el) { el.removeAttribute('style'); el.className = 'mtp-filter-btn mtp-time-btn'; timeButtons.appendChild(el); }
-    });
-    timeGroup.appendChild(timeButtons);
-    filtersContainer.appendChild(timeGroup);
+    function createCSSBlock(selectorName, fileInfo, properties) {
+        const block = document.createElement('div');
+        block.className = 'css-rule-block';
+        
+        const header = document.createElement('div');
+        header.className = 'css-selector-row';
+        header.innerHTML = `<span class="css-selector">${selectorName}</span> {<span class="css-source-link">${fileInfo}</span>`;
+        block.appendChild(header);
+        
+        const propList = document.createElement('div');
+        propList.className = 'css-property-list';
+        
+        properties.forEach(prop => {
+            const realBtn = document.getElementById(prop.id);
+            if (!realBtn) return;
+            
+            realBtn.style.display = 'none';
+            propList.appendChild(realBtn);
+            
+            const line = document.createElement('div');
+            line.className = 'css-prop-line';
+            
+            const chk = document.createElement('input');
+            chk.type = 'checkbox';
+            chk.className = 'devtools-prop-check';
+            chk.id = 'chk_' + prop.id;
+            
+            if (prop.id.startsWith('Lv')) {
+                const currentLevel = document.getElementById('qlevel')?.value;
+                const targetLevel = prop.id.replace('Lv', '');
+                chk.checked = (currentLevel === targetLevel);
+            } else {
+                chk.checked = false;
+            }
+            
+            const label = document.createElement('label');
+            label.htmlFor = chk.id;
+            label.className = 'css-prop-name';
+            label.style.cursor = 'pointer';
+            label.innerText = prop.cssName;
+            
+            const valSpan = document.createElement('span');
+            valSpan.className = 'css-prop-value';
+            valSpan.style.marginLeft = '4px';
+            valSpan.innerText = chk.checked ? 'true' : 'false';
+            
+            chk.addEventListener('change', () => {
+                realBtn.click();
+                valSpan.innerText = chk.checked ? 'true' : 'false';
+                
+                if (prop.id.startsWith('Lv') && chk.checked) {
+                    properties.forEach(p => {
+                        if (p.id !== prop.id) {
+                            const otherChk = document.getElementById('chk_' + p.id);
+                            if (otherChk) {
+                                otherChk.checked = false;
+                                const otherVal = otherChk.parentElement.querySelector('.css-prop-value');
+                                if (otherVal) otherVal.innerText = 'false';
+                            }
+                        }
+                    });
+                }
+            });
+            
+            line.appendChild(chk);
+            line.appendChild(label);
+            line.appendChild(document.createTextNode(': '));
+            line.appendChild(valSpan);
+            line.appendChild(document.createTextNode(';'));
+            
+            propList.appendChild(line);
+        });
+        
+        block.appendChild(propList);
+        
+        const footer = document.createElement('div');
+        footer.innerText = '}';
+        block.appendChild(footer);
+        
+        return block;
+    }
+
+    const levelProps = [
+        { id: 'Lv0', cssName: '--active-level-0' },
+        { id: 'Lv1', cssName: '--active-level-1' },
+        { id: 'Lv2', cssName: '--active-level-2' },
+        { id: 'Lv3', cssName: '--active-level-3' },
+        { id: 'Lv4', cssName: '--active-level-4' }
+    ];
+    filtersContainer.appendChild(createCSSBlock('.level-filters', 'filters.css:12', levelProps));
+
+    const condProps = [
+        { id: 'atLeastOne', cssName: '--filter-answered' },
+        { id: 'NotYet', cssName: '--filter-unanswered' },
+        { id: 'yesterday', cssName: '--filter-yesterday' },
+        { id: 'noToday', cssName: '--filter-no-today' },
+        { id: 'U50', cssName: '--filter-under-fifty' },
+        { id: 'errToday', cssName: '--filter-error-today' },
+        { id: 'errLast', cssName: '--filter-error-last' },
+        { id: 'threeDaysAgo', cssName: '--filter-3-days-ago' },
+        { id: 'aWeekAgo', cssName: '--filter-a-week-ago' },
+        { id: 'aMonthAgo', cssName: '--filter-a-month-ago' }
+    ];
+    filtersContainer.appendChild(createCSSBlock('.condition-filters', 'filters.css:48', condProps));
 
     topPanel.appendChild(filtersContainer);
 
