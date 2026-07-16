@@ -1269,6 +1269,64 @@ body {
     color: #888888 !important;
     margin-bottom: 2px !important;
 }
+/* DevTools Console Styles */
+.devtools-console {
+    background: #ffffff !important;
+    border-top: 1px solid #cacaca !important;
+    display: flex !important;
+    flex-direction: column !important;
+    font-family: 'Consolas', 'Menlo', monospace !important;
+    font-size: 11px !important;
+    height: 220px !important;
+    flex-shrink: 0;
+}
+
+.console-toolbar {
+    background-color: #f3f3f3 !important;
+    border-bottom: 1px solid #cacaca !important;
+    height: 24px !important;
+    display: flex !important;
+    align-items: center !important;
+    padding: 0 8px !important;
+    color: #5f6368 !important;
+    font-size: 11px !important;
+    user-select: none;
+}
+
+.console-log-area {
+    flex: 1 !important;
+    overflow-y: auto !important;
+    padding: 4px 8px !important;
+    background: #ffffff !important;
+}
+
+/* Console warning styling for AI hints */
+.console-row-warning {
+    display: flex !important;
+    align-items: flex-start !important;
+    background-color: #fffbe6 !important;
+    border-bottom: 1px solid #fff1b8 !important;
+    padding: 6px 8px !important;
+    color: #5c3c00 !important;
+    font-size: 11px !important;
+    line-height: 1.45 !important;
+}
+
+.console-warning-icon {
+    color: #ad8b00 !important;
+    margin-right: 6px !important;
+    font-weight: bold !important;
+    font-size: 12px !important;
+    line-height: 1.45 !important;
+}
+
+.console-warning-text {
+    white-space: pre-wrap !important;
+    line-height: 1.45 !important;
+    font-size: 11px !important;
+    font-family: 'Consolas', 'Menlo', monospace !important;
+    color: #5c3c00 !important;
+}
 \n</style>
 <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script> -->
 <script type="text/javascript" src="jquery-3.4.1.min.js"></script>
@@ -1305,7 +1363,7 @@ body {
             <span class="sheet-menu-item" id="menu-extensions">拡張機能</span>
         </div>
     </div>
-    <div class="sheet-version-tag">v1.0.2</div>
+    <div class="sheet-version-tag">v1.0.3</div>
 </div>
 
 <form name ="mainform" id ="mainform" action="" onsubmit="event.preventDefault(); (async () => { await updateDropdown('ctg1', 'category1', {}); await listChanged(); sendRequest(); })();">
