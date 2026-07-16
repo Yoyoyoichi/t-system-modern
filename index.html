@@ -1254,7 +1254,7 @@ body {
     padding: 0 !important;
     font-size: 12px !important;
     width: 100% !important;
-    height: 30px !important;
+    height: 120px !important;
     resize: none !important;
     box-shadow: none !important;
 }
@@ -1265,29 +1265,13 @@ body {
     padding: 0 !important;
     font-size: 12px !important;
     width: 100% !important;
-    height: 30px !important;
+    height: 120px !important;
     resize: none !important;
     box-shadow: none !important;
 }
 
 #cell-answer {
     height: 30px !important;
-}
-
-#cell-problem {
-    height: 30px !important;
-}
-
-.sheet-table td .msc-header {
-    display: none !important;
-}
-
-#msc-metadata-layout {
-    display: none !important;
-}
-
-#div1 {
-    display: none !important;
 }
 
 .sheet-table td #textareas:focus,
@@ -1394,7 +1378,7 @@ body {
             <span class="sheet-menu-item" id="menu-extensions">拡張機能</span>
         </div>
     </div>
-    <div class="sheet-version-tag">v1.0.7</div>
+    <div class="sheet-version-tag">v1.0.8</div>
 </div>
 
 <form name ="mainform" id ="mainform" action="" onsubmit="event.preventDefault(); (async () => { await updateDropdown('ctg1', 'category1', {}); await listChanged(); sendRequest(); })();">
@@ -6022,12 +6006,53 @@ window.addEventListener('DOMContentLoaded', () => {
     const cellActionAi = document.getElementById('cell-action-ai');
 
     if (cellProblem && cellAnswer && cellActionSave) {
-        // 1. Problem Cell (Cell B3)
-        cellProblem.appendChild(cardHeader);
-        cellProblem.appendChild(cardBody);
+        // Direct text display for Cell B3 (Problem Cell)
+        const qInput = document.getElementById('textareas');
+        if (qInput) {
+            qInput.style.display = 'none';
+            const desc = Object.getOwnPropertyDescriptor(HTMLTextAreaElement.prototype, 'value');
+            Object.defineProperty(qInput, 'value', {
+                get: function() { return desc.get.call(this); },
+                set: function(val) {
+                    desc.set.call(this, val);
+                    const cur = document.getElementById('msc-press-button')?.innerText || '0';
+                    const tot = document.getElementById('msc-total')?.innerText || '0';
+                    cellProblem.innerText = `[${cur}/${tot}] ` + val;
+                }
+            });
+            const updateQCell = () => {
+                const cur = document.getElementById('msc-press-button')?.innerText || '0';
+                const tot = document.getElementById('msc-total')?.innerText || '0';
+                cellProblem.innerText = `[${cur}/${tot}] ` + qInput.value;
+            };
+            const counterObserver = new MutationObserver(updateQCell);
+            const curEl = document.getElementById('msc-press-button');
+            const totEl = document.getElementById('msc-total');
+            if (curEl) counterObserver.observe(curEl, { childList: true, characterData: true, subtree: true });
+            if (totEl) counterObserver.observe(totEl, { childList: true, characterData: true, subtree: true });
+        }
 
-        // 2. Answer Cell (Cell C3)
-        cellAnswer.appendChild(cardAnswer);
+        // Direct contentEditable display for Cell C3 (Answer Cell)
+        const aInput = document.getElementById('textareas2');
+        if (aInput) {
+            aInput.style.display = 'none';
+            cellAnswer.contentEditable = "true";
+            cellAnswer.style.cssText = 'outline:none; text-align:left; vertical-align:top; padding:4px;';
+            cellAnswer.addEventListener('input', () => {
+                aInput.value = cellAnswer.innerText;
+            });
+            cellAnswer.addEventListener('keydown', (e) => {
+                if (typeof AnswerSent === 'function') AnswerSent(e.keyCode);
+            });
+            const desc = Object.getOwnPropertyDescriptor(HTMLTextAreaElement.prototype, 'value');
+            Object.defineProperty(aInput, 'value', {
+                get: function() { return desc.get.call(this); },
+                set: function(val) {
+                    desc.set.call(this, val);
+                    cellAnswer.innerText = val;
+                }
+            });
+        }
 
         // 3. Status Select Cell (Cell D3)
         const statusSelect = document.createElement('select');
