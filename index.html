@@ -3622,6 +3622,41 @@ async function listChanged(){
   } else {
     MaxQuestionNumber = questionnumbers ? questionnumbers.length : 0;
   }
+
+    // 【追記：履歴データの流し込みロジック】
+    try {
+        const historyData = localStorage.getItem('TSystem_History_Log');
+        if (historyData) {
+            const historyArray = JSON.parse(historyData);
+            if (Array.isArray(historyArray) && historyArray.length > 0) {
+                const latest = historyArray[historyArray.length - 1];
+
+                // DOM要素へのデータ流し込み
+                const pDisplay = document.getElementById('past-problem-display');
+                const uDisplay = document.getElementById('past-answer-display');
+                const cDisplay = document.getElementById('past-correct-display');
+                const rDisplay = document.getElementById('past-judgment-display');
+
+                if (pDisplay) pDisplay.innerText = latest.q_text || '';
+                if (uDisplay) uDisplay.innerText = latest.u_ans || '';
+                if (cDisplay) cDisplay.innerText = latest.c_ans || '';
+                
+                if (rDisplay) {
+                    if (latest.result_code === true || latest.result_code === 'true') {
+                        rDisplay.innerText = '〇';
+                        rDisplay.style.color = 'blue';
+                        rDisplay.style.fontWeight = 'bold';
+                    } else {
+                        rDisplay.innerText = '✖';
+                        rDisplay.style.color = 'red';
+                        rDisplay.style.fontWeight = 'bold';
+                    }
+                }
+            }
+        }
+    } catch (e) {
+        console.warn('T-System: 履歴データの読み込み中にエラーが発生しました。', e);
+    }
 }
 
 async function backQuestion(){
@@ -5310,7 +5345,7 @@ window.addEventListener('DOMContentLoaded', () => {
     rowHistory.className = 'history-row';
     rowHistory.style.height = '30px';
     rowHistory.innerHTML = `
-        <td class="row-header" style="color: #999;">-</td>
+        <td class="row-header">3</td>
         <td class="cell" style="font-weight:bold; text-align:center;">履歴</td>
         <td class="cell" id="past-problem-display">（過去の問題）</td>
         <td class="cell" id="past-answer-display">（あなたの解答）</td>
@@ -5325,7 +5360,7 @@ window.addEventListener('DOMContentLoaded', () => {
     const row3 = document.createElement('tr');
     row3.style.height = '30px';
     row3.innerHTML = `
-        <td class="row-header">3</td>
+        <td class="row-header">4</td>
         <td style="font-weight:bold; background:#f8f9fa;">LEARNING</td>
         <td id="cell-problem" rowspan="3" style="vertical-align:top; padding:4px;"></td>
         <td id="cell-answer" rowspan="3" class="active-select-cell" style="vertical-align:top; padding:4px;"></td>
