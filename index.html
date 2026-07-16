@@ -1305,7 +1305,7 @@ body {
             <span class="sheet-menu-item" id="menu-extensions">拡張機能</span>
         </div>
     </div>
-    <div class="sheet-version-tag">v1.3.4-sheet-step4</div>
+    <div class="sheet-version-tag">v1.0.2</div>
 </div>
 
 <form name ="mainform" id ="mainform" action="" onsubmit="event.preventDefault(); (async () => { await updateDropdown('ctg1', 'category1', {}); await listChanged(); sendRequest(); })();">
@@ -5160,11 +5160,28 @@ window.addEventListener('DOMContentLoaded', () => {
     
     // DB Input Cell (Cell B2)
     const dbCell = document.createElement('td');
+    dbCell.contentEditable = "true";
+    dbCell.style.cssText = 'outline:none; font-family:monospace; text-align:left; padding: 0 6px;';
+    
     const dbInput = document.getElementById('DB_name');
     if(dbInput) {
-        dbInput.placeholder = "Enter DB Name...";
-        dbInput.style.cssText = 'border:none; width:100%; outline:none; background:transparent; font-family:monospace;';
-        dbCell.appendChild(dbInput);
+        dbInput.style.display = 'none';
+        dbCell.innerText = dbInput.value || 'terashima01';
+        
+        dbCell.addEventListener('input', () => {
+            dbInput.value = dbCell.innerText.trim();
+        });
+
+        const descriptor = Object.getOwnPropertyDescriptor(HTMLInputElement.prototype, 'value');
+        Object.defineProperty(dbInput, 'value', {
+            get: function() {
+                return descriptor.get.call(this);
+            },
+            set: function(val) {
+                descriptor.set.call(this, val);
+                dbCell.innerText = val;
+            }
+        });
     }
     row2.appendChild(dbCell);
 
