@@ -1378,7 +1378,7 @@ body {
             <span class="sheet-menu-item" id="menu-extensions">拡張機能</span>
         </div>
     </div>
-    <div class="sheet-version-tag">v1.0.8</div>
+    <div class="sheet-version-tag">v1.0.9</div>
 </div>
 
 <form name ="mainform" id ="mainform" action="" onsubmit="event.preventDefault(); (async () => { await updateDropdown('ctg1', 'category1', {}); await listChanged(); sendRequest(); })();">
@@ -6006,10 +6006,17 @@ window.addEventListener('DOMContentLoaded', () => {
     const cellActionAi = document.getElementById('cell-action-ai');
 
     if (cellProblem && cellAnswer && cellActionSave) {
+        // Append hidden containers to the DOM so they are in the document tree
+        cardHeader.style.display = 'none';
+        cardBody.style.display = 'none';
+        cardAnswer.style.display = 'none';
+        cellProblem.appendChild(cardHeader);
+        cellProblem.appendChild(cardBody);
+        cellAnswer.appendChild(cardAnswer);
+
         // Direct text display for Cell B3 (Problem Cell)
         const qInput = document.getElementById('textareas');
         if (qInput) {
-            qInput.style.display = 'none';
             const desc = Object.getOwnPropertyDescriptor(HTMLTextAreaElement.prototype, 'value');
             Object.defineProperty(qInput, 'value', {
                 get: function() { return desc.get.call(this); },
@@ -6030,12 +6037,14 @@ window.addEventListener('DOMContentLoaded', () => {
             const totEl = document.getElementById('msc-total');
             if (curEl) counterObserver.observe(curEl, { childList: true, characterData: true, subtree: true });
             if (totEl) counterObserver.observe(totEl, { childList: true, characterData: true, subtree: true });
+            
+            // Initialize problem cell text
+            updateQCell();
         }
 
         // Direct contentEditable display for Cell C3 (Answer Cell)
         const aInput = document.getElementById('textareas2');
         if (aInput) {
-            aInput.style.display = 'none';
             cellAnswer.contentEditable = "true";
             cellAnswer.style.cssText = 'outline:none; text-align:left; vertical-align:top; padding:4px;';
             cellAnswer.addEventListener('input', () => {
@@ -6052,6 +6061,9 @@ window.addEventListener('DOMContentLoaded', () => {
                     cellAnswer.innerText = val;
                 }
             });
+            
+            // Initialize answer cell text
+            cellAnswer.innerText = aInput.value;
         }
 
         // 3. Status Select Cell (Cell D3)
