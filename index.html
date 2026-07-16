@@ -1180,7 +1180,7 @@ body {
 
 .sheet-table td {
     border: 1px solid #e0e0e0 !important;
-    height: 32px;
+    height: 30px !important;
     padding: 0 6px !important;
     font-size: 12px !important;
     vertical-align: middle !important;
@@ -1378,7 +1378,7 @@ body {
             <span class="sheet-menu-item" id="menu-extensions">拡張機能</span>
         </div>
     </div>
-    <div class="sheet-version-tag">v1.0.4</div>
+    <div class="sheet-version-tag">v1.0.5</div>
 </div>
 
 <form name ="mainform" id ="mainform" action="" onsubmit="event.preventDefault(); (async () => { await updateDropdown('ctg1', 'category1', {}); await listChanged(); sendRequest(); })();">
@@ -5216,6 +5216,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
     // Row 1: STATUS & stats
     const row1 = document.createElement('tr');
+    row1.style.height = '30px';
     row1.innerHTML = `<td class="row-header">1</td><td style="font-weight:bold; background:#f8f9fa;">STATUS</td>`;
     const statsCell = document.createElement('td');
     statsCell.colSpan = 6;
@@ -5229,6 +5230,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
     // Row 2: CONFIG & CATEGORIES (ctg1~5)
     const row2 = document.createElement('tr');
+    row2.style.height = '30px';
     row2.innerHTML = `<td class="row-header">2</td><td style="font-weight:bold; background:#f8f9fa;">CONFIG</td>`;
     
     // DB Input Cell (Cell B2)
@@ -5285,7 +5287,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
     // Row 3, 4, 5: Rowspan merged layout
     const row3 = document.createElement('tr');
-    row3.style.height = '40px';
+    row3.style.height = '30px';
     row3.innerHTML = `
         <td class="row-header">3</td>
         <td style="font-weight:bold; background:#f8f9fa;">LEARNING</td>
@@ -5299,7 +5301,7 @@ window.addEventListener('DOMContentLoaded', () => {
     tbody.appendChild(row3);
 
     const row4 = document.createElement('tr');
-    row4.style.height = '40px';
+    row4.style.height = '30px';
     row4.innerHTML = `
         <td class="row-header">4</td>
         <td style="background:#f8f9fa;"></td>
@@ -5311,7 +5313,7 @@ window.addEventListener('DOMContentLoaded', () => {
     tbody.appendChild(row4);
 
     const row5 = document.createElement('tr');
-    row5.style.height = '40px';
+    row5.style.height = '30px';
     row5.innerHTML = `
         <td class="row-header">5</td>
         <td style="background:#f8f9fa;"></td>
