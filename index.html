@@ -1929,6 +1929,23 @@ word-wrap:break-word;'></pre>
     color: #334155;
     user-select: none;
 }
+
+    /* メタデータ表示用トグルスイッチのスタイル */
+    #metadata-toggle {
+        position: fixed; top: 10px; right: 10px; z-index: 1000;
+        padding: 5px 10px; background: #1a73e8; color: white; cursor: pointer;
+        border-radius: 4px; font-size: 12px;
+    }
+    #metadata-sidebar {
+        position: fixed; top: 0; right: -300px; width: 300px; height: 100%;
+        background: #f8f9fa; border-left: 1px solid #ccc; transition: 0.3s;
+        padding: 20px; box-sizing: border-box; z-index: 999; overflow-y: auto;
+    }
+    #metadata-sidebar.open { right: 0; }
+
+    /* 既存の非表示要素の再定義（CSSで可視化） */
+    #msc-metadata-layout { display: block !important; }
+    .msc-metadata-box { display: block !important; border-bottom: 1px solid #ddd; margin-bottom: 10px; font-size: 11px; }
 </style>
 
 
@@ -5717,7 +5734,22 @@ window.addEventListener('DOMContentLoaded', () => {
     aiHintWrapper.appendChild(aiHintBox);
     metadataLayout.appendChild(aiHintWrapper);
 
-    cardBody.appendChild(metadataLayout);
+    // 追加：メタデータ確認用トグルボタンとサイドバーの中に既存のレイアウトを収める
+    const toggleBtn = document.createElement('div');
+    toggleBtn.id = 'metadata-toggle';
+    toggleBtn.setAttribute('onclick', "document.getElementById('metadata-sidebar').classList.toggle('open')");
+    toggleBtn.innerText = '過去の解答状況を表示';
+    document.body.appendChild(toggleBtn);
+
+    const sidebar = document.createElement('div');
+    sidebar.id = 'metadata-sidebar';
+    
+    const sidebarTitle = document.createElement('h3');
+    sidebarTitle.innerText = 'Metadata Log';
+    sidebar.appendChild(sidebarTitle);
+    
+    sidebar.appendChild(metadataLayout);
+    document.body.appendChild(sidebar);
     
     // textareas is the MAIN Question Textarea! Move it to body!
     // Do NOT add msc-hidden, let PHP script toggle its display!
