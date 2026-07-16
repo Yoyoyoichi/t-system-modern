@@ -5310,11 +5310,14 @@ window.addEventListener('DOMContentLoaded', () => {
     rowHistory.className = 'history-row';
     rowHistory.style.height = '30px';
     rowHistory.innerHTML = `
-        <td class="row-header">H</td>
-        <td class="cell" style="font-weight:bold;">履歴</td>
-        <td class="cell" id="past-problem-display">（過去の問題情報を読み込み中...）</td>
-        <td class="cell" id="past-answer-display">-</td>
-        <td colspan="4"></td>
+        <td class="row-header" style="color: #999;">-</td>
+        <td class="cell" style="font-weight:bold; text-align:center;">履歴</td>
+        <td class="cell" id="past-problem-display">（過去の問題）</td>
+        <td class="cell" id="past-answer-display">（あなたの解答）</td>
+        <td class="cell" id="past-correct-display">（正解）</td>
+        <td class="cell" id="past-judgment-display">（正誤）</td>
+        <td class="cell"></td>
+        <td class="cell"></td>
     `;
     tbody.appendChild(rowHistory);
 
