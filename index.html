@@ -1254,7 +1254,7 @@ body {
     padding: 0 !important;
     font-size: 12px !important;
     width: 100% !important;
-    height: 120px !important;
+    height: 30px !important;
     resize: none !important;
     box-shadow: none !important;
 }
@@ -1275,7 +1275,19 @@ body {
 }
 
 #cell-problem {
-    height: 135px !important;
+    height: 30px !important;
+}
+
+.sheet-table td .msc-header {
+    display: none !important;
+}
+
+#msc-metadata-layout {
+    display: none !important;
+}
+
+#div1 {
+    display: none !important;
 }
 
 .sheet-table td #textareas:focus,
@@ -1382,7 +1394,7 @@ body {
             <span class="sheet-menu-item" id="menu-extensions">拡張機能</span>
         </div>
     </div>
-    <div class="sheet-version-tag">v1.0.6</div>
+    <div class="sheet-version-tag">v1.0.7</div>
 </div>
 
 <form name ="mainform" id ="mainform" action="" onsubmit="event.preventDefault(); (async () => { await updateDropdown('ctg1', 'category1', {}); await listChanged(); sendRequest(); })();">
