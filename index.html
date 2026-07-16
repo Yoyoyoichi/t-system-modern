@@ -1378,7 +1378,7 @@ body {
             <span class="sheet-menu-item" id="menu-extensions">拡張機能</span>
         </div>
     </div>
-    <div class="sheet-version-tag">v1.0.9</div>
+    <div class="sheet-version-tag">v1.1.0</div>
 </div>
 
 <form name ="mainform" id ="mainform" action="" onsubmit="event.preventDefault(); (async () => { await updateDropdown('ctg1', 'category1', {}); await listChanged(); sendRequest(); })();">
@@ -6006,13 +6006,13 @@ window.addEventListener('DOMContentLoaded', () => {
     const cellActionAi = document.getElementById('cell-action-ai');
 
     if (cellProblem && cellAnswer && cellActionSave) {
-        // Append hidden containers to the DOM so they are in the document tree
-        cardHeader.style.display = 'none';
-        cardBody.style.display = 'none';
-        cardAnswer.style.display = 'none';
-        cellProblem.appendChild(cardHeader);
-        cellProblem.appendChild(cardBody);
-        cellAnswer.appendChild(cardAnswer);
+        // Create a hidden container for the elements so they remain in the DOM tree but are never overwritten
+        const hiddenContainer = document.createElement('div');
+        hiddenContainer.style.display = 'none';
+        document.body.appendChild(hiddenContainer);
+        hiddenContainer.appendChild(cardHeader);
+        hiddenContainer.appendChild(cardBody);
+        hiddenContainer.appendChild(cardAnswer);
 
         // Direct text display for Cell B3 (Problem Cell)
         const qInput = document.getElementById('textareas');
