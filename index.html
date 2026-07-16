@@ -1946,6 +1946,9 @@ word-wrap:break-word;'></pre>
     /* 既存の非表示要素の再定義（CSSで可視化） */
     #msc-metadata-layout { display: block !important; }
     .msc-metadata-box { display: block !important; border-bottom: 1px solid #ddd; margin-bottom: 10px; font-size: 11px; }
+
+    /* 追加行専用クラス */
+    .history-row { background-color: #f3f3f3; color: #666; font-size: 11px; }
 </style>
 
 
@@ -5301,6 +5304,19 @@ window.addEventListener('DOMContentLoaded', () => {
         row2.appendChild(catCell);
     }
     tbody.appendChild(row2);
+
+    // 新設：過去の問題情報行
+    const rowHistory = document.createElement('tr');
+    rowHistory.className = 'history-row';
+    rowHistory.style.height = '30px';
+    rowHistory.innerHTML = `
+        <td class="row-header">H</td>
+        <td class="cell" style="font-weight:bold;">履歴</td>
+        <td class="cell" id="past-problem-display">（過去の問題情報を読み込み中...）</td>
+        <td class="cell" id="past-answer-display">-</td>
+        <td colspan="4"></td>
+    `;
+    tbody.appendChild(rowHistory);
 
     // Row 3, 4, 5: Rowspan merged layout
     const row3 = document.createElement('tr');
